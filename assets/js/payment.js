@@ -1,10 +1,11 @@
 // ===== PAYAPP 결제 요청 =====
 
-// ⚠️ Phase 10 테스트 중: 실가격 복구 시 config.js의 plans amount도 함께 변경
+// ⚠️ Phase 10 테스트 중 (페이앱 최소 결제 1,000원 제약)
+// 실가격 복구 시 config.js의 plans amount도 함께 변경
 // 실가격: monthly=39000, full_package=59000
 var PLAN_PRICES = {
-  'monthly': 1,
-  'full_package': 1,
+  'monthly': 1000,
+  'full_package': 1000,
 };
 
 var PLAN_NAMES = {
