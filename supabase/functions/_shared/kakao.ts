@@ -1,4 +1,5 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { getPlanLabel, getPayTypeLabel } from "./labels.ts";
 
 const KAKAO_REST_API_KEY = Deno.env.get("KAKAO_REST_API_KEY")!;
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
@@ -124,4 +125,53 @@ export async function sendKakaoNotification(order: Record<string, unknown>): Pro
   }
 
   console.log("[kakao] 발송 성공:", result);
+}
+
+/**
+ * 유료 결제 완료 알림 — 카카오톡 "나에게 보내기"
+ */
+export async function sendPaidOrderKakao(params: {
+  name: string;
+  email: string;
+  plan: string;
+  price: number;
+  orderCode: string;
+  orderId: number;
+  payType: number;
+  payDate: string;
+}): Promise<void> {
+  const accessToken = await getValidAccessToken();
+  const planLabel = getPlanLabel(params.plan);
+  const payTypeLabel = getPayTypeLabel(params.payType);
+
+  const templateObject = {
+    object_type: "text",
+    text: `💰 결제 완료\n\n👤 이름: ${params.name}\n📧 이메일: ${params.email}\n📦 플랜: ${planLabel} (${params.price.toLocaleString()}원)\n🎫 주문 코드: ${params.orderCode}\n💳 결제수단: ${payTypeLabel}\n⏰ 결제일시: ${params.payDate}\n✅ 상태: 인증키 발송 완료\n\n[주문 ID: ${params.orderId}]`,
+    link: {
+      web_url: "https://blog.pluscoach.co.kr",
+      mobile_web_url: "https://blog.pluscoach.co.kr",
+    },
+  };
+
+  const res = await fetch(
+    "https://kapi.kakao.com/v2/api/talk/memo/default/send",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: new URLSearchParams({
+        template_object: JSON.stringify(templateObject),
+      }),
+    },
+  );
+
+  const result = await res.json();
+
+  if (!res.ok) {
+    throw new Error(`카카오 결제 알림 실패 (${res.status}): ${JSON.stringify(result)}`);
+  }
+
+  console.log("[kakao] 결제 완료 알림 성공:", result);
 }

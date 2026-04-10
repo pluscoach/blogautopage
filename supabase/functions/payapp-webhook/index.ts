@@ -1,6 +1,8 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { parsePayappForm, verifyPayappLinkval } from "../_shared/payapp.ts";
 import { sendLicenseKeyEmail } from "../_shared/resend.ts";
+import { sendPaidOrderKakao } from "../_shared/kakao.ts";
+import { sendPaidOrderTelegram } from "../_shared/telegram.ts";
 
 const OK = () => new Response("SUCCESS", { status: 200 });
 
@@ -135,6 +137,32 @@ Deno.serve(async (req) => {
         .update({ status: "이메일실패" })
         .eq("id", order.id);
     }
+
+    // 11. 사장님 카톡/텔레그램 결제 완료 알림
+    const notifParams = {
+      name: order.name,
+      email: order.email,
+      plan: order.plan,
+      price: paidPrice,
+      orderCode: order.order_code,
+      orderId: order.id,
+      payType: parseInt(body.pay_type ?? "0"),
+      payDate: body.pay_date ?? "",
+    };
+
+    const notifResults = await Promise.allSettled([
+      sendPaidOrderKakao(notifParams),
+      sendPaidOrderTelegram(notifParams),
+    ]);
+
+    notifResults.forEach((r, i) => {
+      const label = i === 0 ? "kakao" : "telegram";
+      if (r.status === "fulfilled") {
+        console.log(`[payapp-webhook] ${label} 결제 알림: ✅ 성공`);
+      } else {
+        console.error(`[payapp-webhook] ${label} 결제 알림: ❌ 실패 —`, r.reason?.message);
+      }
+    });
 
     return OK();
   } catch (e) {

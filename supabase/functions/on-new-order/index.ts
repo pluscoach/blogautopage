@@ -20,7 +20,20 @@ serve(async (req) => {
       order_code: record.order_code,
     });
 
-    // ===== 3중 알림 병렬 발송 (무료/유료 공통) =====
+    // ===== 유료 플랜은 payapp-webhook이 결제 완료 후 처리 =====
+    if (record.plan !== "free_trial") {
+      console.log("[on-new-order] 유료 플랜은 payapp-webhook이 처리함. 스킵.", {
+        order_id: record.id,
+        plan: record.plan,
+        order_code: record.order_code,
+      });
+      return new Response(
+        JSON.stringify({ ok: true, skipped: true }),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
+    }
+
+    // ===== 무료체험: 3중 알림 병렬 발송 =====
     const results = await Promise.allSettled([
       sendKakaoNotification(record),
       sendTelegramNotification(record),
@@ -37,84 +50,81 @@ serve(async (req) => {
       }
     });
 
-    // ===== 무료체험 자동 분기 =====
-    if (record.plan === "free_trial") {
-      const supabase = createClient(
-        Deno.env.get("SUPABASE_URL")!,
-        Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    // ===== 무료체험 라이선스 발급 =====
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    );
+
+    // 방어 가드: 필수 필드 누락 체크
+    if (!record.email || !record.name || !record.order_code) {
+      console.error("[on-new-order] free_trial 필수 필드 누락:", record);
+      await supabase.from("orders").update({ status: "데이터오류" }).eq("id", record.id);
+      return new Response(
+        JSON.stringify({ success: false, error: "missing fields" }),
+        { status: 200, headers: { "Content-Type": "application/json" } },
       );
+    }
 
-      // 방어 가드: 필수 필드 누락 체크
-      if (!record.email || !record.name || !record.order_code) {
-        console.error("[on-new-order] free_trial 필수 필드 누락:", record);
-        await supabase.from("orders").update({ status: "데이터오류" }).eq("id", record.id);
-        return new Response(
-          JSON.stringify({ success: false, error: "missing fields" }),
-          { status: 200, headers: { "Content-Type": "application/json" } },
-        );
+    // 1. create_license RPC 호출
+    const { data: licenseKey, error: licenseError } = await supabase.rpc("create_license", {
+      p_buyer_name: record.name,
+      p_plan: record.plan,
+      p_order_code: record.order_code,
+    });
+
+    if (licenseError || !licenseKey) {
+      console.error("[on-new-order] 라이선스 발급 실패:", licenseError?.message);
+      await supabase.from("orders").update({ status: "발급실패" }).eq("id", record.id);
+      return new Response(
+        JSON.stringify({ success: false, error: "license creation failed" }),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
+    }
+
+    console.log("[on-new-order] 라이선스 발급 성공:", licenseKey);
+
+    // 2. orders 테이블 UPDATE (license_key + status)
+    const { error: updateError } = await supabase
+      .from("orders")
+      .update({ license_key: licenseKey, status: "발송완료" })
+      .eq("id", record.id);
+
+    if (updateError) {
+      console.error("[on-new-order] orders UPDATE 실패:", updateError.message);
+      try {
+        await sendTelegramNotification({
+          name: `⚠️ 긴급: orders UPDATE 실패 (id=${record.id})`,
+          email: record.email,
+          plan: "free_trial",
+          order_code: record.order_code,
+          amount: 0,
+          status: `발급된 키: ${licenseKey} / DB 반영 실패 → 수동 확인 필요`,
+        });
+      } catch (e) {
+        console.error("[on-new-order] 긴급 텔레그램 알림도 실패:", e);
       }
+    }
 
-      // 1. create_license RPC 호출
-      const { data: licenseKey, error: licenseError } = await supabase.rpc("create_license", {
-        p_buyer_name: record.name,
-        p_plan: record.plan,
-        p_order_code: record.order_code,
-      });
-
-      if (licenseError || !licenseKey) {
-        console.error("[on-new-order] 라이선스 발급 실패:", licenseError?.message);
-        await supabase.from("orders").update({ status: "발급실패" }).eq("id", record.id);
-        return new Response(
-          JSON.stringify({ success: false, error: "license creation failed" }),
-          { status: 200, headers: { "Content-Type": "application/json" } },
-        );
-      }
-
-      console.log("[on-new-order] 라이선스 발급 성공:", licenseKey);
-
-      // 2. orders 테이블 UPDATE (license_key + status)
-      const { error: updateError } = await supabase
-        .from("orders")
-        .update({ license_key: licenseKey, status: "발송완료" })
-        .eq("id", record.id);
-
-      if (updateError) {
-        console.error("[on-new-order] orders UPDATE 실패:", updateError.message);
-        // 라이선스는 이미 발급됨 → 사장님에게 긴급 알림
-        try {
-          await sendTelegramNotification({
-            name: `⚠️ 긴급: orders UPDATE 실패 (id=${record.id})`,
-            email: record.email,
-            plan: "free_trial",
-            order_code: record.order_code,
-            amount: 0,
-            status: `발급된 키: ${licenseKey} / DB 반영 실패 → 수동 확인 필요`,
-          });
-        } catch (e) {
-          console.error("[on-new-order] 긴급 텔레그램 알림도 실패:", e);
-        }
-      }
-
-      // 3. 인증키 이메일 발송
-      const downloadUrl = Deno.env.get("DOWNLOAD_URL_FREE");
-      if (!downloadUrl) {
-        console.error("[on-new-order] DOWNLOAD_URL_FREE 환경변수 미설정");
+    // 3. 인증키 이메일 발송
+    const downloadUrl = Deno.env.get("DOWNLOAD_URL_FREE");
+    if (!downloadUrl) {
+      console.error("[on-new-order] DOWNLOAD_URL_FREE 환경변수 미설정");
+      await supabase.from("orders").update({ status: "이메일실패" }).eq("id", record.id);
+    } else {
+      try {
+        await sendLicenseKeyEmail({
+          to: record.email,
+          name: record.name,
+          plan: record.plan,
+          licenseKey,
+          downloadUrl,
+          isPaid: false,
+        });
+        console.log("[on-new-order] 인증키 이메일 발송 완료");
+      } catch (emailError) {
+        console.error("[on-new-order] 인증키 이메일 발송 실패:", emailError);
         await supabase.from("orders").update({ status: "이메일실패" }).eq("id", record.id);
-      } else {
-        try {
-          await sendLicenseKeyEmail({
-            to: record.email,
-            name: record.name,
-            plan: record.plan,
-            licenseKey,
-            downloadUrl,
-            isPaid: false,
-          });
-          console.log("[on-new-order] 인증키 이메일 발송 완료");
-        } catch (emailError) {
-          console.error("[on-new-order] 인증키 이메일 발송 실패:", emailError);
-          await supabase.from("orders").update({ status: "이메일실패" }).eq("id", record.id);
-        }
       }
     }
 
