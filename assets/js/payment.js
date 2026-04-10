@@ -1,34 +1,31 @@
 // ===== PAYAPP 결제 요청 =====
-
-// ⚠️ Phase 10 테스트 중 (페이앱 최소 결제 1,000원 제약)
-// 실가격 복구 시 config.js의 plans amount도 함께 변경
-// 실가격: monthly=39000, full_package=59000
-var PLAN_PRICES = {
-  'monthly': 1000,
-  'full_package': 1000,
-};
-
-var PLAN_NAMES = {
-  'monthly': '블로그 자동화 1개월',
-  'full_package': '블로그 자동화 풀패키지',
-};
+// 가격/플랜명은 config.js의 PLAN_CONFIG에서 읽음 (단일 출처)
 
 /**
  * PayApp 결제창 호출
  * @param {object} params
  * @param {string} params.orderCode - create_order RPC가 반환한 order_code
- * @param {string} params.plan - 'monthly' | 'full_package'
+ * @param {string} params.plan - 'monthly' | 'full_package' (planCode 값)
  * @param {string} params.name - 구매자 이름
  * @param {string} params.email - 구매자 이메일
  */
 window.requestPayappPayment = function({ orderCode, plan, name, email }) {
-  var price = PLAN_PRICES[plan];
-  var goodname = PLAN_NAMES[plan];
+  var entry = null;
+  var configs = window.PLAN_CONFIG || {};
+  for (var key in configs) {
+    if (configs[key].planCode === plan) {
+      entry = configs[key];
+      break;
+    }
+  }
 
-  if (!price || !goodname) {
+  if (!entry || !entry.amount) {
     alert('플랜 정보가 올바르지 않습니다.');
     return;
   }
+
+  var price = entry.amount;
+  var goodname = entry.name;
 
   // 로딩 표시
   var loading = document.getElementById('paymentLoading');

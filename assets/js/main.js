@@ -1,3 +1,13 @@
+// ===== PLAN LABELS FROM CONFIG =====
+document.querySelectorAll('[data-plan-key]').forEach(function(el) {
+    var key = el.dataset.planKey;
+    var cfg = window.PLAN_CONFIG && window.PLAN_CONFIG[key];
+    if (cfg) {
+        var labelEl = el.querySelector('.plan-label');
+        if (labelEl) labelEl.textContent = cfg.label;
+    }
+});
+
 // ===== SCROLL TO FORM + SELECT PLAN =====
 function scrollToForm(planValue) {
     if (planValue) {

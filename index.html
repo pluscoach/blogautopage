@@ -1340,17 +1340,17 @@
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-3">플랜 선택</label>
                         <div class="space-y-3" id="planRadios">
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                            <label data-plan-key="free" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                                 <input type="radio" name="plan" value="free" class="w-4 h-4 text-naver focus:ring-naver">
-                                <span class="ml-3 font-medium">무료체험 (0원)</span>
+                                <span class="ml-3 font-medium plan-label"></span>
                             </label>
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                            <label data-plan-key="1month" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                                 <input type="radio" name="plan" value="1month" class="w-4 h-4 text-naver focus:ring-naver">
-                                <span class="ml-3 font-medium">1개월 플랜 (39,000원)</span>
+                                <span class="ml-3 font-medium plan-label"></span>
                             </label>
-                            <label class="flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer">
+                            <label data-plan-key="full" class="flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer">
                                 <input type="radio" name="plan" value="full" checked class="w-4 h-4 text-naver focus:ring-naver">
-                                <span class="ml-3 font-bold text-naver">풀 패키지 (59,000원)</span>
+                                <span class="ml-3 font-bold text-naver plan-label"></span>
                             </label>
                         </div>
                     </div>

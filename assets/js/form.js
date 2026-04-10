@@ -33,7 +33,9 @@ async function submitForm(e) {
     }
 
     const planKey = planRadio.value;
-    const { plan, amount } = window.APP_CONFIG.plans[planKey];
+    const planCfg = window.PLAN_CONFIG[planKey];
+    const plan = planCfg.planCode;
+    const amount = planCfg.amount;
 
     btn.disabled = true;
     btn.innerText = '처리 중입니다...';
