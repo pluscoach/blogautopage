@@ -25,14 +25,6 @@ function updateRadioStyles() {
 }
 document.querySelectorAll('#planRadios input').forEach(r => r.addEventListener('change', updateRadioStyles));
 
-// ===== MODAL =====
-function closeModal() {
-    document.getElementById('paymentModal').classList.remove('show');
-}
-document.getElementById('paymentModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-});
-
 // ===== TOAST =====
 function showToast(msg, type) {
     const toast = document.getElementById('toast');

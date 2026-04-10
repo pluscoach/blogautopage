@@ -13,10 +13,6 @@ details > summary::-webkit-details-marker { display: none; }
 .toast.success{background:#03C75A;color:#fff}
 .toast.error{background:#e53e3e;color:#fff}
 
-/* ===== MODAL ===== */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;padding:20px}
-.modal-overlay.show{display:flex}
-
 /* ===== HERO ANIMATIONS ===== */
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 .cursor-blink { animation: blink 1s step-end infinite; }

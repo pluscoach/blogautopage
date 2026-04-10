@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://lite.payapp.kr/public/api/v2/payapp-lite.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -1392,23 +1393,10 @@
         </div>
     </div>
 
-    <!-- ===== PAYMENT MODAL ===== -->
-    <div class="modal-overlay" id="paymentModal">
-        <div class="bg-white rounded-2xl p-8 max-w-md w-full relative shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl leading-none">&times;</button>
-            <h3 class="text-xl font-bold text-center mb-6">무통장 입금 안내</h3>
-            <div class="bg-gray-50 rounded-xl p-5 mb-6 space-y-2">
-                <p class="text-sm text-gray-700"><strong>은행:</strong> <span id="modalBank">(추후 입력)</span></p>
-                <p class="text-sm text-gray-700"><strong>계좌번호:</strong> <span id="modalAccount">(추후 입력)</span></p>
-                <p class="text-sm text-gray-700"><strong>예금주:</strong> <span id="modalHolder">(추후 입력)</span></p>
-                <p class="text-sm text-gray-700"><strong>입금 금액:</strong> <span id="modalAmount" class="text-naver font-bold"></span></p>
-            </div>
-            <div class="text-sm text-gray-500 space-y-1">
-                <p>• 입금자명은 신청 시 입력한 성함과 동일해야 합니다.</p>
-                <p>• 입금 확인 후 이메일로 프로그램과 인증키를 보내드립니다.</p>
-                <p>• 문의사항은 카카오톡으로 연락 주세요.</p>
-            </div>
-            <button onclick="closeModal()" class="w-full mt-6 py-3 bg-naver text-white font-bold rounded-lg hover:bg-naverHover transition-colors">확인</button>
+    <!-- ===== PAYMENT LOADING ===== -->
+    <div id="paymentLoading" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; padding:32px 40px; border-radius:16px; text-align:center;">
+            <p style="margin:0; font-size:15px; color:#333;">결제창을 여는 중입니다...</p>
         </div>
     </div>
 
@@ -1417,6 +1405,7 @@
 
     <script src="assets/js/config.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/payment.js"></script>
     <script src="assets/js/form.js"></script>
 </body>
 </html>

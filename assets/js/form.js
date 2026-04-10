@@ -59,14 +59,19 @@ async function submitForm(e) {
 
         if (planKey === 'free') {
             showToast('무료 체험 신청이 완료되었습니다! 이메일로 인증키를 보내드립니다.', 'success');
+            document.getElementById('orderForm').reset();
+            document.querySelector('input[name="plan"][value="full"]').checked = true;
+            updateRadioStyles();
         } else {
-            document.getElementById('modalAmount').textContent = amount.toLocaleString() + '원';
-            document.getElementById('paymentModal').classList.add('show');
+            // 유료: PayApp 결제창 호출
+            var mappedPlan = planKey === '1month' ? 'monthly' : 'full_package';
+            window.requestPayappPayment({
+                orderCode: data.order_code,
+                plan: mappedPlan,
+                name: name,
+                email: email,
+            });
         }
-
-        document.getElementById('orderForm').reset();
-        document.querySelector('input[name="plan"][value="full"]').checked = true;
-        updateRadioStyles();
     } catch (err) {
         console.error(err);
         // RAISE EXCEPTION 한글 메시지를 그대로 표시

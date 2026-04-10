@@ -7,8 +7,10 @@ window.APP_CONFIG = {
     },
     plans: {
         free:     { plan: 'free_trial',    amount: 0 },
-        '1month': { plan: 'monthly',       amount: 39000 },
-        full:     { plan: 'full_package',  amount: 59000 }
+        // ⚠️ Phase 10 테스트 중: 실가격 복구 시 payment.js의 PLAN_PRICES도 함께 변경
+        // 실가격: 1month=39000, full=59000
+        '1month': { plan: 'monthly',       amount: 1 },
+        full:     { plan: 'full_package',  amount: 1 }
     },
     kakao: {
         channelUrl: 'https://open.kakao.com/me/pluscoach'

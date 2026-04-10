@@ -398,3 +398,6 @@ s3_secret_key = "env(S3_SECRET_KEY)"
 # ===== Edge Functions =====
 [functions.on-new-order]
 verify_jwt = false  # Database Trigger에서 호출하기 위해 JWT 검증 비활성화
+
+[functions.payapp-webhook]
+verify_jwt = false  # 페이앱 서버에서 호출하기 위해 JWT 검증 비활성화

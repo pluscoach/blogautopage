@@ -115,14 +115,22 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
 export async function sendLicenseKeyEmail({
   to,
   name,
+  plan = "free_trial",
   licenseKey,
   downloadUrl,
+  isPaid = false,
 }: {
   to: string;
   name: string;
+  plan?: string;
   licenseKey: string;
   downloadUrl: string;
+  isPaid?: boolean;
 }): Promise<void> {
+  const planDuration = plan === "monthly" ? "1개월" : plan === "full_package" ? "풀 패키지 (1년)" : "24시간";
+  const emailSubject = isPaid
+    ? "[블로그 자동화 솔루션] 정식판 인증키가 발급되었어요 🎉"
+    : "[블로그 자동화 솔루션] 인증키가 발급되었어요 🎉";
   const html = `
     ${EMAIL_STYLE}
     <div class="email-wrapper" style="background:#faf9f6; padding:32px 16px; font-family:'Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif; word-break:keep-all; overflow-wrap:break-word;">
@@ -154,9 +162,9 @@ export async function sendLicenseKeyEmail({
 
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
           <div class="email-card-inner" style="background:#fef7f0; border-left:3px solid #f59e0b; border-radius:4px; padding:16px 18px; margin-bottom:12px;">
-            <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">⏰ 카운트다운은 지금부터 시작됩니다</p>
+            <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">⏰ 이용 기간 안내</p>
             <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
-              인증키가 <strong>발급된 시점부터 24시간</strong>이 자동으로 차감됩니다.
+              인증키가 <strong>발급된 시점부터 ${planDuration}</strong> 동안 사용 가능합니다.
               프로그램을 언제 처음 실행하든 관계없이, 이 메일을 받으신 지금부터 타이머가 돌아갑니다.
               되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.
             </p>
@@ -202,6 +210,15 @@ export async function sendLicenseKeyEmail({
           </p>
         </div>
 
+        ${isPaid ? `
+        <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
+          <div class="email-card-inner" style="background:#f0fdf4; border-radius:16px; padding:24px; text-align:center;">
+            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">구매하신 플랜</p>
+            <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">${planDuration}</p>
+            <p style="margin:0; font-size:12px; color:#888; word-break:keep-all; overflow-wrap:break-word;">결제가 정상 완료되었습니다</p>
+          </div>
+        </div>
+        ` : `
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
           <p style="margin:0 0 6px 0; font-size:18px; font-weight:800; color:#0A0A0A; text-align:center; word-break:keep-all; overflow-wrap:break-word;">💎 24시간 안에 정식판을 구매하시면</p>
           <p class="email-body" style="margin:0 0 20px 0; font-size:13px; line-height:1.65; color:#666; text-align:center; word-break:keep-all; overflow-wrap:break-word;">체험 기간을 <strong style="color:#03C75A;">추가로</strong> 드립니다</p>
@@ -227,6 +244,7 @@ export async function sendLicenseKeyEmail({
 
           <p style="margin:16px 0 0 0; font-size:12px; color:#888; text-align:center; word-break:keep-all; overflow-wrap:break-word;">마음에 드시면 카카오톡 채널로 문의해주세요</p>
         </div>
+        `}
 
         <div style="border-top:1px solid #f0ede5; padding-top:28px; text-align:center;">
           <div style="margin-bottom:16px;">
@@ -249,7 +267,7 @@ export async function sendLicenseKeyEmail({
     body: JSON.stringify({
       from: FROM_HEADER,
       to: [to],
-      subject: "[블로그 자동화 솔루션] 인증키가 발급되었어요 🎉",
+      subject: emailSubject,
       html,
     }),
   });

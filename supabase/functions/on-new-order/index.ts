@@ -105,8 +105,10 @@ serve(async (req) => {
           await sendLicenseKeyEmail({
             to: record.email,
             name: record.name,
+            plan: record.plan,
             licenseKey,
             downloadUrl,
+            isPaid: false,
           });
           console.log("[on-new-order] 인증키 이메일 발송 완료");
         } catch (emailError) {
