@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 소통 전문가 - 서이추 자동화 솔루션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Pretendard', 'sans-serif'] },
+                    colors: { naver: '#03C75A', naverHover: '#02b350', dark: '#1A1A1A' },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; word-break: keep-all; }
+        /* FAQ 아코디언 부드러운 전환 */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        /* 스크롤바 커스텀 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-white pt-20 pb-16 px-6 overflow-hidden">
+        <div class="max-w-6xl w-full mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10 flex flex-col gap-6">
+                <h1 class="text-4xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900">
+                    매일 3시간<br>
+                    '서이추·댓글 노가다'에<br>
+                    <span class="text-naver">갇혀 계신가요?</span>
+                </h1>
+                <p class="text-xl lg:text-2xl font-semibold text-gray-700 mt-2">
+                    이제 당신의 시간은 '콘텐츠'에만 쓰세요.
+                </p>
+                <p class="text-gray-600 text-lg leading-relaxed">
+                    단순 반복은 AI가 맡습니다. 사람보다 더 사람처럼, 하루 100명과 쉼 없이 소통합니다.<br>
+                    컴퓨터만 켜두면 끝. 목표 수량을 채우면 AI가 스스로 작업을 종료하고 퇴근합니다.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                    <button onclick="scrollToForm()" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-green-200 transition-all transform hover:-translate-y-1 animate-pulse-slow text-lg">
+                        0원으로 24시간 무료 체험하기
+                    </button>
+                    <button onclick="document.getElementById('section-how').scrollIntoView()" class="border-2 border-gray-300 text-gray-700 hover:border-gray-800 hover:text-gray-900 font-bold py-4 px-8 rounded-xl transition-all text-lg">
+                        소름 돋는 소통 방식 확인하기 ↓
+                    </button>
+                </div>
+            </div>
+            <div class="relative w-full aspect-video lg:aspect-[4/3] bg-gray-200 rounded-2xl shadow-2xl flex items-center justify-center border border-gray-100 overflow-hidden group">
+                <span class="text-gray-400 font-medium z-10">[프로그램 실행 화면 스크린샷 또는 GIF 영역]</span>
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-green-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#F5F5F5] px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12">블로그 성장을 가로막는 '소통의 늪', 이런 적 없으신가요?</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow text-left">
+                    <div class="text-4xl mb-4">👻</div>
+                    <h3 class="font-bold text-xl mb-3">영혼 없는 품앗이, 남는 건 '숫자'뿐인 유령 이웃</h3>
+                    <p class="text-gray-600 leading-relaxed">공들여 서이추를 보내도 돌아오는 반응은 전무합니다. 이웃 숫자는 늘어나는데, 내 글의 조회수와 체류 시간은 왜 제자리걸음일까요?</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow text-left">
+                    <div class="text-4xl mb-4">📉</div>
+                    <h3 class="font-bold text-xl mb-3">단 하루만 쉬어도 꺾여버리는 '활동 지수'의 공포</h3>
+                    <p class="text-gray-600 leading-relaxed">지쳐서 이틀만 쉬면 반응이 뚝 떨어집니다. 블로그 성장을 위해 시작한 소통이 어느새 나를 옥죄는 '의무 노동'이 되어버렸습니다.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow text-left">
+                    <div class="text-4xl mb-4">⌨️</div>
+                    <h3 class="font-bold text-xl mb-3">'정성 댓글' 100명을 매일 손으로?</h3>
+                    <p class="text-gray-600 leading-relaxed">의지만으로는 절대 지속할 수 없는 구조입니다. 하루 3시간의 단순 반복 작업, 애초에 사람이 계속하기에는 무리한 방식입니다.</p>
+                </div>
+            </div>
+            <div class="mt-16 inline-block bg-white px-8 py-4 rounded-full shadow-sm">
+                <p class="text-xl font-medium text-gray-800">당신의 잘못이 아닙니다. <strong class="text-naver">지속 불가능한 '방식'이 문제</strong>였습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-dark text-white px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-8">
+                그래서, 블로거의 마음을 아는<br>
+                <span class="text-naver">‘AI 소통 전문가’</span>를 만들었습니다.
+            </h2>
+            <p class="text-xl text-gray-300 leading-relaxed mb-12">
+                당신이 직접 소통할 때 거치는 모든 고민의 과정을<br>
+                고성능 AI가 1:1 맞춤형으로 완벽하게 재현합니다.<br><br>
+                컴퓨터만 켜놓으세요. AI가 타겟을 찾고, 글을 읽고, 100명과 소통한 뒤<br>
+                당신의 블로그를 '살아있는 채널'로 만들고 조용히 종료합니다.
+            </p>
+            <div class="w-full max-w-3xl mx-auto aspect-video bg-gray-800 rounded-xl border border-gray-700 flex items-center justify-center text-gray-500 shadow-2xl">
+                [AI 작동 과정 데모 영상 또는 GIF 배치 영역]
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white px-6 border-b border-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">이미 1,500명 이상의 블로거가 '노동'에서 해방되었습니다</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+                <div class="bg-green-50 rounded-2xl p-6 text-center">
+                    <p class="text-sm text-gray-500 mb-1">누적 사용자</p>
+                    <p class="text-3xl font-bold text-gray-900">1,582<span class="text-lg font-medium">명 돌파</span></p>
+                </div>
+                <div class="bg-green-50 rounded-2xl p-6 text-center">
+                    <p class="text-sm text-gray-500 mb-1">평균 이웃 수락률</p>
+                    <p class="text-3xl font-bold text-naver">87.4<span class="text-lg font-medium">%</span></p>
+                    <p class="text-xs text-gray-400 mt-2">단순 매크로 대비 4배↑</p>
+                </div>
+                <div class="bg-green-50 rounded-2xl p-6 text-center">
+                    <p class="text-sm text-gray-500 mb-1">평균 방문자 수 증감</p>
+                    <p class="text-3xl font-bold text-naver">240<span class="text-lg font-medium">% 상승</span></p>
+                    <p class="text-xs text-gray-400 mt-2">사용 2주 후 평균</p>
+                </div>
+                <div class="bg-green-50 rounded-2xl p-6 text-center">
+                    <p class="text-sm text-gray-500 mb-1">절감된 시간</p>
+                    <p class="text-3xl font-bold text-gray-900">90<span class="text-lg font-medium">시간 이상</span></p>
+                    <p class="text-xs text-gray-400 mt-2">1인당 월평균 (하루 3H 기준)</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="border-l-4 border-naver bg-gray-50 p-6 rounded-r-xl">
+                    <h4 class="font-bold text-lg mb-3">"단순 숫자가 아니라, '진짜 팬'이 생기기 시작했어요"</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">"기존에 쓰던 프로그램은 이웃 수만 늘고 조회수는 그대로였는데, 이건 신기하게 답방이 정말 많이 옵니다. AI가 남긴 댓글에 상대방이 감동해서 대댓글을 달아주는 걸 보고 소름 돋았어요. 이제는 제가 손으로 댓글 안 답니다."</p>
+                    <p class="text-sm font-medium text-gray-500">— 뷰티 인플루언서 루*님</p>
+                </div>
+                <div class="border-l-4 border-naver bg-gray-50 p-6 rounded-r-xl">
+                    <h4 class="font-bold text-lg mb-3">"반신반의하며 시작했는데, 애드포스트 수익이 두 배로 늘었습니다"</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">"직장인이라 퇴근 후 3시간씩 소통하는 게 지옥 같았어요. 프로그램 돌려놓고 자고 일어나면 이웃 100명이 꽉 차 있습니다. 방문자 수가 안정적으로 유지되니까 블로그 지수가 올라가서 상단 노출도 전보다 훨씬 잘 되네요."</p>
+                    <p class="text-sm font-medium text-gray-500">— 경제 블로거 재***님</p>
+                </div>
+                <div class="border-l-4 border-naver bg-gray-50 p-6 rounded-r-xl">
+                    <h4 class="font-bold text-lg mb-3">"업체 블로그 운영하시는 분들, 무조건 쓰세요"</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">"로컬 사업자라 타겟팅이 중요한데, 저희 지역 카페나 경쟁사 이웃들만 콕 집어서 소통하니까 문의 전화 오는 횟수가 달라졌습니다. 사람 한 명 고용하는 것보다 100배는 경제적이에요."</p>
+                    <p class="text-sm font-medium text-gray-500">— 스마트스토어 운영자 김*철님</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-xl text-gray-800">단순한 '이웃 늘리기'가 아닙니다.<br><strong class="text-naver">당신의 블로그를 '수익이 나는 공간'으로 바꾸는 데이터의 힘</strong>을 경험하세요.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-how" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16">사람이 하는 방식 그대로, AI의 정밀한 6단계 프로세스</h2>
+            
+            <div class="relative border-l-2 border-green-200 ml-4 md:ml-1/2">
+                <div class="mb-12 ml-8 relative">
+                    <span class="absolute -left-12 flex h-8 w-8 items-center justify-center rounded-full bg-naver text-white font-bold ring-4 ring-white">1</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">소통 타겟 정밀 분석</h3>
+                    <p class="text-gray-600">관심 카테고리 내 게시글의 댓글창을 추적하여 단순 복붙이 아닌 정성 댓글을 남기는 '진짜 활동 유저'를 먼저 찾아냅니다.</p>
+                </div>
+                <div class="mb-12 ml-8 relative">
+                    <span class="absolute -left-12 flex h-8 w-8 items-center justify-center rounded-full bg-naver text-white font-bold ring-4 ring-white">2</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">무의미한 리소스 낭비 차단</h3>
+                    <p class="text-gray-600">이웃 수 초과, 서이추 차단 계정 등 신청해봤자 거절당할 계정은 AI가 미리 식별하여 리스트에서 즉시 제외합니다.</p>
+                </div>
+                <div class="mb-12 ml-8 relative">
+                    <span class="absolute -left-12 flex h-8 w-8 items-center justify-center rounded-full bg-naver text-white font-bold ring-4 ring-white">3</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">전략적 서로이웃 신청</h3>
+                    <p class="text-gray-600">내 이웃이 될 준비가 된, 수락 확률이 가장 높은 '알짜배기 계정'에만 정밀하게 서이추를 전송합니다.</p>
+                </div>
+                <div class="mb-12 ml-8 relative">
+                    <span class="absolute -left-12 flex h-8 w-8 items-center justify-center rounded-full bg-naver text-white font-bold ring-4 ring-white">4</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">포스팅 맥락 정밀 분석</h3>
+                    <p class="text-gray-600">단순히 글을 여는 것이 아닙니다. AI가 상대방의 최신 포스팅을 실제로 읽고 핵심 주제와 문맥을 완벽하게 파악합니다.</p>
+                </div>
+                <div class="mb-12 ml-8 relative">
+                    <span class="absolute -left-12 flex h-8 w-8 items-center justify-center rounded-full bg-naver text-white font-bold ring-4 ring-white">5</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">소름 돋는 '맞춤형 정성 댓글' 작성</h3>
+                    <p class="text-gray-600">"잘 보고 갑니다" 같은 뻔한 멘트가 아닙니다. "내 글을 진짜 읽었네?"라는 감탄이 나오는 댓글로 강력한 첫인상을 남깁니다.</p>
+                </div>
+                <div class="ml-8 relative">
+                    <span class="absolute -left-12 flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 text-white font-bold ring-4 ring-white">6</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">안전 한도 달성 시 자동 종료</h3>
+                    <p class="text-gray-600">네이버 가이드라인을 준수하는 하루 100명 한도 달성 시 별도 조작 없이도 프로그램이 스스로 안전하게 작업을 마칩니다.</p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <p class="text-lg text-gray-700">저희 프로그램은 결코 빠르지 않습니다. <strong class="text-naver">실제 사람이 소통하는 '호흡'과 '속도'를 그대로 구현했기에 가장 안전하고 강력합니다.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16">단순 매크로와 비교 불가, '압도적 수락률'의 비밀</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 text-2xl">🎯</div>
+                    <h3 class="text-xl font-bold mb-4">① 타겟 정밀 타격</h3>
+                    <p class="text-gray-600 mb-4 text-sm font-medium">아무에게나 구걸하지 않습니다.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6 list-disc pl-5">
+                        <li>내 블로그와 결이 같은 카테고리 타겟팅</li>
+                        <li>경쟁사 블로그의 활성 잠재 독자</li>
+                        <li>특정 키워드를 선점한 실제 블로거</li>
+                        <li>직접 관리하는 아이디 리스트 완벽 대응</li>
+                    </ul>
+                    <p class="text-naver font-bold text-sm">→ 서이추 수락률이 비약적으로 상승합니다.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-2xl">💬</div>
+                    <h3 class="text-xl font-bold mb-4">② 문맥 공감 댓글</h3>
+                    <p class="text-gray-600 mb-4 text-sm font-medium">'복붙'의 불쾌함을 지웠습니다.</p>
+                    <p class="text-sm text-gray-600 space-y-2 mb-6">
+                        상대방의 최신 글을 분석해 맥락에 맞는 댓글을 생성합니다. "답방 오세요"라는 멘트는 일절 쓰지 않으며, 답글을 달 수밖에 없는 지능형 공감 멘트를 남깁니다.
+                    </p>
+                    <p class="text-naver font-bold text-sm">→ 첫 방문을 단골 팬으로 만드는 브랜딩입니다.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 text-2xl">🛡️</div>
+                    <h3 class="text-xl font-bold mb-4">③ 스마트 필터링</h3>
+                    <p class="text-gray-600 mb-4 text-sm font-medium">헛수고 없는 효율적 관리</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6 list-disc pl-5">
+                        <li>이웃 풀(Full) 계정: 자동 스킵</li>
+                        <li>광고/업체 블로그: 3단계 필터 제외</li>
+                        <li>무반응 계정: 응답 없는 신청 자동 취소</li>
+                    </ul>
+                    <p class="text-naver font-bold text-sm">→ 깨끗하고 활동적인 유저로만 채웁니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-50 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">노동 vs 매크로 vs 본 프로그램, 한눈에 비교하세요</h2>
+            
+            <div class="overflow-x-auto rounded-xl shadow-sm border border-gray-200 bg-white">
+                <table class="w-full min-w-[600px] text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="p-4 border-b font-semibold text-gray-700 w-1/4">구분</th>
+                            <th class="p-4 border-b font-semibold text-gray-500 w-1/4">손으로 직접 하는 소통</th>
+                            <th class="p-4 border-b font-semibold text-gray-500 w-1/4">일반 저가형 매크로</th>
+                            <th class="p-4 border-b font-bold text-naver w-1/4 bg-green-50">본 AI 프로그램</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-4 border-b text-gray-700 font-medium">내 시간 소모</td>
+                            <td class="p-4 border-b text-gray-500">하루 3시간 이상 (고통)</td>
+                            <td class="p-4 border-b text-gray-500">매번 복잡한 설정 필요</td>
+                            <td class="p-4 border-b font-bold text-gray-900 bg-green-50/50">클릭 한 번이면 끝</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b text-gray-700 font-medium">타겟 선별</td>
+                            <td class="p-4 border-b text-gray-500">주관적 판단 (느림)</td>
+                            <td class="p-4 border-b text-gray-500">무작위 스팸 발송</td>
+                            <td class="p-4 border-b font-bold text-gray-900 bg-green-50/50">AI 기반 '진짜 유저' 분석</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b text-gray-700 font-medium">댓글 품질</td>
+                            <td class="p-4 border-b text-gray-500">정성껏 직접 작성</td>
+                            <td class="p-4 border-b text-gray-500">"잘 보고 갑니다" 무한 복붙</td>
+                            <td class="p-4 border-b font-bold text-gray-900 bg-green-50/50">포스팅 맞춤형 지능형 댓글</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b text-gray-700 font-medium">필터링</td>
+                            <td class="p-4 border-b text-gray-500">일일이 눈으로 확인</td>
+                            <td class="p-4 border-b text-gray-500">필터링 기능 없음</td>
+                            <td class="p-4 border-b font-bold text-gray-900 bg-green-50/50">이웃 초과·광고 계정 자동 스킵</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b text-gray-700 font-medium">계정 안전성</td>
+                            <td class="p-4 border-b text-gray-500">안전하지만 체력의 한계</td>
+                            <td class="p-4 border-b text-gray-500">스팸 신고 및 블록 위험</td>
+                            <td class="p-4 border-b font-bold text-gray-900 bg-green-50/50">인간 패턴 구현, 압도적 안전</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b text-gray-700 font-medium">지속 가능성</td>
+                            <td class="p-4 border-b text-gray-500">며칠 못 가 포기</td>
+                            <td class="p-4 border-b text-gray-500">저품질 위험 누적</td>
+                            <td class="p-4 border-b font-bold text-gray-900 bg-green-50/50">매일 100명씩 영구적 성장</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#E8F5E9] px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="flex items-center justify-center mb-6">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md text-3xl">🛡️</div>
+            </div>
+            <h2 class="text-3xl font-bold text-center mb-4 text-gray-900">"내 블로그는 소중하니까", 계정 안전 최우선 설계</h2>
+            <p class="text-center text-gray-700 mb-10">단순한 대량 작업은 블로그를 망치는 지름길입니다. 저희는 철저히 <strong>'네이버 친화적'</strong>으로 움직입니다.</p>
+            
+            <div class="bg-white rounded-2xl p-8 shadow-sm space-y-6">
+                <div class="flex items-start gap-4">
+                    <span class="text-naver text-xl mt-1">✔️</span>
+                    <div>
+                        <h4 class="font-bold text-gray-900">인간 패턴 완벽 구현</h4>
+                        <p class="text-gray-600 text-sm mt-1">실제 사람이 타이핑하고 스크롤하는 속도를 그대로 시뮬레이션합니다.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <span class="text-naver text-xl mt-1">✔️</span>
+                    <div>
+                        <h4 class="font-bold text-gray-900">변동 확률 딜레이</h4>
+                        <p class="text-gray-600 text-sm mt-1">기계적인 반복이 아닌, 매번 다른 랜덤 딜레이로 네이버가 봐도 자연스러운 패턴을 유지합니다.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <span class="text-naver text-xl mt-1">✔️</span>
+                    <div>
+                        <h4 class="font-bold text-gray-900">클린 타겟팅</h4>
+                        <p class="text-gray-600 text-sm mt-1">활동 유저만 골라 소통하므로 스팸 신고 확률을 최소화했습니다.</p>
+                    </div>
+                </div>
+                <div class="mt-8 p-4 bg-red-50 border border-red-100 rounded-lg flex items-center gap-4">
+                    <span class="text-2xl">💯</span>
+                    <p class="text-red-700 text-sm font-medium"><strong>100% 안심 환불 보장:</strong> 현재까지 제재 사례 단 1건도 없습니다. 불이익 발생 시 남은 기간 전액 환불해 드립니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16">소통의 고통에서 벗어나 '진짜 성장'을 경험할 분들</h2>
+            
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+                <div class="flex gap-4 items-start">
+                    <div class="bg-gray-100 p-3 rounded-lg text-xl">🌱</div>
+                    <div>
+                        <h4 class="font-bold text-lg">초보 블로거</h4>
+                        <p class="text-gray-600 mt-1">초반 지수 상승을 위해 '찐소통 이웃'이 절실한 분</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="bg-gray-100 p-3 rounded-lg text-xl">🏪</div>
+                    <div>
+                        <h4 class="font-bold text-lg">비즈니스 운영자</h4>
+                        <p class="text-gray-600 mt-1">스마트스토어, 지역 사업자 등 잠재 고객을 이웃으로 만들고 싶은 분</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="bg-gray-100 p-3 rounded-lg text-xl">💰</div>
+                    <div>
+                        <h4 class="font-bold text-lg">수익화 목표</h4>
+                        <p class="text-gray-600 mt-1">애드포스트 수익을 위해 탄탄한 고정 독자층을 쌓고 싶은 분</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="bg-gray-100 p-3 rounded-lg text-xl">⭐</div>
+                    <div>
+                        <h4 class="font-bold text-lg">예비 인플루언서</h4>
+                        <p class="text-gray-600 mt-1">댓글과 공감 활성화로 네이버 알고리즘의 선택을 받고 싶은 분</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="bg-gray-100 p-3 rounded-lg text-xl">💼</div>
+                    <div>
+                        <h4 class="font-bold text-lg">프로 N잡러</h4>
+                        <p class="text-gray-600 mt-1">본업 때문에 바빠서 블로그 관리를 포기하고 싶지 않은 분</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="bg-gray-100 p-3 rounded-lg text-xl">🔋</div>
+                    <div>
+                        <h4 class="font-bold text-lg">슬럼프 블로거</h4>
+                        <p class="text-gray-600 mt-1">소통 노가다에 지쳐 잠시 블로그를 놓았던 분</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-50 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">990원으로 구매하는 '하루 3시간의 자유'</h2>
+            <p class="text-gray-600 mb-12">
+                <span class="line-through text-gray-400">경쟁사 유사 서비스 월 8~12만 원대</span><br>
+                저희는 거품을 빼고 <strong>'압도적 성능'</strong>만 남겼습니다.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8 items-end mb-12">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">무료 체험 (1일)</h3>
+                    <p class="text-sm text-gray-500 mb-6">"신세계 체험"</p>
+                    <div class="text-4xl font-bold mb-6">0<span class="text-lg font-normal text-gray-500">원</span></div>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8 text-left">
+                        <li class="flex items-center gap-2"><span class="text-naver">✓</span> 전 기능 제한 없이 체험</li>
+                    </ul>
+                    <button onclick="scrollToForm('free')" class="w-full py-3 rounded-lg font-bold border-2 border-naver text-naver hover:bg-green-50 transition-colors">무료 체험 신청하기</button>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">1개월 플랜</h3>
+                    <p class="text-sm text-gray-500 mb-6">가성비</p>
+                    <div class="text-4xl font-bold mb-2">39,000<span class="text-lg font-normal text-gray-500">원</span></div>
+                    <p class="text-xs text-gray-400 mb-6">하루 약 1,300원 꼴</p>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8 text-left">
+                        <li class="flex items-center gap-2"><span class="text-naver">✓</span> 한 달 서이추 3,100명</li>
+                    </ul>
+                    <button onclick="scrollToForm('1month')" class="w-full py-3 rounded-lg font-bold bg-gray-800 text-white hover:bg-gray-900 transition-colors">지금 바로 시작하기</button>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 border-2 border-naver shadow-xl relative transform md:scale-105 z-10">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-naver text-white px-4 py-1 rounded-full text-sm font-bold shadow-md">강력 추천 / 가장 인기</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 mt-2">풀 패키지</h3>
+                    <p class="text-sm text-gray-500 mb-6">2개월 최적화</p>
+                    <div class="text-4xl font-bold mb-2 text-naver">59,000<span class="text-lg font-normal text-gray-500">원</span></div>
+                    <p class="text-xs text-naver font-medium mb-6">하루 약 990원 (초특가)</p>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8 text-left">
+                        <li class="flex items-center gap-2"><span class="text-naver">✓</span> 두 달 서이추 6,000명</li>
+                    </ul>
+                    <button onclick="scrollToForm('full')" class="w-full py-4 rounded-lg font-bold bg-naver text-white hover:bg-naverHover transition-colors shadow-lg shadow-green-200">인기 플랜 구매하기</button>
+                </div>
+            </div>
+
+            <div class="text-sm text-gray-500 bg-gray-100 inline-block px-6 py-3 rounded-lg text-left space-y-1">
+                <p>※ 구글 API 키 및 크롬 설치가 필요합니다.</p>
+                <p>※ 인증 코드 1개당 1개의 PC만 사용 가능합니다.</p>
+                <p>※ OS 환경: 본 프로그램은 Windows 전용입니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">자주 묻는 질문</h2>
+            <div class="space-y-4">
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q1. 블로그에 불이익이 생기지 않을까요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        네이버가 권장하는 '정성 소통'의 로직을 AI가 그대로 따릅니다. 무차별적인 매크로와 달리 랜덤 딜레이와 행동 패턴 분석이 적용되어 매우 안전합니다.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q2. 기계치인데 세팅이 어렵진 않나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        설치 후 타겟 카테고리만 클릭하면 세팅이 끝납니다. 상세 가이드와 영상은 물론, 막히는 부분은 1:1 채팅으로 실시간 도와드립니다.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q3. 여러 개의 블로그 계정을 돌려도 되나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        네, 계정 수 제한은 없습니다. 다만 안전을 위해 한 PC에서 여러 계정 작업 시 순차 실행을 권장하며 관리 노하우도 함께 전달드립니다.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q4. 여러 대의 PC에서 쓸 수 있나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        인증 코드 1개당 1개의 PC에서만 사용 가능합니다. PC 변경이 필요하시면 채팅으로 문의해 주세요.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q5. 맥(Mac) 환경에서도 돌아가나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        현재 윈도우(Windows) 전용으로 개발되었습니다. 맥 유저분들은 부트캠프나 가상 윈도우 환경에서 이용 가능합니다.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q6. 체험 후 결제하면 어떤 혜택이 있나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        무료 체험 후 정식 구매 시, 첫 달 이용 기간 추가 등 특별 시크릿 혜택을 드립니다. 구매 후 채팅 상담 시 말씀해 주세요.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="purchase-form" class="py-24 bg-gray-900 text-white px-6">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12">
+            <div class="flex-1">
+                <h2 class="text-3xl font-bold mb-6">블로그 성장의 '치트키',<br><span class="text-naver">3분이면 장착 완료!</span></h2>
+                <div class="space-y-6 text-gray-300">
+                    <p class="flex gap-3"><span class="text-naver font-bold">①</span> 플랜 선택: 폼에서 원하는 플랜을 선택합니다.</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">②</span> 정보 입력: 이름과 이메일을 정확히 기입합니다.</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">③</span> 결제 진행: (유료 시) 안내된 계좌로 입금합니다.</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">④</span> 즉시 발송: 확인 후 이메일로 프로그램+키 발송!</p>
+                </div>
+                <p class="mt-8 text-sm text-gray-500 bg-gray-800 p-4 rounded-lg inline-block">※ 입금 확인은 평일 기준 1시간 이내, 주말 순차 처리</p>
+            </div>
+
+            <div class="flex-1 bg-white text-gray-900 p-8 rounded-2xl shadow-2xl">
+                <form id="orderForm" onsubmit="submitForm(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">성함 (입금자명과 동일)</label>
+                        <input type="text" id="userName" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver" placeholder="홍길동">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">이메일 (프로그램 수령용)</label>
+                        <input type="email" id="userEmail" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver" placeholder="example@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-3">플랜 선택</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="plan" value="free" class="w-4 h-4 text-naver focus:ring-naver">
+                                <span class="ml-3 font-medium">무료체험 (0원)</span>
+                            </label>
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="plan" value="1month" class="w-4 h-4 text-naver focus:ring-naver">
+                                <span class="ml-3 font-medium">1개월 플랜 (39,000원)</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer">
+                                <input type="radio" name="plan" value="full" checked class="w-4 h-4 text-naver focus:ring-naver">
+                                <span class="ml-3 font-bold text-naver">풀 패키지 (59,000원)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" id="submitBtn" class="w-full bg-naver text-white font-bold py-4 rounded-xl hover:bg-naverHover transition-colors shadow-lg text-lg">
+                        지금 바로 신청하고 시간 벌기
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 transform translate-y-full transition-transform duration-300" id="stickyCTA">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <p class="hidden md:block font-medium text-gray-700">망설이는 시간에도 경쟁자는 이웃을 늘리고 있습니다.</p>
+            <button onclick="scrollToForm()" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
+                지금 무료 체험 신청하기
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 가격표 버튼 클릭 시 특정 플랜을 선택하며 폼으로 스크롤
+        function scrollToForm(planValue = null) {
+            if (planValue) {
+                const radios = document.getElementsByName('plan');
+                for (let i = 0; i < radios.length; i++) {
+                    if (radios[i].value === planValue) {
+                        radios[i].checked = true;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('purchase-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 스티키 CTA 표시 로직 (Hero 섹션을 지나면 표시)
+        window.addEventListener('scroll', () => {
+            const stickyCTA = document.getElementById('stickyCTA');
+            if (window.scrollY > 500) {
+                stickyCTA.classList.remove('translate-y-full');
+            } else {
+                stickyCTA.classList.add('translate-y-full');
+            }
+        });
+
+        // 폼 제출 (Supabase 연동을 위한 Mock 함수)
+        function submitForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const plan = document.querySelector('input[name="plan"]:checked').value;
+
+            // 버튼 비활성화 (중복 클릭 방지)
+            btn.disabled = true;
+            btn.innerText = "처리 중입니다...";
+            btn.classList.add('opacity-70');
+
+            /*
+            // [실제 Supabase 연동 코드 예시]
+            // import { createClient } from '@supabase/supabase-js'
+            // const supabase = createClient('YOUR_URL', 'YOUR_ANON_KEY');
+            // const { data, error } = await supabase.from('orders').insert([
+            //     { name: name, email: email, plan: plan, status: '입금대기' }
+            // ]);
+            */
+
+            // API 호출 시뮬레이션 (setTimeout)
+            setTimeout(() => {
+                if(plan === 'free') {
+                    alert('무료 체험 신청이 완료되었습니다.\n확인 후 기재해주신 이메일로 체험 코드를 보내드립니다.');
+                } else {
+                    alert(`신청이 접수되었습니다!\n\n[입금 안내]\n- 기업은행 123-4567-890 (예금주: 플러스코치)\n- 입금자명: ${name}\n\n입금 확인 후 이메일로 프로그램이 즉시 발송됩니다.`);
+                }
+                
+                // 폼 초기화 및 버튼 복구
+                document.getElementById('orderForm').reset();
+                btn.disabled = false;
+                btn.innerText = "지금 바로 신청하고 시간 벌기";
+                btn.classList.remove('opacity-70');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

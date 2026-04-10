@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-End Floating UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        body { font-family: "Pretendard", sans-serif; background-color: #d6d3d1; }
+        
+        /* 입체적인 부유 애니메이션 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .glass-tag {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #444;
+            position: absolute;
+            white-space: nowrap;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* 캐릭터 뒤에 은은한 그림자 효과 */
+        .char-shadow {
+            filter: drop-shadow(0 30px 50px rgba(0,0,0,0.15));
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center overflow-hidden">
+
+    <div class="relative w-full max-w-5xl aspect-video flex items-center justify-center">
+        
+        <div class="absolute right-10 top-1/2 -translate-y-1/2 opacity-30 select-none">
+            <h1 class="text-6xl font-black italic text-stone-600 tracking-tighter">CHARACTER UI</h1>
+        </div>
+
+        <div class="relative z-10 w-3/4 flex justify-center">
+            <img src="image_dcfce6.jpg" alt="Character" class="char-shadow max-h-[80vh] object-contain">
+        </div>
+
+        <div class="glass-tag" style="top: 15%; left: 10%; animation-delay: 0s;">🚀 초보 블로거</div>
+        <div class="glass-tag" style="top: 25%; right: 5%; animation-delay: 1s; background: rgba(255,255,255,0.6);">💼 비즈니스 운영자</div>
+        <div class="glass-tag" style="bottom: 20%; left: 5%; animation-delay: 2s;">💰 수익화 목표</div>
+        
+        <div class="glass-tag text-sm opacity-80" style="top: 10%; right: 25%; animation-delay: 0.5s;">콘텐츠 기획</div>
+        <div class="glass-tag text-sm opacity-80" style="bottom: 15%; right: 20%; animation-delay: 1.5s;">SNS 마케팅</div>
+        <div class="glass-tag text-sm opacity-70" style="bottom: 40%; left: 0%; animation-delay: 2.5s;">알고리즘 분석</div>
+
+    </div>
+
+    <div class="fixed bottom-4 text-stone-500 text-xs text-center w-full">
+        * 이미지 파일명이 <b>image_dcfce6.jpg</b>와 일치해야 캐릭터가 정상적으로 보입니다.
+    </div>
+
+</body>
+</html>

@@ -26,11 +26,39 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; word-break: keep-all; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+        /* 토스트 */
+        .toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-100px);padding:16px 28px;border-radius:12px;font-weight:600;font-size:.95rem;z-index:10000;transition:transform .4s ease;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+        .toast.show{transform:translateX(-50%) translateY(0)}
+        .toast.success{background:#03C75A;color:#fff}
+        .toast.error{background:#e53e3e;color:#fff}
+        /* 모달 */
+        .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;padding:20px}
+        .modal-overlay.show{display:flex}
+    </style>
 </head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- ===== SECTION 1: HERO ===== -->
+    <style>
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        .hero-fade { animation: fadeInUp .8s ease both; }
+        .hero-fade-d1 { animation-delay: .15s; }
+        .hero-fade-d2 { animation-delay: .3s; }
+        .hero-fade-d3 { animation-delay: .5s; }
+        .hero-fade-d4 { animation-delay: .7s; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .float-anim { animation: float 3s ease-in-out infinite; }
+    </style>
     <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-green-50/40 pt-16 pb-20 px-6 overflow-hidden">
         <!-- 배경 데코 -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -140,6 +168,24 @@
     </section>
 
     <!-- ===== SECTION 2: PAIN POINTS ===== -->
+    <style>
+        .pain-card { opacity:0; transform:translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+        .pain-card.visible { opacity:1; transform:translateY(0); }
+        /* 메시지 버블 순차 등장 */
+        .msg-bubble { opacity:0; transform:translateY(10px); transition: opacity .4s ease, transform .4s ease; }
+        .msg-bubble.show { opacity:1; transform:translateY(0); }
+        /* 읽음 표시 애니메이션 */
+        @keyframes readCheck { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+        .read-check { animation: readCheck .3s ease both; }
+        /* 방문자 그래프 바 */
+        .visitor-bar { transition: height .6s ease, background .3s ease; }
+        /* 커서 깜빡임 (글쓰기) */
+        @keyframes cursorBlink2 { 0%,100%{opacity:1} 50%{opacity:0} }
+        .write-cursor { animation: cursorBlink2 1s step-end infinite; }
+        /* 알림 흔들림 */
+        @keyframes notifShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-3px)} 75%{transform:translateX(3px)} }
+        .notif-shake { animation: notifShake .4s ease; }
+    </style>
     <section class="py-24 bg-[#F5F5F5] px-6">
         <div class="max-w-3xl mx-auto">
             <div class="text-center mb-16">
@@ -375,6 +421,14 @@
     </section>
 
     <!-- ===== 공감 전환 섹션: Before vs After ===== -->
+    <style>
+        @keyframes manualType { 0%{width:0} 40%{width:75%} 42%{width:75%} 50%{width:30%} 60%{width:60%} 70%{width:85%} 72%{width:85%} 80%{width:40%} 100%{width:90%} }
+        .manual-type { animation: manualType 4s ease-in-out infinite; }
+        @keyframes manualNod { 0%,100%{transform:translateY(0) rotate(0deg)} 30%{transform:translateY(2px) rotate(-3deg)} 60%{transform:translateY(1px) rotate(2deg)} }
+        @keyframes autoScroll { 0%{transform:translateY(0)} 100%{transform:translateY(-50%)} }
+        .auto-scroll { animation: autoScroll 8s linear infinite; }
+        @keyframes checkPop { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+    </style>
     <section class="py-24 md:py-32 px-6 bg-gradient-to-b from-[#F5F5F5] via-[#faf9f6] to-[#f5f2ec] relative overflow-hidden">
         <div class="absolute inset-0 pointer-events-none">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-50 rounded-full filter blur-3xl opacity-40"></div>
@@ -390,6 +444,14 @@
             </div>
 
             <!-- BEFORE: 캐릭터 여정 타임라인 -->
+            <style>
+                @keyframes typing { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+                .anim-typing { animation: typing .4s ease-in-out infinite; }
+                @keyframes slump { 0%,100%{transform:rotate(0)} 50%{transform:rotate(8deg) translateY(2px)} }
+                .anim-slump { animation: slump 2s ease-in-out infinite; }
+                @keyframes sigh { 0%,100%{transform:scale(1)} 50%{transform:scale(0.95)} }
+                .anim-sigh { animation: sigh 2.5s ease-in-out infinite; }
+            </style>
             <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm mb-5">
                 <div class="bg-red-50 px-5 py-3 border-b border-red-100 text-center">
                     <span class="text-sm font-bold text-red-500">지금의 방식</span>
@@ -777,6 +839,10 @@
                 <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-8">
                     버튼 한 번이면 AI가 사람처럼<br class="md:hidden"> 자연스럽게 소통을 마치고<br class="md:hidden"> <span class="font-bold text-gray-900">100명을 채우면 조용히 퇴근합니다.</span>
                 </p>
+                <style>
+                    .cta-trial:hover { background:#FACC15 !important; border-color:#FACC15 !important; }
+                    .cta-trial:hover .cta-trial-text { background:none !important; -webkit-text-fill-color:#1A1A1A !important; }
+                </style>
                 <button onclick="scrollToForm('free')" class="cta-trial bg-white font-bold text-lg px-12 py-4 rounded-xl shadow-md border border-gray-200 transition-all transform hover:-translate-y-1 hover:shadow-lg">
                     <span class="cta-trial-text" style="background:linear-gradient(90deg,#03C75A,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .2s;">0원으로 무료 체험하기</span>
                 </button>
@@ -903,6 +969,11 @@
             </div>
 
             <!-- 모바일: 그리드 레이아웃 / 데스크톱: 떠다니는 태그 -->
+            <style>
+                @keyframes tagFloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+                @keyframes tagFloat2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+                @keyframes tagFloat3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+            </style>
 
             <!-- 모바일용 그리드 레이아웃 -->
             <div class="md:hidden grid grid-cols-2 gap-3">
@@ -1362,24 +1433,9 @@
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="bg-gray-950 text-gray-400 text-sm px-6 py-12" style="padding-bottom:100px">
-        <div class="max-w-3xl mx-auto text-center">
-            <p class="text-white font-bold text-base mb-4">블로그 자동화 솔루션</p>
-            <div class="space-y-1 mb-6" style="line-height:1.9">
-                <p>상호: 제이에스코퍼레이션 · 대표자: 오준석</p>
-                <p>사업자등록번호: 850-38-01085</p>
-                <p>통신판매업 신고번호: 제 2023-서울강동-1311호</p>
-                <p>주소: 서울특별시 관악구 남부순환로 1921-1, 401-A4호</p>
-                <p>이메일: <a href="mailto:jscorpor88@gmail.com" class="text-gray-300 hover:text-white transition-colors">jscorpor88@gmail.com</a></p>
-            </div>
-            <div class="flex flex-wrap justify-center gap-4 mb-6">
-                <a href="privacy.html" class="text-gray-400 hover:text-white transition-colors">개인정보처리방침</a>
-                <a href="terms.html" class="text-gray-400 hover:text-white transition-colors">이용약관</a>
-                <a href="refund.html" class="text-gray-400 hover:text-white transition-colors">환불규정</a>
-                <a href="https://open.kakao.com/me/pluscoach" target="_blank" class="text-naver hover:text-naverHover transition-colors">카카오톡 문의</a>
-            </div>
-            <p class="text-gray-600">&copy; 2026 제이에스코퍼레이션. All Rights Reserved.</p>
-        </div>
+    <footer class="py-10 bg-gray-950 text-gray-500 text-center text-sm px-6" style="padding-bottom:100px">
+        <p>BlogAutoFriends &copy; 2024. All rights reserved.</p>
+        <p class="mt-1">문의: 텔레그램 채팅 상담</p>
     </footer>
 
     <!-- ===== STICKY CTA ===== -->
@@ -1415,8 +1471,254 @@
     <!-- ===== TOAST ===== -->
     <div class="toast" id="toast"></div>
 
-    <script src="assets/js/config.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/form.js"></script>
+    <script>
+    // ===== SUPABASE CONFIG =====
+    // 실제 배포 시 아래 값을 교체하세요
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    let supabaseClient = null;
+
+    try {
+        if (typeof supabase !== 'undefined' && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        }
+    } catch(e) { console.warn('Supabase 초기화 대기:', e); }
+
+    // ===== PLAN MAPPING =====
+    const PLAN_MAP = {
+        free:   { plan: 'free_trial',   amount: 0 },
+        '1month': { plan: 'monthly',    amount: 39000 },
+        full:   { plan: 'full_package', amount: 59000 },
+    };
+
+    // ===== SCROLL TO FORM + SELECT PLAN =====
+    function scrollToForm(planValue = null) {
+        if (planValue) {
+            const radios = document.getElementsByName('plan');
+            for (let r of radios) {
+                if (r.value === planValue) { r.checked = true; break; }
+            }
+            updateRadioStyles();
+        }
+        document.getElementById('purchase-form').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 라디오 스타일 동기화
+    function updateRadioStyles() {
+        document.querySelectorAll('#planRadios label').forEach(label => {
+            const radio = label.querySelector('input');
+            if (radio.checked && radio.value === 'full') {
+                label.className = 'flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer';
+                label.querySelector('span').className = 'ml-3 font-bold text-naver';
+            } else if (radio.checked) {
+                label.className = 'flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer';
+                label.querySelector('span').className = 'ml-3 font-bold text-naver';
+            } else {
+                label.className = 'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors';
+                label.querySelector('span').className = 'ml-3 font-medium';
+            }
+        });
+    }
+    document.querySelectorAll('#planRadios input').forEach(r => r.addEventListener('change', updateRadioStyles));
+
+    // ===== FORM SUBMIT =====
+    async function submitForm(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const name = document.getElementById('userName').value.trim();
+        const email = document.getElementById('userEmail').value.trim();
+        const planRadio = document.querySelector('input[name="plan"]:checked');
+
+        if (!name || !email || !planRadio) {
+            showToast('모든 항목을 입력해 주세요.', 'error');
+            return;
+        }
+
+        const planKey = planRadio.value;
+        const { plan, amount } = PLAN_MAP[planKey];
+
+        btn.disabled = true;
+        btn.innerText = '처리 중입니다...';
+        btn.classList.add('opacity-70');
+
+        try {
+            // Supabase INSERT
+            if (supabaseClient) {
+                const { error } = await supabaseClient.from('orders').insert([
+                    { name, email, plan, amount, status: '입금대기' }
+                ]);
+                if (error) throw error;
+            }
+
+            // 결과 처리
+            if (planKey === 'free') {
+                showToast('체험 신청이 완료되었습니다! 확인 후 이메일로 체험 코드를 보내드립니다.', 'success');
+            } else {
+                document.getElementById('modalAmount').textContent = amount.toLocaleString() + '원';
+                document.getElementById('paymentModal').classList.add('show');
+            }
+
+            document.getElementById('orderForm').reset();
+            // 풀 패키지를 기본 선택으로 복원
+            document.querySelector('input[name="plan"][value="full"]').checked = true;
+            updateRadioStyles();
+        } catch (err) {
+            console.error(err);
+            showToast('신청 처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+        } finally {
+            btn.disabled = false;
+            btn.innerText = '지금 바로 신청하고 시간 벌기';
+            btn.classList.remove('opacity-70');
+        }
+    }
+
+    // ===== MODAL =====
+    function closeModal() {
+        document.getElementById('paymentModal').classList.remove('show');
+    }
+    document.getElementById('paymentModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    // ===== TOAST =====
+    function showToast(msg, type) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.className = 'toast ' + type;
+        requestAnimationFrame(() => toast.classList.add('show'));
+        setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    // ===== STICKY CTA =====
+    window.addEventListener('scroll', () => {
+        const cta = document.getElementById('stickyCTA');
+        const formSection = document.getElementById('purchase-form');
+        const formTop = formSection.getBoundingClientRect().top;
+        if (window.scrollY > 600 && formTop > window.innerHeight) {
+            cta.classList.remove('translate-y-full');
+        } else {
+            cta.classList.add('translate-y-full');
+        }
+    }, { passive: true });
+
+    // ===== COUNT-UP ANIMATION =====
+    function animateCountUp(el) {
+        const raw = el.dataset.countup;
+        if (!raw) return;
+        const target = parseFloat(raw);
+        const isFloat = target % 1 !== 0;
+        const suffix = el.dataset.suffix || '';
+        const duration = 1800;
+        const start = performance.now();
+        const span = el.querySelector('span');
+        const spanHTML = span ? span.outerHTML : '';
+
+        function update(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+            const display = isFloat ? current.toFixed(1) : Math.floor(current).toLocaleString();
+            el.innerHTML = display + spanHTML;
+            if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('[data-countup]').forEach(animateCountUp);
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.grid[class*="grid-cols-2"][class*="md\\:grid-cols-4"]').forEach(el => {
+        statsObserver.observe(el);
+    });
+
+    // ===== PAIN SECTION ANIMATIONS =====
+    // 카드 scroll reveal
+    const painObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.pain-card').forEach(el => painObserver.observe(el));
+
+    // --- CARD 1: 메시지 버블 순차 등장 ---
+    let card1Animated = false;
+    const card1Observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !card1Animated) {
+                card1Animated = true;
+                const bubbles = document.querySelectorAll('#painMessages .msg-bubble');
+                bubbles.forEach((b, i) => {
+                    setTimeout(() => b.classList.add('show'), i * 700);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+    const card1El = document.getElementById('painCard1');
+    if (card1El) card1Observer.observe(card1El);
+
+    // --- CARD 2: 막대 그래프 (정적 표시, 애니메이션 없음) ---
+    // 막대가 이미 표시되어 있으므로 별도 애니메이션 불필요
+
+    // --- CARD 3: 번아웃 알림 등장 ---
+    let card3Animated = false;
+    const card3Observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !card3Animated) {
+                card3Animated = true;
+                // 커서 깜빡이다가 알림이 덮어씀
+                setTimeout(() => {
+                    document.getElementById('burnoutNotifs').style.opacity = '1';
+                    // 커서 숨김
+                    const cursor = document.querySelector('#burnoutEditor > .write-cursor');
+                    if (cursor) cursor.style.display = 'none';
+                }, 1500);
+            }
+        });
+    }, { threshold: 0.3 });
+    const card3El = document.getElementById('painCard3');
+    if (card3El) card3Observer.observe(card3El);
+
+    // ===== HERO TYPING ANIMATION =====
+    const typingComments = [
+        '와, 제주도 동쪽 코스 중에 성산일출봉에서 광치기해변으로 이어지는 루트가 정말 인상적이네요! 저도 아이 둘 데리고 갔었는데, 혹시 식당은 어디로 가셨어요? 다음 여행 때 참고하고 싶습니다 😊',
+        '육아하면서 블로그까지 꾸준히 하시는 게 정말 대단해요. 이유식 레시피 정리가 깔끔해서 저장해뒀습니다! 혹시 냉동 보관 팁도 공유해주실 수 있을까요? 🙏',
+        '인테리어 비포/애프터 사진 보고 깜짝 놀랐어요. 특히 거실 조명 바꾸신 것만으로 분위기가 완전 달라졌네요! 조명 제품명 좀 알 수 있을까요? ✨',
+    ];
+    let commentIdx = 0;
+    let charIdx = 0;
+    const typingEl = document.getElementById('typingText');
+    const cursorEl = document.getElementById('typingCursor');
+    const counterEl = document.getElementById('heroCounter');
+    let heroCount = 0;
+
+    function typeNextChar() {
+        const current = typingComments[commentIdx];
+        if (charIdx < current.length) {
+            typingEl.textContent += current[charIdx];
+            charIdx++;
+            setTimeout(typeNextChar, 30 + Math.random() * 40);
+        } else {
+            // 타이핑 완료 → 카운터 증가
+            cursorEl.style.display = 'none';
+            heroCount = Math.min(heroCount + Math.floor(Math.random() * 5) + 3, 100);
+            counterEl.textContent = heroCount;
+            setTimeout(() => {
+                // 다음 댓글로 리셋
+                charIdx = 0;
+                commentIdx = (commentIdx + 1) % typingComments.length;
+                typingEl.textContent = '';
+                cursorEl.style.display = 'inline';
+                setTimeout(typeNextChar, 500);
+            }, 2500);
+        }
+    }
+    setTimeout(typeNextChar, 1200);
+    </script>
 </body>
 </html>

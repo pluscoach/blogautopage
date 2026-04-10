@@ -1,0 +1,68 @@
+/* ===== GLOBAL ===== */
+body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; word-break: keep-all; }
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* ===== TOAST ===== */
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-100px);padding:16px 28px;border-radius:12px;font-weight:600;font-size:.95rem;z-index:10000;transition:transform .4s ease;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.success{background:#03C75A;color:#fff}
+.toast.error{background:#e53e3e;color:#fff}
+
+/* ===== MODAL ===== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+
+/* ===== HERO ANIMATIONS ===== */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor-blink { animation: blink 1s step-end infinite; }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.hero-fade { animation: fadeInUp .8s ease both; }
+.hero-fade-d1 { animation-delay: .15s; }
+.hero-fade-d2 { animation-delay: .3s; }
+.hero-fade-d3 { animation-delay: .5s; }
+.hero-fade-d4 { animation-delay: .7s; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.float-anim { animation: float 3s ease-in-out infinite; }
+
+/* ===== PAIN SECTION ===== */
+.pain-card { opacity:0; transform:translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+.pain-card.visible { opacity:1; transform:translateY(0); }
+.msg-bubble { opacity:0; transform:translateY(10px); transition: opacity .4s ease, transform .4s ease; }
+.msg-bubble.show { opacity:1; transform:translateY(0); }
+@keyframes readCheck { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+.read-check { animation: readCheck .3s ease both; }
+.visitor-bar { transition: height .6s ease, background .3s ease; }
+@keyframes cursorBlink2 { 0%,100%{opacity:1} 50%{opacity:0} }
+.write-cursor { animation: cursorBlink2 1s step-end infinite; }
+@keyframes notifShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-3px)} 75%{transform:translateX(3px)} }
+.notif-shake { animation: notifShake .4s ease; }
+
+/* ===== BEFORE/AFTER COMPARISON ===== */
+@keyframes manualType { 0%{width:0} 40%{width:75%} 42%{width:75%} 50%{width:30%} 60%{width:60%} 70%{width:85%} 72%{width:85%} 80%{width:40%} 100%{width:90%} }
+.manual-type { animation: manualType 4s ease-in-out infinite; }
+@keyframes manualNod { 0%,100%{transform:translateY(0) rotate(0deg)} 30%{transform:translateY(2px) rotate(-3deg)} 60%{transform:translateY(1px) rotate(2deg)} }
+@keyframes autoScroll { 0%{transform:translateY(0)} 100%{transform:translateY(-50%)} }
+.auto-scroll { animation: autoScroll 8s linear infinite; }
+@keyframes checkPop { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+
+/* ===== TIMELINE ANIMATIONS ===== */
+@keyframes typing { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+.anim-typing { animation: typing .4s ease-in-out infinite; }
+@keyframes slump { 0%,100%{transform:rotate(0)} 50%{transform:rotate(8deg) translateY(2px)} }
+.anim-slump { animation: slump 2s ease-in-out infinite; }
+@keyframes sigh { 0%,100%{transform:scale(1)} 50%{transform:scale(0.95)} }
+.anim-sigh { animation: sigh 2.5s ease-in-out infinite; }
+
+/* ===== CTA TRIAL HOVER ===== */
+.cta-trial:hover { background:#FACC15 !important; border-color:#FACC15 !important; }
+.cta-trial:hover .cta-trial-text { background:none !important; -webkit-text-fill-color:#1A1A1A !important; }
+
+/* ===== TAG FLOAT ===== */
+@keyframes tagFloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes tagFloat2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes tagFloat3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
