@@ -1,0 +1,76 @@
+/* ===== 카카오톡 플로팅 문의 버튼 (Phase 11) ===== */
+/* ⚠️ 카카오 채널 URL 변경 시 index.html, privacy.html, terms.html, refund.html 4곳 모두 수정 */
+/* ⚠️ 이 파일은 독립 컴포넌트. main.css, legal.css와 무관. */
+
+.kakao-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.kakao-float-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: #FEE500;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kakao-float:hover .kakao-float-icon {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.kakao-float-tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0A0A0A;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', -apple-system, sans-serif;
+}
+
+.kakao-float-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid #0A0A0A;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+@media (max-width: 640px) {
+  .kakao-float {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .kakao-float-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .kakao-float-tooltip {
+    display: none;
+  }
+}
