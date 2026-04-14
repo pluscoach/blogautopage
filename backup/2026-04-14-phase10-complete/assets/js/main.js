@@ -2,18 +2,10 @@
 document.querySelectorAll('[data-plan-key]').forEach(function(el) {
     var key = el.dataset.planKey;
     var cfg = window.PLAN_CONFIG && window.PLAN_CONFIG[key];
-    if (!cfg) return;
-
-    // visible=false면 숨김 처리
-    if (cfg.visible === false) {
-        el.style.display = 'none';
-        var radio = el.querySelector('input[type="radio"]');
-        if (radio) radio.disabled = true;
-        return;
+    if (cfg) {
+        var labelEl = el.querySelector('.plan-label');
+        if (labelEl) labelEl.textContent = cfg.label;
     }
-
-    var labelEl = el.querySelector('.plan-label');
-    if (labelEl) labelEl.textContent = cfg.label;
 });
 
 // ===== SCROLL TO FORM + SELECT PLAN =====

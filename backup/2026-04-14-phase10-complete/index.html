@@ -72,8 +72,8 @@
 
                 <!-- CTA -->
                 <div class="hero-fade hero-fade-d3 flex flex-col sm:flex-row items-start gap-4 mt-4">
-                    <button onclick="scrollToForm('full')" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
-                        지금 바로 시작하기
+                    <button onclick="scrollToForm('free')" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
+                        0원으로 24시간 무료 체험하기
                     </button>
                 </div>
 
@@ -778,10 +778,10 @@
                 <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-8">
                     버튼 한 번이면 AI가 사람처럼<br class="md:hidden"> 자연스럽게 소통을 마치고<br class="md:hidden"> <span class="font-bold text-gray-900">100명을 채우면 조용히 퇴근합니다.</span>
                 </p>
-                <button onclick="scrollToForm('full')" class="cta-trial bg-white font-bold text-lg px-12 py-4 rounded-xl shadow-md border border-gray-200 transition-all transform hover:-translate-y-1 hover:shadow-lg">
-                    <span class="cta-trial-text" style="background:linear-gradient(90deg,#03C75A,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .2s;">지금 바로 시작하기</span>
+                <button onclick="scrollToForm('free')" class="cta-trial bg-white font-bold text-lg px-12 py-4 rounded-xl shadow-md border border-gray-200 transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                    <span class="cta-trial-text" style="background:linear-gradient(90deg,#03C75A,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .2s;">0원으로 무료 체험하기</span>
                 </button>
-                <p class="text-sm text-gray-400 mt-3">하루 약 990원으로 블로그 성장</p>
+                <p class="text-sm text-gray-400 mt-3">24시간 전 기능 체험</p>
             </div>
         </div>
     </section>
@@ -1185,8 +1185,8 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-5 items-stretch mb-10">
-                <!-- 무료 체험 (숨김 — visible:false로 런타임 숨김, 코드 보존) -->
-                <div data-plan-key="free" class="bg-gray-50 rounded-2xl p-7 border border-gray-200 flex flex-col" style="display:none;">
+                <!-- 무료 체험 -->
+                <div class="bg-gray-50 rounded-2xl p-7 border border-gray-200 flex flex-col">
                     <div class="flex-1">
                         <h3 class="text-lg font-black text-gray-900 mb-1">무료 체험</h3>
                         <p class="text-xs text-gray-400 mb-5">1일 · 전 기능 제한 없이</p>
@@ -1238,25 +1238,6 @@
                         </ul>
                     </div>
                     <button onclick="scrollToForm('full')" class="w-full py-4 rounded-xl font-bold bg-naver text-white hover:bg-naverHover transition-colors shadow-lg shadow-green-200/50">인기 플랜 구매하기</button>
-                </div>
-
-                <!-- 평생 소유권 -->
-                <div class="bg-white rounded-2xl p-7 border-2 border-gray-800 flex flex-col">
-                    <div class="flex-1">
-                        <h3 class="text-lg font-black text-gray-900 mb-1">평생 소유권</h3>
-                        <p class="text-xs text-gray-400 mb-5">한 번 구매, 평생 사용</p>
-                        <div class="text-4xl font-black text-gray-800 mb-1">255,000<span class="text-lg font-medium text-gray-400">원</span></div>
-                        <div class="h-px bg-gray-200 my-5"></div>
-                        <ul class="text-sm text-gray-600 space-y-3 text-left mb-6">
-                            <li>
-                                <div class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 기간 제한 없이 평생 사용</div>
-                            </li>
-                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 상세 가이드 영상 제공</li>
-                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 설치 매뉴얼 제공</li>
-                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 모든 기능 완전 이용</li>
-                        </ul>
-                    </div>
-                    <button onclick="scrollToForm('lifetime')" class="w-full py-3.5 rounded-xl font-bold bg-gray-800 text-white hover:bg-gray-900 transition-colors">평생 소유권 구매하기</button>
                 </div>
             </div>
 
@@ -1371,10 +1352,6 @@
                                 <input type="radio" name="plan" value="full" checked class="w-4 h-4 text-naver focus:ring-naver">
                                 <span class="ml-3 font-bold text-naver plan-label"></span>
                             </label>
-                            <label data-plan-key="lifetime" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                                <input type="radio" name="plan" value="lifetime" class="w-4 h-4 text-naver focus:ring-naver">
-                                <span class="ml-3 font-medium plan-label"></span>
-                            </label>
                         </div>
                     </div>
                     <button type="submit" id="submitBtn" class="w-full bg-naver text-white font-bold py-4 rounded-xl hover:bg-naverHover transition-colors shadow-lg text-lg">
@@ -1410,8 +1387,8 @@
     <div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 transform translate-y-full transition-transform duration-300" id="stickyCTA">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
             <p class="hidden md:block font-medium text-gray-700">망설이는 시간에도 경쟁자는 이웃을 늘리고 있습니다.</p>
-            <button onclick="scrollToForm('full')" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
-                지금 바로 시작하기
+            <button onclick="scrollToForm()" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
+                지금 무료 체험 신청하기
             </button>
         </div>
     </div>

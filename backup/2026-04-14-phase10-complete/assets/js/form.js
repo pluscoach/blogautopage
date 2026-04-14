@@ -66,7 +66,7 @@ async function submitForm(e) {
             updateRadioStyles();
         } else {
             // 유료: PayApp 결제창 호출
-            var mappedPlan = planKey === '1month' ? 'monthly' : planKey === 'lifetime' ? 'lifetime' : 'full_package';
+            var mappedPlan = planKey === '1month' ? 'monthly' : 'full_package';
             window.requestPayappPayment({
                 orderCode: data.order_code,
                 plan: mappedPlan,
