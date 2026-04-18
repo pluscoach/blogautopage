@@ -1,7 +1,6 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { sendDepositNoticeWithButtons } from "../_shared/telegram.ts";
+import { sendDepositReceivedNotice } from "../_shared/telegram.ts";
 import { sendEmergencyAlertEmail } from "../_shared/resend.ts";
-import { getPlanLabel } from "../_shared/labels.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -11,7 +10,7 @@ const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
  * 1. orderCode로 주문 조회
  * 2. 이미 처리된 주문이면 스킵 (멱등성)
  * 3. orders.status = '입금대기'로 UPDATE
- * 4. sendDepositNoticeWithButtons 호출 — reply_to_message_id로 원본 알림에 답장 연결
+ * 4. sendDepositReceivedNotice 호출 — reply_to_message_id로 원본 알림에 답장 연결
  */
 
 interface RequestBody {
@@ -117,25 +116,32 @@ Deno.serve(async (req) => {
       });
     }
 
-    // 5. sendDepositNoticeWithButtons 호출 — 답장 연결
-    const ok = await sendDepositNoticeWithButtons({
-      name: order.name as string,
-      email: order.email as string,
-      phone: (order.phone as string) || "(미입력)",
-      plan: order.plan as string,
-      planLabel: getPlanLabel(order.plan as string),
-      amount: order.amount as number,
+    // 5. 답장 연결 알림 발송 — telegram_notice_message_id 필수
+    const replyToId = order.telegram_notice_message_id as number | null;
+    if (!replyToId) {
+      console.error(`[notify-deposit-confirmed] telegram_notice_message_id 없음: ${orderCode}`);
+      await sendEmergencyAlertEmail({
+        subject: "🚨 입금 완료 신고 — message_id 누락",
+        orderCode,
+        errorMessage: "orders.telegram_notice_message_id가 NULL. 첫 번째 알림 발송 실패했을 가능성.",
+      });
+      return new Response(
+        JSON.stringify({ ok: true, warning: "reply_linkage_missing" }),
+        { status: 200, headers: corsHeaders },
+      );
+    }
+
+    const ok = await sendDepositReceivedNotice({
       orderCode: order.order_code as string,
-      replyToMessageId: (order.telegram_notice_message_id as number) || undefined,
+      replyToMessageId: replyToId,
     });
 
     if (!ok) {
-      console.error(`[notify-deposit-confirmed] sendDepositNoticeWithButtons 실패: ${orderCode}`);
+      console.error(`[notify-deposit-confirmed] sendDepositReceivedNotice 실패: ${orderCode}`);
       await sendEmergencyAlertEmail({
         subject: "🚨 입금 완료 신고 알림 발송 실패",
         orderCode,
-        errorMessage: "sendDepositNoticeWithButtons 반환 false",
-        context: { has_reply_to: !!order.telegram_notice_message_id },
+        errorMessage: "sendDepositReceivedNotice 반환 false",
       });
     }
 

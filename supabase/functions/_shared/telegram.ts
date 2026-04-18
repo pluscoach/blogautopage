@@ -119,20 +119,20 @@ export async function sendDepositNoticeWithButtons(params: {
   amount: number;
   orderCode: string;
   replyToMessageId?: number;   // 🆕 원본 정보 알림에 답장 연결용
-}): Promise<boolean> {
+}): Promise<{ ok: boolean; messageId?: number }> {
   const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
   const chatId = Deno.env.get("TELEGRAM_CHAT_ID");
 
   if (!botToken || !chatId) {
     console.error("[telegram] 무통장 알림 발송 실패: TELEGRAM_BOT_TOKEN/CHAT_ID 미설정");
-    return false;
+    return { ok: false };
   }
 
   const amountStr = params.amount.toLocaleString("ko-KR");
 
   // HTML parse_mode 사용 (기존 sendPaidOrderTelegram 패턴과 동일)
   const text = [
-    "💳 <b>무통장 입금 확인 요청</b>",
+    "💳 <b>신규 주문 (입금 확인 필요)</b>",
     "",
     `<b>이름:</b> ${escapeHtml(params.name)}`,
     `<b>전화:</b> ${escapeHtml(params.phone)}`,
@@ -183,13 +183,17 @@ export async function sendDepositNoticeWithButtons(params: {
     if (!res.ok) {
       const errorText = await res.text();
       console.error(`[telegram] 무통장 알림 발송 실패: ${res.status} ${errorText}`);
-      return false;
+      return { ok: false };
     }
-    console.log(`[telegram] 무통장 알림 발송 성공 (orderCode: ${params.orderCode})`);
-    return true;
+    const json = await res.json();
+    console.log(`[telegram] 무통장 알림 발송 성공 (orderCode: ${params.orderCode}, messageId: ${json.result?.message_id})`);
+    return {
+      ok: json.ok === true,
+      messageId: json.result?.message_id,
+    };
   } catch (err) {
     console.error("[telegram] 무통장 알림 발송 예외:", err);
-    return false;
+    return { ok: false };
   }
 }
 
@@ -354,9 +358,9 @@ export async function deleteTelegramMessage(params: {
 
 /**
  * 무통장 입금 정보용 알림 (버튼 없음)
- * 폼 제출 시 on-new-order가 호출.
+ * ⚠️ 현재 on-new-order에서 미사용. Step 6.7에서 버튼 포함 알림으로 변경됨.
+ *    필요 시 다시 사용 가능 (dormant 상태).
  * 반환값: { ok, messageId }
- * - ok === true 면 message_id를 orders.telegram_notice_message_id에 저장해야 함.
  */
 export async function sendDepositNoticeInfoOnly(params: {
   name: string;
@@ -418,5 +422,59 @@ export async function sendDepositNoticeInfoOnly(params: {
   } catch (err) {
     console.error("[telegram] 정보용 알림 발송 예외:", err);
     return { ok: false };
+  }
+}
+
+/**
+ * 고객 입금 완료 신고 알림 (답장 연결용, 버튼 없음)
+ * notify-deposit-confirmed가 호출.
+ * 항상 reply_to_message_id 필수 (답장 연결 기반 UX).
+ */
+export async function sendDepositReceivedNotice(params: {
+  orderCode: string;
+  replyToMessageId: number;
+}): Promise<boolean> {
+  const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  const chatId = Deno.env.get("TELEGRAM_CHAT_ID");
+
+  if (!botToken || !chatId) {
+    console.error("[telegram] 입금 완료 신고 알림 실패: TELEGRAM_BOT_TOKEN/CHAT_ID 미설정");
+    return false;
+  }
+
+  const text = [
+    "✅ <b>고객이 입금 완료 버튼을 눌렀습니다.</b>",
+    "",
+    `주문코드: <code>${escapeHtml(params.orderCode)}</code>`,
+    "",
+    "입금 확인 후 위 원본 메시지의 <b>[✅ 승인]</b> 버튼을 눌러주세요.",
+  ].join("\n");
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          parse_mode: "HTML",
+          reply_to_message_id: params.replyToMessageId,
+          allow_sending_without_reply: true,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`[telegram] 입금 완료 신고 알림 실패: ${res.status} ${errorText}`);
+      return false;
+    }
+    console.log(`[telegram] 입금 완료 신고 알림 성공 (orderCode: ${params.orderCode})`);
+    return true;
+  } catch (err) {
+    console.error("[telegram] 입금 완료 신고 알림 예외:", err);
+    return false;
   }
 }

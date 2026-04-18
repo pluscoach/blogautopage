@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { sendKakaoNotification } from "../_shared/kakao.ts";
-import { sendTelegramNotification, sendDepositNoticeInfoOnly } from "../_shared/telegram.ts";
+import { sendTelegramNotification, sendDepositNoticeWithButtons } from "../_shared/telegram.ts";
 import { sendOrderConfirmationEmail, sendLicenseKeyEmail } from "../_shared/resend.ts";
 import { getPlanLabel } from "../_shared/labels.ts";
 
@@ -26,12 +26,12 @@ serve(async (req) => {
       const PAYMENT_MODE = Deno.env.get("PAYMENT_MODE") || "payapp";
 
       if (PAYMENT_MODE === "bank_transfer") {
-        // 무통장 경로: 정보용 알림 발송 + message_id 저장
-        console.log(`[on-new-order] 무통장 모드: 정보용 알림 발송 (${record.order_code})`);
+        // 무통장 경로: 버튼 포함 알림 발송 + message_id 저장
+        console.log(`[on-new-order] 무통장 모드: 버튼 포함 알림 발송 (${record.order_code})`);
 
         try {
-          // 1. 정보용 알림 발송 + message_id 회수
-          const noticeResult = await sendDepositNoticeInfoOnly({
+          // 1. 버튼 포함 알림 발송 + message_id 회수
+          const noticeResult = await sendDepositNoticeWithButtons({
             name: record.name as string,
             email: record.email as string,
             phone: (record.phone as string) || "(미입력)",
@@ -58,7 +58,7 @@ serve(async (req) => {
               console.error(`[on-new-order] telegram_notice_message_id UPDATE 실패: ${record.order_code}`, updateError);
             }
           } else {
-            console.error(`[on-new-order] 정보용 알림 발송 실패 또는 messageId 없음: ${record.order_code}`);
+            console.error(`[on-new-order] 알림 발송 실패 또는 messageId 없음: ${record.order_code}`);
           }
         } catch (err) {
           console.error(`[on-new-order] 무통장 처리 중 예외: ${record.order_code}`, err);
