@@ -401,3 +401,6 @@ verify_jwt = false  # Database Trigger에서 호출하기 위해 JWT 검증 비�
 
 [functions.payapp-webhook]
 verify_jwt = false  # 페이앱 서버에서 호출하기 위해 JWT 검증 비활성화
+
+[functions.telegram-callback]
+verify_jwt = false  # Telegram Bot Webhook에서 호출하기 위해 JWT 검증 비활성화
