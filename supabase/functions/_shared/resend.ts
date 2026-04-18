@@ -297,6 +297,227 @@ export async function sendLicenseKeyEmail({
   console.log("[resend] 인증키 이메일 발송 성공, id:", result.id);
 }
 
+// ===== 무통장 입금 임시 결제 구조용 함수들 (기존 함수 수정 없음) =====
+
+/**
+ * HTML 이스케이프 유틸
+ */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/**
+ * 무통장 입금 리마인더 이메일
+ * 사장님이 텔레그램에서 "📧 리마인더 발송" 버튼 누르면 호출됨.
+ * 고객이 아직 입금 안 했거나, 입금자명 달라서 확인 못 한 경우용.
+ */
+export async function sendReminderEmail(params: {
+  to: string;
+  name: string;
+  planLabel: string;   // '1개월 플랜' 등
+  amount: number;
+  bankInfo: {
+    bank: string;
+    account: string;
+    holder: string;
+  };
+  kakaoChannelUrl: string;
+}): Promise<boolean> {
+  const apiKey = Deno.env.get("RESEND_API_KEY");
+  if (!apiKey) {
+    console.error("[resend] 리마인더 발송 실패: RESEND_API_KEY 미설정");
+    return false;
+  }
+
+  const amountStr = params.amount.toLocaleString("ko-KR");
+
+  // 기존 sendLicenseKeyEmail의 디자인 토큰 그대로 재사용
+  // 베이지 배경(#faf9f6), 흰 카드(20px radius), 초록 CTA(#03C75A → #00D4AA)
+  // word-break: keep-all + overflow-wrap: break-word 모든 텍스트에 인라인
+
+  const html = `<!DOCTYPE html>
+<html lang="ko">
+<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  @media (max-width: 600px) {
+    .email-title { font-size: 17px !important; }
+    .email-body { font-size: 12px !important; }
+  }
+</style></head>
+<body style="margin:0;padding:0;background:#faf9f6;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#faf9f6;padding:32px 16px;">
+<tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:20px;overflow:hidden;">
+<tr><td style="padding:40px 32px 24px 32px;">
+  <div style="display:inline-block;padding:6px 14px;background:#03C75A;color:#ffffff;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:0.02em;">입금 확인 요청</div>
+  <h1 class="email-title" style="margin:16px 0 8px 0;font-size:20px;font-weight:700;color:#0A0A0A;line-height:1.4;word-break:keep-all;overflow-wrap:break-word;">
+    ${escapeHtml(params.name)}님, 입금이 아직 확인되지 않았어요 😊
+  </h1>
+  <p class="email-body" style="margin:0;color:#6b7280;font-size:13px;line-height:1.65;word-break:keep-all;overflow-wrap:break-word;">
+    신청해주신 <strong>${escapeHtml(params.planLabel)}</strong>에 대한 입금이 아직 확인되지 않고 있어요.<br>
+    아래 계좌로 입금해주시거나, 이미 입금하셨다면 카카오톡으로 알려주세요.
+  </p>
+</td></tr>
+
+<tr><td style="padding:0 32px 24px 32px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#faf9f6;border-radius:12px;padding:20px;">
+    <tr><td style="padding:4px 0;font-size:12px;color:#6b7280;word-break:keep-all;">은행</td>
+        <td style="padding:4px 0;font-size:14px;color:#0A0A0A;font-weight:600;text-align:right;word-break:keep-all;">${escapeHtml(params.bankInfo.bank)}</td></tr>
+    <tr><td style="padding:4px 0;font-size:12px;color:#6b7280;word-break:keep-all;">계좌번호</td>
+        <td style="padding:4px 0;font-size:14px;color:#0A0A0A;font-weight:600;text-align:right;font-family:ui-monospace,'SF Mono',Menlo,monospace;word-break:break-all;">${escapeHtml(params.bankInfo.account)}</td></tr>
+    <tr><td style="padding:4px 0;font-size:12px;color:#6b7280;word-break:keep-all;">예금주</td>
+        <td style="padding:4px 0;font-size:14px;color:#0A0A0A;font-weight:600;text-align:right;word-break:keep-all;">${escapeHtml(params.bankInfo.holder)}</td></tr>
+    <tr><td style="padding:4px 0;font-size:12px;color:#6b7280;word-break:keep-all;">금액</td>
+        <td style="padding:4px 0;font-size:16px;color:#03C75A;font-weight:700;text-align:right;word-break:keep-all;">${amountStr}원</td></tr>
+  </table>
+</td></tr>
+
+<tr><td style="padding:0 32px 24px 32px;">
+  <div style="background:#fef7f0;border-left:4px solid #f59e0b;padding:14px 16px;border-radius:4px;">
+    <p style="margin:0;font-size:13px;color:#92400e;line-height:1.65;word-break:keep-all;overflow-wrap:break-word;">
+      ⚠️ <strong>입금자명은 "${escapeHtml(params.name)}"으로 해주세요.</strong><br>
+      다른 이름으로 입금하신 경우 아래 카카오톡으로 연락 주시면 바로 처리해드릴게요.
+    </p>
+  </div>
+</td></tr>
+
+<tr><td align="center" style="padding:0 32px 40px 32px;">
+  <a href="${params.kakaoChannelUrl}" target="_blank" style="display:inline-block;padding:14px 32px;background:#FEE500;color:#3A1D1D;text-decoration:none;border-radius:999px;font-size:14px;font-weight:600;word-break:keep-all;">
+    💬 카카오톡으로 문의하기
+  </a>
+</td></tr>
+
+<tr><td style="padding:24px 32px;background:#faf9f6;border-top:1px solid #e5e7eb;">
+  <p style="margin:0;font-size:11px;color:#9ca3af;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;">
+    본 메일은 발신 전용입니다. 문의는 카카오톡으로 주세요.<br>
+    제이에스코퍼레이션 · 사업자등록번호 850-38-01085
+  </p>
+</td></tr>
+</table>
+</td></tr></table>
+</body></html>`;
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: FROM_HEADER,
+        to: params.to,
+        subject: `[블로그 자동화 솔루션] 입금 확인이 아직 안 되었어요 😊`,
+        html,
+      }),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`[resend] 리마인더 발송 실패: ${res.status} ${errorText}`);
+      return false;
+    }
+    console.log(`[resend] 리마인더 발송 성공 (to: ${params.to})`);
+    return true;
+  } catch (err) {
+    console.error("[resend] 리마인더 발송 예외:", err);
+    return false;
+  }
+}
+
+/**
+ * 사장님에게 처리 실패 긴급 알림 이메일
+ * telegram-callback 에서 라이선스/이메일 처리 중 에러 발생 시 호출.
+ * 수신자: jscorpor88@gmail.com (사업자 이메일)
+ */
+export async function sendEmergencyAlertEmail(params: {
+  subject: string;   // 예: "🚨 무통장 승인 처리 실패"
+  orderCode: string;
+  errorMessage: string;
+  context?: Record<string, unknown>;  // 디버깅용 컨텍스트
+}): Promise<boolean> {
+  const apiKey = Deno.env.get("RESEND_API_KEY");
+  const ownerEmail = Deno.env.get("OWNER_EMAIL") || "jscorpor88@gmail.com";
+
+  if (!apiKey) {
+    console.error("[resend] 긴급 알림 발송 실패: RESEND_API_KEY 미설정");
+    return false;
+  }
+
+  const contextStr = params.context
+    ? JSON.stringify(params.context, null, 2)
+    : "(none)";
+
+  const html = `<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8" /></head>
+<body style="margin:0;padding:0;background:#faf9f6;font-family:'Pretendard',sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:32px 16px;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:16px;">
+<tr><td style="padding:32px;">
+  <div style="display:inline-block;padding:6px 14px;background:#dc2626;color:#ffffff;border-radius:999px;font-size:12px;font-weight:700;">🚨 긴급 알림</div>
+  <h1 style="margin:16px 0 8px 0;font-size:20px;font-weight:700;color:#0A0A0A;word-break:keep-all;">
+    ${escapeHtml(params.subject)}
+  </h1>
+  <p style="margin:0 0 16px 0;color:#6b7280;font-size:13px;line-height:1.65;word-break:keep-all;">
+    주문 처리 중 에러가 발생했어요. 아래 정보를 확인하고 수동 처리해주세요.
+  </p>
+
+  <div style="background:#faf9f6;border-radius:8px;padding:16px;margin-bottom:16px;">
+    <p style="margin:0 0 8px 0;font-size:12px;color:#6b7280;">주문코드</p>
+    <p style="margin:0;font-size:16px;font-weight:700;color:#0A0A0A;font-family:ui-monospace,monospace;word-break:break-all;">${escapeHtml(params.orderCode)}</p>
+  </div>
+
+  <div style="background:#fef2f2;border-left:4px solid #dc2626;padding:14px 16px;border-radius:4px;margin-bottom:16px;">
+    <p style="margin:0 0 4px 0;font-size:12px;color:#991b1b;font-weight:600;">에러 메시지</p>
+    <p style="margin:0;font-size:13px;color:#7f1d1d;font-family:ui-monospace,monospace;word-break:break-all;">${escapeHtml(params.errorMessage)}</p>
+  </div>
+
+  <details style="background:#f3f4f6;border-radius:8px;padding:12px 16px;">
+    <summary style="cursor:pointer;font-size:12px;color:#6b7280;font-weight:600;">디버그 컨텍스트 (클릭)</summary>
+    <pre style="margin:8px 0 0 0;font-size:11px;color:#374151;white-space:pre-wrap;word-break:break-all;">${escapeHtml(contextStr)}</pre>
+  </details>
+
+  <p style="margin:24px 0 0 0;font-size:12px;color:#6b7280;line-height:1.6;word-break:keep-all;">
+    👉 Supabase Dashboard에서 orders / licenses 테이블 직접 확인 후 처리하세요.<br>
+    👉 고객에게는 카카오톡으로 직접 연락 필요.
+  </p>
+</td></tr>
+</table>
+</td></tr></table>
+</body></html>`;
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: FROM_HEADER,
+        to: ownerEmail,
+        subject: `${params.subject} (${params.orderCode})`,
+        html,
+      }),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`[resend] 긴급 알림 발송 실패: ${res.status} ${errorText}`);
+      return false;
+    }
+    console.log(`[resend] 긴급 알림 발송 성공 (orderCode: ${params.orderCode})`);
+    return true;
+  } catch (err) {
+    console.error("[resend] 긴급 알림 발송 예외:", err);
+    return false;
+  }
+}
+
 function getPlanLabel(plan: string, amount: number): string {
   const labels: Record<string, string> = {
     free_trial: "무료 체험 (24시간)",

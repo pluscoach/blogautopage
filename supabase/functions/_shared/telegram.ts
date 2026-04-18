@@ -93,3 +93,164 @@ export async function sendPaidOrderTelegram(params: {
 
   console.log("[telegram] 결제 완료 알림 성공, message_id:", result.result?.message_id);
 }
+
+// ===== 무통장 입금 임시 결제 구조용 함수들 (기존 함수 수정 없음) =====
+
+/**
+ * Telegram HTML parse_mode용 이스케이프
+ */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/**
+ * 무통장 입금 대기 알림 (사장님 텔레그램)
+ * 인라인 버튼 2개: 승인(인증키 발송) / 리마인더
+ */
+export async function sendDepositNoticeWithButtons(params: {
+  name: string;
+  email: string;
+  phone: string;
+  plan: string;        // 'monthly' | 'full_package' | 'lifetime'
+  planLabel: string;   // '1개월 플랜' 등
+  amount: number;
+  orderCode: string;
+}): Promise<boolean> {
+  const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  const chatId = Deno.env.get("TELEGRAM_CHAT_ID");
+
+  if (!botToken || !chatId) {
+    console.error("[telegram] 무통장 알림 발송 실패: TELEGRAM_BOT_TOKEN/CHAT_ID 미설정");
+    return false;
+  }
+
+  const amountStr = params.amount.toLocaleString("ko-KR");
+
+  // HTML parse_mode 사용 (기존 sendPaidOrderTelegram 패턴과 동일)
+  const text = [
+    "💳 <b>무통장 입금 확인 요청</b>",
+    "",
+    `<b>이름:</b> ${escapeHtml(params.name)}`,
+    `<b>전화:</b> ${escapeHtml(params.phone)}`,
+    `<b>이메일:</b> ${escapeHtml(params.email)}`,
+    `<b>플랜:</b> ${escapeHtml(params.planLabel)} (${amountStr}원)`,
+    `<b>주문코드:</b> <code>${escapeHtml(params.orderCode)}</code>`,
+    "",
+    "입금 확인 후 아래 버튼으로 처리해주세요.",
+  ].join("\n");
+
+  // 인라인 키보드: 승인 / 리마인더 2개 버튼
+  const replyMarkup = {
+    inline_keyboard: [
+      [
+        {
+          text: "✅ 승인 → 인증키 발송",
+          callback_data: `approve:${params.orderCode}`,
+        },
+        {
+          text: "📧 리마인더 발송",
+          callback_data: `remind:${params.orderCode}`,
+        },
+      ],
+    ],
+  };
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          parse_mode: "HTML",
+          reply_markup: replyMarkup,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`[telegram] 무통장 알림 발송 실패: ${res.status} ${errorText}`);
+      return false;
+    }
+    console.log(`[telegram] 무통장 알림 발송 성공 (orderCode: ${params.orderCode})`);
+    return true;
+  } catch (err) {
+    console.error("[telegram] 무통장 알림 발송 예외:", err);
+    return false;
+  }
+}
+
+/**
+ * 텔레그램 메시지 편집 (승인 처리 후 원본 메시지를 "✅ 완료됨"으로 변경)
+ */
+export async function editTelegramMessage(params: {
+  chatId: number;
+  messageId: number;
+  text: string;
+}): Promise<boolean> {
+  const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  if (!botToken) {
+    console.error("[telegram] 메시지 편집 실패: TELEGRAM_BOT_TOKEN 미설정");
+    return false;
+  }
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${botToken}/editMessageText`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: params.chatId,
+          message_id: params.messageId,
+          text: params.text,
+          parse_mode: "HTML",
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`[telegram] 메시지 편집 실패: ${res.status} ${errorText}`);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error("[telegram] 메시지 편집 예외:", err);
+    return false;
+  }
+}
+
+/**
+ * answerCallbackQuery — 버튼 누른 사용자에게 토스트/로딩 스피너 종료
+ */
+export async function answerCallbackQuery(params: {
+  callbackQueryId: string;
+  text?: string;
+}): Promise<boolean> {
+  const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  if (!botToken) return false;
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${botToken}/answerCallbackQuery`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          callback_query_id: params.callbackQueryId,
+          text: params.text || "",
+        }),
+      }
+    );
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
