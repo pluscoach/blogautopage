@@ -325,7 +325,7 @@ async function handleRemind(params: {
 
     // 4. status는 '입금대기' 유지 (덮어쓰지 않음 — 여러 번 리마인더 가능)
 
-    // 5. 텔레그램 메시지 편집 (리마인더 발송 기록만 추가)
+    // 5. 텔레그램 메시지 편집 (리마인더 기록 추가 + 원본 버튼 그대로 유지)
     const now = new Date().toLocaleString("ko-KR", {
       timeZone: "Asia/Seoul",
       hour: "2-digit",
@@ -333,7 +333,23 @@ async function handleRemind(params: {
     });
     const editedText = `${originalText}\n\n📧 리마인더 발송됨 (${now})`;
 
-    await editTelegramMessage({ chatId, messageId, text: editedText });
+    // 원본 인라인 버튼 동일하게 재전송 — sendDepositNoticeWithButtons와 100% 일치
+    const replyMarkup = {
+      inline_keyboard: [
+        [
+          {
+            text: "✅ 승인 → 인증키 발송",
+            callback_data: `approve:${orderCode}`,
+          },
+          {
+            text: "📧 리마인더 발송",
+            callback_data: `remind:${orderCode}`,
+          },
+        ],
+      ],
+    };
+
+    await editTelegramMessage({ chatId, messageId, text: editedText, replyMarkup });
 
     // 6. 버튼 누른 사람에게 성공 토스트
     await answerCallbackQuery({ callbackQueryId, text: "📧 리마인더 발송 완료" });

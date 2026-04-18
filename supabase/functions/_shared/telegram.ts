@@ -193,6 +193,12 @@ export async function editTelegramMessage(params: {
   chatId: number;
   messageId: number;
   text: string;
+  replyMarkup?: {
+    inline_keyboard: Array<Array<{
+      text: string;
+      callback_data: string;
+    }>>;
+  };
 }): Promise<boolean> {
   const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
   if (!botToken) {
@@ -201,17 +207,24 @@ export async function editTelegramMessage(params: {
   }
 
   try {
+    // body 조립 — replyMarkup 있으면 포함, 없으면 생략 (버튼 제거됨)
+    const body: Record<string, unknown> = {
+      chat_id: params.chatId,
+      message_id: params.messageId,
+      text: params.text,
+      parse_mode: "HTML",
+    };
+
+    if (params.replyMarkup) {
+      body.reply_markup = params.replyMarkup;
+    }
+
     const res = await fetch(
       `https://api.telegram.org/bot${botToken}/editMessageText`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: params.chatId,
-          message_id: params.messageId,
-          text: params.text,
-          parse_mode: "HTML",
-        }),
+        body: JSON.stringify(body),
       }
     );
 
