@@ -118,6 +118,7 @@ export async function sendDepositNoticeWithButtons(params: {
   planLabel: string;   // '1개월 플랜' 등
   amount: number;
   orderCode: string;
+  replyToMessageId?: number;   // 🆕 원본 정보 알림에 답장 연결용
 }): Promise<boolean> {
   const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
   const chatId = Deno.env.get("TELEGRAM_CHAT_ID");
@@ -159,17 +160,23 @@ export async function sendDepositNoticeWithButtons(params: {
   };
 
   try {
+    const fetchBody: Record<string, unknown> = {
+      chat_id: chatId,
+      text,
+      parse_mode: "HTML",
+      reply_markup: replyMarkup,
+    };
+    if (params.replyToMessageId) {
+      fetchBody.reply_to_message_id = params.replyToMessageId;
+      fetchBody.allow_sending_without_reply = true;
+    }
+
     const res = await fetch(
       `https://api.telegram.org/bot${botToken}/sendMessage`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text,
-          parse_mode: "HTML",
-          reply_markup: replyMarkup,
-        }),
+        body: JSON.stringify(fetchBody),
       }
     );
 
@@ -342,5 +349,74 @@ export async function deleteTelegramMessage(params: {
     return res.ok;
   } catch {
     return false;
+  }
+}
+
+/**
+ * 무통장 입금 정보용 알림 (버튼 없음)
+ * 폼 제출 시 on-new-order가 호출.
+ * 반환값: { ok, messageId }
+ * - ok === true 면 message_id를 orders.telegram_notice_message_id에 저장해야 함.
+ */
+export async function sendDepositNoticeInfoOnly(params: {
+  name: string;
+  email: string;
+  phone: string;
+  plan: string;
+  planLabel: string;
+  amount: number;
+  orderCode: string;
+}): Promise<{ ok: boolean; messageId?: number }> {
+  const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  const chatId = Deno.env.get("TELEGRAM_CHAT_ID");
+
+  if (!botToken || !chatId) {
+    console.error("[telegram] 정보용 알림 발송 실패: TELEGRAM_BOT_TOKEN/CHAT_ID 미설정");
+    return { ok: false };
+  }
+
+  const amountStr = params.amount.toLocaleString("ko-KR");
+
+  const text = [
+    "📋 <b>신규 주문 접수</b> (입금 대기)",
+    "",
+    `<b>이름:</b> ${escapeHtml(params.name)}`,
+    `<b>전화:</b> ${escapeHtml(params.phone || "(미입력)")}`,
+    `<b>이메일:</b> ${escapeHtml(params.email)}`,
+    `<b>플랜:</b> ${escapeHtml(params.planLabel)} (${amountStr}원)`,
+    `<b>주문코드:</b> <code>${escapeHtml(params.orderCode)}</code>`,
+    "",
+    "💡 고객이 [입금 완료] 버튼을 누르면 승인 버튼 포함 알림이 이 메시지에 답장 형태로 도착합니다.",
+  ].join("\n");
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          parse_mode: "HTML",
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`[telegram] 정보용 알림 발송 실패: ${res.status} ${errorText}`);
+      return { ok: false };
+    }
+
+    const json = await res.json();
+    console.log(`[telegram] 정보용 알림 발송 성공 (orderCode: ${params.orderCode}, messageId: ${json.result?.message_id})`);
+    return {
+      ok: json.ok === true,
+      messageId: json.result?.message_id,
+    };
+  } catch (err) {
+    console.error("[telegram] 정보용 알림 발송 예외:", err);
+    return { ok: false };
   }
 }
