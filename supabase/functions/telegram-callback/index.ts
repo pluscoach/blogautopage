@@ -2,6 +2,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import {
   editTelegramMessage,
   answerCallbackQuery,
+  sendTelegramMessage,
 } from "../_shared/telegram.ts";
 import {
   sendLicenseKeyEmail,
@@ -38,10 +39,20 @@ interface TelegramCallbackQuery {
   data: string; // "approve:{orderCode}" 또는 "remind:{orderCode}"
 }
 
+interface TelegramMessage {
+  message_id: number;
+  chat: { id: number };
+  text?: string;
+  reply_to_message?: {
+    message_id: number;
+    text?: string;
+  };
+}
+
 interface TelegramUpdate {
   update_id: number;
   callback_query?: TelegramCallbackQuery;
-  message?: unknown; // 일반 메시지는 무시
+  message?: TelegramMessage;
 }
 
 /**
@@ -62,61 +73,87 @@ Deno.serve(async (req) => {
     return new Response("OK", { status: 200 });
   }
 
-  // callback_query 없으면 무시 (일반 메시지 등)
   const callbackQuery = update.callback_query;
-  if (!callbackQuery) {
+  const message = update.message;
+
+  // callback_query는 인라인 버튼 클릭
+  if (callbackQuery) {
+    const callbackQueryId = callbackQuery.id;
+    const chatId = callbackQuery.message.chat.id;
+    const messageId = callbackQuery.message.message_id;
+    const callbackData = callbackQuery.data || "";
+
+    console.log(`[telegram-callback] 수신: ${callbackData}`);
+
+    // callback_data 파싱: "approve:오준석-A3X7" 등
+    const colonIdx = callbackData.indexOf(":");
+    if (colonIdx === -1) {
+      console.error(`[telegram-callback] 잘못된 callback_data: ${callbackData}`);
+      await answerCallbackQuery({ callbackQueryId, text: "❌ 잘못된 요청" });
+      return new Response("OK", { status: 200 });
+    }
+
+    const action = callbackData.substring(0, colonIdx);
+    const orderCode = callbackData.substring(colonIdx + 1);
+
+    if (!orderCode) {
+      console.error("[telegram-callback] orderCode 누락");
+      await answerCallbackQuery({ callbackQueryId, text: "❌ 주문코드 없음" });
+      return new Response("OK", { status: 200 });
+    }
+
+    // Supabase 클라이언트 (service_role)
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+    // 분기
+    if (action === "approve") {
+      await handleApprove({
+        supabase,
+        orderCode,
+        callbackQueryId,
+        chatId,
+        messageId,
+        originalText: callbackQuery.message.text || "",
+      });
+    } else if (action === "remind") {
+      await handleRemind({
+        supabase,
+        orderCode,
+        callbackQueryId,
+        chatId,
+        messageId,
+        originalText: callbackQuery.message.text || "",
+      });
+    } else if (action === "resend_same") {
+      await handleResendSame({
+        supabase,
+        orderCode,
+        callbackQueryId,
+        chatId,
+        messageId,
+        originalText: callbackQuery.message.text || "",
+      });
+    } else if (action === "resend_new") {
+      await handleResendNewPrompt({
+        callbackQueryId,
+        chatId,
+        orderCode,
+      });
+    } else {
+      console.error(`[telegram-callback] 알 수 없는 action: ${action}`);
+      await answerCallbackQuery({ callbackQueryId, text: "❌ 알 수 없는 요청" });
+    }
+
     return new Response("OK", { status: 200 });
   }
 
-  const callbackQueryId = callbackQuery.id;
-  const chatId = callbackQuery.message.chat.id;
-  const messageId = callbackQuery.message.message_id;
-  const callbackData = callbackQuery.data || "";
-
-  console.log(`[telegram-callback] 수신: ${callbackData}`);
-
-  // callback_data 파싱: "approve:오준석-A3X7" 또는 "remind:오준석-A3X7"
-  const colonIdx = callbackData.indexOf(":");
-  if (colonIdx === -1) {
-    console.error(`[telegram-callback] 잘못된 callback_data: ${callbackData}`);
-    await answerCallbackQuery({ callbackQueryId, text: "❌ 잘못된 요청" });
-    return new Response("OK", { status: 200 });
-  }
-
-  const action = callbackData.substring(0, colonIdx);
-  const orderCode = callbackData.substring(colonIdx + 1);
-
-  if (!orderCode) {
-    console.error("[telegram-callback] orderCode 누락");
-    await answerCallbackQuery({ callbackQueryId, text: "❌ 주문코드 없음" });
-    return new Response("OK", { status: 200 });
-  }
-
-  // Supabase 클라이언트 (service_role)
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-
-  // 분기
-  if (action === "approve") {
-    await handleApprove({
-      supabase,
-      orderCode,
-      callbackQueryId,
-      chatId,
-      messageId,
-      originalText: callbackQuery.message.text || "",
+  // message는 일반 텍스트 (force_reply 응답 포함)
+  if (message) {
+    await handleIncomingMessage({
+      message,
+      supabase: createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY),
     });
-  } else if (action === "remind") {
-    await handleRemind({
-      supabase,
-      orderCode,
-      callbackQueryId,
-      chatId,
-      messageId,
-      originalText: callbackQuery.message.text || "",
-    });
-  } else {
-    console.error(`[telegram-callback] 알 수 없는 action: ${action}`);
-    await answerCallbackQuery({ callbackQueryId, text: "❌ 알 수 없는 요청" });
+    return new Response("OK", { status: 200 });
   }
 
   return new Response("OK", { status: 200 });
@@ -237,15 +274,22 @@ async function handleApprove(params: {
       return;
     }
 
-    // 6. 텔레그램 메시지 편집: "✅ 완료됨 ({timestamp})"
+    // 6. 텔레그램 메시지 편집: "✅ 완료됨" + 재발송 버튼
     const now = new Date().toLocaleString("ko-KR", {
       timeZone: "Asia/Seoul",
       hour: "2-digit",
       minute: "2-digit",
     });
-    const editedText = `${originalText}\n\n━━━━━━━━━━\n✅ <b>완료됨</b> (${now})\n인증키: <code>${licenseKey}</code>`;
+    const editedText =
+      `${originalText}\n\n` +
+      `━━━━━━━━━━\n` +
+      `✅ <b>완료됨</b> (${now})\n` +
+      `인증키: <code>${licenseKey}</code>\n` +
+      `📧 ${order.email}`;
 
-    await editTelegramMessage({ chatId, messageId, text: editedText });
+    // 재발송 버튼 2개 포함하여 편집
+    const resendButtons = buildResendButtons(orderCode);
+    await editTelegramMessage({ chatId, messageId, text: editedText, replyMarkup: resendButtons });
 
     // 7. 버튼 누른 사람에게 성공 토스트
     await answerCallbackQuery({ callbackQueryId, text: "✅ 인증키 발송 완료" });
@@ -364,4 +408,256 @@ async function handleRemind(params: {
       errorMessage: err instanceof Error ? err.message : String(err),
     });
   }
+}
+
+/**
+ * 재발송 버튼 2개 inline_keyboard 빌더 (DRY)
+ */
+function buildResendButtons(orderCode: string) {
+  return {
+    inline_keyboard: [
+      [
+        { text: "🔄 같은 이메일 재발송", callback_data: `resend_same:${orderCode}` },
+        { text: "✏️ 다른 이메일로", callback_data: `resend_new:${orderCode}` },
+      ],
+    ],
+  };
+}
+
+/**
+ * [🔄 같은 이메일 재발송] 처리
+ * 원본 email로 같은 인증키 재발송.
+ */
+async function handleResendSame(params: {
+  supabase: ReturnType<typeof createClient>;
+  orderCode: string;
+  callbackQueryId: string;
+  chatId: number;
+  messageId: number;
+  originalText: string;
+}) {
+  const { supabase, orderCode, callbackQueryId, chatId, messageId, originalText } = params;
+
+  try {
+    const { data: order, error: fetchError } = await supabase
+      .from("orders")
+      .select("id, name, email, plan, license_key, order_code")
+      .eq("order_code", orderCode)
+      .maybeSingle();
+
+    if (fetchError || !order) {
+      await answerCallbackQuery({ callbackQueryId, text: "❌ 주문 없음" });
+      return;
+    }
+
+    if (!order.license_key) {
+      await answerCallbackQuery({
+        callbackQueryId,
+        text: "⚠️ 아직 인증키 미발급 — 먼저 승인하세요",
+      });
+      return;
+    }
+
+    if (!DOWNLOAD_URL_PAID) {
+      await answerCallbackQuery({ callbackQueryId, text: "❌ DOWNLOAD_URL_PAID 미설정" });
+      await sendEmergencyAlertEmail({
+        subject: "🚨 재발송 실패 — DOWNLOAD_URL_PAID 미설정",
+        orderCode,
+        errorMessage: "환경변수 DOWNLOAD_URL_PAID가 설정되지 않음",
+      });
+      return;
+    }
+
+    try {
+      await sendLicenseKeyEmail({
+        to: order.email,
+        name: order.name,
+        licenseKey: order.license_key,
+        downloadUrl: DOWNLOAD_URL_PAID,
+        plan: order.plan,
+        isPaid: true,
+      });
+    } catch (emailError) {
+      await answerCallbackQuery({ callbackQueryId, text: "❌ 재발송 실패" });
+      await sendEmergencyAlertEmail({
+        subject: "🚨 재발송 실패 (같은 이메일)",
+        orderCode,
+        errorMessage: emailError instanceof Error ? emailError.message : String(emailError),
+        context: { to: order.email, license_key: order.license_key },
+      });
+      return;
+    }
+
+    const now = new Date().toLocaleString("ko-KR", {
+      timeZone: "Asia/Seoul",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    const editedText = `${originalText}\n🔄 재발송됨 (${now}) → ${order.email}`;
+
+    const resendButtons = buildResendButtons(orderCode);
+    await editTelegramMessage({
+      chatId, messageId, text: editedText, replyMarkup: resendButtons,
+    });
+
+    await answerCallbackQuery({ callbackQueryId, text: "✅ 재발송 완료" });
+    console.log(`[telegram-callback/resend_same] 완료: ${orderCode} → ${order.email}`);
+  } catch (err) {
+    console.error(`[telegram-callback/resend_same] 예외: ${orderCode}`, err);
+    await answerCallbackQuery({ callbackQueryId, text: "❌ 처리 중 오류" });
+    await sendEmergencyAlertEmail({
+      subject: "🚨 재발송 (같은 이메일) — 예외",
+      orderCode,
+      errorMessage: err instanceof Error ? err.message : String(err),
+    });
+  }
+}
+
+/**
+ * [✏️ 다른 이메일로 재발송] 처리 — force_reply 프롬프트 발송
+ */
+async function handleResendNewPrompt(params: {
+  callbackQueryId: string;
+  chatId: number;
+  orderCode: string;
+}) {
+  const { callbackQueryId, chatId, orderCode } = params;
+
+  const promptText =
+    `📧 주문 <code>${orderCode}</code>\n` +
+    `새 이메일 주소를 이 메시지에 회신해주세요.\n\n` +
+    `예: new@naver.com\n\n` +
+    `(잘못 눌렀다면 이 메시지 무시하셔도 됩니다)`;
+
+  const result = await sendTelegramMessage({
+    chatId,
+    text: promptText,
+    parseMode: "HTML",
+    replyMarkup: {
+      force_reply: true,
+      input_field_placeholder: "새 이메일 주소 입력",
+      selective: false,
+    },
+  });
+
+  if (result.ok) {
+    await answerCallbackQuery({ callbackQueryId, text: "📧 새 이메일 입력 대기 중" });
+  } else {
+    await answerCallbackQuery({ callbackQueryId, text: "❌ 프롬프트 발송 실패" });
+  }
+}
+
+/**
+ * 일반 text 메시지 수신 처리
+ * force_reply 응답인지 판별 → 재발송 처리
+ */
+async function handleIncomingMessage(params: {
+  message: TelegramMessage;
+  supabase: ReturnType<typeof createClient>;
+}) {
+  const { message, supabase } = params;
+  const chatId = message.chat.id;
+  const text = (message.text || "").trim();
+
+  // 회신 대상 메시지가 없으면 일반 대화 — 무시
+  const replyTo = message.reply_to_message;
+  if (!replyTo || !replyTo.text) {
+    console.log("[telegram-callback/message] reply_to_message 없음, 무시");
+    return;
+  }
+
+  // 회신 대상 메시지가 "주문 {orderCode}" 형식인지 확인
+  const orderCodeMatch = replyTo.text.match(/주문\s+([가-힣a-zA-Z0-9\-]+)/);
+  if (!orderCodeMatch) {
+    console.log("[telegram-callback/message] 주문코드 없는 reply, 무시");
+    return;
+  }
+  const orderCode = orderCodeMatch[1];
+
+  // 이메일 형식 검증
+  const emailMatch = text.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  if (!emailMatch) {
+    await sendTelegramMessage({
+      chatId,
+      text:
+        `❌ 올바른 이메일 형식이 아니에요.\n` +
+        `(예: name@example.com)\n\n` +
+        `주문 ${orderCode} 다른 이메일 재발송을 원하시면 원본 메시지의 [✏️ 다른 이메일로] 버튼을 다시 눌러주세요.`,
+    });
+    return;
+  }
+  const newEmail = text;
+
+  // 주문 조회
+  const { data: order, error: fetchError } = await supabase
+    .from("orders")
+    .select("id, name, email, plan, license_key, order_code")
+    .eq("order_code", orderCode)
+    .maybeSingle();
+
+  if (fetchError || !order) {
+    await sendTelegramMessage({
+      chatId,
+      text: `❌ 주문 ${orderCode}을(를) 찾을 수 없어요.`,
+    });
+    return;
+  }
+
+  if (!order.license_key) {
+    await sendTelegramMessage({
+      chatId,
+      text: `⚠️ 주문 ${orderCode}은 아직 인증키 미발급 상태입니다. 먼저 [✅ 승인]을 눌러주세요.`,
+    });
+    return;
+  }
+
+  if (!DOWNLOAD_URL_PAID) {
+    await sendTelegramMessage({
+      chatId,
+      text: `❌ 재발송 실패 — DOWNLOAD_URL_PAID 환경변수 미설정. 관리자에게 문의.`,
+    });
+    await sendEmergencyAlertEmail({
+      subject: "🚨 재발송 (다른 이메일) 실패 — 환경변수",
+      orderCode,
+      errorMessage: "DOWNLOAD_URL_PAID 미설정",
+    });
+    return;
+  }
+
+  // 새 이메일로 재발송
+  try {
+    await sendLicenseKeyEmail({
+      to: newEmail,
+      name: order.name,
+      licenseKey: order.license_key,
+      downloadUrl: DOWNLOAD_URL_PAID,
+      plan: order.plan,
+      isPaid: true,
+    });
+  } catch (emailError) {
+    await sendTelegramMessage({
+      chatId,
+      text: `❌ 재발송 실패: ${emailError instanceof Error ? emailError.message : String(emailError)}`,
+    });
+    await sendEmergencyAlertEmail({
+      subject: "🚨 재발송 (다른 이메일) 실패",
+      orderCode,
+      errorMessage: emailError instanceof Error ? emailError.message : String(emailError),
+      context: { to: newEmail, license_key: order.license_key },
+    });
+    return;
+  }
+
+  // 성공 피드백
+  const now = new Date().toLocaleString("ko-KR", {
+    timeZone: "Asia/Seoul",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  await sendTelegramMessage({
+    chatId,
+    text: `✅ 재발송 완료\n주문: ${orderCode}\n→ ${newEmail}\n(${now})`,
+  });
+
+  console.log(`[telegram-callback/message] 다른 이메일 재발송 완료: ${orderCode} → ${newEmail}`);
 }

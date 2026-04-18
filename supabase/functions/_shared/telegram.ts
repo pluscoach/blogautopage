@@ -267,3 +267,80 @@ export async function answerCallbackQuery(params: {
     return false;
   }
 }
+
+/**
+ * 일반 메시지 전송 (텍스트 + 옵션)
+ * force_reply, HTML parse_mode 등 지원.
+ */
+export async function sendTelegramMessage(params: {
+  chatId: number;
+  text: string;
+  replyMarkup?: unknown;
+  parseMode?: "HTML" | "Markdown" | null;
+  replyToMessageId?: number;
+}): Promise<{ ok: boolean; messageId?: number }> {
+  const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  if (!botToken) {
+    console.error("[telegram] sendTelegramMessage 실패: TELEGRAM_BOT_TOKEN 미설정");
+    return { ok: false };
+  }
+
+  const body: Record<string, unknown> = {
+    chat_id: params.chatId,
+    text: params.text,
+  };
+  if (params.parseMode) body.parse_mode = params.parseMode;
+  if (params.replyMarkup) body.reply_markup = params.replyMarkup;
+  if (params.replyToMessageId) body.reply_to_message_id = params.replyToMessageId;
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }
+    );
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`[telegram] sendMessage 실패: ${res.status} ${errorText}`);
+      return { ok: false };
+    }
+
+    const json = await res.json();
+    return {
+      ok: json.ok === true,
+      messageId: json.result?.message_id,
+    };
+  } catch (err) {
+    console.error("[telegram] sendMessage 예외:", err);
+    return { ok: false };
+  }
+}
+
+/**
+ * 메시지 삭제 (봇이 보낸 메시지만 가능)
+ */
+export async function deleteTelegramMessage(params: {
+  chatId: number;
+  messageId: number;
+}): Promise<boolean> {
+  const botToken = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  if (!botToken) return false;
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${botToken}/deleteMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: params.chatId, message_id: params.messageId }),
+      }
+    );
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
