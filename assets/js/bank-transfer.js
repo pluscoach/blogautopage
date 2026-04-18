@@ -108,7 +108,7 @@
      * 여기서는 사용자에게 접수 확인 피드백만 표시.
      * (사장님 텔레그램 알림은 on-new-order가 이미 자동 발송함)
      */
-    function handleDepositConfirm() {
+    async function handleDepositConfirm() {
         if (isSubmitting) return;
         if (!currentOrderContext) {
             console.error('[bank-transfer] currentOrderContext 없음');
@@ -122,16 +122,50 @@
             confirmBtn.textContent = '처리 중...';
         }
 
-        // 토스트 메시지로 안내
-        showToast(
-            '입금 확인 요청 접수 완료! 입금이 확인되면 이메일로 인증키를 보내드려요.',
-            'success'
-        );
+        try {
+            // notify-deposit-confirmed Edge Function 호출
+            var cfg = (window.APP_CONFIG && window.APP_CONFIG.supabase) || {};
+            if (!cfg.url || !cfg.anonKey) {
+                console.error('[bank-transfer] Supabase config 없음');
+                throw new Error('설정 오류');
+            }
 
-        // 잠시 후 모달 닫기
-        setTimeout(function() {
-            hideBankTransferModal();
-        }, 1500);
+            var endpoint = cfg.url + '/functions/v1/notify-deposit-confirmed';
+            var response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cfg.anonKey,
+                    'apikey': cfg.anonKey,
+                },
+                body: JSON.stringify({ orderCode: currentOrderContext.orderCode }),
+            });
+
+            if (!response.ok) {
+                console.error('[bank-transfer] notify-deposit-confirmed 응답 실패:', response.status);
+            }
+
+            // 성공/실패 모두 사용자에겐 친절 메시지
+            showToast(
+                '입금 확인 요청 접수 완료! 입금이 확인되면 이메일로 인증키를 보내드려요.',
+                'success'
+            );
+
+            setTimeout(function() {
+                hideBankTransferModal();
+            }, 1500);
+        } catch (err) {
+            console.error('[bank-transfer] handleDepositConfirm 예외:', err);
+            showToast(
+                '처리 중 오류가 발생했어요. 잠시 후 다시 시도하거나 카카오톡 채널로 문의주세요.',
+                'error'
+            );
+            if (confirmBtn) {
+                isSubmitting = false;
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = '입금 완료 후 눌러주세요';
+            }
+        }
     }
 
     /**
