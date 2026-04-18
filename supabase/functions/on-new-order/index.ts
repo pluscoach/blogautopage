@@ -1,8 +1,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { sendKakaoNotification } from "../_shared/kakao.ts";
-import { sendTelegramNotification } from "../_shared/telegram.ts";
+import { sendTelegramNotification, sendDepositNoticeWithButtons } from "../_shared/telegram.ts";
 import { sendOrderConfirmationEmail, sendLicenseKeyEmail } from "../_shared/resend.ts";
+import { getPlanLabel } from "../_shared/labels.ts";
 
 serve(async (req) => {
   try {
@@ -20,8 +21,53 @@ serve(async (req) => {
       order_code: record.order_code,
     });
 
-    // ===== 유료 플랜은 payapp-webhook이 결제 완료 후 처리 =====
+    // ===== 유료 플랜: PAYMENT_MODE에 따라 분기 =====
     if (record.plan !== "free_trial") {
+      const PAYMENT_MODE = Deno.env.get("PAYMENT_MODE") || "payapp";
+
+      if (PAYMENT_MODE === "bank_transfer") {
+        // 무통장 경로: 사장님 텔레그램에 인라인 버튼 알림 + status='입금대기' UPDATE
+        console.log(`[on-new-order] 무통장 모드: 텔레그램 인라인 버튼 알림 발송 (${record.order_code})`);
+
+        try {
+          // 1. 텔레그램 인라인 버튼 알림 발송
+          await sendDepositNoticeWithButtons({
+            name: record.name as string,
+            email: record.email as string,
+            phone: (record.phone as string) || "(미입력)",
+            plan: record.plan as string,
+            planLabel: getPlanLabel(record.plan as string),
+            amount: record.amount as number,
+            orderCode: record.order_code as string,
+          });
+
+          // 2. orders.status를 '입금대기'로 UPDATE (페이앱 결제대기와 구분용)
+          const supabase = createClient(
+            Deno.env.get("SUPABASE_URL")!,
+            Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+          );
+
+          const { error: updateError } = await supabase
+            .from("orders")
+            .update({ status: "입금대기" })
+            .eq("id", record.id);
+
+          if (updateError) {
+            console.error(`[on-new-order] 무통장 status UPDATE 실패: ${record.order_code}`, updateError);
+            // status UPDATE 실패해도 알림은 이미 나갔으므로 치명적 아님. 로그만 남기고 진행.
+          }
+        } catch (err) {
+          console.error(`[on-new-order] 무통장 처리 중 예외: ${record.order_code}`, err);
+          // 항상 200 반환 (Trigger 재시도 방지). 예외는 내부 처리.
+        }
+
+        return new Response(
+          JSON.stringify({ ok: true, mode: "bank_transfer" }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
+
+      // PAYMENT_MODE === 'payapp' (기본값): 기존 동작 그대로 — payapp-webhook이 처리
       console.log("[on-new-order] 유료 플랜은 payapp-webhook이 처리함. 스킵.", {
         order_id: record.id,
         plan: record.plan,
