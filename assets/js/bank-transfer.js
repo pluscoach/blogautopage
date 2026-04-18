@@ -147,13 +147,13 @@
 
             // 성공/실패 모두 사용자에겐 친절 메시지
             showToast(
-                '입금 확인 요청 접수 완료! 입금이 확인되면 이메일로 인증키를 보내드려요.',
+                '입금 확인 요청 접수 완료! 입금이 확인되면 이메일로 인증키를 보내드려요. 📮 이메일이 안 보이면 스팸함을 꼭 확인해주세요!',
                 'success'
             );
 
             setTimeout(function() {
                 hideBankTransferModal();
-            }, 1500);
+            }, 2500);
         } catch (err) {
             console.error('[bank-transfer] handleDepositConfirm 예외:', err);
             showToast(
