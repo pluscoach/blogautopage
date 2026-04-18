@@ -1357,6 +1357,12 @@
                         <label class="block text-sm font-bold text-gray-700 mb-2">이메일 (프로그램 수령용)</label>
                         <input type="email" id="userEmail" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver" placeholder="example@email.com">
                     </div>
+                    <!-- 🆕 전화번호 필드 (무통장 입금 확인용, paymentMode === 'bank_transfer'일 때만 표시) -->
+                    <div id="phone-field" style="display:none;">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">전화번호 <span class="text-red-500">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" autocomplete="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver">
+                        <p class="mt-2 text-xs text-gray-500">입금 확인 시 사용합니다. 입금자명이 다를 경우 연락드릴 수 있어요.</p>
+                    </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-3">플랜 선택</label>
                         <div class="space-y-3" id="planRadios">
@@ -1414,6 +1420,73 @@
             <button onclick="scrollToForm('full')" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
                 지금 바로 시작하기
             </button>
+        </div>
+    </div>
+
+    <!-- 🆕 무통장 입금 안내 모달 (paymentMode === 'bank_transfer'에서 유료 플랜 제출 시 표시) -->
+    <div id="bank-transfer-modal" class="bank-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="bank-modal-title">
+        <div class="bank-modal-content">
+            <button type="button" id="bank-modal-close" class="bank-modal-close" aria-label="닫기">&#10005;</button>
+
+            <div class="bank-modal-header">
+                <div class="bank-modal-badge">무통장 입금</div>
+                <h2 id="bank-modal-title" class="bank-modal-title">입금 후 확인 요청을 눌러주세요</h2>
+            </div>
+
+            <div class="bank-modal-body">
+                <!-- 주문 요약 -->
+                <div class="bank-modal-summary">
+                    <div class="bank-summary-row">
+                        <span class="bank-summary-label">선택 플랜</span>
+                        <span class="bank-summary-value" id="bank-summary-plan">-</span>
+                    </div>
+                    <div class="bank-summary-row bank-summary-highlight">
+                        <span class="bank-summary-label">입금 금액</span>
+                        <span class="bank-summary-value bank-summary-amount" id="bank-summary-amount">-</span>
+                    </div>
+                </div>
+
+                <!-- 계좌 정보 -->
+                <div class="bank-modal-account">
+                    <div class="bank-account-row">
+                        <span class="bank-account-label">은행</span>
+                        <span class="bank-account-value" id="bank-account-bank">-</span>
+                    </div>
+                    <div class="bank-account-row">
+                        <span class="bank-account-label">계좌번호</span>
+                        <span class="bank-account-value bank-account-number" id="bank-account-number">-</span>
+                    </div>
+                    <div class="bank-account-row">
+                        <span class="bank-account-label">예금주</span>
+                        <span class="bank-account-value" id="bank-account-holder">-</span>
+                    </div>
+                </div>
+
+                <!-- 입금자명 안내 -->
+                <div class="bank-modal-notice">
+                    <p class="bank-notice-text">
+                        <strong>입금자명은 신청자 이름과 동일하게 입금해주세요.</strong>
+                    </p>
+                    <p class="bank-notice-sub">
+                        다른 이름으로 입금 시 <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>로 연락 주시면 바로 도와드릴게요.
+                    </p>
+                </div>
+
+                <!-- 주문번호 -->
+                <div class="bank-modal-order">
+                    <span class="bank-order-label">주문번호</span>
+                    <span class="bank-order-value" id="bank-order-code">-</span>
+                </div>
+            </div>
+
+            <div class="bank-modal-footer">
+                <button type="button" id="bank-confirm-deposit" class="bank-btn-primary">
+                    입금 완료 — 확인 요청하기
+                </button>
+                <p class="bank-footer-hint">
+                    버튼을 누르면 입금 확인 요청이 전송되고, 확인 후 이메일로 인증키를 보내드립니다. (영업시간 내 최대 1시간)
+                </p>
+            </div>
         </div>
     </div>
 

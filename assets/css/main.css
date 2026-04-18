@@ -62,3 +62,260 @@ details > summary::-webkit-details-marker { display: none; }
 @keyframes tagFloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 @keyframes tagFloat2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 @keyframes tagFloat3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* ============================================
+   무통장 입금 모달 (Step 5A)
+   paymentMode === 'bank_transfer'에서만 사용
+============================================ */
+
+.bank-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.55);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    overflow-y: auto;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bank-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    animation: bankModalSlideUp 0.25s ease-out;
+}
+
+@keyframes bankModalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.bank-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+    color: #6b7280;
+    transition: background 0.15s;
+    z-index: 2;
+}
+.bank-modal-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.bank-modal-header {
+    padding: 32px 24px 16px 24px;
+    text-align: center;
+}
+.bank-modal-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #03C75A;
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+}
+.bank-modal-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0A0A0A;
+    line-height: 1.4;
+    word-break: keep-all;
+}
+
+.bank-modal-body {
+    padding: 8px 24px 16px 24px;
+}
+
+/* 주문 요약 */
+.bank-modal-summary {
+    background: #faf9f6;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.bank-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+}
+.bank-summary-row.bank-summary-highlight {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px dashed #d1d5db;
+}
+.bank-summary-label {
+    font-size: 13px;
+    color: #6b7280;
+}
+.bank-summary-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0A0A0A;
+    word-break: keep-all;
+}
+.bank-summary-amount {
+    font-size: 18px;
+    color: #03C75A;
+    font-weight: 700;
+}
+
+/* 계좌 정보 */
+.bank-modal-account {
+    background: #ffffff;
+    border: 2px solid #03C75A;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.bank-account-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+}
+.bank-account-label {
+    font-size: 13px;
+    color: #6b7280;
+}
+.bank-account-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0A0A0A;
+    word-break: keep-all;
+}
+.bank-account-number {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    word-break: break-all;
+}
+
+/* 입금자명 안내 */
+.bank-modal-notice {
+    background: #fef7f0;
+    border-left: 4px solid #f59e0b;
+    padding: 12px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+.bank-notice-text {
+    margin: 0 0 6px 0;
+    font-size: 13px;
+    color: #92400e;
+    line-height: 1.55;
+    word-break: keep-all;
+}
+.bank-notice-sub {
+    margin: 0;
+    font-size: 12px;
+    color: #92400e;
+    line-height: 1.55;
+    word-break: keep-all;
+}
+.bank-notice-sub a {
+    color: #92400e;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* 주문번호 */
+.bank-modal-order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: #f3f4f6;
+    border-radius: 8px;
+}
+.bank-order-label {
+    font-size: 12px;
+    color: #6b7280;
+}
+.bank-order-value {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0A0A0A;
+    word-break: break-all;
+}
+
+/* 푸터 CTA */
+.bank-modal-footer {
+    padding: 16px 24px 24px 24px;
+}
+.bank-btn-primary {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    background: linear-gradient(90deg, #03C75A, #00D4AA);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.15s;
+    word-break: keep-all;
+}
+.bank-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(3, 199, 90, 0.25);
+}
+.bank-btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+.bank-footer-hint {
+    margin: 12px 0 0 0;
+    font-size: 11px;
+    color: #9ca3af;
+    text-align: center;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+    .bank-modal-overlay {
+        padding: 8px;
+    }
+    .bank-modal-header {
+        padding: 28px 20px 12px 20px;
+    }
+    .bank-modal-title {
+        font-size: 17px;
+    }
+    .bank-modal-body {
+        padding: 8px 20px 12px 20px;
+    }
+    .bank-modal-footer {
+        padding: 12px 20px 20px 20px;
+    }
+}

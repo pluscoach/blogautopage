@@ -49,5 +49,17 @@ window.APP_CONFIG = {
     },
     site: {
         url: ''
+    },
+
+    // 🆕 결제 방식 스위치 ('bank_transfer' | 'payapp')
+    // 'bank_transfer': 무통장 입금 임시 결제 (현재 활성)
+    // 'payapp': 페이앱 PG 결제 (페이앱 재승인 시 복귀)
+    paymentMode: 'bank_transfer',
+
+    // 🆕 무통장 입금 계좌 정보
+    bankInfo: {
+        bank: '하나은행',
+        account: '120-910375-30807',
+        holder: '오준석(제이에스코퍼레이션)'
     }
 };

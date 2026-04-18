@@ -16,6 +16,21 @@ document.querySelectorAll('[data-plan-key]').forEach(function(el) {
     if (labelEl) labelEl.textContent = cfg.label;
 });
 
+// 🆕 결제 방식(paymentMode)에 따라 phone 필드 표시/숨김 (Step 5A)
+try {
+    var cfg = (typeof window !== 'undefined' && window.APP_CONFIG) ? window.APP_CONFIG : null;
+    var phoneField = document.getElementById('phone-field');
+    var phoneInput = document.getElementById('phone');
+
+    if (cfg && cfg.paymentMode === 'bank_transfer' && phoneField) {
+        phoneField.style.display = '';  // 인라인 display:none 제거 → 기본 block
+        if (phoneInput) phoneInput.required = true;
+    }
+    // paymentMode === 'payapp' 또는 미설정 시 phone-field는 기본 display:none 유지
+} catch (e) {
+    console.warn('[main.js] phone field toggle 실패:', e);
+}
+
 // ===== SCROLL TO FORM + SELECT PLAN =====
 function scrollToForm(planValue) {
     if (planValue) {
