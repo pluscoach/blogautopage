@@ -429,15 +429,34 @@ export async function sendReminderEmail(params: {
 }
 
 /**
- * 사장님에게 처리 실패 긴급 알림 이메일
- * telegram-callback 에서 라이선스/이메일 처리 중 에러 발생 시 호출.
- * 수신자: jscorpor88@gmail.com (사업자 이메일)
+ * 에러 타입 (2종만 사용)
+ */
+export type EmergencyErrorType =
+  | "LICENSE_CREATE_FAILED"    // 🔴 라이선스 발급 실패
+  | "EMAIL_SEND_FAILED";       // 🟡 인증키 이메일 발송 실패
+
+/** 주문 정보 (선택) */
+interface EmergencyOrderInfo {
+  name?: string;
+  email?: string;
+  phone?: string;
+  plan?: string;
+  amount?: number;
+  order_code?: string;
+  created_at?: string;
+  license_key?: string;
+}
+
+/**
+ * 사장님에게 처리 실패 긴급 알림 이메일 (v2 — 타입별 맞춤 가이드)
  */
 export async function sendEmergencyAlertEmail(params: {
-  subject: string;   // 예: "🚨 무통장 승인 처리 실패"
   orderCode: string;
   errorMessage: string;
-  context?: Record<string, unknown>;  // 디버깅용 컨텍스트
+  errorType?: EmergencyErrorType;
+  order?: EmergencyOrderInfo;
+  context?: Record<string, unknown>;
+  subject?: string;  // 하위호환용, 무시됨
 }): Promise<boolean> {
   const apiKey = Deno.env.get("RESEND_API_KEY");
   const ownerEmail = Deno.env.get("OWNER_EMAIL") || "jscorpor88@gmail.com";
@@ -447,45 +466,147 @@ export async function sendEmergencyAlertEmail(params: {
     return false;
   }
 
-  const contextStr = params.context
-    ? JSON.stringify(params.context, null, 2)
-    : "(none)";
+  const errorType = params.errorType || "LICENSE_CREATE_FAILED";
+  const order = params.order;
+
+  // 심각도별 배너 설정
+  const isHigh = errorType === "LICENSE_CREATE_FAILED";
+  const bannerBg = isHigh ? "#fef2f2" : "#fffbeb";
+  const bannerColor = isHigh ? "#991b1b" : "#92400e";
+  const bannerEmoji = isHigh ? "🔴" : "🟡";
+  const bannerLabel = isHigh ? "긴급 · 즉시 조치 필요" : "주의 · 재발송으로 복구 가능";
+  const emailSubjectPrefix = isHigh ? "🔴 긴급" : "🟡 주의";
+
+  // 제목 & 설명
+  let title: string;
+  let whatHappened: string;
+  let actionSteps: string[];
+
+  if (errorType === "LICENSE_CREATE_FAILED") {
+    title = "라이선스 발급이 실패했어요";
+    whatHappened = `승인 버튼을 눌렀는데 <strong>라이선스 키 생성이 실패</strong>했어요.<br>고객은 아직 인증키를 받지 못한 상태입니다.`;
+    actionSteps = [
+      `<strong>Supabase Dashboard → licenses 테이블</strong>에서 주문코드로 검색<br><span style="color:#6b7280;font-size:12px;">→ 라이선스가 이미 생성돼 있는지 확인</span>`,
+      `<strong>라이선스가 있다면</strong> → orders 테이블에서 해당 주문의 <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;">license_key</code>를 수동으로 채우고 status를 "결제완료"로 변경`,
+      `<strong>라이선스가 없다면</strong> → 수동으로 licenses INSERT 후 위 2번과 동일하게 처리`,
+      `<strong>고객 대응</strong> → 카카오톡으로 "처리 지연 중입니다" 안내 발송`,
+    ];
+  } else {
+    title = "인증키 이메일 발송이 실패했어요";
+    whatHappened = `라이선스는 정상 발급됐지만 <strong>고객에게 인증키 이메일이 안 갔어요</strong>.<br>(이메일 주소 문제 또는 Resend 일시 오류)`;
+    actionSteps = [
+      `<strong>텔레그램</strong>에서 이 주문 메시지 확인`,
+      `<strong>[🔄 같은 이메일 재발송]</strong> 버튼 먼저 눌러보기 (일시 오류면 이걸로 해결)`,
+      `계속 실패하면 → 고객에게 카톡으로 <strong>이메일 주소 재확인</strong> → <strong>[✏️ 다른 이메일로]</strong> 버튼 사용`,
+    ];
+  }
+
+  // 주문 정보 박스 HTML 생성
+  let orderInfoHtml = "";
+  if (order) {
+    const rows: string[] = [];
+    if (order.name) rows.push(`<tr><td style="padding:6px 0;font-size:13px;color:#6b7280;width:90px;">이름</td><td style="padding:6px 0;font-size:14px;color:#0A0A0A;font-weight:600;">${escapeHtml(order.name)}</td></tr>`);
+    if (order.email) rows.push(`<tr><td style="padding:6px 0;font-size:13px;color:#6b7280;">이메일</td><td style="padding:6px 0;font-size:14px;color:#0A0A0A;font-weight:600;word-break:break-all;">${escapeHtml(order.email)}</td></tr>`);
+    if (order.phone) {
+      const telNum = order.phone.replace(/[^0-9]/g, "");
+      rows.push(`<tr><td style="padding:6px 0;font-size:13px;color:#6b7280;">전화</td><td style="padding:6px 0;font-size:14px;font-weight:600;"><a href="tel:${telNum}" style="color:#03C75A;text-decoration:none;">${escapeHtml(order.phone)}</a></td></tr>`);
+    }
+    if (order.plan) {
+      const planStr = order.amount
+        ? `${getPlanLabel(order.plan, order.amount)}`
+        : order.plan;
+      rows.push(`<tr><td style="padding:6px 0;font-size:13px;color:#6b7280;">플랜</td><td style="padding:6px 0;font-size:14px;color:#0A0A0A;font-weight:600;">${escapeHtml(planStr)}</td></tr>`);
+    }
+    rows.push(`<tr><td style="padding:6px 0;font-size:13px;color:#6b7280;">주문코드</td><td style="padding:6px 0;font-size:14px;color:#0A0A0A;font-weight:600;font-family:ui-monospace,monospace;">${escapeHtml(order.order_code || params.orderCode)}</td></tr>`);
+    if (order.created_at) {
+      const dt = new Date(order.created_at);
+      const dtStr = dt.toLocaleString("ko-KR", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+      rows.push(`<tr><td style="padding:6px 0;font-size:13px;color:#6b7280;">주문시각</td><td style="padding:6px 0;font-size:14px;color:#0A0A0A;font-weight:600;">${escapeHtml(dtStr)}</td></tr>`);
+    }
+    if (order.license_key) {
+      rows.push(`<tr><td style="padding:6px 0;font-size:13px;color:#6b7280;">라이선스</td><td style="padding:6px 0;font-size:13px;color:#03C75A;font-weight:700;font-family:ui-monospace,monospace;word-break:break-all;">${escapeHtml(order.license_key)} ✓ 발급됨</td></tr>`);
+    }
+
+    orderInfoHtml = `
+      <div style="background:#faf9f6;border-radius:10px;padding:18px 20px;margin-bottom:20px;">
+        <p style="margin:0 0 12px 0;font-size:11px;font-weight:700;color:#6b7280;letter-spacing:1px;">📋 주문 정보</p>
+        <table style="width:100%;border-collapse:collapse;">${rows.join("")}</table>
+      </div>`;
+  } else {
+    orderInfoHtml = `
+      <div style="background:#faf9f6;border-radius:10px;padding:18px 20px;margin-bottom:20px;">
+        <p style="margin:0 0 8px 0;font-size:11px;font-weight:700;color:#6b7280;letter-spacing:1px;">주문코드</p>
+        <p style="margin:0;font-size:16px;font-weight:700;color:#0A0A0A;font-family:ui-monospace,monospace;word-break:break-all;">${escapeHtml(params.orderCode)}</p>
+      </div>`;
+  }
+
+  // 액션 스텝 HTML
+  const actionStepsHtml = actionSteps
+    .map((step, i) => `
+      <div style="display:flex;gap:10px;margin-bottom:12px;">
+        <div style="flex-shrink:0;width:22px;height:22px;background:${isHigh ? "#dc2626" : "#f59e0b"};color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">${i + 1}</div>
+        <div style="flex:1;font-size:14px;color:#374151;line-height:1.65;padding-top:1px;">${step}</div>
+      </div>`)
+    .join("");
+
+  // 디버그 컨텍스트
+  const contextStr = params.context ? JSON.stringify(params.context, null, 2) : "(none)";
 
   const html = `<!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8" /></head>
-<body style="margin:0;padding:0;background:#faf9f6;font-family:'Pretendard',sans-serif;">
+<body style="margin:0;padding:0;background:#faf9f6;font-family:'Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:32px 16px;">
 <tr><td align="center">
-<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:16px;">
-<tr><td style="padding:32px;">
-  <div style="display:inline-block;padding:6px 14px;background:#dc2626;color:#ffffff;border-radius:999px;font-size:12px;font-weight:700;">🚨 긴급 알림</div>
-  <h1 style="margin:16px 0 8px 0;font-size:20px;font-weight:700;color:#0A0A0A;word-break:keep-all;">
-    ${escapeHtml(params.subject)}
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;">
+
+<!-- 배너 -->
+<tr><td style="background:${bannerBg};padding:20px 32px;border-left:4px solid ${bannerColor};">
+  <p style="margin:0;font-size:12px;font-weight:700;color:${bannerColor};letter-spacing:0.5px;">${bannerEmoji} ${escapeHtml(bannerLabel)}</p>
+  <h1 style="margin:6px 0 0 0;font-size:20px;font-weight:800;color:#0A0A0A;line-height:1.35;word-break:keep-all;">
+    ${escapeHtml(title)}
   </h1>
-  <p style="margin:0 0 16px 0;color:#6b7280;font-size:13px;line-height:1.65;word-break:keep-all;">
-    주문 처리 중 에러가 발생했어요. 아래 정보를 확인하고 수동 처리해주세요.
-  </p>
+</td></tr>
 
-  <div style="background:#faf9f6;border-radius:8px;padding:16px;margin-bottom:16px;">
-    <p style="margin:0 0 8px 0;font-size:12px;color:#6b7280;">주문코드</p>
-    <p style="margin:0;font-size:16px;font-weight:700;color:#0A0A0A;font-family:ui-monospace,monospace;word-break:break-all;">${escapeHtml(params.orderCode)}</p>
+<!-- 본문 -->
+<tr><td style="padding:28px 32px 24px 32px;">
+
+  <!-- 무슨 일이? -->
+  <div style="margin-bottom:24px;">
+    <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:#0A0A0A;">🔍 무슨 일이 일어났나요?</p>
+    <p style="margin:0;font-size:14px;color:#374151;line-height:1.7;word-break:keep-all;">
+      ${whatHappened}
+    </p>
   </div>
 
-  <div style="background:#fef2f2;border-left:4px solid #dc2626;padding:14px 16px;border-radius:4px;margin-bottom:16px;">
-    <p style="margin:0 0 4px 0;font-size:12px;color:#991b1b;font-weight:600;">에러 메시지</p>
-    <p style="margin:0;font-size:13px;color:#7f1d1d;font-family:ui-monospace,monospace;word-break:break-all;">${escapeHtml(params.errorMessage)}</p>
+  <!-- 주문 정보 -->
+  ${orderInfoHtml}
+
+  <!-- 해야 할 일 -->
+  <div style="margin-bottom:24px;">
+    <p style="margin:0 0 14px 0;font-size:13px;font-weight:700;color:#0A0A0A;">✅ 지금 해야 할 일</p>
+    ${actionStepsHtml}
   </div>
 
-  <details style="background:#f3f4f6;border-radius:8px;padding:12px 16px;">
-    <summary style="cursor:pointer;font-size:12px;color:#6b7280;font-weight:600;">디버그 컨텍스트 (클릭)</summary>
-    <pre style="margin:8px 0 0 0;font-size:11px;color:#374151;white-space:pre-wrap;word-break:break-all;">${escapeHtml(contextStr)}</pre>
+  <!-- 기술 정보 (접힘) -->
+  <details style="background:#f3f4f6;border-radius:8px;padding:10px 14px;margin-top:20px;">
+    <summary style="cursor:pointer;font-size:12px;color:#6b7280;font-weight:600;">🔧 기술 정보 (개발자용)</summary>
+    <div style="margin-top:10px;">
+      <p style="margin:0 0 4px 0;font-size:11px;color:#6b7280;font-weight:600;">에러 메시지</p>
+      <pre style="margin:0 0 10px 0;padding:8px 10px;background:#fff;border-radius:4px;font-size:11px;color:#991b1b;font-family:ui-monospace,monospace;white-space:pre-wrap;word-break:break-all;">${escapeHtml(params.errorMessage)}</pre>
+      <p style="margin:0 0 4px 0;font-size:11px;color:#6b7280;font-weight:600;">컨텍스트</p>
+      <pre style="margin:0;padding:8px 10px;background:#fff;border-radius:4px;font-size:11px;color:#374151;font-family:ui-monospace,monospace;white-space:pre-wrap;word-break:break-all;">${escapeHtml(contextStr)}</pre>
+    </div>
   </details>
 
-  <p style="margin:24px 0 0 0;font-size:12px;color:#6b7280;line-height:1.6;word-break:keep-all;">
-    👉 Supabase Dashboard에서 orders / licenses 테이블 직접 확인 후 처리하세요.<br>
-    👉 고객에게는 카카오톡으로 직접 연락 필요.
+</td></tr>
+
+<tr><td style="padding:16px 32px 20px 32px;background:#faf9f6;border-top:1px solid #e5e7eb;">
+  <p style="margin:0;font-size:11px;color:#9ca3af;line-height:1.6;word-break:keep-all;">
+    이 메일은 자동 발송되는 긴급 알림입니다.<br>
+    블로그 자동화 솔루션 · 제이에스코퍼레이션
   </p>
 </td></tr>
+
 </table>
 </td></tr></table>
 </body></html>`;
@@ -500,7 +621,7 @@ export async function sendEmergencyAlertEmail(params: {
       body: JSON.stringify({
         from: FROM_HEADER,
         to: ownerEmail,
-        subject: `${params.subject} (${params.orderCode})`,
+        subject: `${emailSubjectPrefix} ${title} (${params.orderCode})`,
         html,
       }),
     });
@@ -510,7 +631,7 @@ export async function sendEmergencyAlertEmail(params: {
       console.error(`[resend] 긴급 알림 발송 실패: ${res.status} ${errorText}`);
       return false;
     }
-    console.log(`[resend] 긴급 알림 발송 성공 (orderCode: ${params.orderCode})`);
+    console.log(`[resend] 긴급 알림 발송 성공 (orderCode: ${params.orderCode}, type: ${errorType})`);
     return true;
   } catch (err) {
     console.error("[resend] 긴급 알림 발송 예외:", err);

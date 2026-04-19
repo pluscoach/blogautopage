@@ -72,11 +72,14 @@ Deno.serve(async (req) => {
 
     if (fetchError || !order) {
       console.error(`[notify-deposit-confirmed] 주문 조회 실패: ${orderCode}`, fetchError);
+      // [v2 정리] 주문 조회 실패 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 입금 완료 신고 처리 실패 — 주문 조회 실패",
         orderCode,
         errorMessage: fetchError?.message || "orders 테이블에 해당 주문 없음",
       });
+      */
       return new Response(
         JSON.stringify({ ok: true }),
         { status: 200, headers: corsHeaders },
@@ -109,22 +112,28 @@ Deno.serve(async (req) => {
 
     if (updateError) {
       console.error(`[notify-deposit-confirmed] status UPDATE 실패: ${orderCode}`, updateError);
+      // [v2 정리] DB UPDATE 실패 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 입금 완료 신고 처리 중 DB UPDATE 실패",
         orderCode,
         errorMessage: updateError.message,
       });
+      */
     }
 
     // 5. 답장 연결 알림 발송 — telegram_notice_message_id 필수
     const replyToId = order.telegram_notice_message_id as number | null;
     if (!replyToId) {
       console.error(`[notify-deposit-confirmed] telegram_notice_message_id 없음: ${orderCode}`);
+      // [v2 정리] message_id 누락 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 입금 완료 신고 — message_id 누락",
         orderCode,
         errorMessage: "orders.telegram_notice_message_id가 NULL. 첫 번째 알림 발송 실패했을 가능성.",
       });
+      */
       return new Response(
         JSON.stringify({ ok: true, warning: "reply_linkage_missing" }),
         { status: 200, headers: corsHeaders },
@@ -138,11 +147,14 @@ Deno.serve(async (req) => {
 
     if (!ok) {
       console.error(`[notify-deposit-confirmed] sendDepositReceivedNotice 실패: ${orderCode}`);
+      // [v2 정리] 텔레그램 답장 알림 실패는 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 입금 완료 신고 알림 발송 실패",
         orderCode,
         errorMessage: "sendDepositReceivedNotice 반환 false",
       });
+      */
     }
 
     console.log(`[notify-deposit-confirmed] 완료: ${orderCode}`);
@@ -152,11 +164,14 @@ Deno.serve(async (req) => {
     );
   } catch (err) {
     console.error(`[notify-deposit-confirmed] 예외: ${orderCode}`, err);
+    // [v2 정리] 전체 예외 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+    /*
     await sendEmergencyAlertEmail({
       subject: "🚨 입금 완료 신고 처리 예외",
       orderCode,
       errorMessage: err instanceof Error ? err.message : String(err),
     });
+    */
     return new Response(
       JSON.stringify({ ok: true }),
       { status: 200, headers: corsHeaders },

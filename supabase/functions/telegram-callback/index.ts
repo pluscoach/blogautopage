@@ -183,11 +183,14 @@ async function handleApprove(params: {
     if (fetchError || !order) {
       console.error(`[telegram-callback/approve] 주문 조회 실패: ${orderCode}`, fetchError);
       await answerCallbackQuery({ callbackQueryId, text: "❌ 주문 없음" });
+      // [v2 정리] 주문 조회 실패 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 무통장 승인 처리 실패 — 주문 조회 실패",
         orderCode,
         errorMessage: fetchError?.message || "orders 테이블에 해당 주문 없음",
       });
+      */
       return;
     }
 
@@ -213,9 +216,17 @@ async function handleApprove(params: {
       await supabase.from("orders").update({ status: "발급실패" }).eq("id", order.id);
       await answerCallbackQuery({ callbackQueryId, text: "❌ 라이선스 발급 실패" });
       await sendEmergencyAlertEmail({
-        subject: "🚨 무통장 승인 처리 실패 — 라이선스 발급",
         orderCode,
+        errorType: "LICENSE_CREATE_FAILED",
         errorMessage: licenseError?.message || "create_license RPC 반환값 없음",
+        order: {
+          name: order.name as string,
+          email: order.email as string,
+          phone: order.phone as string | undefined,
+          plan: order.plan as string,
+          amount: order.amount as number,
+          order_code: order.order_code as string,
+        },
         context: { order_id: order.id, plan: order.plan },
       });
       return;
@@ -230,12 +241,15 @@ async function handleApprove(params: {
     if (updateError) {
       console.error(`[telegram-callback/approve] orders UPDATE 실패: ${orderCode}`, updateError);
       // 라이선스는 이미 발급됐으므로 이메일은 계속 발송 시도
+      // [v2 정리] DB UPDATE 실패 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 무통장 승인 처리 중 DB UPDATE 실패 (라이선스는 발급됨)",
         orderCode,
         errorMessage: updateError.message,
         context: { license_key: licenseKey, order_id: order.id },
       });
+      */
     }
 
     // 5. 인증키 이메일 발송 (기존 sendLicenseKeyEmail 재사용, isPaid=true)
@@ -243,12 +257,15 @@ async function handleApprove(params: {
       console.error("[telegram-callback/approve] DOWNLOAD_URL_PAID 미설정");
       await supabase.from("orders").update({ status: "이메일실패" }).eq("id", order.id);
       await answerCallbackQuery({ callbackQueryId, text: "⚠️ 이메일 발송 실패 (DOWNLOAD_URL_PAID 미설정)" });
+      // [v2 정리] 환경변수 미설정 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 무통장 승인 — DOWNLOAD_URL_PAID 미설정",
         orderCode,
         errorMessage: "DOWNLOAD_URL_PAID 환경변수가 설정되지 않아 이메일 발송 불가. 수동 처리 필요.",
         context: { license_key: licenseKey },
       });
+      */
       return;
     }
 
@@ -266,9 +283,18 @@ async function handleApprove(params: {
       await supabase.from("orders").update({ status: "이메일실패" }).eq("id", order.id);
       await answerCallbackQuery({ callbackQueryId, text: "⚠️ 이메일 발송 실패" });
       await sendEmergencyAlertEmail({
-        subject: "🚨 무통장 승인 — 이메일 발송 실패 (라이선스는 발급됨)",
         orderCode,
+        errorType: "EMAIL_SEND_FAILED",
         errorMessage: emailError instanceof Error ? emailError.message : String(emailError),
+        order: {
+          name: order.name as string,
+          email: order.email as string,
+          phone: order.phone as string | undefined,
+          plan: order.plan as string,
+          amount: order.amount as number,
+          order_code: order.order_code as string,
+          license_key: licenseKey as string,
+        },
         context: { license_key: licenseKey, to: order.email },
       });
       return;
@@ -298,11 +324,14 @@ async function handleApprove(params: {
   } catch (err) {
     console.error(`[telegram-callback/approve] 예외: ${orderCode}`, err);
     await answerCallbackQuery({ callbackQueryId, text: "❌ 처리 중 오류" });
+    // [v2 정리] handleApprove 전체 예외 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+    /*
     await sendEmergencyAlertEmail({
       subject: "🚨 무통장 승인 — 예외 발생",
       orderCode,
       errorMessage: err instanceof Error ? err.message : String(err),
     });
+    */
   }
 }
 
@@ -358,12 +387,15 @@ async function handleRemind(params: {
     } catch (emailError) {
       console.error(`[telegram-callback/remind] 이메일 발송 실패: ${orderCode}`, emailError);
       await answerCallbackQuery({ callbackQueryId, text: "❌ 리마인더 발송 실패" });
+      // [v2 정리] 리마인더 이메일 실패 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 리마인더 발송 실패",
         orderCode,
         errorMessage: emailError instanceof Error ? emailError.message : String(emailError),
         context: { to: order.email },
       });
+      */
       return;
     }
 
@@ -402,11 +434,14 @@ async function handleRemind(params: {
   } catch (err) {
     console.error(`[telegram-callback/remind] 예외: ${orderCode}`, err);
     await answerCallbackQuery({ callbackQueryId, text: "❌ 처리 중 오류" });
+    // [v2 정리] handleRemind 예외 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+    /*
     await sendEmergencyAlertEmail({
       subject: "🚨 리마인더 — 예외 발생",
       orderCode,
       errorMessage: err instanceof Error ? err.message : String(err),
     });
+    */
   }
 }
 
@@ -460,11 +495,14 @@ async function handleResendSame(params: {
 
     if (!DOWNLOAD_URL_PAID) {
       await answerCallbackQuery({ callbackQueryId, text: "❌ DOWNLOAD_URL_PAID 미설정" });
+      // [v2 정리] 환경변수 미설정 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 재발송 실패 — DOWNLOAD_URL_PAID 미설정",
         orderCode,
         errorMessage: "환경변수 DOWNLOAD_URL_PAID가 설정되지 않음",
       });
+      */
       return;
     }
 
@@ -479,12 +517,15 @@ async function handleResendSame(params: {
       });
     } catch (emailError) {
       await answerCallbackQuery({ callbackQueryId, text: "❌ 재발송 실패" });
+      // [v2 정리] 재발송 실패 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+      /*
       await sendEmergencyAlertEmail({
         subject: "🚨 재발송 실패 (같은 이메일)",
         orderCode,
         errorMessage: emailError instanceof Error ? emailError.message : String(emailError),
         context: { to: order.email, license_key: order.license_key },
       });
+      */
       return;
     }
 
@@ -505,11 +546,14 @@ async function handleResendSame(params: {
   } catch (err) {
     console.error(`[telegram-callback/resend_same] 예외: ${orderCode}`, err);
     await answerCallbackQuery({ callbackQueryId, text: "❌ 처리 중 오류" });
+    // [v2 정리] 재발송 예외 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+    /*
     await sendEmergencyAlertEmail({
       subject: "🚨 재발송 (같은 이메일) — 예외",
       orderCode,
       errorMessage: err instanceof Error ? err.message : String(err),
     });
+    */
   }
 }
 
@@ -616,11 +660,14 @@ async function handleIncomingMessage(params: {
       chatId,
       text: `❌ 재발송 실패 — DOWNLOAD_URL_PAID 환경변수 미설정. 관리자에게 문의.`,
     });
+    // [v2 정리] 환경변수 미설정 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+    /*
     await sendEmergencyAlertEmail({
       subject: "🚨 재발송 (다른 이메일) 실패 — 환경변수",
       orderCode,
       errorMessage: "DOWNLOAD_URL_PAID 미설정",
     });
+    */
     return;
   }
 
@@ -639,12 +686,15 @@ async function handleIncomingMessage(params: {
       chatId,
       text: `❌ 재발송 실패: ${emailError instanceof Error ? emailError.message : String(emailError)}`,
     });
+    // [v2 정리] 다른 이메일 재발송 실패 알림은 불필요로 판단되어 비활성화됨 (2026-04-19)
+    /*
     await sendEmergencyAlertEmail({
       subject: "🚨 재발송 (다른 이메일) 실패",
       orderCode,
       errorMessage: emailError instanceof Error ? emailError.message : String(emailError),
       context: { to: newEmail, license_key: order.license_key },
     });
+    */
     return;
   }
 
