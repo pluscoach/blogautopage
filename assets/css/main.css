@@ -341,3 +341,275 @@ details > summary::-webkit-details-marker { display: none; }
         font-size: 12px;
     }
 }
+
+/* ============================================
+   무통장 모달 Screen 전환 (Screen 1 → Screen 2)
+   입금 확인 완료 화면
+============================================ */
+
+/* Screen 컨테이너 - 전환 애니메이션 */
+.bank-modal-screen {
+    animation: bankScreenFadeIn 0.35s ease-out;
+}
+
+@keyframes bankScreenFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== Screen 2: 입금 확인 완료 ===== */
+
+.bank-screen-success {
+    padding: 0;
+}
+
+/* 성공 헤더 */
+.bank-success-header {
+    padding: 40px 24px 24px 24px;
+    text-align: center;
+}
+
+.bank-success-check {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    animation: bankCheckPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bankCheckPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 체크마크 그리기 애니메이션 */
+.bank-check-path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: bankCheckDraw 0.5s ease-out 0.3s forwards;
+}
+
+@keyframes bankCheckDraw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.bank-success-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0A0A0A;
+    line-height: 1.4;
+    word-break: keep-all;
+    letter-spacing: -0.02em;
+}
+
+/* 성공 바디 */
+.bank-success-body {
+    padding: 0 24px 20px 24px;
+}
+
+/* 영업시간 안내 박스 */
+.bank-success-info {
+    background: #f0fdf4;
+    border: 1px solid #03C75A33;
+    border-radius: 14px;
+    padding: 20px 18px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.bank-success-info-main {
+    margin: 0 0 14px 0;
+    font-size: 14.5px;
+    color: #1f2937;
+    line-height: 1.65;
+    word-break: keep-all;
+}
+
+.bank-success-info-icon {
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 16px;
+}
+
+.bank-success-info-main strong {
+    color: #03C75A;
+    font-weight: 800;
+}
+
+.bank-success-hours {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px dashed #03C75A66;
+}
+
+.bank-success-hours-label {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.bank-success-hours-value {
+    font-size: 13.5px;
+    color: #03C75A;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+/* 카톡 CTA */
+.bank-success-kakao-wrap {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.bank-success-kakao-guide {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.bank-success-kakao-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 16px;
+    background: #FEE500;
+    color: #3C1E1E;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    transition: transform 0.1s, box-shadow 0.15s;
+    word-break: keep-all;
+}
+
+.bank-success-kakao-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(254, 229, 0, 0.4);
+    color: #3C1E1E;
+}
+
+.bank-success-kakao-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.bank-success-kakao-arrow {
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.bank-success-kakao-btn:hover .bank-success-kakao-arrow {
+    transform: translateX(3px);
+}
+
+/* 스팸 안내 강조 */
+.bank-success-spam {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fef7e0 100%);
+    border: 1.5px solid #f59e0b;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
+}
+
+.bank-success-spam-icon {
+    font-size: 24px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.bank-success-spam-text {
+    flex: 1;
+}
+
+.bank-success-spam-title {
+    margin: 0 0 4px 0;
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #92400e;
+    letter-spacing: -0.01em;
+}
+
+.bank-success-spam-desc {
+    margin: 0;
+    font-size: 12.5px;
+    color: #78350f;
+    line-height: 1.55;
+    word-break: keep-all;
+}
+
+.bank-success-spam-desc strong {
+    font-weight: 800;
+    color: #92400e;
+}
+
+/* 성공 푸터 */
+.bank-success-footer {
+    padding: 8px 24px 24px 24px;
+}
+
+.bank-success-close-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    background: #f3f4f6;
+    color: #374151;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+    word-break: keep-all;
+}
+
+.bank-success-close-btn:hover {
+    background: #e5e7eb;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+    .bank-success-header {
+        padding: 32px 20px 20px 20px;
+    }
+    .bank-success-title {
+        font-size: 19px;
+    }
+    .bank-success-body {
+        padding: 0 20px 16px 20px;
+    }
+    .bank-success-info {
+        padding: 16px 14px;
+    }
+    .bank-success-info-main {
+        font-size: 13.5px;
+    }
+    .bank-success-footer {
+        padding: 8px 20px 20px 20px;
+    }
+}

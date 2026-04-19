@@ -1455,65 +1455,123 @@
         <div class="bank-modal-content">
             <button type="button" id="bank-modal-close" class="bank-modal-close" aria-label="닫기">&#10005;</button>
 
-            <div class="bank-modal-header">
-                <div class="bank-modal-badge">무통장 입금</div>
-                <h2 id="bank-modal-title" class="bank-modal-title">입금 후 확인 요청을 눌러주세요</h2>
+            <!-- Screen 1: 입금 안내 -->
+            <div class="bank-modal-screen bank-screen-input" data-screen="input">
+                <div class="bank-modal-header">
+                    <div class="bank-modal-badge">무통장 입금</div>
+                    <h2 id="bank-modal-title" class="bank-modal-title">입금 후 확인 요청을 눌러주세요</h2>
+                </div>
+
+                <div class="bank-modal-body">
+                    <!-- 주문 요약 -->
+                    <div class="bank-modal-summary">
+                        <div class="bank-summary-row">
+                            <span class="bank-summary-label">선택 플랜</span>
+                            <span class="bank-summary-value" id="bank-summary-plan">-</span>
+                        </div>
+                        <div class="bank-summary-row bank-summary-highlight">
+                            <span class="bank-summary-label">입금 금액</span>
+                            <span class="bank-summary-value bank-summary-amount" id="bank-summary-amount">-</span>
+                        </div>
+                    </div>
+
+                    <!-- 계좌 정보 -->
+                    <div class="bank-modal-account">
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">은행</span>
+                            <span class="bank-account-value" id="bank-account-bank">-</span>
+                        </div>
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">계좌번호</span>
+                            <span class="bank-account-value bank-account-number" id="bank-account-number">-</span>
+                        </div>
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">예금주</span>
+                            <span class="bank-account-value" id="bank-account-holder">-</span>
+                        </div>
+                    </div>
+
+                    <!-- 입금자명 안내 -->
+                    <div class="bank-modal-notice">
+                        <p class="bank-notice-text">
+                            <strong>입금자명은 신청자 이름과 동일하게 입금해주세요.</strong>
+                        </p>
+                        <p class="bank-notice-sub">
+                            다른 이름으로 입금 시 <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>로 연락 주시면 바로 도와드릴게요.
+                        </p>
+                    </div>
+
+                    <!-- 주문번호 -->
+                    <div class="bank-modal-order">
+                        <span class="bank-order-label">주문번호</span>
+                        <span class="bank-order-value" id="bank-order-code">-</span>
+                    </div>
+                </div>
+
+                <div class="bank-modal-footer">
+                    <button type="button" id="bank-confirm-deposit" class="bank-btn-primary">
+                        입금 완료 후 눌러주세요
+                    </button>
+                    <div class="bank-footer-hint">
+                        <p class="bank-hint-text">버튼을 누르면 입금 확인 요청이 전송됩니다.</p>
+                        <p class="bank-hint-text">확인 후 이메일로 인증키를 발송해드려요.</p>
+                        <p class="bank-hint-hours">🕐 영업시간: 오전 10:00 ~ 오후 8:00</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="bank-modal-body">
-                <!-- 주문 요약 -->
-                <div class="bank-modal-summary">
-                    <div class="bank-summary-row">
-                        <span class="bank-summary-label">선택 플랜</span>
-                        <span class="bank-summary-value" id="bank-summary-plan">-</span>
+            <!-- Screen 2: 입금 확인 접수 완료 화면 -->
+            <div class="bank-modal-screen bank-screen-success" data-screen="success" style="display:none;">
+                <div class="bank-success-header">
+                    <div class="bank-success-check">
+                        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="36" cy="36" r="34" fill="#E8F5E9" stroke="#03C75A" stroke-width="3"/>
+                            <path class="bank-check-path" d="M22 37 L32 47 L52 26" stroke="#03C75A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
                     </div>
-                    <div class="bank-summary-row bank-summary-highlight">
-                        <span class="bank-summary-label">입금 금액</span>
-                        <span class="bank-summary-value bank-summary-amount" id="bank-summary-amount">-</span>
+                    <h2 class="bank-success-title">입금 확인 요청이<br>접수되었습니다</h2>
+                </div>
+
+                <div class="bank-success-body">
+                    <!-- 영업시간 안내 -->
+                    <div class="bank-success-info">
+                        <p class="bank-success-info-main">
+                            <span class="bank-success-info-icon">🕐</span>
+                            영업 시간 기준 <strong>1시간 내</strong>에 확인 후<br>
+                            인증키를 이메일로 보내드립니다.
+                        </p>
+                        <div class="bank-success-hours">
+                            <span class="bank-success-hours-label">영업시간</span>
+                            <span class="bank-success-hours-value">오전 10:00 ~ 오후 8:00</span>
+                        </div>
+                    </div>
+
+                    <!-- 카톡 CTA -->
+                    <div class="bank-success-kakao-wrap">
+                        <p class="bank-success-kakao-guide">💬 더 빠른 확인을 원하신다면?</p>
+                        <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer" class="bank-success-kakao-btn">
+                            <span class="bank-success-kakao-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.73 1.77 5.14 4.48 6.57-.19.68-.72 2.57-.82 2.97-.13.5.18.5.38.36.16-.11 2.56-1.74 3.6-2.44.78.11 1.57.17 2.36.17 5.52 0 10-3.48 10-7.8S17.52 3 12 3z" fill="#3C1E1E"/>
+                                </svg>
+                            </span>
+                            <span class="bank-success-kakao-text">카카오톡 채널로 문의하기</span>
+                            <span class="bank-success-kakao-arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- 스팸 안내 강조 -->
+                    <div class="bank-success-spam">
+                        <div class="bank-success-spam-icon">📮</div>
+                        <div class="bank-success-spam-text">
+                            <p class="bank-success-spam-title">이메일이 안 보이신다면?</p>
+                            <p class="bank-success-spam-desc"><strong>스팸함을 꼭 확인해주세요!</strong><br>네이버·구글 메일은 간혹 스팸으로 분류될 수 있어요.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 계좌 정보 -->
-                <div class="bank-modal-account">
-                    <div class="bank-account-row">
-                        <span class="bank-account-label">은행</span>
-                        <span class="bank-account-value" id="bank-account-bank">-</span>
-                    </div>
-                    <div class="bank-account-row">
-                        <span class="bank-account-label">계좌번호</span>
-                        <span class="bank-account-value bank-account-number" id="bank-account-number">-</span>
-                    </div>
-                    <div class="bank-account-row">
-                        <span class="bank-account-label">예금주</span>
-                        <span class="bank-account-value" id="bank-account-holder">-</span>
-                    </div>
-                </div>
-
-                <!-- 입금자명 안내 -->
-                <div class="bank-modal-notice">
-                    <p class="bank-notice-text">
-                        <strong>입금자명은 신청자 이름과 동일하게 입금해주세요.</strong>
-                    </p>
-                    <p class="bank-notice-sub">
-                        다른 이름으로 입금 시 <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>로 연락 주시면 바로 도와드릴게요.
-                    </p>
-                </div>
-
-                <!-- 주문번호 -->
-                <div class="bank-modal-order">
-                    <span class="bank-order-label">주문번호</span>
-                    <span class="bank-order-value" id="bank-order-code">-</span>
-                </div>
-            </div>
-
-            <div class="bank-modal-footer">
-                <button type="button" id="bank-confirm-deposit" class="bank-btn-primary">
-                    입금 완료 후 눌러주세요
-                </button>
-                <div class="bank-footer-hint">
-                    <p class="bank-hint-text">버튼을 누르면 입금 확인 요청이 전송됩니다.</p>
-                    <p class="bank-hint-text">확인 후 이메일로 인증키를 발송해드려요.</p>
-                    <p class="bank-hint-hours">🕐 영업시간: 오전 10:00 ~ 오후 8:00</p>
+                <div class="bank-success-footer">
+                    <button type="button" class="bank-success-close-btn" id="bank-success-close-btn">확인</button>
                 </div>
             </div>
         </div>

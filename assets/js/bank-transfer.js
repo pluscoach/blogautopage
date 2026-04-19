@@ -11,6 +11,15 @@
     var currentOrderContext = null;  // { orderCode, planKey, amount, name, email, phone }
     var isSubmitting = false;
 
+    // 화면 전환 헬퍼
+    function showScreen(screenName) {
+        if (!modalEl) return;
+        var screens = modalEl.querySelectorAll('.bank-modal-screen');
+        for (var i = 0; i < screens.length; i++) {
+            screens[i].style.display = (screens[i].getAttribute('data-screen') === screenName) ? 'block' : 'none';
+        }
+    }
+
     // DOMContentLoaded로 모달 요소 초기 바인딩
     document.addEventListener('DOMContentLoaded', function() {
         modalEl = document.getElementById('bank-transfer-modal');
@@ -43,6 +52,12 @@
         var confirmBtn = document.getElementById('bank-confirm-deposit');
         if (confirmBtn) {
             confirmBtn.addEventListener('click', handleDepositConfirm);
+        }
+
+        // Screen 2 "확인" 버튼 바인딩
+        var successCloseBtn = document.getElementById('bank-success-close-btn');
+        if (successCloseBtn) {
+            successCloseBtn.addEventListener('click', hideBankTransferModal);
         }
     });
 
@@ -85,6 +100,9 @@
             confirmBtn.textContent = '입금 완료 후 눌러주세요';
         }
         isSubmitting = false;
+
+        // 모달 열 때 항상 Screen 1(입력)으로 초기화
+        showScreen('input');
 
         // 표시
         modalEl.style.display = 'flex';
@@ -162,15 +180,8 @@
                 console.error('[bank-transfer] notify-deposit-confirmed 응답 실패:', response.status);
             }
 
-            // 성공/실패 모두 사용자에겐 친절 메시지
-            showToast(
-                '입금 확인 요청 접수 완료! 입금이 확인되면 이메일로 인증키를 보내드려요. 📮 이메일이 안 보이면 스팸함을 꼭 확인해주세요!',
-                'success'
-            );
-
-            setTimeout(function() {
-                hideBankTransferModal();
-            }, 2500);
+            // 성공/실패 모두 사용자에겐 Screen 2(접수 완료 화면) 전환
+            showScreen('success');
         } catch (err) {
             console.error('[bank-transfer] handleDepositConfirm 예외:', err);
             showToast(
