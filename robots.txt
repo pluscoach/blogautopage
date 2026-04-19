@@ -1,0 +1,3 @@
+# 네이버 검색 봇 차단
+User-agent: Yeti
+Disallow: /
