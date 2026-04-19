@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npx http-server:*)",
       "Bash(start:*)",
-      "Bash(python -c ':*)"
+      "Bash(python -c ':*)",
+      "WebFetch(domain:blog.pluscoach.co.kr)"
     ]
   }
 }
