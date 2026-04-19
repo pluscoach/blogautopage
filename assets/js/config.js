@@ -61,5 +61,16 @@ window.APP_CONFIG = {
         bank: '하나은행',
         account: '120-910375-30807',
         holder: '오준석(제이에스코퍼레이션)'
+    },
+
+    // ===== 트래킹 ID (Phase 12A) =====
+    // 각 값은 사장님이 각 플랫폼에서 발급받은 ID
+    // 빈 문자열이면 해당 트래킹 비활성화 (안전 fallback)
+    tracking: {
+        ga4MeasurementId: 'G-YK4F3496T2',
+        clarityProjectId: 'wdxl8sd38s',
+        metaPixelId: '1652318165952879',
+        googleAdsConversionId: 'AW-17816310398',
+        googleAdsConversionLabel: 'GpYgCOzAwZ4cEP6kva9C'
     }
 };

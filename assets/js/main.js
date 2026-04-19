@@ -189,3 +189,49 @@ function typeNextChar() {
     }
 }
 setTimeout(typeNextChar, 1200);
+
+// ===== 트래킹: 사용자 상호작용 이벤트 =====
+(function initInteractionTracking() {
+    if (typeof window.track !== 'function') return;
+
+    var formStarted = false;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // plan_select - 플랜 라디오 변경 시
+        var planRadios = document.querySelectorAll('input[name="plan"]');
+        planRadios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    var planCfg = (window.PLAN_CONFIG || {})[this.value] || {};
+                    window.track('plan_select', {
+                        plan: this.value,
+                        plan_code: planCfg.planCode || '',
+                        value: planCfg.amount || 0
+                    });
+                }
+            });
+        });
+
+        // form_start - 이름 또는 이메일 첫 입력 시 1회만
+        var nameInput = document.getElementById('userName');
+        var emailInput = document.getElementById('userEmail');
+        var onFirstInput = function() {
+            if (formStarted) return;
+            formStarted = true;
+            window.track('form_start', {});
+        };
+        if (nameInput) nameInput.addEventListener('focus', onFirstInput, { once: true });
+        if (emailInput) emailInput.addEventListener('focus', onFirstInput, { once: true });
+
+        // kakao_channel_click - 카카오톡 플로팅 버튼 클릭
+        // 클래스명이 프로젝트마다 다를 수 있어 href로 매칭
+        document.body.addEventListener('click', function(e) {
+            var target = e.target.closest('a[href*="kakao.com"]');
+            if (target) {
+                window.track('kakao_channel_click', {
+                    url: target.href
+                });
+            }
+        });
+    });
+})();

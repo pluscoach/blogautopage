@@ -89,6 +89,14 @@
         // 표시
         modalEl.style.display = 'flex';
         document.body.style.overflow = 'hidden';  // 배경 스크롤 막기
+
+        // 트래킹: 무통장 모달 노출 (유료 관심 지표)
+        if (typeof window.track === 'function') {
+            window.track('bank_modal_view', {
+                plan: ctx.planKey,
+                value: ctx.amount
+            });
+        }
     };
 
     /**
@@ -120,6 +128,15 @@
             isSubmitting = true;
             confirmBtn.disabled = true;
             confirmBtn.textContent = '처리 중...';
+        }
+
+        // 트래킹: 빨간 버튼 클릭 (실결제 의도 - 고가치 이벤트)
+        if (typeof window.track === 'function') {
+            window.track('bank_confirm_click', {
+                plan: currentOrderContext.planKey,
+                value: currentOrderContext.amount,
+                order_code: currentOrderContext.orderCode
+            });
         }
 
         try {
