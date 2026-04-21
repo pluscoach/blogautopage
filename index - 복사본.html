@@ -3,11 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlogAutoFriends — 네이버 블로그 서로이웃 자동 소통 AI</title>
-    <meta name="description" content="AI가 매일 100명과 정성 소통합니다. 서로이웃 자동 추가, 맞춤형 댓글 작성. 하루 990원으로 블로그 성장의 치트키를 장착하세요.">
+    <title>상위 1% 블로거들의 비밀 무기</title>
+    <meta name="description" content="AI가 매일 100명과 정성 소통합니다. 서로이웃 관리, 맞춤형 댓글 작성. 하루 990원으로 상위 1%의 블로그 솔루션을 장착하세요.">
+
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/images/android-chrome-512x512.png">
+    <meta name="theme-color" content="#03C75A">
+
+    <!-- Open Graph (카톡/페북/인스타 공유) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BlogAutoFriends">
+    <meta property="og:title" content="상위 1% 블로거들의 비밀 무기">
+    <meta property="og:description" content="AI가 사람처럼 천천히, 하루 100명을 소통합니다. 네이버 블로그 서이추·댓글 관리 솔루션.">
+    <meta property="og:url" content="https://blog.pluscoach.co.kr">
+    <meta property="og:image" content="https://blog.pluscoach.co.kr/assets/images/og-image.png?v=2">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="BlogAutoFriends - 상위 1% 블로거들의 비밀 무기">
+    <meta property="og:locale" content="ko_KR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="상위 1% 블로거들의 비밀 무기">
+    <meta name="twitter:description" content="AI가 사람처럼 천천히, 하루 100명을 소통합니다.">
+    <meta name="twitter:image" content="https://blog.pluscoach.co.kr/assets/images/og-image.png?v=2">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://lite.payapp.kr/public/api/v2/payapp-lite.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -26,39 +54,12 @@
             }
         }
     </script>
-    <style>
-        body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; word-break: keep-all; }
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
-        /* 토스트 */
-        .toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-100px);padding:16px 28px;border-radius:12px;font-weight:600;font-size:.95rem;z-index:10000;transition:transform .4s ease;box-shadow:0 8px 32px rgba(0,0,0,.15)}
-        .toast.show{transform:translateX(-50%) translateY(0)}
-        .toast.success{background:#03C75A;color:#fff}
-        .toast.error{background:#e53e3e;color:#fff}
-        /* 모달 */
-        .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;padding:20px}
-        .modal-overlay.show{display:flex}
-    </style>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/floating-kakao.css">
 </head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- ===== SECTION 1: HERO ===== -->
-    <style>
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        .cursor-blink { animation: blink 1s step-end infinite; }
-        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-        .hero-fade { animation: fadeInUp .8s ease both; }
-        .hero-fade-d1 { animation-delay: .15s; }
-        .hero-fade-d2 { animation-delay: .3s; }
-        .hero-fade-d3 { animation-delay: .5s; }
-        .hero-fade-d4 { animation-delay: .7s; }
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-        .float-anim { animation: float 3s ease-in-out infinite; }
-    </style>
     <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-green-50/40 pt-16 pb-20 px-6 overflow-hidden">
         <!-- 배경 데코 -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -71,25 +72,25 @@
             <div class="flex flex-col gap-5 items-center md:items-start text-center md:text-left">
                 <!-- 태그라인 -->
                 <div class="hero-fade">
-                    <span class="inline-block text-sm font-semibold text-naver bg-green-50 border border-green-200 px-4 py-1.5 rounded-full tracking-wide">네이버 블로그 서이추 자동화</span>
+                    <span class="inline-block text-sm font-semibold text-naver bg-green-50 border border-green-200 px-4 py-1.5 rounded-full tracking-wide">네이버 블로그 서이추 AI 관리</span>
                 </div>
 
                 <!-- 헤드라인 -->
                 <h1 class="hero-fade hero-fade-d1 text-4xl md:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.25] tracking-tight text-gray-900">
                     상위 1%<br>
                     블로거들의 <span class="text-naver">비밀 무기</span><br>
-                    AI 자동화 소통 솔루션
+                    AI 소통 관리 솔루션
                 </h1>
 
                 <!-- 수치 뱃지 -->
                 <div class="hero-fade hero-fade-d2 flex flex-col items-center md:flex-row md:flex-wrap md:items-start gap-3 mt-2">
                     <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm">
                         <span class="text-naver text-lg">⚡</span>
-                        <span class="text-sm font-semibold text-gray-800">하루 100명 자동 소통</span>
+                        <span class="text-sm font-semibold text-gray-800">하루 100명 AI 소통</span>
                     </div>
                     <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm">
                         <span class="text-naver text-lg">📊</span>
-                        <span class="text-sm font-semibold text-gray-800">이웃 수락률 87%</span>
+                        <span class="text-sm font-semibold text-gray-800">높은 이웃 수락률</span>
                     </div>
                     <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm">
                         <span class="text-naver text-lg">💰</span>
@@ -99,8 +100,8 @@
 
                 <!-- CTA -->
                 <div class="hero-fade hero-fade-d3 flex flex-col sm:flex-row items-start gap-4 mt-4">
-                    <button onclick="scrollToForm('free')" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
-                        0원으로 24시간 무료 체험하기
+                    <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
+                        지금 바로 시작하기
                     </button>
                 </div>
 
@@ -168,24 +169,6 @@
     </section>
 
     <!-- ===== SECTION 2: PAIN POINTS ===== -->
-    <style>
-        .pain-card { opacity:0; transform:translateY(40px); transition: opacity .7s ease, transform .7s ease; }
-        .pain-card.visible { opacity:1; transform:translateY(0); }
-        /* 메시지 버블 순차 등장 */
-        .msg-bubble { opacity:0; transform:translateY(10px); transition: opacity .4s ease, transform .4s ease; }
-        .msg-bubble.show { opacity:1; transform:translateY(0); }
-        /* 읽음 표시 애니메이션 */
-        @keyframes readCheck { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
-        .read-check { animation: readCheck .3s ease both; }
-        /* 방문자 그래프 바 */
-        .visitor-bar { transition: height .6s ease, background .3s ease; }
-        /* 커서 깜빡임 (글쓰기) */
-        @keyframes cursorBlink2 { 0%,100%{opacity:1} 50%{opacity:0} }
-        .write-cursor { animation: cursorBlink2 1s step-end infinite; }
-        /* 알림 흔들림 */
-        @keyframes notifShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-3px)} 75%{transform:translateX(3px)} }
-        .notif-shake { animation: notifShake .4s ease; }
-    </style>
     <section class="py-24 bg-[#F5F5F5] px-6">
         <div class="max-w-3xl mx-auto">
             <div class="text-center mb-16">
@@ -421,14 +404,6 @@
     </section>
 
     <!-- ===== 공감 전환 섹션: Before vs After ===== -->
-    <style>
-        @keyframes manualType { 0%{width:0} 40%{width:75%} 42%{width:75%} 50%{width:30%} 60%{width:60%} 70%{width:85%} 72%{width:85%} 80%{width:40%} 100%{width:90%} }
-        .manual-type { animation: manualType 4s ease-in-out infinite; }
-        @keyframes manualNod { 0%,100%{transform:translateY(0) rotate(0deg)} 30%{transform:translateY(2px) rotate(-3deg)} 60%{transform:translateY(1px) rotate(2deg)} }
-        @keyframes autoScroll { 0%{transform:translateY(0)} 100%{transform:translateY(-50%)} }
-        .auto-scroll { animation: autoScroll 8s linear infinite; }
-        @keyframes checkPop { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
-    </style>
     <section class="py-24 md:py-32 px-6 bg-gradient-to-b from-[#F5F5F5] via-[#faf9f6] to-[#f5f2ec] relative overflow-hidden">
         <div class="absolute inset-0 pointer-events-none">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-50 rounded-full filter blur-3xl opacity-40"></div>
@@ -444,14 +419,6 @@
             </div>
 
             <!-- BEFORE: 캐릭터 여정 타임라인 -->
-            <style>
-                @keyframes typing { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
-                .anim-typing { animation: typing .4s ease-in-out infinite; }
-                @keyframes slump { 0%,100%{transform:rotate(0)} 50%{transform:rotate(8deg) translateY(2px)} }
-                .anim-slump { animation: slump 2s ease-in-out infinite; }
-                @keyframes sigh { 0%,100%{transform:scale(1)} 50%{transform:scale(0.95)} }
-                .anim-sigh { animation: sigh 2.5s ease-in-out infinite; }
-            </style>
             <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm mb-5">
                 <div class="bg-red-50 px-5 py-3 border-b border-red-100 text-center">
                     <span class="text-sm font-bold text-red-500">지금의 방식</span>
@@ -535,7 +502,7 @@
             <div class="text-center mb-12">
                 <div class="text-4xl mb-4">✨</div>
                 <h2 class="text-2xl md:text-3xl font-black text-gray-900 leading-snug mb-4">
-                    서이추부터 정성 댓글까지,<br class="md:hidden"> 블로그 소통의<br class="md:hidden"> <span class="text-naver">'완전 자동화'</span>가<br class="md:hidden"> 시작됩니다.
+                    서이추부터 정성 댓글까지,<br class="md:hidden"> 블로그 소통의<br class="md:hidden"> <span class="text-naver">'AI 관리 시대'</span>가<br class="md:hidden"> 시작됩니다.
                 </h2>
                 <p class="text-base md:text-lg text-gray-500 leading-relaxed max-w-xl mx-auto">
                     손으로 직접 하던 복잡한 과정들,<br class="md:hidden"> 이제부터 AI에게 맡기세요.
@@ -596,7 +563,7 @@
                             <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center text-2xl">✉️</div>
                             <h3 class="text-xl md:text-2xl font-black text-gray-900">서이추 신청</h3>
                         </div>
-                        <p class="text-sm text-gray-500 mb-4 md:mb-5">수락률 높은 계정에만 자동 발송</p>
+                        <p class="text-sm text-gray-500 mb-4 md:mb-5">수락률 높은 계정에만 선별 발송</p>
                         <div class="h-px bg-gray-100 mb-4"></div>
                         <div class="space-y-2">
                             <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2.5">
@@ -608,7 +575,7 @@
                                 <span class="text-xs bg-naver text-white px-2.5 py-1 rounded-md font-bold flex-shrink-0 ml-2">발송 완료 ✓</span>
                             </div>
                             <div class="flex items-center justify-between bg-naver/5 rounded-lg px-3 py-2.5">
-                                <span class="text-sm text-gray-500">외 48명 자동 발송 중..</span>
+                                <span class="text-sm text-gray-500">외 48명 발송 중..</span>
                                 <span class="text-xs text-naver font-bold flex-shrink-0 ml-2">진행 중</span>
                             </div>
                         </div>
@@ -663,7 +630,7 @@
                                 <span class="text-white font-black text-sm">AI</span>
                             </div>
                             <div class="flex-1 text-center">
-                                <p class="text-sm font-bold text-white">6단계 자동화 시스템</p>
+                                <p class="text-sm font-bold text-white">6단계 AI 관리 시스템</p>
                                 <p class="text-xs text-gray-400 mt-0.5">AI가 어떻게 작동하는지 궁금하신가요?</p>
                             </div>
                             <div class="flex-shrink-0">
@@ -678,7 +645,7 @@
                     <div class="max-w-5xl mx-auto py-16 px-4 md:px-8">
                         <div class="text-center mb-14">
                             <span class="inline-block text-sm font-semibold text-naver bg-naver/10 border border-naver/20 px-4 py-1.5 rounded-full mb-5">작동 프로세스</span>
-                            <h3 class="text-2xl md:text-3xl font-black text-white">AI의 정밀한 <span class="text-naver">6단계</span> 자동화</h3>
+                            <h3 class="text-2xl md:text-3xl font-black text-white">AI의 정밀한 <span class="text-naver">6단계</span> 소통 관리</h3>
                         </div>
 
                         <div class="space-y-6">
@@ -778,7 +745,7 @@
                                     <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center order-1 md:order-2">
                                         <span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 04</span>
                                         <h4 class="text-2xl font-black text-white mb-3">포스팅 맥락 정밀 분석</h4>
-                                        <p class="text-gray-400 leading-relaxed">AI가 상대방의 <span class="text-yellow-300">최신 포스팅을 실제로 읽고</span> 핵심 주제와 문맥을 완벽하게 파악합니다.</p>
+                                        <p class="text-gray-400 leading-relaxed">AI가 상대방의 <span class="text-yellow-300">최신 포스팅을 실제로 읽고</span> 핵심 주제와 문맥을 정확히 파악합니다.</p>
                                     </div>
                                 </div>
                             </div>
@@ -834,19 +801,22 @@
                 </div>
             </details>
 
+            <!-- 유튜브 소개 영상 -->
+            <div class="flex justify-center mt-10">
+                <div class="w-full max-w-2xl rounded-2xl overflow-hidden shadow-lg" style="aspect-ratio:16/9;">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/LAMhPGvS5Iw" title="BlogAutoFriends 소개 영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
             <!-- 마무리 문구 + CTA (항상 보임) -->
             <div class="text-center mt-10">
                 <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-8">
                     버튼 한 번이면 AI가 사람처럼<br class="md:hidden"> 자연스럽게 소통을 마치고<br class="md:hidden"> <span class="font-bold text-gray-900">100명을 채우면 조용히 퇴근합니다.</span>
                 </p>
-                <style>
-                    .cta-trial:hover { background:#FACC15 !important; border-color:#FACC15 !important; }
-                    .cta-trial:hover .cta-trial-text { background:none !important; -webkit-text-fill-color:#1A1A1A !important; }
-                </style>
-                <button onclick="scrollToForm('free')" class="cta-trial bg-white font-bold text-lg px-12 py-4 rounded-xl shadow-md border border-gray-200 transition-all transform hover:-translate-y-1 hover:shadow-lg">
-                    <span class="cta-trial-text" style="background:linear-gradient(90deg,#03C75A,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .2s;">0원으로 무료 체험하기</span>
+                <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-trial bg-white font-bold text-lg px-12 py-4 rounded-xl shadow-md border border-gray-200 transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                    <span class="cta-trial-text" style="background:linear-gradient(90deg,#03C75A,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .2s;">지금 바로 시작하기</span>
                 </button>
-                <p class="text-sm text-gray-400 mt-3">24시간 전 기능 체험</p>
+                <p class="text-sm text-gray-400 mt-3">하루 약 990원으로 블로그 성장</p>
             </div>
         </div>
     </section>
@@ -955,7 +925,7 @@
 
             <!-- 마무리 -->
             <div class="text-center">
-                <p class="text-lg text-gray-600">단순한 '이웃 늘리기'가 아닙니다.<br><strong class="text-naver">여러분의 블로그를 '수익이 나는 공간'으로 바꾸는 힘</strong>을 경험하세요.</p>
+                <p class="text-lg text-gray-600">단순한 '이웃 늘리기'가 아닙니다.<br><strong class="text-naver">여러분의 블로그를 '성장하는 공간'으로 바꾸는 힘</strong>을 경험하세요.</p>
             </div>
         </div>
     </section>
@@ -969,11 +939,6 @@
             </div>
 
             <!-- 모바일: 그리드 레이아웃 / 데스크톱: 떠다니는 태그 -->
-            <style>
-                @keyframes tagFloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-                @keyframes tagFloat2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-                @keyframes tagFloat3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-            </style>
 
             <!-- 모바일용 그리드 레이아웃 -->
             <div class="md:hidden grid grid-cols-2 gap-3">
@@ -1156,7 +1121,7 @@
                     <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4">
                         <span class="text-xl">🧑‍💻</span>
                     </div>
-                    <h4 class="text-base font-bold text-white mb-2">인간 패턴 완벽 구현</h4>
+                    <h4 class="text-base font-bold text-white mb-2">인간 패턴 정밀 구현</h4>
                     <p class="text-sm text-gray-400 leading-relaxed">실제 사람이 타이핑하고 스크롤하는 속도를 그대로 시뮬레이션합니다.</p>
                     <!-- 미니 UI: 타이핑 속도 시각화 -->
                     <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
@@ -1215,12 +1180,12 @@
                     <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
                         <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2">
                             <span>계정 안전도</span>
-                            <span class="text-naver font-bold">99.8%</span>
+                            <span class="text-naver font-bold">높음</span>
                         </div>
                         <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                            <div class="h-2.5 bg-naver rounded-full" style="width:99.8%"></div>
+                            <div class="h-2.5 bg-naver rounded-full" style="width:95%"></div>
                         </div>
-                        <p class="text-[9px] text-gray-600 mt-1.5">제재 사례 0건 유지 중</p>
+                        <p class="text-[9px] text-gray-600 mt-1.5">안전하게 운영 중</p>
                     </div>
                 </div>
             </div>
@@ -1228,17 +1193,17 @@
             <!-- 환불 보장 배너 -->
             <div class="bg-gradient-to-b from-yellow-500/10 to-yellow-600/5 border border-yellow-500/30 rounded-2xl p-8 md:p-10 text-center">
                 <div class="text-4xl mb-4">🛡️</div>
-                <h4 class="text-2xl md:text-3xl font-black text-yellow-400 mb-3">100% 안심 환불 보장</h4>
-                <p class="text-base text-gray-300 leading-relaxed mb-6 max-w-lg mx-auto">현재까지 본 프로그램 사용으로 인한 제재 사례는 <span class="text-yellow-300 font-bold">단 1건도 없습니다.</span><br>만일 불이익 발생 시, 남은 기간을 이유 불문 전액 환불해 드립니다.</p>
+                <h4 class="text-2xl md:text-3xl font-black text-yellow-400 mb-3">안심 환불 정책</h4>
+                <p class="text-base text-gray-300 leading-relaxed mb-6 max-w-lg mx-auto">프로그램 사용으로 인한 불이익 발생 시, 남은 기간에 대해 환불해 드립니다.<br>자세한 내용은 <a href="refund.html" target="_blank" class="text-yellow-300 underline font-bold">환불규정</a>을 확인해주세요.</p>
                 <div class="flex items-center justify-center gap-8">
                     <div class="flex flex-col items-center">
-                        <span class="text-3xl font-black text-yellow-400">0건</span>
-                        <span class="text-xs text-gray-500 mt-1">제재 사례</span>
+                        <span class="text-3xl font-black text-yellow-400">🛡️</span>
+                        <span class="text-xs text-gray-500 mt-1">안심 보장</span>
                     </div>
                     <div class="w-px h-12 bg-gray-700"></div>
                     <div class="flex flex-col items-center">
-                        <span class="text-3xl font-black text-yellow-400">100%</span>
-                        <span class="text-xs text-gray-500 mt-1">환불 보장</span>
+                        <span class="text-3xl font-black text-yellow-400">24h</span>
+                        <span class="text-xs text-gray-500 mt-1">고객 지원</span>
                     </div>
                 </div>
             </div>
@@ -1246,7 +1211,7 @@
     </section>
 
     <!-- ===== SECTION 9: PRICING ===== -->
-    <section class="py-24 bg-white px-6">
+    <section id="pricing" class="py-24 bg-white px-6">
         <div class="max-w-5xl mx-auto text-center">
             <div class="mb-14">
                 <span class="inline-block text-sm font-semibold text-naver bg-naver/10 border border-naver/20 px-4 py-1.5 rounded-full mb-5">가격 안내</span>
@@ -1255,8 +1220,8 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-5 items-stretch mb-10">
-                <!-- 무료 체험 -->
-                <div class="bg-gray-50 rounded-2xl p-7 border border-gray-200 flex flex-col">
+                <!-- 무료 체험 (숨김 — visible:false로 런타임 숨김, 코드 보존) -->
+                <div data-plan-key="free" class="bg-gray-50 rounded-2xl p-7 border border-gray-200 flex flex-col" style="display:none;">
                     <div class="flex-1">
                         <h3 class="text-lg font-black text-gray-900 mb-1">무료 체험</h3>
                         <p class="text-xs text-gray-400 mb-5">1일 · 전 기능 제한 없이</p>
@@ -1279,8 +1244,8 @@
                         <div class="h-px bg-gray-200 my-5"></div>
                         <ul class="text-sm text-gray-600 space-y-3 text-left mb-6">
                             <li>
-                                <div class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> 한 달 서이추 3,100명</div>
-                                <p class="text-[11px] text-gray-400 ml-5 mt-0.5">하루 약 100명씩 자동 신청</p>
+                                <div class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> 한 달 서이추 최대 3,100명</div>
+                                <p class="text-[11px] text-gray-400 ml-5 mt-0.5">하루 약 100명씩 AI 소통</p>
                             </li>
                             <li class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> 상세 가이드 영상 제공</li>
                             <li class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> 설치 매뉴얼 제공</li>
@@ -1299,8 +1264,8 @@
                         <div class="h-px bg-naver/20 my-5"></div>
                         <ul class="text-sm text-gray-600 space-y-3 text-left mb-6">
                             <li>
-                                <div class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 두 달 서이추 6,000명</div>
-                                <p class="text-[11px] text-gray-400 ml-5 mt-0.5">하루 약 100명씩 자동 신청</p>
+                                <div class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 두 달 서이추 최대 6,000명</div>
+                                <p class="text-[11px] text-gray-400 ml-5 mt-0.5">하루 약 100명씩 AI 소통</p>
                             </li>
                             <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 상세 가이드 영상 제공</li>
                             <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 설치 매뉴얼 제공</li>
@@ -1308,6 +1273,25 @@
                         </ul>
                     </div>
                     <button onclick="scrollToForm('full')" class="w-full py-4 rounded-xl font-bold bg-naver text-white hover:bg-naverHover transition-colors shadow-lg shadow-green-200/50">인기 플랜 구매하기</button>
+                </div>
+
+                <!-- 평생 소유권 -->
+                <div class="bg-white rounded-2xl p-7 border-2 border-gray-800 flex flex-col">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-black text-gray-900 mb-1">평생 소유권</h3>
+                        <p class="text-xs text-gray-400 mb-5">한 번 구매, 평생 사용</p>
+                        <div class="text-4xl font-black text-gray-800 mb-1">255,000<span class="text-lg font-medium text-gray-400">원</span></div>
+                        <div class="h-px bg-gray-200 my-5"></div>
+                        <ul class="text-sm text-gray-600 space-y-3 text-left mb-6">
+                            <li>
+                                <div class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 기간 제한 없이 평생 사용</div>
+                            </li>
+                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 상세 가이드 영상 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 설치 매뉴얼 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 모든 기능 완전 이용</li>
+                        </ul>
+                    </div>
+                    <button onclick="scrollToForm('lifetime')" class="w-full py-3.5 rounded-xl font-bold bg-gray-800 text-white hover:bg-gray-900 transition-colors">평생 소유권 구매하기</button>
                 </div>
             </div>
 
@@ -1331,7 +1315,7 @@
                         <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
-                        네이버가 권장하는 '정성 소통'의 로직을 AI가 그대로 따릅니다. 무차별적인 매크로와 달리 랜덤 딜레이와 행동 패턴 분석이 적용되어 매우 안전합니다.
+                        네이버가 권장하는 '정성 소통'의 로직을 AI가 그대로 따릅니다. 랜덤 딜레이와 행동 패턴 분석이 적용되어 사람처럼 자연스럽게 동작합니다.
                     </div>
                 </details>
                 <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
@@ -1376,7 +1360,7 @@
                         <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
-                        프로그램 특성상 인증 코드 발급 이후에는 환불이 어렵습니다. 무료 체험에서 충분히 사용해 보신 후 결정해 주세요. 사용 중 오류가 발생하면 언제든 개선해 드리니, 스크린샷과 함께 문의해 주시면 빠르게 도와드리겠습니다.
+                        프로그램 특성상 인증 코드 발급 이후에는 환불이 어렵습니다. 단, 프로그램 상의 제재로 인한 경우에는 전액 환불해 드립니다.<br><br>프로그램 사용 전에 무료 체험을 희망하시는 분은 카카오톡 채널을 통해 연락을 주시면 1일 사용권을 제공드리도록 하겠습니다.<br><br>자세한 환불 규정 사항은 <a href="refund.html" target="_blank" class="text-naver underline font-semibold">여기</a>를 참고 부탁드리겠습니다.
                     </div>
                 </details>
             </div>
@@ -1387,14 +1371,14 @@
     <section id="purchase-form" class="py-24 bg-gray-900 text-white px-6">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12">
             <div class="flex-1">
-                <h2 class="text-3xl font-bold mb-6">블로그 성장의 '치트키',<br><span class="text-naver">3분이면 장착 완료!</span></h2>
+                <h2 class="text-3xl font-bold mb-6">상위 1%의 <span class="text-naver">블로그 '솔루션'</span><br><span class="text-yellow-400 font-extrabold">1분</span><span class="text-white font-normal">이면 장착 완료!</span></h2>
                 <div class="space-y-6 text-gray-300">
                     <p class="flex gap-3"><span class="text-naver font-bold">①</span> 플랜 선택: 폼에서 원하는 플랜을 선택합니다.</p>
                     <p class="flex gap-3"><span class="text-naver font-bold">②</span> 정보 입력: 이름과 이메일을 정확히 기입합니다.</p>
-                    <p class="flex gap-3"><span class="text-naver font-bold">③</span> 결제 진행: (유료 시) 안내된 계좌로 입금합니다.</p>
-                    <p class="flex gap-3"><span class="text-naver font-bold">④</span> 즉시 발송: 확인 후 이메일로 프로그램+키 발송!</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">③</span> 결제 완료: 플랜에 맞는 결제를 진행합니다.</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">④</span> 즉시 발송: 이메일로 프로그램 설치 가이드 + 라이선스 코드가 자동 발송됩니다!</p>
                 </div>
-                <p class="mt-8 text-sm text-gray-500 bg-gray-800 p-4 rounded-lg inline-block">※ 입금 확인은 평일 기준 1시간 이내, 주말 순차 처리</p>
+                <p class="mt-8 text-sm font-semibold text-white bg-red-600 p-4 rounded-lg text-center">※ 이메일이 도착하지 않으면 스팸 메일함을 확인하시거나, 카카오톡 채널로 문의해주세요!</p>
             </div>
 
             <div class="flex-1 bg-white text-gray-900 p-8 rounded-2xl shadow-2xl">
@@ -1407,20 +1391,30 @@
                         <label class="block text-sm font-bold text-gray-700 mb-2">이메일 (프로그램 수령용)</label>
                         <input type="email" id="userEmail" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver" placeholder="example@email.com">
                     </div>
+                    <!-- 🆕 전화번호 필드 (무통장 입금 확인용, paymentMode === 'bank_transfer'일 때만 표시) -->
+                    <div id="phone-field" style="display:none;">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">전화번호 <span class="text-red-500">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" autocomplete="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver">
+                        <p class="mt-2 text-xs text-gray-500">입금 확인 시 사용합니다. 입금자명이 다를 경우 연락드릴 수 있어요.</p>
+                    </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-3">플랜 선택</label>
                         <div class="space-y-3" id="planRadios">
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                            <label data-plan-key="free" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                                 <input type="radio" name="plan" value="free" class="w-4 h-4 text-naver focus:ring-naver">
-                                <span class="ml-3 font-medium">무료체험 (0원)</span>
+                                <span class="ml-3 font-medium plan-label"></span>
                             </label>
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                            <label data-plan-key="1month" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                                 <input type="radio" name="plan" value="1month" class="w-4 h-4 text-naver focus:ring-naver">
-                                <span class="ml-3 font-medium">1개월 플랜 (39,000원)</span>
+                                <span class="ml-3 font-medium plan-label"></span>
                             </label>
-                            <label class="flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer">
+                            <label data-plan-key="full" class="flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer">
                                 <input type="radio" name="plan" value="full" checked class="w-4 h-4 text-naver focus:ring-naver">
-                                <span class="ml-3 font-bold text-naver">풀 패키지 (59,000원)</span>
+                                <span class="ml-3 font-bold text-naver plan-label"></span>
+                            </label>
+                            <label data-plan-key="lifetime" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                                <input type="radio" name="plan" value="lifetime" class="w-4 h-4 text-naver focus:ring-naver">
+                                <span class="ml-3 font-medium plan-label"></span>
                             </label>
                         </div>
                     </div>
@@ -1433,292 +1427,192 @@
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="py-10 bg-gray-950 text-gray-500 text-center text-sm px-6" style="padding-bottom:100px">
-        <p>BlogAutoFriends &copy; 2024. All rights reserved.</p>
-        <p class="mt-1">문의: 텔레그램 채팅 상담</p>
+    <footer class="bg-gray-950 text-gray-400 text-sm px-6 py-12" style="padding-bottom:100px">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-white font-bold text-base mb-4">블로그 AI 소통 솔루션</p>
+            <div class="space-y-1 mb-6" style="line-height:1.9">
+                <p>상호: 제이에스코퍼레이션 · 대표자: 오준석</p>
+                <p>사업자등록번호: 850-38-01085</p>
+                <p>통신판매업 신고번호: 제 2023-서울강동-1311호</p>
+                <p>주소: 서울특별시 관악구 남부순환로 1921-1, 401-A4호</p>
+                <p>이메일: <a href="mailto:jscorpor88@gmail.com" class="text-gray-300 hover:text-white transition-colors">jscorpor88@gmail.com</a></p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <a href="privacy.html" class="text-gray-400 hover:text-white transition-colors">개인정보처리방침</a>
+                <a href="terms.html" class="text-gray-400 hover:text-white transition-colors">이용약관</a>
+                <a href="refund.html" class="text-gray-400 hover:text-white transition-colors">환불규정</a>
+                <a href="https://open.kakao.com/me/pluscoach" target="_blank" class="text-naver hover:text-naverHover transition-colors">카카오톡 문의</a>
+            </div>
+            <p class="text-gray-600">&copy; 2026 제이에스코퍼레이션. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <!-- ===== STICKY CTA ===== -->
     <div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 transform translate-y-full transition-transform duration-300" id="stickyCTA">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
             <p class="hidden md:block font-medium text-gray-700">망설이는 시간에도 경쟁자는 이웃을 늘리고 있습니다.</p>
-            <button onclick="scrollToForm()" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
-                지금 무료 체험 신청하기
+            <button onclick="scrollToForm('full')" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
+                지금 바로 시작하기
             </button>
         </div>
     </div>
 
-    <!-- ===== PAYMENT MODAL ===== -->
-    <div class="modal-overlay" id="paymentModal">
-        <div class="bg-white rounded-2xl p-8 max-w-md w-full relative shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl leading-none">&times;</button>
-            <h3 class="text-xl font-bold text-center mb-6">무통장 입금 안내</h3>
-            <div class="bg-gray-50 rounded-xl p-5 mb-6 space-y-2">
-                <p class="text-sm text-gray-700"><strong>은행:</strong> <span id="modalBank">(추후 입력)</span></p>
-                <p class="text-sm text-gray-700"><strong>계좌번호:</strong> <span id="modalAccount">(추후 입력)</span></p>
-                <p class="text-sm text-gray-700"><strong>예금주:</strong> <span id="modalHolder">(추후 입력)</span></p>
-                <p class="text-sm text-gray-700"><strong>입금 금액:</strong> <span id="modalAmount" class="text-naver font-bold"></span></p>
+    <!-- 🆕 무통장 입금 안내 모달 (paymentMode === 'bank_transfer'에서 유료 플랜 제출 시 표시) -->
+    <div id="bank-transfer-modal" class="bank-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="bank-modal-title">
+        <div class="bank-modal-content">
+            <button type="button" id="bank-modal-close" class="bank-modal-close" aria-label="닫기">&#10005;</button>
+
+            <!-- Screen 1: 입금 안내 -->
+            <div class="bank-modal-screen bank-screen-input" data-screen="input">
+                <div class="bank-modal-header">
+                    <div class="bank-modal-badge">무통장 입금</div>
+                    <h2 id="bank-modal-title" class="bank-modal-title">입금 후 확인 요청을 눌러주세요</h2>
+                </div>
+
+                <div class="bank-modal-body">
+                    <!-- 주문 요약 -->
+                    <div class="bank-modal-summary">
+                        <div class="bank-summary-row">
+                            <span class="bank-summary-label">선택 플랜</span>
+                            <span class="bank-summary-value" id="bank-summary-plan">-</span>
+                        </div>
+                        <div class="bank-summary-row bank-summary-highlight">
+                            <span class="bank-summary-label">입금 금액</span>
+                            <span class="bank-summary-value bank-summary-amount" id="bank-summary-amount">-</span>
+                        </div>
+                    </div>
+
+                    <!-- 계좌 정보 -->
+                    <div class="bank-modal-account">
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">은행</span>
+                            <span class="bank-account-value" id="bank-account-bank">-</span>
+                        </div>
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">계좌번호</span>
+                            <span class="bank-account-value bank-account-number" id="bank-account-number">-</span>
+                        </div>
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">예금주</span>
+                            <span class="bank-account-value" id="bank-account-holder">-</span>
+                        </div>
+                    </div>
+
+                    <!-- 입금자명 안내 -->
+                    <div class="bank-modal-notice">
+                        <p class="bank-notice-text">
+                            <strong>입금자명은 신청자 이름과 동일하게 입금해주세요.</strong>
+                        </p>
+                        <p class="bank-notice-sub">
+                            다른 이름으로 입금 시 <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>로 연락 주시면 바로 도와드릴게요.
+                        </p>
+                    </div>
+
+                    <!-- 주문번호 -->
+                    <div class="bank-modal-order">
+                        <span class="bank-order-label">주문번호</span>
+                        <span class="bank-order-value" id="bank-order-code">-</span>
+                    </div>
+                </div>
+
+                <div class="bank-modal-footer">
+                    <button type="button" id="bank-confirm-deposit" class="bank-btn-primary">
+                        입금 완료 후 눌러주세요
+                    </button>
+                    <div class="bank-footer-hint">
+                        <p class="bank-hint-text">버튼을 누르면 입금 확인 요청이 전송됩니다.</p>
+                        <p class="bank-hint-text">확인 후 이메일로 인증키를 발송해드려요.</p>
+                        <p class="bank-hint-hours">🕐 영업시간: 오전 10:00 ~ 오후 8:00</p>
+                    </div>
+                </div>
             </div>
-            <div class="text-sm text-gray-500 space-y-1">
-                <p>• 입금자명은 신청 시 입력한 성함과 동일해야 합니다.</p>
-                <p>• 입금 확인 후 이메일로 프로그램과 인증키를 보내드립니다.</p>
-                <p>• 문의사항은 텔레그램 채팅으로 연락 주세요.</p>
+
+            <!-- Screen 2: 입금 확인 접수 완료 화면 -->
+            <div class="bank-modal-screen bank-screen-success" data-screen="success" style="display:none;">
+                <div class="bank-success-header">
+                    <div class="bank-success-check">
+                        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="36" cy="36" r="34" fill="#E8F5E9" stroke="#03C75A" stroke-width="3"/>
+                            <path class="bank-check-path" d="M22 37 L32 47 L52 26" stroke="#03C75A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <h2 class="bank-success-title">입금 확인 요청이<br>접수되었습니다</h2>
+                </div>
+
+                <div class="bank-success-body">
+                    <!-- 영업시간 안내 -->
+                    <div class="bank-success-info">
+                        <p class="bank-success-info-main">
+                            <span class="bank-success-info-icon">🕐</span>
+                            영업 시간 기준 <strong>1시간 내</strong>에 확인 후<br>
+                            인증키를 이메일로 보내드립니다.
+                        </p>
+                        <div class="bank-success-hours">
+                            <span class="bank-success-hours-label">영업시간</span>
+                            <span class="bank-success-hours-value">오전 10:00 ~ 오후 8:00</span>
+                        </div>
+                    </div>
+
+                    <!-- 카톡 CTA -->
+                    <div class="bank-success-kakao-wrap">
+                        <p class="bank-success-kakao-guide">💬 더 빠른 확인을 원하신다면?</p>
+                        <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer" class="bank-success-kakao-btn">
+                            <span class="bank-success-kakao-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.73 1.77 5.14 4.48 6.57-.19.68-.72 2.57-.82 2.97-.13.5.18.5.38.36.16-.11 2.56-1.74 3.6-2.44.78.11 1.57.17 2.36.17 5.52 0 10-3.48 10-7.8S17.52 3 12 3z" fill="#3C1E1E"/>
+                                </svg>
+                            </span>
+                            <span class="bank-success-kakao-text">카카오톡 채널로 문의하기</span>
+                            <span class="bank-success-kakao-arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- 스팸 안내 강조 -->
+                    <div class="bank-success-spam">
+                        <div class="bank-success-spam-icon">📮</div>
+                        <div class="bank-success-spam-text">
+                            <p class="bank-success-spam-title">이메일이 안 보이신다면?</p>
+                            <p class="bank-success-spam-desc"><strong>스팸함을 꼭 확인해주세요!</strong><br>네이버·구글 메일은 간혹 스팸으로 분류될 수 있어요.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bank-success-footer">
+                    <button type="button" class="bank-success-close-btn" id="bank-success-close-btn">확인</button>
+                </div>
             </div>
-            <button onclick="closeModal()" class="w-full mt-6 py-3 bg-naver text-white font-bold rounded-lg hover:bg-naverHover transition-colors">확인</button>
+        </div>
+    </div>
+
+    <!-- ===== PAYMENT LOADING ===== -->
+    <div id="paymentLoading" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; padding:32px 40px; border-radius:16px; text-align:center;">
+            <p style="margin:0; font-size:15px; color:#333;">결제창을 여는 중입니다...</p>
         </div>
     </div>
 
     <!-- ===== TOAST ===== -->
     <div class="toast" id="toast"></div>
 
-    <script>
-    // ===== SUPABASE CONFIG =====
-    // 실제 배포 시 아래 값을 교체하세요
-    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-    let supabaseClient = null;
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/tracking.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/payment.js"></script>
+    <script src="assets/js/bank-transfer.js"></script>
+    <script src="assets/js/form.js"></script>
 
-    try {
-        if (typeof supabase !== 'undefined' && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
-            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        }
-    } catch(e) { console.warn('Supabase 초기화 대기:', e); }
-
-    // ===== PLAN MAPPING =====
-    const PLAN_MAP = {
-        free:   { plan: 'free_trial',   amount: 0 },
-        '1month': { plan: 'monthly',    amount: 39000 },
-        full:   { plan: 'full_package', amount: 59000 },
-    };
-
-    // ===== SCROLL TO FORM + SELECT PLAN =====
-    function scrollToForm(planValue = null) {
-        if (planValue) {
-            const radios = document.getElementsByName('plan');
-            for (let r of radios) {
-                if (r.value === planValue) { r.checked = true; break; }
-            }
-            updateRadioStyles();
-        }
-        document.getElementById('purchase-form').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // 라디오 스타일 동기화
-    function updateRadioStyles() {
-        document.querySelectorAll('#planRadios label').forEach(label => {
-            const radio = label.querySelector('input');
-            if (radio.checked && radio.value === 'full') {
-                label.className = 'flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer';
-                label.querySelector('span').className = 'ml-3 font-bold text-naver';
-            } else if (radio.checked) {
-                label.className = 'flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer';
-                label.querySelector('span').className = 'ml-3 font-bold text-naver';
-            } else {
-                label.className = 'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors';
-                label.querySelector('span').className = 'ml-3 font-medium';
-            }
-        });
-    }
-    document.querySelectorAll('#planRadios input').forEach(r => r.addEventListener('change', updateRadioStyles));
-
-    // ===== FORM SUBMIT =====
-    async function submitForm(e) {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        const name = document.getElementById('userName').value.trim();
-        const email = document.getElementById('userEmail').value.trim();
-        const planRadio = document.querySelector('input[name="plan"]:checked');
-
-        if (!name || !email || !planRadio) {
-            showToast('모든 항목을 입력해 주세요.', 'error');
-            return;
-        }
-
-        const planKey = planRadio.value;
-        const { plan, amount } = PLAN_MAP[planKey];
-
-        btn.disabled = true;
-        btn.innerText = '처리 중입니다...';
-        btn.classList.add('opacity-70');
-
-        try {
-            // Supabase INSERT
-            if (supabaseClient) {
-                const { error } = await supabaseClient.from('orders').insert([
-                    { name, email, plan, amount, status: '입금대기' }
-                ]);
-                if (error) throw error;
-            }
-
-            // 결과 처리
-            if (planKey === 'free') {
-                showToast('체험 신청이 완료되었습니다! 확인 후 이메일로 체험 코드를 보내드립니다.', 'success');
-            } else {
-                document.getElementById('modalAmount').textContent = amount.toLocaleString() + '원';
-                document.getElementById('paymentModal').classList.add('show');
-            }
-
-            document.getElementById('orderForm').reset();
-            // 풀 패키지를 기본 선택으로 복원
-            document.querySelector('input[name="plan"][value="full"]').checked = true;
-            updateRadioStyles();
-        } catch (err) {
-            console.error(err);
-            showToast('신청 처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
-        } finally {
-            btn.disabled = false;
-            btn.innerText = '지금 바로 신청하고 시간 벌기';
-            btn.classList.remove('opacity-70');
-        }
-    }
-
-    // ===== MODAL =====
-    function closeModal() {
-        document.getElementById('paymentModal').classList.remove('show');
-    }
-    document.getElementById('paymentModal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-
-    // ===== TOAST =====
-    function showToast(msg, type) {
-        const toast = document.getElementById('toast');
-        toast.textContent = msg;
-        toast.className = 'toast ' + type;
-        requestAnimationFrame(() => toast.classList.add('show'));
-        setTimeout(() => toast.classList.remove('show'), 4000);
-    }
-
-    // ===== STICKY CTA =====
-    window.addEventListener('scroll', () => {
-        const cta = document.getElementById('stickyCTA');
-        const formSection = document.getElementById('purchase-form');
-        const formTop = formSection.getBoundingClientRect().top;
-        if (window.scrollY > 600 && formTop > window.innerHeight) {
-            cta.classList.remove('translate-y-full');
-        } else {
-            cta.classList.add('translate-y-full');
-        }
-    }, { passive: true });
-
-    // ===== COUNT-UP ANIMATION =====
-    function animateCountUp(el) {
-        const raw = el.dataset.countup;
-        if (!raw) return;
-        const target = parseFloat(raw);
-        const isFloat = target % 1 !== 0;
-        const suffix = el.dataset.suffix || '';
-        const duration = 1800;
-        const start = performance.now();
-        const span = el.querySelector('span');
-        const spanHTML = span ? span.outerHTML : '';
-
-        function update(now) {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = eased * target;
-            const display = isFloat ? current.toFixed(1) : Math.floor(current).toLocaleString();
-            el.innerHTML = display + spanHTML;
-            if (progress < 1) requestAnimationFrame(update);
-        }
-        requestAnimationFrame(update);
-    }
-
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.querySelectorAll('[data-countup]').forEach(animateCountUp);
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('.grid[class*="grid-cols-2"][class*="md\\:grid-cols-4"]').forEach(el => {
-        statsObserver.observe(el);
-    });
-
-    // ===== PAIN SECTION ANIMATIONS =====
-    // 카드 scroll reveal
-    const painObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.pain-card').forEach(el => painObserver.observe(el));
-
-    // --- CARD 1: 메시지 버블 순차 등장 ---
-    let card1Animated = false;
-    const card1Observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !card1Animated) {
-                card1Animated = true;
-                const bubbles = document.querySelectorAll('#painMessages .msg-bubble');
-                bubbles.forEach((b, i) => {
-                    setTimeout(() => b.classList.add('show'), i * 700);
-                });
-            }
-        });
-    }, { threshold: 0.3 });
-    const card1El = document.getElementById('painCard1');
-    if (card1El) card1Observer.observe(card1El);
-
-    // --- CARD 2: 막대 그래프 (정적 표시, 애니메이션 없음) ---
-    // 막대가 이미 표시되어 있으므로 별도 애니메이션 불필요
-
-    // --- CARD 3: 번아웃 알림 등장 ---
-    let card3Animated = false;
-    const card3Observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !card3Animated) {
-                card3Animated = true;
-                // 커서 깜빡이다가 알림이 덮어씀
-                setTimeout(() => {
-                    document.getElementById('burnoutNotifs').style.opacity = '1';
-                    // 커서 숨김
-                    const cursor = document.querySelector('#burnoutEditor > .write-cursor');
-                    if (cursor) cursor.style.display = 'none';
-                }, 1500);
-            }
-        });
-    }, { threshold: 0.3 });
-    const card3El = document.getElementById('painCard3');
-    if (card3El) card3Observer.observe(card3El);
-
-    // ===== HERO TYPING ANIMATION =====
-    const typingComments = [
-        '와, 제주도 동쪽 코스 중에 성산일출봉에서 광치기해변으로 이어지는 루트가 정말 인상적이네요! 저도 아이 둘 데리고 갔었는데, 혹시 식당은 어디로 가셨어요? 다음 여행 때 참고하고 싶습니다 😊',
-        '육아하면서 블로그까지 꾸준히 하시는 게 정말 대단해요. 이유식 레시피 정리가 깔끔해서 저장해뒀습니다! 혹시 냉동 보관 팁도 공유해주실 수 있을까요? 🙏',
-        '인테리어 비포/애프터 사진 보고 깜짝 놀랐어요. 특히 거실 조명 바꾸신 것만으로 분위기가 완전 달라졌네요! 조명 제품명 좀 알 수 있을까요? ✨',
-    ];
-    let commentIdx = 0;
-    let charIdx = 0;
-    const typingEl = document.getElementById('typingText');
-    const cursorEl = document.getElementById('typingCursor');
-    const counterEl = document.getElementById('heroCounter');
-    let heroCount = 0;
-
-    function typeNextChar() {
-        const current = typingComments[commentIdx];
-        if (charIdx < current.length) {
-            typingEl.textContent += current[charIdx];
-            charIdx++;
-            setTimeout(typeNextChar, 30 + Math.random() * 40);
-        } else {
-            // 타이핑 완료 → 카운터 증가
-            cursorEl.style.display = 'none';
-            heroCount = Math.min(heroCount + Math.floor(Math.random() * 5) + 3, 100);
-            counterEl.textContent = heroCount;
-            setTimeout(() => {
-                // 다음 댓글로 리셋
-                charIdx = 0;
-                commentIdx = (commentIdx + 1) % typingComments.length;
-                typingEl.textContent = '';
-                cursorEl.style.display = 'inline';
-                setTimeout(typeNextChar, 500);
-            }, 2500);
-        }
-    }
-    setTimeout(typeNextChar, 1200);
-    </script>
+    <!-- 카카오톡 플로팅 문의 버튼 (Phase 11) -->
+    <a href="https://open.kakao.com/me/pluscoach"
+       class="kakao-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="카카오톡으로 문의하기">
+      <span class="kakao-float-tooltip">💬 문의하기</span>
+      <span class="kakao-float-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.73 1.77 5.14 4.48 6.57-.19.68-.72 2.57-.82 2.97-.13.5.18.5.38.36.16-.11 2.56-1.74 3.6-2.44.78.11 1.57.17 2.36.17 5.52 0 10-3.48 10-7.8S17.52 3 12 3z" fill="#0A0A0A"/>
+        </svg>
+      </span>
+    </a>
 </body>
 </html>
