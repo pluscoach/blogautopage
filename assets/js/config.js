@@ -1,11 +1,12 @@
 // ===== 플랜 설정 (가격 단일 출처) =====
 // ⚠️ 가격 변경은 이 파일에서만. payment.js와 index.html은 자동 반영됨.
-// 현재 운영 가격: 1month=39000, full=59000, lifetime=255000
+// 현재 운영 가격: 1month=59000, full=89000, lifetime=740000
 // 가격 정책 이력:
 //   - Phase 10 테스트: 1month=1000, full=1000
 //   - 2026-04-10 Phase 10 완료: 1month=39000, full=69000
 //   - 2026-04-14 Phase 10.5: 1month=39000, full=59000, lifetime=255000
 //     (full 69000→59000 인하, 평생 소유권 신규 추가, 무료체험 UI 숨김)
+//   - 2026-04-23 가격 개편+이름 변경: 1month=59000(초심자), full=89000(전문), lifetime=740000(프리미엄)
 var PLAN_CONFIG = {
     free: {
         amount: 0,
@@ -15,23 +16,23 @@ var PLAN_CONFIG = {
         visible: false,
     },
     '1month': {
-        amount: 39000,
-        label: '1개월 플랜 (39,000원)',
-        name: '블로그 AI 솔루션 1개월',
+        amount: 59000,
+        label: '초심자 에디터 (59,000원)',
+        name: '초심자 에디터',
         planCode: 'monthly',
         visible: true,
     },
     full: {
-        amount: 59000,
-        label: '풀 패키지 (59,000원)',
-        name: '블로그 AI 솔루션 풀패키지',
+        amount: 89000,
+        label: '전문 에디터 (89,000원)',
+        name: '전문 에디터',
         planCode: 'full_package',
         visible: true,
     },
     lifetime: {
-        amount: 255000,
-        label: '평생 소유권 (255,000원)',
-        name: '블로그 AI 솔루션 평생 소유권',
+        amount: 740000,
+        label: '프리미엄 에디터 (740,000원)',
+        name: '프리미엄 에디터',
         planCode: 'lifetime',
         visible: true,
     },
