@@ -323,14 +323,12 @@ async function handleApprove(params: {
 
     // 8. Meta CAPI Purchase 이벤트 전송 (광고 ROAS 추적)
     // 실패해도 라이선스 발급은 이미 완료된 상태이므로 에러 무시
-    // ⚠️ 임시 테스트 모드: testEventCode 제거 후 재배포 필요 (테스트 완료 후)
     await sendMetaPurchaseEvent({
       orderCode: order.order_code as string,
       email: order.email as string,
       phone: order.phone as string | undefined,
       amount: order.amount as number,
       plan: order.plan as string,
-      testEventCode: "TEST48957",  // 🧪 임시 테스트용 — 검증 후 제거
     });
 
     console.log(`[telegram-callback/approve] 완료: ${orderCode} → ${licenseKey}`);
