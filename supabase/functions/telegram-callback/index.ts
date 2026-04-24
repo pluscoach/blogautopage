@@ -10,6 +10,7 @@ import {
   sendEmergencyAlertEmail,
 } from "../_shared/resend.ts";
 import { getPlanLabel } from "../_shared/labels.ts";
+import { sendMetaPurchaseEvent } from "../_shared/meta-capi.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -319,6 +320,16 @@ async function handleApprove(params: {
 
     // 7. 버튼 누른 사람에게 성공 토스트
     await answerCallbackQuery({ callbackQueryId, text: "✅ 인증키 발송 완료" });
+
+    // 8. Meta CAPI Purchase 이벤트 전송 (광고 ROAS 추적)
+    // 실패해도 라이선스 발급은 이미 완료된 상태이므로 에러 무시
+    await sendMetaPurchaseEvent({
+      orderCode: order.order_code as string,
+      email: order.email as string,
+      phone: order.phone as string | undefined,
+      amount: order.amount as number,
+      plan: order.plan as string,
+    });
 
     console.log(`[telegram-callback/approve] 완료: ${orderCode} → ${licenseKey}`);
   } catch (err) {
