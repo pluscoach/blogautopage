@@ -61,6 +61,7 @@ export async function sendMetaPurchaseEvent(params: {
   phone?: string;
   amount: number;
   plan?: string;
+  testEventCode?: string;  // Meta Events Manager 테스트용 (프로덕션에서는 미사용)
 }): Promise<boolean> {
   const pixelId = Deno.env.get("META_PIXEL_ID");
   const accessToken = Deno.env.get("META_CAPI_ACCESS_TOKEN");
@@ -97,7 +98,7 @@ export async function sendMetaPurchaseEvent(params: {
       customData.content_type = "product";
     }
 
-    const payload = {
+    const payload: Record<string, unknown> = {
       data: [
         {
           event_name: "Purchase",
@@ -110,6 +111,11 @@ export async function sendMetaPurchaseEvent(params: {
         },
       ],
     };
+
+    // 테스트 이벤트 코드가 있으면 추가 (Meta Events Manager 테스트 탭에서만 보임)
+    if (params.testEventCode) {
+      payload.test_event_code = params.testEventCode;
+    }
 
     const url = `https://graph.facebook.com/${META_API_VERSION}/${pixelId}/events?access_token=${accessToken}`;
 
@@ -126,7 +132,8 @@ export async function sendMetaPurchaseEvent(params: {
       return false;
     }
 
-    console.log(`[meta-capi] Purchase 이벤트 전송 성공 (orderCode: ${params.orderCode}, events_received: ${result.events_received})`);
+    const testModeLabel = params.testEventCode ? ` [TEST: ${params.testEventCode}]` : "";
+    console.log(`[meta-capi] Purchase 이벤트 전송 성공${testModeLabel} (orderCode: ${params.orderCode}, events_received: ${result.events_received})`);
     return true;
   } catch (err) {
     console.error("[meta-capi] Purchase 이벤트 전송 예외:", err);
