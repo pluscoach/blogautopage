@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상위 1% 블로거들의 비밀 무기</title>
+    <meta name="description" content="AI가 매일 100명과 정성 소통합니다. 서로이웃 관리, 맞춤형 댓글 작성. 하루 1달러로 상위 1%의 블로그 솔루션을 장착하세요.">
+
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/images/android-chrome-512x512.png">
+    <meta name="theme-color" content="#03C75A">
+
+    <!-- Open Graph (카톡/페북/인스타 공유) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BlogAutoFriends">
+    <meta property="og:title" content="상위 1% 블로거들의 비밀 무기">
+    <meta property="og:description" content="AI가 사람처럼 천천히, 하루 100명을 소통합니다. 블로그 이웃·댓글 관리 솔루션.">
+    <meta property="og:url" content="https://blog.pluscoach.co.kr">
+    <meta property="og:image" content="https://blog.pluscoach.co.kr/assets/images/og-image.png?v=2">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="BlogAutoFriends - 상위 1% 블로거들의 비밀 무기">
+    <meta property="og:locale" content="ko_KR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="상위 1% 블로거들의 비밀 무기">
+    <meta name="twitter:description" content="AI가 사람처럼 천천히, 하루 100명을 소통합니다.">
+    <meta name="twitter:image" content="https://blog.pluscoach.co.kr/assets/images/og-image.png?v=2">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://lite.payapp.kr/public/api/v2/payapp-lite.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Pretendard', 'sans-serif'] },
+                    colors: {
+                        naver: '#03C75A',
+                        naverHover: '#02b350',
+                        naverLight: '#E8F5E9',
+                        dark: '#1A1A1A',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/floating-kakao.css">
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <!-- ===== SECTION 1: HERO ===== -->
+    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-green-50/40 pt-16 pb-20 px-6 overflow-hidden">
+        <!-- 배경 데코 -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-green-100 rounded-full filter blur-3xl opacity-40"></div>
+            <div class="absolute bottom-0 -left-20 w-[300px] h-[300px] bg-green-50 rounded-full filter blur-3xl opacity-50"></div>
+        </div>
+
+        <div class="max-w-6xl w-full mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
+            <!-- LEFT: 텍스트 -->
+            <div class="flex flex-col gap-5 items-center md:items-start text-center md:text-left">
+                <!-- 태그라인 -->
+                <div class="hero-fade">
+                    <span class="inline-block text-sm font-semibold text-naver bg-green-50 border border-green-200 px-4 py-1.5 rounded-full tracking-wide">블로그 이웃 AI 관리</span>
+                </div>
+
+                <!-- 헤드라인 -->
+                <h1 class="hero-fade hero-fade-d1 text-4xl md:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.25] tracking-tight text-gray-900">
+                    상위 1%<br>
+                    블로거들의 <span class="text-naver">비밀 무기</span><br>
+                    AI 소통 관리 솔루션
+                </h1>
+
+                <!-- 수치 뱃지 -->
+                <div class="hero-fade hero-fade-d2 flex flex-col items-center md:flex-row md:flex-wrap md:items-start gap-3 mt-2">
+                    <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm">
+                        <span class="text-naver text-lg">⚡</span>
+                        <span class="text-sm font-semibold text-gray-800">하루 100명 AI 소통</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm">
+                        <span class="text-naver text-lg">📊</span>
+                        <span class="text-sm font-semibold text-gray-800">높은 이웃 수락률</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm">
+                        <span class="text-naver text-lg">💰</span>
+                        <span class="text-sm font-semibold text-gray-800">하루 1달러부터</span>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="hero-fade hero-fade-d3 flex flex-col sm:flex-row items-start gap-4 mt-4">
+                    <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
+                        노하우 구경하기
+                    </button>
+                </div>
+
+                <!-- 스크롤 힌트 -->
+                <button onclick="document.getElementById('section-how').scrollIntoView({behavior:'smooth'})" class="hero-fade hero-fade-d4 flex items-center justify-center md:justify-start gap-2 text-gray-400 hover:text-naver transition-colors mt-4 text-sm font-medium group w-full md:w-auto">
+                    <span class="inline-block group-hover:translate-y-0.5 transition-transform">↓</span>
+                    어떻게 작동하는지 확인하기
+                </button>
+            </div>
+
+            <!-- RIGHT: AI 댓글 타이핑 애니메이션 -->
+            <div class="hero-fade hero-fade-d2 relative w-full float-anim">
+                <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+                    <!-- 상단 바 -->
+                    <div class="flex items-center gap-2 px-5 py-3 bg-gray-50 border-b border-gray-100">
+                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <span class="ml-3 text-xs text-gray-400 font-medium">BlogAutoFriends — AI 소통 중</span>
+                    </div>
+                    <!-- 콘텐츠 -->
+                    <div class="p-6 space-y-5">
+                        <!-- 블로그 포스트 분석 -->
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-sm flex-shrink-0">🤖</div>
+                            <div class="flex-1">
+                                <p class="text-xs text-gray-400 mb-1">AI가 포스팅을 분석하고 있습니다...</p>
+                                <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                                    <p class="text-sm text-gray-600 font-medium">"제주도 3박4일 가족여행 코스 총정리"</p>
+                                    <div class="flex gap-2 mt-2">
+                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">여행</span>
+                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">제주도</span>
+                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">가족여행</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- AI 댓글 작성 -->
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-naver rounded-full flex items-center justify-center text-sm text-white flex-shrink-0 font-bold">AI</div>
+                            <div class="flex-1">
+                                <p class="text-xs text-naver font-semibold mb-1">맞춤 댓글 작성 완료</p>
+                                <div class="bg-green-50 rounded-lg p-3 border border-green-100">
+                                    <p class="text-sm text-gray-700 leading-relaxed" id="typingText"></p>
+                                    <span class="cursor-blink text-naver font-bold" id="typingCursor">|</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 상태 표시 -->
+                        <div class="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3 border border-gray-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-naver rounded-full animate-pulse"></div>
+                                <span class="text-xs text-gray-500 font-medium">소통 진행 중</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-gray-400">오늘 완료</span>
+                                <span class="text-sm font-bold text-gray-800 ml-1" id="heroCounter">0</span>
+                                <span class="text-xs text-gray-400">/ 100명</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 2: PAIN POINTS ===== -->
+    <section class="py-24 bg-[#F5F5F5] px-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="inline-block text-sm font-semibold text-gray-500 bg-white border border-gray-200 px-4 py-1.5 rounded-full mb-4">혹시 이런 경험 있으신가요?</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">블로그 성장을 가로막는<br><span class="text-naver">'소통의 늪'</span></h2>
+            </div>
+
+            <div class="space-y-6">
+
+                <!-- ====== 카드 1: 이웃 신청 보내도 답 없음 ====== -->
+                <div class="pain-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" id="painCard1">
+                    <div class="bg-gray-900 px-6 py-3 flex items-center justify-between">
+                        <span class="text-white text-xs font-bold tracking-widest">STEP 1</span>
+                        <span class="text-gray-500 text-xs">이런 적 없으신가요?</span>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="font-bold text-xl text-gray-900 mb-6">이웃 신청 100명 보냈는데,<br class="md:hidden"> 돌아온 건... <span class="text-red-500 font-black">광고성 댓글</span></h3>
+
+                        <div class="space-y-4" id="painMessages">
+                            <!-- 발송 완료 -->
+                            <div class="msg-bubble bg-naver/5 border border-naver/15 rounded-xl p-4 text-center">
+                                <div class="text-3xl mb-2">✉️</div>
+                                <p class="text-base font-bold text-gray-800">서로이웃 신청 <span class="text-naver">100명</span> 발송 완료</p>
+                                <p class="text-xs text-gray-400 mt-1">3시간 동안 정성스럽게 한 명씩 메시지 작성</p>
+                            </div>
+
+                            <!-- 기다림 표현 -->
+                            <div class="msg-bubble">
+                                <div class="bg-gray-50 border border-gray-200 rounded-xl py-8 text-center">
+                                    <div class="flex flex-col items-center gap-1.5 text-gray-300 mb-3">
+                                        <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse"></div>
+                                        <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse" style="animation-delay:.2s"></div>
+                                        <div class="w-2 h-2 bg-gray-300 rounded-full animate-pulse" style="animation-delay:.4s"></div>
+                                    </div>
+                                    <p class="text-sm text-gray-400">답장을 기다리는 중...</p>
+                                    <p class="text-xs text-gray-300 mt-1">48시간 경과</p>
+                                </div>
+                            </div>
+
+                            <!-- 유일한 답장 강조 -->
+                            <div class="msg-bubble bg-red-50 border-2 border-red-200 rounded-xl p-4">
+                                <p class="text-xs text-red-500 font-bold mb-3">유일하게 돌아온 반응 ↓</p>
+                                <div class="bg-white rounded-lg p-4 border border-red-100">
+                                    <p class="text-base text-gray-700 leading-relaxed">"감사합니다~ 저도 맞팔했어요!<br>제 블로그도 놀러와주세요~^^ <span class="text-blue-400">bit.ly/ad...</span>"</p>
+                                </div>
+                                <div class="flex items-center gap-3 mt-3">
+                                    <span class="text-sm bg-red-500 text-white px-3 py-1 rounded-full font-bold">광고성 복붙</span>
+                                    <span class="text-xs text-gray-400">← 내 글은 읽지도 않음</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 연결 -->
+                <div class="flex justify-center">
+                    <div class="flex flex-col items-center gap-1 text-gray-300">
+                        <div class="w-px h-6 bg-gray-300"></div>
+                        <span class="text-xs font-medium text-gray-400">그래서 더 열심히 하면?</span>
+                        <div class="w-px h-6 bg-gray-300"></div>
+                    </div>
+                </div>
+
+                <!-- ====== 카드 2: 방문자 급락 그래프 ====== -->
+                <div class="pain-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" id="painCard2">
+                    <div class="bg-gray-900 px-6 py-3 flex items-center justify-between">
+                        <span class="text-white text-xs font-bold tracking-widest">STEP 2</span>
+                        <span class="text-gray-500 text-xs">악순환의 시작</span>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="font-bold text-xl text-gray-900 mb-6">노가다로 올린 방문자...<br class="md:hidden"> <span class="text-red-500 font-black">하루 쉬니까 곤두박질</span></h3>
+
+                        <!-- 방문자 급락 시각화 - 블로그 통계 스타일 -->
+                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden" id="curveChartWrap">
+                            <!-- 통계 헤더 -->
+                            <div class="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+                                <span class="text-xs text-gray-400">일간 방문자 통계</span>
+                                <span class="text-[10px] text-gray-300">최근 14일</span>
+                            </div>
+
+                            <!-- 그래프 영역 -->
+                            <div class="relative px-4 pt-4 pb-2" style="height:160px">
+                                <!-- Y축 라벨 -->
+                                <div class="absolute left-2 top-4 bottom-8 flex flex-col justify-between text-[10px] text-gray-300">
+                                    <span>500</span>
+                                    <span>250</span>
+                                    <span>0</span>
+                                </div>
+
+                                <!-- 그래프 -->
+                                <div class="ml-6 h-full relative">
+                                    <svg viewBox="0 0 140 50" class="w-full h-full" preserveAspectRatio="none">
+                                        <!-- 가로 그리드 -->
+                                        <line x1="0" y1="0" x2="140" y2="0" stroke="#f3f4f6" stroke-width="0.5"/>
+                                        <line x1="0" y1="25" x2="140" y2="25" stroke="#f3f4f6" stroke-width="0.5"/>
+                                        <line x1="0" y1="50" x2="140" y2="50" stroke="#f3f4f6" stroke-width="0.5"/>
+
+                                        <!-- 요동치며 상승하는 라인 (초록) -->
+                                        <polyline
+                                            points="0,45 8,42 12,38 16,40 20,35 24,38 28,30 32,33 36,25 40,28 44,20 48,22 52,15 56,18 60,12 64,14 68,8 72,10 76,5 80,7 84,3"
+                                            fill="none"
+                                            stroke="#03C75A"
+                                            stroke-width="1.5"
+                                            stroke-linejoin="round"
+                                            stroke-linecap="round"/>
+
+                                        <!-- 급락 라인 (빨강) -->
+                                        <polyline
+                                            points="84,3 88,15 92,28 96,35 100,40 104,42 108,44 112,45 116,45 120,46 124,46 128,46 132,47 136,47 140,47"
+                                            fill="none"
+                                            stroke="#ef4444"
+                                            stroke-width="1.5"
+                                            stroke-linejoin="round"
+                                            stroke-linecap="round"/>
+
+                                        <!-- 최고점 마커 -->
+                                        <circle cx="84" cy="3" r="3" fill="#03C75A" stroke="#fff" stroke-width="1.5"/>
+                                    </svg>
+
+                                    <!-- 최고점 툴팁 -->
+                                    <div class="absolute left-[58%] -top-1 transform -translate-x-1/2">
+                                        <div class="bg-naver text-white text-[9px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap">
+                                            427명
+                                        </div>
+                                        <div class="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-naver mx-auto"></div>
+                                    </div>
+
+                                    <!-- 급락 표시 -->
+                                    <div class="absolute right-2 bottom-6">
+                                        <div class="bg-red-500 text-white text-[9px] md:text-[10px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap">
+                                            34명
+                                        </div>
+                                        <div class="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-red-500 mx-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- X축 & 하루 쉼 표시 -->
+                            <div class="px-4 pb-3 ml-6">
+                                <div class="flex items-center justify-between text-[9px] md:text-[10px] text-gray-300">
+                                    <span>1일</span>
+                                    <div class="flex items-center gap-1 text-red-500 font-bold">
+                                        <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                                        하루 쉼
+                                    </div>
+                                    <span>14일</span>
+                                </div>
+                            </div>
+
+                            <!-- 하단 메시지 -->
+                            <div class="bg-red-50 border-t border-red-100 px-4 py-3">
+                                <p class="text-center text-xs md:text-sm text-gray-600">
+                                    꾸준히 소통해서 올린 방문자, <span class="text-red-500 font-bold">하루 쉬니까 뚝.</span>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 연결 -->
+                <div class="flex justify-center">
+                    <div class="flex flex-col items-center gap-1 text-gray-300">
+                        <div class="w-px h-6 bg-gray-300"></div>
+                        <span class="text-xs font-medium text-gray-400">이걸 매일 반복하다 보면…</span>
+                        <div class="w-px h-6 bg-gray-300"></div>
+                    </div>
+                </div>
+
+                <!-- ====== 카드 3: 번아웃 ====== -->
+                <div class="pain-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" id="painCard3">
+                    <div class="bg-gray-900 px-6 py-3 flex items-center justify-between">
+                        <span class="text-white text-xs font-bold tracking-widest">STEP 3</span>
+                        <span class="text-gray-500 text-xs">결국 여기에 갇힙니다</span>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="font-bold text-xl text-gray-900 mb-6">블로그 글 쓰기보다<br class="md:hidden"> 이웃 늘리다가 <span class="text-red-500 font-black">포기..</span></h3>
+
+                        <!-- 글쓰기 에디터 UI -->
+                        <div class="bg-gray-50 rounded-xl border border-gray-100 overflow-hidden">
+                            <div class="px-4 py-2.5 border-b border-gray-100 flex items-center gap-3">
+                                <div class="flex gap-1.5">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <span class="text-sm text-gray-400 font-medium">블로그 — 새 글 작성</span>
+                            </div>
+                            <div class="px-6 pt-5 pb-3 border-b border-gray-100">
+                                <p class="text-2xl font-bold text-gray-200">제목을 입력하세요</p>
+                            </div>
+                            <div class="px-4 md:px-6 py-6 md:py-8 min-h-[200px] md:min-h-[220px] relative" id="burnoutEditor">
+                                <span class="write-cursor text-gray-200 text-2xl">|</span>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 md:gap-4 px-3 md:px-4 opacity-0 transition-opacity duration-500" id="burnoutNotifs">
+                                    <!-- 모바일: 작은 카드 / PC: 기존 크기 -->
+                                    <div class="bg-white border border-gray-200 rounded-xl md:rounded-2xl px-3 md:px-6 py-2 md:py-4 shadow-lg md:shadow-xl flex items-center gap-2 md:gap-5 transform -rotate-1 w-full max-w-md notif-shake">
+                                        <span class="text-xl md:text-3xl">🔔</span>
+                                        <div>
+                                            <p class="text-xs md:text-base font-bold text-gray-800">이웃 신청 100명 아직 안 보냈어요</p>
+                                            <p class="text-[10px] md:text-sm text-gray-400">오늘 할당량 0/100</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white border border-gray-200 rounded-xl md:rounded-2xl px-3 md:px-6 py-2 md:py-4 shadow-lg md:shadow-xl flex items-center gap-2 md:gap-5 transform rotate-1 w-full max-w-md">
+                                        <span class="text-xl md:text-3xl">💬</span>
+                                        <div>
+                                            <p class="text-xs md:text-base font-bold text-gray-800">답방 댓글 43개 밀려있습니다</p>
+                                            <p class="text-[10px] md:text-sm text-gray-400">3일째 미처리</p>
+                                        </div>
+                                    </div>
+                                    <!-- 빨간 카드: 모바일에서 더 강조 -->
+                                    <div class="bg-red-50 border-2 border-red-200 rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-xl flex items-center gap-3 md:gap-5 transform -rotate-1 w-full max-w-md">
+                                        <span class="text-2xl md:text-3xl">😫</span>
+                                        <div>
+                                            <p class="text-sm md:text-lg font-black text-red-600">글 한 줄 못 쓴 채 3시간 소통만...</p>
+                                            <p class="text-xs md:text-sm text-red-400">오늘도 콘텐츠는 제로</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-3 md:px-5 py-2 md:py-3 bg-gray-100 border-t border-gray-200 flex items-center justify-between gap-2">
+                                <span class="text-[10px] md:text-sm text-gray-400 whitespace-nowrap">글자 수: 0자</span>
+                                <div class="flex items-center gap-1">
+                                    <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-red-400 rounded-full flex-shrink-0"></div>
+                                    <span class="text-[10px] md:text-sm text-red-400 font-medium">저장 안 됨 — 작성된 내용 없음</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== 공감 전환 섹션: Before vs After ===== -->
+    <section class="py-24 md:py-32 px-6 bg-gradient-to-b from-[#F5F5F5] via-[#faf9f6] to-[#f5f2ec] relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-50 rounded-full filter blur-3xl opacity-40"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <!-- 공감 헤드 -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-snug mb-4">
+                    여러분은<br class="md:hidden"> 충분히 열심히 했습니다.
+                </h2>
+                <p class="text-lg text-gray-500 font-light">잘못된 건 여러분의 의지가 아니라,<br class="md:hidden"> <span class="text-gray-800 font-semibold"><span class="text-naver font-bold">지속이 불가능한 '방식'</span></span>이었습니다.</p>
+            </div>
+
+            <!-- BEFORE: 캐릭터 여정 타임라인 -->
+            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm mb-5">
+                <div class="bg-red-50 px-5 py-3 border-b border-red-100 text-center">
+                    <span class="text-sm font-bold text-red-500">지금의 방식</span>
+                </div>
+                <div class="px-4 md:px-8 py-8">
+                    <!-- 모바일: 2x2 그리드 / 데스크톱: 가로 4열 -->
+                    <div class="relative">
+                        <!-- 연결선 (데스크톱만) -->
+                        <div class="absolute top-7 left-[10%] right-[10%] h-1 bg-gradient-to-r from-red-300 via-red-400 to-gray-300 rounded-full hidden md:block"></div>
+
+                        <!-- 그리드 레이아웃 -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-2">
+                            <!-- STEP 1 -->
+                            <div class="flex flex-col items-center text-center relative z-10 p-3 md:p-1">
+                                <div class="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center border-[3px] border-red-300 shadow-md mb-3">
+                                    <span class="text-xl md:text-2xl anim-typing">⌨️</span>
+                                </div>
+                                <p class="text-sm md:text-base font-black text-gray-900">소통 노동</p>
+                                <p class="text-[11px] md:text-xs text-red-400 mt-1 leading-snug">매일 3시간<br>댓글+이웃 신청</p>
+                                <!-- 모바일 화살표 (우측으로) -->
+                                <div class="absolute right-0 top-1/2 -translate-y-1/2 text-red-300 text-sm font-bold md:hidden">→</div>
+                            </div>
+
+                            <!-- STEP 2 -->
+                            <div class="flex flex-col items-center text-center relative z-10 p-3 md:p-1">
+                                <div class="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center border-[3px] border-red-400 shadow-md mb-3">
+                                    <span class="text-xl md:text-2xl anim-slump">😵‍💫</span>
+                                </div>
+                                <p class="text-sm md:text-base font-black text-gray-900">에너지 고갈</p>
+                                <p class="text-[11px] md:text-xs text-red-400 mt-1 leading-snug">하루 쉬면<br>방문자 급감</p>
+                                <!-- 모바일 화살표 (아래로) -->
+                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-red-300 text-sm font-bold md:hidden">↓</div>
+                            </div>
+
+                            <!-- STEP 3 -->
+                            <div class="flex flex-col items-center text-center relative z-10 p-3 md:p-1">
+                                <div class="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center border-[3px] border-red-400 shadow-md mb-3">
+                                    <span class="text-xl md:text-2xl anim-sigh">😮‍💨</span>
+                                </div>
+                                <p class="text-sm md:text-base font-black text-gray-900">번아웃</p>
+                                <p class="text-[11px] md:text-xs text-red-400 mt-1 leading-snug">글도 못 쓰고<br>지쳐서 쉼</p>
+                                <!-- 모바일 화살표 (우측으로) -->
+                                <div class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-300 text-sm font-bold md:hidden">→</div>
+                            </div>
+
+                            <!-- STEP 4 -->
+                            <div class="flex flex-col items-center text-center relative z-10 p-3 md:p-1">
+                                <div class="w-12 h-12 md:w-14 md:h-14 bg-gray-50 rounded-full flex items-center justify-center border-[3px] border-gray-300 shadow-md mb-3 opacity-60">
+                                    <span class="text-xl md:text-2xl">🚪</span>
+                                </div>
+                                <p class="text-sm md:text-base font-black text-gray-400">포기</p>
+                                <p class="text-[11px] md:text-xs text-gray-400 mt-1 leading-snug">결국 블로그를<br>놓아버림</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AFTER: 가로 한 줄 -->
+            <div class="bg-gradient-to-r from-green-50 to-white rounded-2xl border-2 border-naver/20 overflow-hidden shadow-lg mb-10" id="afterCard">
+                <div class="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="text-5xl flex-shrink-0">✨</div>
+                    <div class="flex-1 text-center md:text-left">
+                        <p class="text-2xl md:text-3xl font-black text-gray-900 leading-snug">이 모든 걸<br class="md:hidden"> 대신해줄 방법이 있다면?</p>
+                        <p class="text-base text-gray-500 mt-2">소통은 AI에게, 시간은 나에게</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-naver flex-shrink-0">
+                        <div class="w-2 h-2 bg-naver rounded-full animate-pulse"></div>
+                        <span class="text-sm font-bold">↓</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== SECTION 3: SOLUTION ===== -->
+    <section id="solution-section" class="py-24 md:py-32 bg-naverLight px-6">
+        <div class="max-w-5xl mx-auto">
+            <!-- 헤드라인 -->
+            <div class="text-center mb-12">
+                <div class="text-4xl mb-4">✨</div>
+                <h2 class="text-2xl md:text-3xl font-black text-gray-900 leading-snug mb-4">
+                    이웃 신청부터 정성 댓글까지,<br class="md:hidden"> 블로그 소통의<br class="md:hidden"> <span class="text-naver">'AI 관리 시대'</span>가<br class="md:hidden"> 시작됩니다.
+                </h2>
+                <p class="text-base md:text-lg text-gray-500 leading-relaxed max-w-xl mx-auto">
+                    손으로 직접 하던 복잡한 과정들,<br class="md:hidden"> 이제부터 AI에게 맡기세요.
+                </p>
+            </div>
+
+            <!-- 4단계 순환 그리드 -->
+            <div class="max-w-2xl mx-auto mb-12 relative">
+                <!-- 순환 배경 원형 -->
+                <div class="absolute inset-0 hidden md:block pointer-events-none">
+                    <div class="absolute inset-4 border-2 border-dashed border-naver/15 rounded-full"></div>
+                </div>
+                <!-- 중앙 아이콘 (데스크톱만) -->
+                <div class="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none z-20">
+                    <div class="w-14 h-14 bg-naver rounded-full flex items-center justify-center shadow-lg border-4 border-naverLight">
+                        <span class="text-white text-lg font-bold">AI</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 relative z-10">
+                    <!-- STEP 1 -->
+                    <div class="bg-white rounded-2xl md:rounded-3xl shadow-md p-5 md:p-7 border border-gray-100 hover:shadow-lg transition-shadow">
+                        <span class="text-[11px] font-bold text-naver">STEP 1</span>
+                        <div class="flex items-center gap-3 mt-3 mb-3">
+                            <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center text-2xl">🔍</div>
+                            <h3 class="text-xl md:text-2xl font-black text-gray-900">타겟 분석</h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4 md:mb-5">진짜 소통러만 AI가 자동 선별</p>
+                        <div class="h-px bg-gray-100 mb-4"></div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2.5">
+                                <div class="flex items-center gap-2 min-w-0">
+                                    <div class="w-5 h-5 bg-naver rounded-full flex items-center justify-center text-white text-[8px] flex-shrink-0">N</div>
+                                    <div class="min-w-0">
+                                        <span class="text-sm text-gray-700 font-medium">뷰티블로거_루나</span>
+                                        <p class="text-[10px] text-gray-400">활동 2시간 전 · 이웃 842명</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-naver font-bold bg-naver/10 px-2 py-0.5 rounded-full flex-shrink-0 ml-2">적합 ✓</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-red-50/60 rounded-lg px-3 py-2.5">
+                                <div class="flex items-center gap-2 min-w-0">
+                                    <div class="w-5 h-5 bg-gray-300 rounded-full flex items-center justify-center text-white text-[8px] flex-shrink-0">N</div>
+                                    <div class="min-w-0">
+                                        <span class="text-sm text-gray-400 line-through">유령계정_123</span>
+                                        <p class="text-[10px] text-gray-400">게시글 0개 · 유령 계정</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-red-400 font-bold bg-red-100 px-2 py-0.5 rounded-full flex-shrink-0 ml-2">제외 ✕</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="bg-white rounded-2xl md:rounded-3xl shadow-md p-5 md:p-7 border border-gray-100 hover:shadow-lg transition-shadow">
+                        <span class="text-[11px] font-bold text-naver">STEP 2</span>
+                        <div class="flex items-center gap-3 mt-3 mb-3">
+                            <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center text-2xl">✉️</div>
+                            <h3 class="text-xl md:text-2xl font-black text-gray-900">이웃 신청</h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4 md:mb-5">수락률 높은 계정에만 선별 발송</p>
+                        <div class="h-px bg-gray-100 mb-4"></div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2.5">
+                                <span class="text-sm text-gray-700">뷰티블로거_루나</span>
+                                <span class="text-xs bg-naver text-white px-2.5 py-1 rounded-md font-bold flex-shrink-0 ml-2">발송 완료 ✓</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2.5">
+                                <span class="text-sm text-gray-700">제주여행러_하니</span>
+                                <span class="text-xs bg-naver text-white px-2.5 py-1 rounded-md font-bold flex-shrink-0 ml-2">발송 완료 ✓</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-naver/5 rounded-lg px-3 py-2.5">
+                                <span class="text-sm text-gray-500">외 48명 발송 중..</span>
+                                <span class="text-xs text-naver font-bold flex-shrink-0 ml-2">진행 중</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="bg-white rounded-2xl md:rounded-3xl shadow-md p-5 md:p-7 border border-gray-100 hover:shadow-lg transition-shadow">
+                        <span class="text-[11px] font-bold text-naver">STEP 3</span>
+                        <div class="flex items-center gap-3 mt-3 mb-3">
+                            <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center text-2xl">💬</div>
+                            <h3 class="text-xl md:text-2xl font-black text-gray-900">정성 댓글</h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4 md:mb-5">포스팅 읽고 맥락 맞는 댓글</p>
+                        <div class="h-px bg-gray-100 mb-4"></div>
+                        <div class="bg-green-50 rounded-lg p-3.5 border border-green-100">
+                            <div class="flex items-start gap-2.5">
+                                <div class="w-7 h-7 bg-naver rounded-full flex items-center justify-center text-white text-[9px] font-bold mt-0.5 flex-shrink-0">AI</div>
+                                <p class="text-sm text-gray-700 leading-relaxed">와 저도 제주도 동쪽 코스로 갔었는데 성산일출봉 올라가는 길이 진짜 예쁘더라고요! 혹시 점심은 어디서 드셨어요? 저는 근처 해산물 맛집 찾다가 결국 포기했거든요..</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4 -->
+                    <div class="bg-white rounded-2xl md:rounded-3xl shadow-md p-5 md:p-7 border border-gray-100 hover:shadow-lg transition-shadow">
+                        <span class="text-[11px] font-bold text-naver">STEP 4</span>
+                        <div class="flex items-center gap-3 mt-3 mb-3">
+                            <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center text-2xl">🛡️</div>
+                            <h3 class="text-xl md:text-2xl font-black text-gray-900">이웃 관리</h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4 md:mb-5">스팸·무반응 자동 정리</p>
+                        <div class="h-px bg-gray-100 mb-4"></div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between bg-red-50/60 rounded-lg px-3 py-2.5">
+                                <span class="text-sm text-gray-400 line-through">광고계정</span>
+                                <span class="text-xs text-red-500 font-bold bg-red-100 px-2 py-0.5 rounded-full">블랙리스트</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-yellow-50/60 rounded-lg px-3 py-2.5">
+                                <span class="text-sm text-gray-500">무반응유저</span>
+                                <span class="text-xs text-yellow-600 font-bold bg-yellow-100 px-2 py-0.5 rounded-full">자동 취소</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6단계 더보기 (details/summary) — 마무리 문구 위 -->
+            <details class="mb-10 group" id="howDetails">
+                <summary class="cursor-pointer outline-none list-none">
+                    <div class="bg-gray-900 rounded-2xl p-5 max-w-md mx-auto hover:bg-gray-800 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-11 h-11 bg-naver rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-black text-sm">AI</span>
+                            </div>
+                            <div class="flex-1 text-center">
+                                <p class="text-sm font-bold text-white">6단계 AI 관리 시스템</p>
+                                <p class="text-xs text-gray-400 mt-0.5">AI가 어떻게 작동하는지 궁금하신가요?</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <span class="group-open:hidden text-xs text-naver font-bold bg-naver/15 px-3 py-1.5 rounded-lg">(클릭)</span>
+                                <span class="hidden group-open:inline text-xs text-gray-400 font-bold bg-gray-700 px-3 py-1.5 rounded-lg">접기 ↑</span>
+                            </div>
+                        </div>
+                    </div>
+                </summary>
+
+                <div class="mt-8 rounded-2xl overflow-hidden" style="background:#0A0A0A">
+                    <div class="max-w-5xl mx-auto py-16 px-4 md:px-8">
+                        <div class="text-center mb-14">
+                            <span class="inline-block text-sm font-semibold text-naver bg-naver/10 border border-naver/20 px-4 py-1.5 rounded-full mb-5">작동 프로세스</span>
+                            <h3 class="text-2xl md:text-3xl font-black text-white">AI의 정밀한 <span class="text-naver">6단계</span> 소통 관리</h3>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- STEP 01 -->
+                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center">
+                                        <span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 01</span>
+                                        <h4 class="text-2xl font-black text-white mb-3">소통 타겟 정밀 분석</h4>
+                                        <p class="text-gray-400 leading-relaxed"><span class="text-yellow-300">댓글창을 추적해 '진짜 활동 유저'</span>만 찾아냅니다. 복붙 댓글러가 아닌, 정성 소통을 하는 사람만 선별합니다.</p>
+                                    </div>
+                                    <div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center">
+                                        <div class="w-full max-w-xs bg-[#1A1A1A] rounded-xl border border-gray-800 p-4">
+                                            <p class="text-xs text-gray-600 mb-3">댓글 3개</p>
+                                            <div class="space-y-2.5">
+                                                <div class="flex items-start gap-2 px-3 py-2 rounded-lg border-2 border-naver/60">
+                                                    <div class="w-5 h-5 bg-naver rounded-full flex-shrink-0 mt-0.5"></div>
+                                                    <div><p class="text-xs text-gray-300 font-medium">맛집블로거_하니</p><p class="text-[11px] text-gray-500">와 이 코스 진짜 좋네요! 저도 다녀왔는데 맛집 추천 감사합니다..</p></div>
+                                                    <span class="text-[9px] text-naver font-bold ml-auto flex-shrink-0">타겟 ✓</span>
+                                                </div>
+                                                <div class="flex items-start gap-2 px-3 py-2 rounded-lg opacity-40">
+                                                    <div class="w-5 h-5 bg-gray-600 rounded-full flex-shrink-0 mt-0.5"></div>
+                                                    <div><p class="text-xs text-gray-500 font-medium">광고계정123</p><p class="text-[11px] text-gray-600">잘 보고 갑니다~^^</p></div>
+                                                    <span class="text-[9px] text-gray-600 ml-auto flex-shrink-0">스킵</span>
+                                                </div>
+                                                <div class="flex items-start gap-2 px-3 py-2 rounded-lg border-2 border-naver/60">
+                                                    <div class="w-5 h-5 bg-naver rounded-full flex-shrink-0 mt-0.5"></div>
+                                                    <div><p class="text-xs text-gray-300 font-medium">여행러_제이</p><p class="text-[11px] text-gray-500">성산일출봉 일몰도 예쁘던데 혹시 가보셨나요?</p></div>
+                                                    <span class="text-[9px] text-naver font-bold ml-auto flex-shrink-0">타겟 ✓</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- STEP 02 -->
+                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center order-2 md:order-1">
+                                        <div class="w-full max-w-xs space-y-3">
+                                            <div class="flex items-center justify-between bg-[#1A1A1A] rounded-xl px-4 py-3 border border-gray-800">
+                                                <div class="flex items-center gap-2"><div class="w-6 h-6 bg-gray-600 rounded-full"></div><div><p class="text-xs text-gray-300">홍보전문_셀러</p><p class="text-[10px] text-gray-600">이웃 5,000명 초과</p></div></div>
+                                                <span class="text-red-500 font-black text-lg">✕</span>
+                                            </div>
+                                            <div class="flex items-center justify-between bg-[#1A1A1A] rounded-xl px-4 py-3 border border-gray-800">
+                                                <div class="flex items-center gap-2"><div class="w-6 h-6 bg-gray-600 rounded-full"></div><div><p class="text-xs text-gray-300">비공개_블로그</p><p class="text-[10px] text-gray-600">서이추 차단 설정</p></div></div>
+                                                <span class="text-red-500 font-black text-lg">✕</span>
+                                            </div>
+                                            <div class="flex items-center justify-between bg-[#1A1A1A] rounded-xl px-4 py-3 border border-naver/30">
+                                                <div class="flex items-center gap-2"><div class="w-6 h-6 bg-naver rounded-full"></div><div><p class="text-xs text-gray-300">뷰티블로거_루나</p><p class="text-[10px] text-naver">이웃 842명 · 활동 2h 전</p></div></div>
+                                                <span class="text-naver font-bold text-sm">통과 ✓</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center order-1 md:order-2">
+                                        <span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 02</span>
+                                        <h4 class="text-2xl font-black text-white mb-3">무의미한 리소스 낭비 차단</h4>
+                                        <p class="text-gray-400 leading-relaxed">거절당할 계정은 AI가 미리 식별하여 제외합니다. 이웃 초과, <span class="text-yellow-300">서이추 차단 계정은 자동으로 걸러냅니다.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- STEP 03 -->
+                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center">
+                                        <span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 03</span>
+                                        <h4 class="text-2xl font-black text-white mb-3">전략적 서로이웃 신청</h4>
+                                        <p class="text-gray-400 leading-relaxed">수락 확률이 가장 높은 <span class="text-yellow-300">'알짜배기 계정'</span>에만 정밀하게 서이추를 전송합니다.</p>
+                                    </div>
+                                    <div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center">
+                                        <div class="w-full max-w-xs bg-[#1A1A1A] rounded-xl border border-gray-800 p-4">
+                                            <div class="flex items-center gap-2 mb-3"><div class="w-5 h-5 bg-naver rounded flex items-center justify-center text-white text-[7px] font-bold">N</div><span class="text-xs text-gray-400">서로이웃 신청</span></div>
+                                            <div class="bg-[#0D0D0D] rounded-lg border border-gray-700 px-3 py-2.5 mb-2"><p class="text-[10px] text-gray-600">받는 사람</p><p class="text-sm text-gray-300 font-medium">뷰티블로거_루나</p></div>
+                                            <div class="flex items-center justify-between mt-3"><span class="text-[10px] text-gray-600">서이추 발송 중...</span><div class="bg-naver text-white text-[10px] font-bold px-3 py-1.5 rounded-lg">발송 완료 ✓</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- STEP 04 -->
+                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center order-2 md:order-1">
+                                        <div class="w-full max-w-xs bg-[#1A1A1A] rounded-xl border border-gray-800 p-4">
+                                            <p class="text-sm text-gray-300 font-bold mb-2">제주도 3박4일 가족여행 코스</p>
+                                            <div class="space-y-1.5 mb-3">
+                                                <div class="h-2 bg-gray-700 rounded w-full"></div><div class="h-2 bg-gray-700 rounded w-4/5"></div>
+                                                <div class="h-2 rounded w-3/5" style="background:linear-gradient(90deg,#03C75A33,#03C75A66)"></div>
+                                                <div class="h-2 bg-gray-700 rounded w-full"></div>
+                                                <div class="h-2 rounded w-4/5" style="background:linear-gradient(90deg,#03C75A33,#03C75A66)"></div>
+                                            </div>
+                                            <div class="flex gap-1.5"><span class="text-[9px] bg-naver/20 text-naver px-2 py-0.5 rounded font-medium">여행</span><span class="text-[9px] bg-naver/20 text-naver px-2 py-0.5 rounded font-medium">제주도</span><span class="text-[9px] bg-naver/20 text-naver px-2 py-0.5 rounded font-medium">성산일출봉</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center order-1 md:order-2">
+                                        <span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 04</span>
+                                        <h4 class="text-2xl font-black text-white mb-3">포스팅 맥락 정밀 분석</h4>
+                                        <p class="text-gray-400 leading-relaxed">AI가 상대방의 <span class="text-yellow-300">최신 포스팅을 실제로 읽고</span> 핵심 주제와 문맥을 정확히 파악합니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- STEP 05 -->
+                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center">
+                                        <span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 05</span>
+                                        <h4 class="text-2xl font-black text-white mb-3">맞춤형 정성 댓글 작성</h4>
+                                        <p class="text-gray-400 leading-relaxed">"잘 보고 갑니다" 같은 복붙이 아닌, <span class="text-yellow-300">"내 글을 진짜 읽었네?"</span> 감탄이 나오는 댓글을 남깁니다.</p>
+                                    </div>
+                                    <div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center">
+                                        <div class="w-full max-w-xs bg-[#1A1A1A] rounded-xl border border-gray-800 p-4">
+                                            <p class="text-[10px] text-gray-600 mb-2">댓글 작성</p>
+                                            <div class="bg-[#0D0D0D] rounded-lg border border-naver/30 p-3">
+                                                <div class="flex items-start gap-2"><div class="w-5 h-5 bg-naver rounded-full flex items-center justify-center text-white text-[7px] font-bold flex-shrink-0 mt-0.5">AI</div><p class="text-xs text-gray-300 leading-relaxed">와 저도 제주도 동쪽 코스로 갔었는데 성산일출봉 올라가는 길이 진짜 예쁘더라고요! 혹시 점심은 어디서 드셨어요?..</p></div>
+                                            </div>
+                                            <div class="flex justify-end mt-2"><span class="text-[9px] bg-naver text-white px-2.5 py-1 rounded font-bold">등록</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- STEP 06 -->
+                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center order-2 md:order-1">
+                                        <div class="w-full max-w-xs">
+                                            <div class="bg-[#1A1A1A] rounded-xl border border-gray-800 p-4 mb-3">
+                                                <div class="flex justify-between text-xs mb-2"><span class="text-gray-400">오늘 소통 현황</span><span class="text-naver font-bold">100 / 100</span></div>
+                                                <div class="w-full bg-gray-800 rounded-full h-3 overflow-hidden"><div class="h-3 bg-naver rounded-full w-full"></div></div>
+                                            </div>
+                                            <div class="bg-naver/10 border border-naver/30 rounded-xl px-4 py-3 text-center">
+                                                <p class="text-naver font-bold text-sm">✓ 작업 완료 — 자동 종료</p>
+                                                <p class="text-[10px] text-gray-500 mt-1">내일 다시 자동으로 시작합니다</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center order-1 md:order-2">
+                                        <span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 06</span>
+                                        <h4 class="text-2xl font-black text-white mb-3">안전 한도 달성 시 자동 종료</h4>
+                                        <p class="text-gray-400 leading-relaxed">하루 100명 한도 달성 시 별도 조작 없이 프로그램이 스스로 <span class="text-yellow-300">안전하게 퇴근합니다.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 text-center bg-[#111] border border-gray-800 rounded-xl px-6 py-5">
+                            <p class="text-base text-gray-500">저희 프로그램은 결코 빠르지 않습니다. <strong class="text-naver">실제 사람이 소통하는 '호흡'과 '속도'를 그대로 구현했기에 가장 안전하고 강력합니다.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- 마무리 문구 + CTA (항상 보임) -->
+            <div class="text-center mt-10">
+                <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-8">
+                    버튼 한 번이면 AI가 사람처럼<br class="md:hidden"> 자연스럽게 소통을 마치고<br class="md:hidden"> <span class="font-bold text-gray-900">100명을 채우면 조용히 퇴근합니다.</span>
+                </p>
+                <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-trial bg-white font-bold text-lg px-12 py-4 rounded-xl shadow-md border border-gray-200 transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                    <span class="cta-trial-text" style="background:linear-gradient(90deg,#03C75A,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .2s;">지금 바로 시작하기</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION: AI 블로그 에디터 — 다크 설득 구간 ===== -->
+    <style>
+        .editor-dark { background: #0A0A0A; }
+        .editor-fade { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .editor-fade.visible { opacity: 1; transform: translateY(0); }
+        .editor-dot { color: #333; font-size: 1.5rem; line-height: 2; letter-spacing: 0.3em; }
+        .editor-glow { text-shadow: 0 0 20px rgba(3,199,90,0.3); }
+        .editor-pulse { animation: editorPulse 2s ease-in-out infinite; }
+        @keyframes editorPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .editor-counter { font-variant-numeric: tabular-nums; }
+        @keyframes editorSlam { 0% { opacity:0; transform:scale(1.3) translateY(-20px); } 100% { opacity:1; transform:scale(1) translateY(0); } }
+        .editor-slam { animation: editorSlam 0.5s cubic-bezier(0.22,1,0.36,1) forwards; }
+        .editor-slam-delay { opacity:0; animation: editorSlam 0.5s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; }
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.3; }
+            50% { transform: translateY(8px); opacity: 1; }
+        }
+        .editor-arrow span:nth-child(1) { animation: arrowBounce 1.5s ease-in-out infinite; }
+        .editor-arrow span:nth-child(2) { animation: arrowBounce 1.5s ease-in-out 0.2s infinite; }
+        .editor-arrow span:nth-child(3) { animation: arrowBounce 1.5s ease-in-out 0.4s infinite; }
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 5px rgba(3,199,90,0.2); }
+            50% { text-shadow: 0 0 25px rgba(3,199,90,0.6), 0 0 50px rgba(3,199,90,0.3); }
+        }
+        .editor-glow-pulse { animation: glowPulse 2.5s ease-in-out infinite; }
+        .editor-stagger { opacity: 0; transform: translateY(25px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .editor-stagger.visible { opacity: 1; transform: translateY(0); }
+    </style>
+
+    <section class="editor-dark">
+        <div class="max-w-3xl mx-auto px-6">
+
+            <!-- 블록 1: 오프닝 — 하지만 -->
+            <div class="py-24 md:py-32 text-center">
+                <p class="editor-slam-trigger text-white font-black mb-6" style="font-size:clamp(2.5rem,7vw,5rem);letter-spacing:-0.03em;line-height:1;opacity:0;">하지만</p>
+                <p class="editor-dot editor-fade">.<br>.</p>
+            </div>
+
+            <!-- 블록 2: 질문 — 이웃 관리만으로 될까? -->
+            <div class="py-8 md:py-12 text-center">
+                <h2 class="editor-fade text-2xl md:text-4xl font-black text-white leading-tight mb-3" style="letter-spacing:-0.02em;">
+                    <span class="text-naver">이웃 관리</span>만<br><span style="color:#FEE500;">AI</span>에게 맡기면 끝일까요?
+                </h2>
+                <p class="editor-dot editor-fade mt-4">.<br>.<br>.</p>
+            </div>
+
+            <!-- 블록 3: 현실 직면 -->
+            <div class="py-4 md:py-6 text-center">
+                <p class="editor-fade text-white text-xl md:text-2xl font-bold mb-6 leading-relaxed">
+                    이웃이 100명 와도<br>
+                    <span style="color:#FEE500;">글이 별로면</span> 다시 안 옵니다.
+                </p>
+
+                <p class="editor-fade text-white text-xl md:text-2xl font-bold mb-12 leading-relaxed mt-10">
+                    글을 열심히 써도<br>
+                    <span style="color:#FEE500;">검색에 안 잡히면</span> 아무도 모릅니다.
+                </p>
+
+                <!-- 화살표 모션 -->
+                <div class="editor-fade editor-arrow flex flex-col items-center mb-12">
+                    <span class="text-naver text-2xl leading-none block">▼</span>
+                    <span class="text-naver text-2xl leading-none block">▼</span>
+                    <span class="text-naver text-2xl leading-none block">▼</span>
+                </div>
+
+                <div class="editor-fade py-6">
+                    <p class="text-2xl md:text-4xl font-black text-white leading-tight editor-glow-pulse">
+                        결국 블로그는
+                    </p>
+                    <p class="text-2xl md:text-4xl font-black leading-tight mt-3 editor-glow-pulse">
+                        <span class="text-naver">이웃 관리</span> <span class="text-white">+</span> <span style="color:#FEE500;">글</span><span class="text-white">,</span>
+                    </p>
+                    <p class="text-2xl md:text-4xl font-black text-white leading-tight mt-3 editor-glow-pulse">
+                        둘 다 돼야 합니다.
+                    </p>
+                </div>
+                <p class="editor-dot editor-fade mt-6">.<br>.</p>
+            </div>
+
+            <!-- 블록 4: 선언 — 그래서 만들었다 -->
+            <div class="py-4 md:py-6 text-center">
+                <div class="mb-10" style="font-size:clamp(1.5rem,5vw,2.5rem);letter-spacing:-0.02em;line-height:1.6;">
+                    <p class="editor-stagger font-black text-white">그래서</p>
+                    <p class="editor-stagger font-black text-white"><span style="color:#FEE500;">'이것'</span>까지</p>
+                    <p class="editor-stagger font-black text-white">드립니다.</p>
+                </div>
+                <p class="editor-fade text-white text-lg md:text-xl leading-relaxed" style="margin-top:8.75rem;">
+                    사람보다 글 잘쓰고
+                </p>
+                <p class="editor-fade text-white text-lg md:text-xl mb-8 leading-relaxed">
+                    상위 노출에 최적화된
+                </p>
+                <h2 class="editor-fade text-3xl md:text-5xl font-black mt-2 mb-4" style="letter-spacing:-0.02em;">
+                    <span class="text-naver editor-glow">AI 블로그 에디터.</span>
+                </h2>
+                <p class="editor-fade text-gray-500 text-xs md:text-sm mt-5">
+                    최신 SEO 알고리즘 기반 · 자연스러운 AI 글쓰기
+                </p>
+            </div>
+
+            <!-- 블록 5: 에디터 UI 미리보기 -->
+            <div class="py-10 md:py-16">
+                <div class="editor-fade max-w-2xl mx-auto bg-[#111] border border-gray-800 rounded-2xl overflow-hidden shadow-2xl shadow-naver/5">
+                    <!-- 상단 바 -->
+                    <div class="flex items-center gap-2 px-5 py-3 bg-[#0D0D0D] border-b border-gray-800">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        <span class="text-gray-500 text-xs ml-3 font-mono">PLUSCOACH_EDITOR_V2</span>
+                    </div>
+                    <!-- 본문 -->
+                    <div class="p-6 md:p-8">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span class="text-xs font-bold text-black bg-naver px-2.5 py-1 rounded">키워드</span>
+                            <span class="text-white text-sm font-medium">갤럭시 S25 울트라 카메라 비교</span>
+                        </div>
+                        <div class="space-y-3 mb-5">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-gray-500 w-16">SEO 모드</span>
+                                <span class="text-xs text-naver font-bold bg-naver/10 px-2 py-0.5 rounded">C-Rank + D.I.A.</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-gray-500 w-16">휴머나이즈</span>
+                                <span class="text-xs text-green-400 font-bold">ON</span>
+                                <span class="text-xs text-gray-600">— AI 탐지 우회 활성</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-gray-500 w-16">AI 이미지</span>
+                                <span class="text-xs text-green-400 font-bold">ON</span>
+                                <span class="text-xs text-gray-600">— 자동 생성 + 상품 합성</span>
+                            </div>
+                        </div>
+                        <div class="h-px bg-gray-800 mb-5"></div>
+                        <div class="bg-[#0A0A0A] rounded-lg p-4 mb-4">
+                            <p class="text-gray-400 text-xs mb-2 font-mono">// 생성된 글 미리보기</p>
+                            <p class="text-white text-sm leading-relaxed">갤럭시 S25 울트라 카메라, 솔직히 기대 안 했거든요. 전작이랑 뭐가 다르겠어 싶었는데, 야간 모드로 찍어보니까 진짜 <span class="text-naver">아이폰 16 프로</span>랑 확실히 차이 나더라고요...</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-gray-500">SEO 점수</span>
+                                <span class="text-naver font-black text-sm">94%</span>
+                                <span class="text-xs text-gray-600">|</span>
+                                <span class="text-xs text-gray-500">AI 탐지율</span>
+                                <span class="text-green-400 font-black text-sm">2%</span>
+                            </div>
+                            <span class="text-xs font-bold text-black bg-naver px-3 py-1.5 rounded-lg">블로그 에디터로 발행 →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 블록 6: 기능 — 핵심 4가지 -->
+            <div class="py-10 md:py-16">
+                <div class="space-y-16">
+                    <!-- 01 -->
+                    <div class="editor-fade text-center">
+                        <p class="text-naver text-sm font-bold tracking-widest mb-3">01</p>
+                        <div class="mb-4">
+                            <img src="assets/images/1.png" alt="" class="mx-auto rounded-lg max-w-xs md:max-w-sm w-full">
+                        </div>
+                        <h4 class="text-white font-black text-xl md:text-2xl mb-3">이제 <span class="text-yellow-400">키워드</span>만 넣으세요.</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8">검색 알고리즘 5가지 모드를 자동 분석,<br><span class="text-white font-bold">키워드에 맞는 최적의 글 구조</span>를 잡아줍니다.</p>
+                        <div class="max-w-2xl mx-auto rounded-2xl overflow-hidden border border-gray-800 bg-[#111]">
+                            <img src="assets/images/editor-01.gif" alt="키워드 입력 후 글 구조 자동 생성" class="w-full" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    </div>
+
+                    <!-- 02 -->
+                    <div class="editor-fade text-center">
+                        <p class="text-naver text-sm font-bold tracking-widest mb-3">02</p>
+                        <div class="mb-4">
+                            <img src="assets/images/2.png" alt="" class="mx-auto rounded-lg max-w-xs md:max-w-sm w-full">
+                        </div>
+                        <h4 class="text-white font-black text-xl md:text-2xl mb-3"><span class="text-yellow-400">AI가 쓴 티, 나면 끝</span>입니다.</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8">그래서 사람처럼 씁니다.<br>문장 길이, 말투, 오감 묘사까지<br><span class="text-white font-bold">AI 탐지에 안 걸리는 글</span>을 만듭니다.</p>
+                        <div class="max-w-2xl mx-auto rounded-2xl overflow-hidden border border-gray-800 bg-[#111]">
+                            <img src="assets/images/editor-02.gif" alt="휴머나이제이션 적용" class="w-full" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    </div>
+
+                    <!-- 03 -->
+                    <div class="editor-fade text-center">
+                        <p class="text-naver text-sm font-bold tracking-widest mb-3">03</p>
+                        <div class="mb-4">
+                            <img src="assets/images/3.png" alt="" class="mx-auto rounded-lg max-w-xs md:max-w-sm w-full">
+                        </div>
+                        <h4 class="text-white font-black text-xl md:text-2xl mb-3">이미지 때문에 또 <span class="text-naver">1시간?</span></h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8">AI가 글에 맞는 이미지를 <span class="text-white font-bold">자동으로 만들어줍니다.</span></p>
+                        <div class="max-w-2xl mx-auto rounded-2xl overflow-hidden border border-gray-800 bg-[#111]">
+                            <img src="assets/images/editor-03.gif" alt="AI 이미지 자동 생성" class="w-full" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    </div>
+
+                    <!-- 04 -->
+                    <div class="editor-fade text-center">
+                        <p class="text-naver text-sm font-bold tracking-widest mb-3">04</p>
+                        <div class="mb-4">
+                            <img src="assets/images/4.4.png" alt="" class="mx-auto rounded-lg max-w-xs md:max-w-sm w-full">
+                        </div>
+                        <h4 class="text-white font-black text-xl md:text-2xl mb-3">완성된 글, <span class="text-naver">원클릭</span>으로 바로 복사.</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8">블로그 에디터에 <span class="text-white font-bold">붙여넣기만 하면 끝.</span></p>
+                        <div class="max-w-2xl mx-auto rounded-2xl overflow-hidden border border-gray-800 bg-[#111]">
+                            <img src="assets/images/editor-04.gif" alt="원클릭 복사 및 발행" class="w-full" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        </div>
+                        <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="rounded-2xl overflow-hidden border border-gray-800">
+                                <img src="assets/images/5.png" alt="" class="w-full h-auto">
+                            </div>
+                            <div class="rounded-2xl overflow-hidden border border-gray-800">
+                                <img src="assets/images/6.png" alt="" class="w-full h-auto">
+                            </div>
+                            <div class="rounded-2xl overflow-hidden border border-gray-800">
+                                <img src="assets/images/7.png" alt="" class="w-full h-auto">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 블록 6: 타사 비교 — 대화체 흐름 -->
+            <div class="py-16 md:py-24 text-center">
+
+                <!-- 파트 A: 시장 현실 (가격 앵커링) -->
+                <div class="max-w-xl mx-auto mb-20">
+                    <div class="editor-fade mb-10">
+                        <p class="text-gray-300 text-base md:text-lg mb-4">시중에도<br>비슷한 서비스는 있습니다.</p>
+                        <p class="text-gray-500 text-2xl leading-loose mb-4">.<br>.<br>.</p>
+                        <h3 class="text-xl md:text-2xl font-black text-white leading-relaxed mb-4">
+                            그런데
+                        </h3>
+                        <p class="text-red-500 text-3xl md:text-4xl font-black">월 12만원 이상</p>
+                    </div>
+
+                    <div class="editor-fade mb-6">
+                        <img src="assets/images/1번 무의미.png" alt="" class="mx-auto rounded-lg max-w-xs md:max-w-sm w-full">
+                    </div>
+
+                    <div class="editor-fade space-y-6 mb-10">
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed">
+                            영혼 없는 댓글을 달아도<br>
+                            <span class="text-red-400 font-bold">"원래 그렇습니다."</span>
+                        </p>
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed">
+                            한 번 만들고<br>
+                            <span class="text-red-400 font-bold">업데이트가 없습니다.</span>
+                        </p>
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed">
+                            시간이 지나면?<br>
+                            <span class="text-red-400 font-bold">연락이 안 됩니다.</span>
+                        </p>
+                    </div>
+
+                    <div class="editor-fade">
+                        <p class="text-gray-600 text-sm">처음엔 잘해주던데..</p>
+                    </div>
+                </div>
+
+                <!-- 파트 B: 나는 다르다 (관리·업그레이드 신뢰) -->
+                <div class="max-w-xl mx-auto mb-20">
+                    <div class="editor-fade mb-10">
+                        <h3 class="text-xl md:text-2xl font-black text-white leading-relaxed">
+                            플러스 코치는<br>
+                            <span class="text-naver">전혀 다릅니다.</span>
+                        </h3>
+                    </div>
+
+                    <div class="editor-fade space-y-6 mb-10">
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed">
+                            플랫폼 정책이 바뀌면<br>
+                            <span class="text-naver font-bold">그 주 안에 업데이트합니다.</span>
+                        </p>
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed">
+                            더 좋은 방법이 생기면<br>
+                            <span class="text-naver font-bold">매달 기능을 업그레이드합니다.</span>
+                        </p>
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed">
+                            오류가 발생하면<br>
+                            <span class="text-naver font-bold">원인을 파악하고 바로 해결해드립니다.</span>
+                        </p>
+                    </div>
+
+                    <div class="editor-fade mb-6">
+                        <img src="assets/images/2. 관리.png" alt="직접 관리 안내 예시" class="mx-auto rounded-lg max-w-xs md:max-w-sm w-full">
+                    </div>
+
+                    <div class="editor-fade">
+                        <p class="text-gray-300 text-lg md:text-xl leading-relaxed">
+                            한 번 만들고 방치하는 서비스가 아니라,<br>
+                            <span class="text-white font-black text-xl md:text-2xl">매달 직접 관리하고 개선하는 사람입니다.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 업데이트 로그 -->
+                <div class="editor-fade max-w-md mx-auto mb-16">
+                    <p class="text-white text-xs mb-4 tracking-widest">UPDATE LOG</p>
+                    <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-5 font-mono text-sm text-center space-y-4">
+                        <div>
+                            <p class="text-naver font-bold">v3.4.0 <span class="text-white">— 2026.04.23</span></p>
+                            <p class="text-white">✅ 전체 UI 디자인 개편 및 버그 수정</p>
+                        </div>
+                        <div>
+                            <p class="text-naver font-bold">v3.2.0 <span class="text-gray-500">— 2026.01.03</span></p>
+                            <p class="text-gray-400">✅ 자동 이웃 관리 스케줄링 기능 추가</p>
+                        </div>
+                        <div>
+                            <p class="text-naver font-bold">v3.1.2 <span class="text-gray-500">— 2025.12.23</span></p>
+                            <p class="text-gray-400">✅ 사용자 오류 신고 접수 및 즉시 반영</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 전환: 가격으로 -->
+                <div class="editor-fade max-w-xl mx-auto">
+                    <p class="text-white text-sm mb-3">글쓰기 + 이웃 관리, 둘 다 합쳐서</p>
+                    <p class="text-naver text-3xl md:text-4xl font-black editor-glow mb-2">월 59,000원~</p>
+                </div>
+            </div>
+
+            <!-- 블록: 실제 사용자 후기 -->
+            <div class="py-16 md:py-24 text-center">
+                <div class="editor-fade mb-10">
+                    <p class="text-white text-xl md:text-2xl font-bold mb-4">실제 사용자 후기</p>
+                </div>
+                <div class="editor-fade max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="rounded-2xl overflow-hidden" style="background:#828b9c;">
+                        <img src="assets/images/hugi3.jpg" alt="사용자 후기 3" class="w-full h-auto">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden" style="background:#828b9c;">
+                        <img src="assets/images/hugi5.jpg" alt="사용자 후기 5" class="w-full h-auto">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden" style="background:#828b9c;">
+                        <img src="assets/images/hugi6.jpg" alt="사용자 후기 6" class="w-full h-auto">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden" style="background:#666d77;">
+                        <img src="assets/images/hugi4.jpg" alt="사용자 후기 4" class="w-full h-auto">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden" style="background:#828b9c;">
+                        <img src="assets/images/hugi2.jpg" alt="사용자 후기 2" class="w-full h-auto">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden" style="background:#666d77;">
+                        <img src="assets/images/hugi1.jpg" alt="사용자 후기 1" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 블록 7: 선착순 이벤트 — 긴급 -->
+            <div class="py-16 md:py-24 text-center">
+                <p class="editor-fade text-naver font-bold text-2xl md:text-3xl mb-6">AI<br>블로그 에디터</p>
+
+                <h3 class="editor-fade text-2xl md:text-4xl font-black text-white leading-tight mb-6">
+                    딱 <span class="text-[#FEE500] font-black">10명</span>에게만<br>
+                    <span class="text-[#FEE500]">X2배</span>로 드립니다.
+                </h3>
+
+                <p class="editor-fade text-gray-400 text-sm md:text-base leading-relaxed mb-4">
+                    프로그램 구매 후<br>
+                    <span class="text-white font-bold">사용 후기 + 캡처 사진 1장</span>만 보내주세요.
+                </p>
+
+                <div class="editor-fade text-center mt-16">
+                    <span class="text-2xl md:text-3xl font-bold text-gray-500 mb-6 block" id="editor-event-time"></span>
+                    <div class="flex items-baseline justify-center gap-2">
+                        <span id="editor-slots-remaining" class="text-5xl md:text-6xl font-black text-[#FEE500] editor-counter editor-pulse leading-none">--</span>
+                        <span class="text-gray-600 text-lg font-medium">/ 10명</span>
+                    </div>
+                    <p class="text-gray-600 text-xs mb-10">현재 남은 인원</p>
+
+                    <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener"
+                       class="inline-block px-12 py-4 rounded-xl font-bold bg-[#FEE500] text-black text-center hover:brightness-90 transition-all text-lg">
+                        지금 신청하기
+                    </a>
+                    <p class="text-gray-600 text-xs mt-4">마감되면 다시 열리지 않습니다.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 에디터 섹션 스크롤 애니메이션 -->
+    <script>
+    (function() {
+        var editorObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    editorObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.editor-fade').forEach(function(el) { editorObs.observe(el); });
+
+        // "하지만" slam 효과
+        var slamObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('editor-slam');
+                    slamObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.editor-slam-trigger').forEach(function(el) { slamObs.observe(el); });
+
+        // 줄별 순차 페이드인
+        var staggerEls = document.querySelectorAll('.editor-stagger');
+        if (staggerEls.length) {
+            var staggerObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var lines = entry.target.querySelectorAll('.editor-stagger');
+                        lines.forEach(function(line, i) {
+                            setTimeout(function() { line.classList.add('visible'); }, i * 400);
+                        });
+                        staggerObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            staggerEls[0].parentElement && staggerObs.observe(staggerEls[0].parentElement);
+        }
+    })();
+    </script>
+
+    <!-- ===== SECTION 7: SAFETY ===== -->
+    <section class="py-24 bg-gray-900 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-naver/5 rounded-full filter blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-14">
+                <div class="w-16 h-16 bg-naver/10 border-2 border-naver/30 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                    <span class="text-3xl">🛡️</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-3">"내 블로그는 소중하니까"<br>계정 안전 <span class="text-naver">최우선</span> 설계</h2>
+                <p class="text-gray-400">저희는 철저히 <strong class="text-gray-300">'알고리즘 친화적'</strong>으로 움직입니다.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-5 mb-10">
+                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
+                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">🧑‍💻</span></div>
+                    <h4 class="text-base font-bold text-white mb-2">인간 패턴 정밀 구현</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">실제 사람이 타이핑하고 스크롤하는 속도를 그대로 시뮬레이션합니다.</p>
+                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
+                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>타이핑 속도</span><span class="text-naver">사람과 동일</span></div>
+                        <div class="flex gap-1"><div class="h-4 w-2 bg-naver/60 rounded-sm"></div><div class="h-6 w-2 bg-naver/80 rounded-sm"></div><div class="h-3 w-2 bg-naver/40 rounded-sm"></div><div class="h-5 w-2 bg-naver/70 rounded-sm"></div><div class="h-2 w-2 bg-naver/30 rounded-sm"></div><div class="h-4 w-2 bg-naver/50 rounded-sm"></div><div class="h-6 w-2 bg-naver/80 rounded-sm"></div><div class="h-3 w-2 bg-naver/40 rounded-sm"></div></div>
+                        <p class="text-[9px] text-gray-600 mt-1.5">랜덤 간격으로 자연스러운 입력</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
+                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">🎲</span></div>
+                    <h4 class="text-base font-bold text-white mb-2">변동 확률 딜레이</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">매번 다른 랜덤 딜레이로 사람이 봐도 자연스러운 패턴을 유지합니다.</p>
+                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
+                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>작업 간 대기</span><span class="text-naver">매번 랜덤</span></div>
+                        <div class="flex items-end gap-2 h-8"><div class="flex-1 bg-naver/30 rounded-t h-[40%]"></div><div class="flex-1 bg-naver/50 rounded-t h-[80%]"></div><div class="flex-1 bg-naver/20 rounded-t h-[25%]"></div><div class="flex-1 bg-naver/60 rounded-t h-[65%]"></div><div class="flex-1 bg-naver/40 rounded-t h-[45%]"></div><div class="flex-1 bg-naver/70 rounded-t h-[90%]"></div><div class="flex-1 bg-naver/25 rounded-t h-[30%]"></div></div>
+                        <p class="text-[9px] text-gray-600 mt-1.5">3초~45초 불규칙 대기</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
+                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">✅</span></div>
+                    <h4 class="text-base font-bold text-white mb-2">클린 타겟팅</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">활동 유저만 골라 소통하므로 스팸 신고 확률을 최소화했습니다.</p>
+                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
+                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>계정 안전도</span><span class="text-naver font-bold">높음</span></div>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden"><div class="h-2.5 bg-naver rounded-full" style="width:95%"></div></div>
+                        <p class="text-[9px] text-gray-600 mt-1.5">안전하게 운영 중</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gradient-to-b from-yellow-500/10 to-yellow-600/5 border border-yellow-500/30 rounded-2xl p-8 md:p-10 text-center">
+                <div class="text-4xl mb-4">🛡️</div>
+                <h4 class="text-2xl md:text-3xl font-black text-yellow-400 mb-3">안심 환불 정책</h4>
+                <p class="text-base text-gray-300 leading-relaxed mb-6 max-w-lg mx-auto">프로그램 사용으로 인한 불이익 발생 시, 남은 기간에 대해 환불해 드립니다.<br>자세한 내용은 <a href="refund.html" target="_blank" class="text-yellow-300 underline font-bold">환불규정</a>을 확인해주세요.</p>
+                <div class="flex items-center justify-center gap-8">
+                    <div class="flex flex-col items-center"><span class="text-3xl font-black text-yellow-400">🛡️</span><span class="text-xs text-gray-500 mt-1">안심 보장</span></div>
+                    <div class="w-px h-12 bg-gray-700"></div>
+                    <div class="flex flex-col items-center"><span class="text-3xl font-black text-yellow-400">24h</span><span class="text-xs text-gray-500 mt-1">고객 지원</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 3.5: SOCIAL PROOF (삭제됨 — 에디터 섹션 내 실제 후기 이미지로 대체) ===== -->
+
+
+    <!-- ===== SECTION 9: PRICING ===== -->
+    <section id="pricing" class="py-24 bg-white px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="mb-14">
+                <span class="inline-block text-sm font-semibold text-naver bg-naver/10 border border-naver/20 px-4 py-1.5 rounded-full mb-5">가격 안내</span>
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3">하루 1달러에 누리는 <span class="text-naver">'3시간의 자유'</span></h2>
+                <p class="text-gray-500 font-medium">1개월 최소 116만원을 아껴드립니다. <span class="text-gray-400">(최저시급 기준)</span></p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5 items-stretch mb-10">
+                <!-- 무료 체험 (숨김 — visible:false로 런타임 숨김, 코드 보존) -->
+                <div data-plan-key="free" class="bg-gray-50 rounded-2xl p-7 border border-gray-200 flex flex-col" style="display:none;">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-black text-gray-900 mb-1">무료 체험</h3>
+                        <p class="text-xs text-gray-400 mb-5">1일 · 전 기능 제한 없이</p>
+                        <div class="text-4xl font-black text-gray-900 mb-1">0<span class="text-lg font-medium text-gray-400">원</span></div>
+                        <div class="h-px bg-gray-200 my-5"></div>
+                        <ul class="text-sm text-gray-600 space-y-2 text-left mb-6">
+                            <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 전 기능 제한 없이 체험</li>
+                            <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 100명 무료 체험</li>
+                        </ul>
+                    </div>
+                    <button onclick="scrollToForm('free')" class="w-full py-3.5 rounded-xl font-bold border-2 border-gray-300 text-gray-700 hover:border-naver hover:text-naver transition-colors">무료 체험 신청하기</button>
+                </div>
+
+                <!-- 초심자 에디터 -->
+                <div class="bg-white rounded-2xl p-7 border-2 border-yellow-400 flex flex-col">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-black text-gray-800 mb-1">초심자 에디터</h3>
+                        <p class="text-xs text-gray-400 mb-5">1개월 · 하루 약 1,967원</p>
+                        <div class="text-4xl font-black text-gray-800 mb-1">59,000<span class="text-lg font-medium text-gray-400">원</span></div>
+                        <div class="h-px bg-gray-200 my-5"></div>
+                        <ul class="text-sm text-gray-600 space-y-3 text-left mb-6">
+                            <li>
+                                <div class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> AI 이웃 관리 솔루션 + 1개월</div>
+                                <p class="text-[11px] text-gray-400 ml-5 mt-0.5">최대 3,100명</p>
+                            </li>
+                            <li class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> AI 블로그 에디터 + 1개월</li>
+                            <li class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> 2026년 04월 업데이트 완료</li>
+                            <li class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> 상세 가이드 영상 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-yellow-500 font-bold">✓</span> 설치 매뉴얼 제공</li>
+                        </ul>
+                    </div>
+                    <button onclick="scrollToForm('1month')" class="w-full py-3.5 rounded-xl font-bold bg-yellow-500 text-white hover:bg-yellow-600 transition-colors">지금 바로 시작하기</button>
+                </div>
+
+                <!-- 전문 에디터 (추천) -->
+                <div class="bg-white rounded-2xl p-7 border-2 border-naver shadow-xl flex flex-col relative">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-naver text-white px-5 py-1.5 rounded-full text-sm font-bold shadow-md">강력 추천</div>
+                    <div class="flex-1 mt-2">
+                        <h3 class="text-lg font-black text-gray-900 mb-1">전문 에디터</h3>
+                        <p class="text-xs text-naver font-medium mb-5">2개월 · 하루 약 1,483원 (초특가)</p>
+                        <div class="text-4xl font-black text-naver mb-1">89,000<span class="text-lg font-medium text-gray-400">원</span></div>
+                        <div class="h-px bg-naver/20 my-5"></div>
+                        <ul class="text-sm text-gray-600 space-y-3 text-left mb-6">
+                            <li>
+                                <div class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> AI 이웃 관리 솔루션 + 2개월</div>
+                                <p class="text-[11px] text-gray-400 ml-5 mt-0.5">최대 6,000명</p>
+                            </li>
+                            <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> AI 블로그 에디터 + 2개월</li>
+                            <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 2026년 04월 업데이트 완료</li>
+                            <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 상세 가이드 영상 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 설치 매뉴얼 제공</li>
+                        </ul>
+                    </div>
+                    <button onclick="scrollToForm('full')" class="w-full py-4 rounded-xl font-bold bg-naver text-white hover:bg-naverHover transition-colors shadow-lg shadow-green-200/50">인기 플랜 구매하기</button>
+                </div>
+
+                <!-- 프리미엄 에디터 -->
+                <div class="bg-white rounded-2xl p-7 border-2 border-gray-800 flex flex-col">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-black text-gray-900 mb-1">프리미엄 에디터</h3>
+                        <p class="text-xs text-gray-400 mb-5">한 번 구매, 평생 사용</p>
+                        <div class="text-4xl font-black text-gray-800 mb-1">740,000<span class="text-lg font-medium text-gray-400">원</span></div>
+                        <div class="h-px bg-gray-200 my-5"></div>
+                        <ul class="text-sm text-gray-600 space-y-3 text-left mb-6">
+                            <li>
+                                <div class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> AI 이웃 관리 솔루션 + 평생</div>
+                            </li>
+                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> AI 블로그 에디터 + 평생</li>
+                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 2026년 04월 업데이트 완료</li>
+                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 상세 가이드 영상 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 설치 매뉴얼 제공</li>
+                            <li class="flex items-center gap-2"><span class="text-gray-800 font-bold">✓</span> 모든 기능 완전 이용</li>
+                        </ul>
+                    </div>
+                    <button onclick="scrollToForm('lifetime')" class="w-full py-3.5 rounded-xl font-bold bg-gray-800 text-white hover:bg-gray-900 transition-colors">프리미엄 에디터 구매하기</button>
+                </div>
+            </div>
+
+            <!-- 주의사항 -->
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
+                <span class="flex items-center gap-1.5">💻 Windows 전용</span>
+                <span class="flex items-center gap-1.5">🔑 PC 1대당 인증 1개</span>
+                <span class="flex items-center gap-1.5">🌐 구글 API 키 + 크롬 필요</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 10: FAQ ===== -->
+    <section class="py-24 bg-white px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">자주 묻는 질문</h2>
+            <div class="space-y-4">
+                <details class="group rounded-xl border border-red-300 bg-red-50 open:border-red-400 open:bg-red-50 transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-red-800">
+                        ⚠️ 구매 전 반드시 확인해주세요
+                        <span class="text-red-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-700 leading-relaxed">
+                        <p class="mb-3">본 프로그램은 <span class="font-bold text-red-700">Windows 전용</span>입니다. Mac에서는 작동하지 않습니다.</p>
+                        <p class="mb-3">프로그램 특성상 <span class="font-bold text-red-700">인증 코드 발급 이후에는 환불이 불가</span>합니다.</p>
+                        <p class="mb-3">본 솔루션은 Gemini API를 활용하며, <span class="font-bold text-red-700">사용량에 따라 API 비용</span>이 발생할 수 있으며, 이미지 생성 사용 시 비용이 추가될 수 있습니다. 자세한 내용은 사용 가이드에서 안내드립니다.</p>
+                        <p>구매 전 반드시 환경 및 환불 규정을 확인해주세요. <a href="https://blog.pluscoach.co.kr/refund" target="_blank" rel="noopener" class="text-red-600 font-bold underline hover:text-red-800">환불 규정 확인 →</a></p>
+                    </div>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q1. 블로그에 불이익이 생기지 않을까요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        알고리즘이 권장하는 '정성 소통'의 로직을 AI가 그대로 따릅니다. 랜덤 딜레이와 행동 패턴 분석이 적용되어 사람처럼 자연스럽게 동작합니다.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q2. 기계치인데 세팅이 어렵진 않나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        가이드 영상과 설치 매뉴얼이 자세하게 준비되어 있어 초보자도 쉽게 따라할 수 있습니다. API 키와 크롬 브라우저는 최초 1회만 설정하면 되고, 그 이후부터는 클릭 한 번으로 간단하게 실행할 수 있습니다.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q3. 여러 개의 블로그 계정을 돌려도 되나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        프로그램 1개당 1개의 계정만 연동 가능합니다. 여러 계정을 운영하신다면 시간대를 나눠서 사용하시면 됩니다. 또한 인증 코드 1개당 1대의 PC에서만 사용 가능한 점 참고 부탁드립니다.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q4. 여러 대의 PC에서 쓸 수 있나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        인증 코드 1개당 1개의 PC에서만 사용 가능합니다. PC 변경이 필요하시면 채팅으로 문의해 주세요.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q5. 맥(Mac) 환경에서도 돌아가나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        현재 윈도우(Windows) 전용으로 개발되었습니다. 맥 유저분들은 부트캠프나 가상 윈도우 환경에서 이용 가능합니다.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-xl border border-gray-200 open:border-naver open:bg-white transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none">
+                        Q6. 환불 규정은 어떻게 되나요?
+                        <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        프로그램 특성상 인증 코드 발급 이후에는 환불이 어렵습니다. 단, 프로그램 상의 제재로 인한 경우에는 전액 환불해 드립니다.<br><br>프로그램 사용 전에 무료 체험을 희망하시는 분은 카카오톡 채널을 통해 연락을 주시면 1일 사용권을 제공드리도록 하겠습니다.<br><br>자세한 환불 규정 사항은 <a href="refund.html" target="_blank" class="text-naver underline font-semibold">여기</a>를 참고 부탁드리겠습니다.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 11: ORDER FORM ===== -->
+    <section id="purchase-form" class="py-24 bg-gray-900 text-white px-6">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12">
+            <div class="flex-1">
+                <h2 class="text-3xl font-bold mb-6">상위 1%의 <span class="text-naver">블로그 '솔루션'</span><br><span class="text-yellow-400 font-extrabold">1분</span><span class="text-white font-normal">이면 장착 완료!</span></h2>
+                <div class="space-y-6 text-gray-300">
+                    <p class="flex gap-3"><span class="text-naver font-bold">①</span> 플랜 선택: 폼에서 원하는 플랜을 선택합니다.</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">②</span> 정보 입력: 이름과 이메일을 정확히 기입합니다.</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">③</span> 결제 완료: 플랜에 맞는 결제를 진행합니다.</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">④</span> 즉시 발송: 이메일로 프로그램 설치 가이드 + 라이선스 코드가 자동 발송됩니다!</p>
+                </div>
+                <p class="mt-8 text-sm font-semibold text-white bg-red-600 p-4 rounded-lg text-center">※ 이메일이 도착하지 않으면 스팸 메일함을 확인하시거나, 카카오톡 채널로 문의해주세요!</p>
+            </div>
+
+            <div class="flex-1 bg-white text-gray-900 p-8 rounded-2xl shadow-2xl">
+                <form id="orderForm" onsubmit="submitForm(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">성함 (입금자명과 동일)</label>
+                        <input type="text" id="userName" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver" placeholder="홍길동">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">이메일 (프로그램 수령용)</label>
+                        <input type="email" id="userEmail" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver" placeholder="example@email.com">
+                    </div>
+                    <!-- 🆕 전화번호 필드 (무통장 입금 확인용, paymentMode === 'bank_transfer'일 때만 표시) -->
+                    <div id="phone-field" style="display:none;">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">전화번호 <span class="text-red-500">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" autocomplete="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-naver focus:ring-1 focus:ring-naver">
+                        <p class="mt-2 text-xs text-gray-500">입금 확인 시 사용합니다. 입금자명이 다를 경우 연락드릴 수 있어요.</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-3">플랜 선택</label>
+                        <div class="space-y-3" id="planRadios">
+                            <label data-plan-key="free" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                                <input type="radio" name="plan" value="free" class="w-4 h-4 text-naver focus:ring-naver">
+                                <span class="ml-3 font-medium plan-label"></span>
+                            </label>
+                            <label data-plan-key="1month" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                                <input type="radio" name="plan" value="1month" class="w-4 h-4 text-naver focus:ring-naver">
+                                <span class="ml-3 font-medium plan-label"></span>
+                            </label>
+                            <label data-plan-key="full" class="flex items-center p-3 border border-naver bg-green-50 rounded-lg cursor-pointer">
+                                <input type="radio" name="plan" value="full" checked class="w-4 h-4 text-naver focus:ring-naver">
+                                <span class="ml-3 font-bold text-naver plan-label"></span>
+                            </label>
+                            <label data-plan-key="lifetime" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                                <input type="radio" name="plan" value="lifetime" class="w-4 h-4 text-naver focus:ring-naver">
+                                <span class="ml-3 font-medium plan-label"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" id="submitBtn" class="w-full bg-naver text-white font-bold py-4 rounded-xl hover:bg-naverHover transition-colors shadow-lg text-lg">
+                        지금 바로 신청하고 시간 벌기
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-gray-950 text-gray-400 text-sm px-6 py-12" style="padding-bottom:100px">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-white font-bold text-base mb-4">블로그 AI 소통 솔루션</p>
+            <div class="space-y-1 mb-6" style="line-height:1.9">
+                <p>상호: 제이에스코퍼레이션 · 대표자: 오준석</p>
+                <p>사업자등록번호: 850-38-01085</p>
+                <p>통신판매업 신고번호: 제 2023-서울강동-1311호</p>
+                <p>주소: 서울특별시 관악구 남부순환로 1921-1, 401-A4호</p>
+                <p>이메일: <a href="mailto:jscorpor88@gmail.com" class="text-gray-300 hover:text-white transition-colors">jscorpor88@gmail.com</a></p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <a href="privacy.html" class="text-gray-400 hover:text-white transition-colors">개인정보처리방침</a>
+                <a href="terms.html" class="text-gray-400 hover:text-white transition-colors">이용약관</a>
+                <a href="refund.html" class="text-gray-400 hover:text-white transition-colors">환불규정</a>
+                <a href="https://open.kakao.com/me/pluscoach" target="_blank" class="text-naver hover:text-naverHover transition-colors">카카오톡 문의</a>
+            </div>
+            <p class="text-gray-600">&copy; 2026 제이에스코퍼레이션. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===== STICKY CTA ===== -->
+    <div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 transform translate-y-full transition-transform duration-300" id="stickyCTA">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <p class="hidden md:block font-medium text-gray-700">망설이는 시간에도 경쟁자는 이웃을 늘리고 있습니다.</p>
+            <button onclick="scrollToForm('full')" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
+                지금 바로 시작하기
+            </button>
+        </div>
+    </div>
+
+    <!-- 🆕 무통장 입금 안내 모달 (paymentMode === 'bank_transfer'에서 유료 플랜 제출 시 표시) -->
+    <div id="bank-transfer-modal" class="bank-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="bank-modal-title">
+        <div class="bank-modal-content">
+            <button type="button" id="bank-modal-close" class="bank-modal-close" aria-label="닫기">&#10005;</button>
+
+            <!-- Screen 1: 입금 안내 -->
+            <div class="bank-modal-screen bank-screen-input" data-screen="input">
+                <div class="bank-modal-header">
+                    <div class="bank-modal-badge">무통장 입금</div>
+                    <h2 id="bank-modal-title" class="bank-modal-title">입금 후 확인 요청을 눌러주세요</h2>
+                </div>
+
+                <div class="bank-modal-body">
+                    <!-- 주문 요약 -->
+                    <div class="bank-modal-summary">
+                        <div class="bank-summary-row">
+                            <span class="bank-summary-label">선택 플랜</span>
+                            <span class="bank-summary-value" id="bank-summary-plan">-</span>
+                        </div>
+                        <div class="bank-summary-row bank-summary-highlight">
+                            <span class="bank-summary-label">입금 금액</span>
+                            <span class="bank-summary-value bank-summary-amount" id="bank-summary-amount">-</span>
+                        </div>
+                    </div>
+
+                    <!-- 계좌 정보 -->
+                    <div class="bank-modal-account">
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">은행</span>
+                            <span class="bank-account-value" id="bank-account-bank">-</span>
+                        </div>
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">계좌번호</span>
+                            <span class="bank-account-value bank-account-number" id="bank-account-number">-</span>
+                        </div>
+                        <div class="bank-account-row">
+                            <span class="bank-account-label">예금주</span>
+                            <span class="bank-account-value" id="bank-account-holder">-</span>
+                        </div>
+                    </div>
+
+                    <!-- 입금자명 안내 -->
+                    <div class="bank-modal-notice">
+                        <p class="bank-notice-text">
+                            <strong>입금자명은 신청자 이름과 동일하게 입금해주세요.</strong>
+                        </p>
+                        <p class="bank-notice-sub">
+                            다른 이름으로 입금 시 <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>로 연락 주시면 바로 도와드릴게요.
+                        </p>
+                    </div>
+
+                    <!-- 주문번호 -->
+                    <div class="bank-modal-order">
+                        <span class="bank-order-label">주문번호</span>
+                        <span class="bank-order-value" id="bank-order-code">-</span>
+                    </div>
+                </div>
+
+                <div class="bank-modal-footer">
+                    <button type="button" id="bank-confirm-deposit" class="bank-btn-primary">
+                        입금 완료 후 눌러주세요
+                    </button>
+                    <div class="bank-footer-hint">
+                        <p class="bank-hint-text">버튼을 누르면 입금 확인 요청이 전송됩니다.</p>
+                        <p class="bank-hint-text">확인 후 이메일로 인증키를 발송해드려요.</p>
+                        <p class="bank-hint-hours">🕐 영업시간: 오전 10:00 ~ 오후 8:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 2: 입금 확인 접수 완료 화면 -->
+            <div class="bank-modal-screen bank-screen-success" data-screen="success" style="display:none;">
+                <div class="bank-success-header">
+                    <div class="bank-success-check">
+                        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="36" cy="36" r="34" fill="#E8F5E9" stroke="#03C75A" stroke-width="3"/>
+                            <path class="bank-check-path" d="M22 37 L32 47 L52 26" stroke="#03C75A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </div>
+                    <h2 class="bank-success-title">입금 확인 요청이<br>접수되었습니다</h2>
+                </div>
+
+                <div class="bank-success-body">
+                    <!-- 영업시간 안내 -->
+                    <div class="bank-success-info">
+                        <p class="bank-success-info-main">
+                            <span class="bank-success-info-icon">🕐</span>
+                            영업 시간 기준 <strong>1시간 내</strong>에 확인 후<br>
+                            인증키를 이메일로 보내드립니다.
+                        </p>
+                        <div class="bank-success-hours">
+                            <span class="bank-success-hours-label">영업시간</span>
+                            <span class="bank-success-hours-value">오전 10:00 ~ 오후 8:00</span>
+                        </div>
+                    </div>
+
+                    <!-- 카톡 CTA -->
+                    <div class="bank-success-kakao-wrap">
+                        <p class="bank-success-kakao-guide">💬 더 빠른 확인을 원하신다면?</p>
+                        <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer" class="bank-success-kakao-btn">
+                            <span class="bank-success-kakao-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.73 1.77 5.14 4.48 6.57-.19.68-.72 2.57-.82 2.97-.13.5.18.5.38.36.16-.11 2.56-1.74 3.6-2.44.78.11 1.57.17 2.36.17 5.52 0 10-3.48 10-7.8S17.52 3 12 3z" fill="#3C1E1E"/>
+                                </svg>
+                            </span>
+                            <span class="bank-success-kakao-text">카카오톡 채널로 문의하기</span>
+                            <span class="bank-success-kakao-arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- 스팸 안내 강조 -->
+                    <div class="bank-success-spam">
+                        <div class="bank-success-spam-icon">📮</div>
+                        <div class="bank-success-spam-text">
+                            <p class="bank-success-spam-title">이메일이 안 보이신다면?</p>
+                            <p class="bank-success-spam-desc"><strong>스팸함을 꼭 확인해주세요!</strong><br>각 플랫폼 메일은 간혹 스팸으로 분류될 수 있어요.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bank-success-footer">
+                    <button type="button" class="bank-success-close-btn" id="bank-success-close-btn">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAYMENT LOADING ===== -->
+    <div id="paymentLoading" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; padding:32px 40px; border-radius:16px; text-align:center;">
+            <p style="margin:0; font-size:15px; color:#333;">결제창을 여는 중입니다...</p>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/tracking.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/payment.js"></script>
+    <script src="assets/js/bank-transfer.js"></script>
+    <script src="assets/js/form.js"></script>
+
+    <!-- 에디터 이벤트 잔여 슬롯 표시 -->
+    <script>
+    (function() {
+        // 현재 시간 표시
+        var timeEl = document.getElementById('editor-event-time');
+        var slotsEl = document.getElementById('editor-slots-remaining');
+        if (!timeEl || !slotsEl) return;
+
+        function updateTime() {
+            var now = new Date();
+            var y = now.getFullYear();
+            var m = String(now.getMonth() + 1).padStart(2, '0');
+            var d = String(now.getDate()).padStart(2, '0');
+            var h = String(now.getHours()).padStart(2, '0');
+            var mi = String(now.getMinutes()).padStart(2, '0');
+            var s = String(now.getSeconds()).padStart(2, '0');
+            timeEl.textContent = y + '-' + m + '-' + d + ' ' + h + ':' + mi + ':' + s;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Supabase에서 잔여 슬롯 조회
+        function fetchSlots() {
+            try {
+                var cfg = window.APP_CONFIG && window.APP_CONFIG.supabase;
+                if (!cfg || !cfg.url || !cfg.anonKey) { slotsEl.textContent = '4'; return; }
+
+                fetch(cfg.url + '/rest/v1/rpc/get_editor_event_slots', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': cfg.anonKey,
+                        'Authorization': 'Bearer ' + cfg.anonKey
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    if (typeof data === 'number' && data >= 0) {
+                        slotsEl.textContent = data;
+                        if (data <= 5) { slotsEl.style.color = '#ef4444'; }
+                    } else {
+                        slotsEl.textContent = '4';
+                    }
+                })
+                .catch(function() { slotsEl.textContent = '4'; });
+            } catch(e) { slotsEl.textContent = '4'; }
+        }
+        fetchSlots();
+    })();
+    </script>
+
+    <!-- 카카오톡 플로팅 문의 버튼 (Phase 11) -->
+    <a href="https://open.kakao.com/me/pluscoach"
+       class="kakao-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="카카오톡으로 문의하기">
+      <span class="kakao-float-tooltip">💬 문의하기</span>
+      <span class="kakao-float-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.73 1.77 5.14 4.48 6.57-.19.68-.72 2.57-.82 2.97-.13.5.18.5.38.36.16-.11 2.56-1.74 3.6-2.44.78.11 1.57.17 2.36.17 5.52 0 10-3.48 10-7.8S17.52 3 12 3z" fill="#0A0A0A"/>
+        </svg>
+      </span>
+    </a>
+</body>
+</html>
