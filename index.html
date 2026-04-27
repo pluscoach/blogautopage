@@ -370,7 +370,7 @@
 
             <div class="hero-story-fade text-center mb-24 md:mb-32">
                 <p class="text-2xl md:text-3xl font-black text-gray-900">
-                    일반 AI 직원에게 맡기면<br><span class="text-naver">어떻게 될까요?</span>
+                    <span class="text-red-500">일반 AI 직원</span>에게 맡기면<br><span class="text-gray-900" style="background:linear-gradient(transparent 60%, rgba(239,68,68,0.25) 60%)">어떻게 될까요?</span>
                 </p>
             </div>
 
@@ -403,6 +403,12 @@
             <div class="text-center mb-6">
                 <p class="hero-story-fade text-2xl md:text-3xl font-black text-gray-900 mb-2">팀장급 AI는</p>
                 <p class="hero-story-fade text-2xl md:text-3xl font-black text-naver">이렇게 일합니다.</p>
+            </div>
+
+            <div class="hero-story-fade flex flex-col items-center gap-4 mb-8">
+                <span class="w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
+                <span class="w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
+                <span class="w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
             </div>
 
             <!-- 소개 영상 -->
@@ -981,7 +987,30 @@
                 </div>
             </div>
 
-            <!-- 블록 7: X2배 이벤트 삭제됨 (Phase 14: 고가 전략 전환) -->
+            <!-- 블록 7: 매달 10명 제한 -->
+            <div class="py-16 md:py-24 text-center">
+                <p class="editor-fade text-2xl md:text-3xl font-black text-white mb-6">
+                    매달 <span class="text-[#FEE500]">10명</span>만<br>고용할 수 있습니다.
+                </p>
+
+                <p class="editor-fade text-base md:text-lg text-gray-400 leading-relaxed mb-12">
+                    팀장급 AI는 한 명 한 명 꼼꼼하게 관리하기 때문에<br>
+                    동시에 관리할 수 있는 인원이 제한됩니다.
+                </p>
+
+                <div class="editor-fade text-center">
+                    <p class="text-sm text-gray-500 mb-3">현재 남은 자리</p>
+                    <div class="flex items-baseline justify-center gap-2">
+                        <span id="limit-slots-remaining" class="text-5xl md:text-6xl font-black text-[#FEE500] leading-none">--</span>
+                        <span class="text-gray-600 text-lg font-medium">/ 10명</span>
+                    </div>
+
+                    <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="inline-block mt-10 px-12 py-4 rounded-xl font-bold bg-[#FEE500] text-black text-center hover:brightness-90 transition-all text-lg">
+                        지금 고용하기
+                    </button>
+                    <p class="text-gray-600 text-xs mt-4">마감되면 다음 달까지 기다려야 합니다.</p>
+                </div>
+            </div>
 
         </div>
     </section>
@@ -1499,7 +1528,38 @@
     <script src="assets/js/bank-transfer.js"></script>
     <script src="assets/js/form.js"></script>
 
-    <!-- 에디터 이벤트 슬롯 스크립트 삭제됨 (Phase 14: X2배 이벤트 박스 제거) -->
+    <!-- 매달 10명 제한 슬롯 조회 -->
+    <script>
+    (function() {
+        var slotsEl = document.getElementById('limit-slots-remaining');
+        if (!slotsEl) return;
+
+        try {
+            var cfg = window.APP_CONFIG && window.APP_CONFIG.supabase;
+            if (!cfg || !cfg.url || !cfg.anonKey) { slotsEl.textContent = '4'; return; }
+
+            fetch(cfg.url + '/rest/v1/rpc/get_editor_event_slots', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': cfg.anonKey,
+                    'Authorization': 'Bearer ' + cfg.anonKey
+                },
+                body: JSON.stringify({})
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (typeof data === 'number' && data >= 0) {
+                    slotsEl.textContent = data;
+                    if (data <= 3) { slotsEl.style.color = '#ef4444'; }
+                } else {
+                    slotsEl.textContent = '4';
+                }
+            })
+            .catch(function() { slotsEl.textContent = '4'; });
+        } catch(e) { slotsEl.textContent = '4'; }
+    })();
+    </script>
 
     <!-- 카카오톡 플로팅 문의 버튼 (Phase 11) -->
     <a href="https://open.kakao.com/me/pluscoach"
