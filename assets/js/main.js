@@ -115,80 +115,43 @@ document.querySelectorAll('.grid[class*="grid-cols-2"][class*="md\\:grid-cols-4"
     statsObserver.observe(el);
 });
 
-// ===== PAIN SECTION ANIMATIONS =====
-const painObserver = new IntersectionObserver((entries) => {
+// ===== HERO STORY SCROLL REVEAL =====
+const storyObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
     });
 }, { threshold: 0.15 });
-document.querySelectorAll('.pain-card').forEach(el => painObserver.observe(el));
+document.querySelectorAll('.hero-story-fade').forEach(el => storyObserver.observe(el));
+document.querySelectorAll('.hero-label-fade').forEach(el => storyObserver.observe(el));
 
-// --- CARD 1: 메시지 버블 순차 등장 ---
-let card1Animated = false;
-const card1Observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !card1Animated) {
-            card1Animated = true;
-            const bubbles = document.querySelectorAll('#painMessages .msg-bubble');
-            bubbles.forEach((b, i) => {
-                setTimeout(() => b.classList.add('show'), i * 700);
-            });
-        }
-    });
-}, { threshold: 0.3 });
-const card1El = document.getElementById('painCard1');
-if (card1El) card1Observer.observe(card1El);
-
-// --- CARD 3: 번아웃 알림 등장 ---
-let card3Animated = false;
-const card3Observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !card3Animated) {
-            card3Animated = true;
-            setTimeout(() => {
-                document.getElementById('burnoutNotifs').style.opacity = '1';
-                const cursor = document.querySelector('#burnoutEditor > .write-cursor');
-                if (cursor) cursor.style.display = 'none';
-            }, 1500);
-        }
-    });
-}, { threshold: 0.3 });
-const card3El = document.getElementById('painCard3');
-if (card3El) card3Observer.observe(card3El);
-
-// ===== HERO TYPING ANIMATION =====
-const typingComments = [
-    '와, 제주도 동쪽 코스 중에 성산일출봉에서 광치기해변으로 이어지는 루트가 정말 인상적이네요! 저도 아이 둘 데리고 갔었는데, 혹시 식당은 어디로 가셨어요? 다음 여행 때 참고하고 싶습니다 😊',
-    '육아하면서 블로그까지 꾸준히 하시는 게 정말 대단해요. 이유식 레시피 정리가 깔끔해서 저장해뒀습니다! 혹시 냉동 보관 팁도 공유해주실 수 있을까요? 🙏',
-    '인테리어 비포/애프터 사진 보고 깜짝 놀랐어요. 특히 거실 조명 바꾸신 것만으로 분위기가 완전 달라졌네요! 조명 제품명 좀 알 수 있을까요? ✨',
+// ===== HERO COMMENT FADE ANIMATION =====
+const heroComments = [
+    '제주도 동쪽 코스 중에 성산일출봉에서 광치기해변 루트가 정말 인상적이네요! 혹시 식당은 어디로 가셨어요? 😊',
+    '이유식 레시피 정리가 깔끔해서 저장해뒀습니다! 냉동 보관 팁도 공유해주실 수 있을까요? 🙏',
+    '거실 조명 바꾸신 것만으로 분위기가 완전 달라졌네요! 조명 제품명 좀 알 수 있을까요? ✨',
 ];
-let commentIdx = 0;
-let charIdx = 0;
+let heroCommentIdx = 0;
 const typingEl = document.getElementById('typingText');
-const cursorEl = document.getElementById('typingCursor');
 const counterEl = document.getElementById('heroCounter');
+const cursorEl = document.getElementById('typingCursor');
 let heroCount = 0;
 
-function typeNextChar() {
-    const current = typingComments[commentIdx];
-    if (charIdx < current.length) {
-        typingEl.textContent += current[charIdx];
-        charIdx++;
-        setTimeout(typeNextChar, 30 + Math.random() * 40);
-    } else {
-        cursorEl.style.display = 'none';
-        heroCount = Math.min(heroCount + Math.floor(Math.random() * 5) + 3, 100);
-        counterEl.textContent = heroCount;
+if (typingEl && counterEl) {
+    if (cursorEl) cursorEl.style.display = 'none';
+    function showNextComment() {
+        typingEl.style.opacity = '0';
         setTimeout(() => {
-            charIdx = 0;
-            commentIdx = (commentIdx + 1) % typingComments.length;
-            typingEl.textContent = '';
-            cursorEl.style.display = 'inline';
-            setTimeout(typeNextChar, 500);
-        }, 2500);
+            typingEl.textContent = heroComments[heroCommentIdx];
+            typingEl.style.opacity = '1';
+            heroCount = Math.min(heroCount + Math.floor(Math.random() * 5) + 3, 100);
+            counterEl.textContent = heroCount;
+            heroCommentIdx = (heroCommentIdx + 1) % heroComments.length;
+        }, 300);
     }
+    typingEl.style.transition = 'opacity 0.3s ease';
+    setTimeout(showNextComment, 800);
+    setInterval(showNextComment, 4000);
 }
-setTimeout(typeNextChar, 1200);
 
 // ===== 트래킹: 사용자 상호작용 이벤트 =====
 (function initInteractionTracking() {

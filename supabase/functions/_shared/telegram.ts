@@ -115,7 +115,7 @@ export async function sendDepositNoticeWithButtons(params: {
   email: string;
   phone: string;
   plan: string;        // 'monthly' | 'full_package' | 'lifetime'
-  planLabel: string;   // '1개월 플랜' 등
+  planLabel: string;   // '1개월 고용' 등
   amount: number;
   orderCode: string;
   replyToMessageId?: number;   // 🆕 원본 정보 알림에 답장 연결용

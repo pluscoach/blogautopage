@@ -1,6 +1,6 @@
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 const RESEND_FROM_EMAIL = Deno.env.get("RESEND_FROM_EMAIL") || "noreply@blog.pluscoach.co.kr";
-const FROM_NAME_B64 = btoa(String.fromCharCode(...new TextEncoder().encode("블로그 자동화 솔루션")));
+const FROM_NAME_B64 = btoa(String.fromCharCode(...new TextEncoder().encode("블로그 관리 솔루션")));
 const FROM_HEADER = `=?UTF-8?B?${FROM_NAME_B64}?= <${RESEND_FROM_EMAIL}>`;
 
 const EMAIL_STYLE = `
@@ -31,24 +31,24 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
       <div class="email-card" style="max-width:560px; margin:0 auto; background:#fff; border-radius:20px; padding:36px 28px; border:1px solid #f0ede5; word-break:keep-all; overflow-wrap:break-word;">
 
         <div style="text-align:center; margin-bottom:24px;">
-          <span style="display:inline-block; background:#E8F5E9; color:#02b350; font-size:12px; font-weight:600; padding:6px 14px; border-radius:999px; word-break:keep-all; overflow-wrap:break-word;">네이버 블로그 서이추 자동화</span>
+          <span style="display:inline-block; background:#E8F5E9; color:#02b350; font-size:12px; font-weight:600; padding:6px 14px; border-radius:999px; word-break:keep-all; overflow-wrap:break-word;">블로그 AI 관리</span>
         </div>
 
         <h1 class="email-title" style="font-size:20px; font-weight:800; line-height:1.35; color:#0A0A0A; margin:0 0 20px 0; text-align:center; word-break:keep-all; overflow-wrap:break-word;">
-          ${order.name}님,<br>주문이 접수되었어요
+          ${order.name}님,<br>팀장급 AI 직원이 배정되었습니다
         </h1>
 
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 8px 0; word-break:keep-all; overflow-wrap:break-word;">
-          상위 1% 블로거들이 조용히 사용하는 <strong>비밀 무기</strong>를 신청해주셔서 감사합니다.
+          블로그 관리를 책임질 <strong>팀장급 AI</strong>를 신청해주셔서 감사합니다.
         </p>
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 32px 0; word-break:keep-all; overflow-wrap:break-word;">
-          ${order.name}님의 블로그 성장을 위한 무기가 되기 바랄게요.
+          ${order.name}님의 블로그 성장을 위해 최선을 다하겠습니다.
         </p>
 
         <div class="email-card-inner" style="background:#faf9f6; border-radius:16px; padding:24px; margin-bottom:20px;">
           <p class="email-section-title" style="margin:0 0 14px 0; font-size:11px; font-weight:600; color:#888; letter-spacing:1px; word-break:keep-all; overflow-wrap:break-word;">ORDER INFO</p>
           <table style="width:100%; font-size:13px; color:#555;">
-            <tr><td style="padding:4px 0; word-break:keep-all; overflow-wrap:break-word;">플랜</td><td style="text-align:right; font-weight:600; word-break:keep-all; overflow-wrap:break-word;">${planLabel}</td></tr>
+            <tr><td style="padding:4px 0; word-break:keep-all; overflow-wrap:break-word;">고용 기간</td><td style="text-align:right; font-weight:600; word-break:keep-all; overflow-wrap:break-word;">${planLabel}</td></tr>
             <tr><td style="padding:4px 0; word-break:keep-all; overflow-wrap:break-word;">주문 코드</td><td style="text-align:right; font-weight:600; word-break:keep-all; overflow-wrap:break-word;">${order.order_code}</td></tr>
           </table>
         </div>
@@ -79,7 +79,7 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
           </div>
           <p style="font-size:12px; color:#999; margin:0 0 12px 0; word-break:keep-all; overflow-wrap:break-word;">메일이 늦게 도착하거나 문제가 있다면 스팸함을 먼저 확인해주세요</p>
           <p class="email-body" style="font-size:13px; color:#555; margin:0 0 8px 0; word-break:keep-all; overflow-wrap:break-word;">다시 한 번 신청해주셔서 감사합니다. 좋은 하루 보내세요!</p>
-          <p style="font-size:11px; color:#bbb; font-style:italic; margin:0; word-break:keep-all; overflow-wrap:break-word;">블로그 자동화 솔루션 운영팀 드림</p>
+          <p style="font-size:11px; color:#bbb; font-style:italic; margin:0; word-break:keep-all; overflow-wrap:break-word;">블로그 관리 솔루션 드림</p>
         </div>
 
       </div>
@@ -95,7 +95,7 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
     body: JSON.stringify({
       from: FROM_HEADER,
       to: [order.email as string],
-      subject: "[블로그 자동화 솔루션] 주문이 접수되었어요",
+      subject: "[블로그 관리 솔루션] 팀장급 AI 직원이 배정되었습니다",
       html,
     }),
   });
@@ -128,27 +128,27 @@ export async function sendLicenseKeyEmail({
   isPaid?: boolean;
 }): Promise<void> {
   const isLifetime = plan === "lifetime";
-  const planDuration = isLifetime ? "평생 소유권" : plan === "monthly" ? "1개월" : plan === "full_package" ? "풀 패키지 (2개월)" : "24시간";
+  const planDuration = isLifetime ? "정규직 (평생)" : plan === "monthly" ? "1개월 고용" : plan === "full_package" ? "2개월 고용" : "24시간";
   const emailSubject = isLifetime
-    ? "[블로그 자동화 솔루션] 평생 소유권 인증키가 발급되었어요 🎉"
+    ? "[블로그 관리 솔루션] 정규직 채용 인증키가 발급되었어요 🎉"
     : isPaid
-      ? "[블로그 자동화 솔루션] 정식판 인증키가 발급되었어요 🎉"
-      : "[블로그 자동화 솔루션] 인증키가 발급되었어요 🎉";
+      ? "[블로그 관리 솔루션] 인증키가 발급되었어요 🎉"
+      : "[블로그 관리 솔루션] 인증키가 발급되었어요 🎉";
   const html = `
     ${EMAIL_STYLE}
     <div class="email-wrapper" style="background:#faf9f6; padding:32px 16px; font-family:'Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif; word-break:keep-all; overflow-wrap:break-word;">
       <div class="email-card" style="max-width:560px; margin:0 auto; background:#fff; border-radius:20px; padding:36px 28px; border:1px solid #f0ede5; word-break:keep-all; overflow-wrap:break-word;">
 
         <div style="text-align:center; margin-bottom:24px;">
-          <span style="display:inline-block; background:#E8F5E9; color:#02b350; font-size:12px; font-weight:600; padding:6px 14px; border-radius:999px; word-break:keep-all; overflow-wrap:break-word;">네이버 블로그 서이추 자동화</span>
+          <span style="display:inline-block; background:#E8F5E9; color:#02b350; font-size:12px; font-weight:600; padding:6px 14px; border-radius:999px; word-break:keep-all; overflow-wrap:break-word;">블로그 AI 관리</span>
         </div>
 
         <h1 class="email-title" style="font-size:20px; font-weight:800; line-height:1.35; color:#0A0A0A; margin:0 0 20px 0; text-align:center; word-break:keep-all; overflow-wrap:break-word;">
-          ${name}님,<br>환영합니다 🎉
+          ${name}님,<br>팀장급 AI가 준비되었습니다 🎉
         </h1>
 
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 8px 0; word-break:keep-all; overflow-wrap:break-word;">
-          상위 1% 블로거들이 조용히 사용하는 <strong>비밀 무기</strong>를 손에 넣으셨습니다.
+          블로그 관리를 책임질 <strong>팀장급 AI</strong>가 준비되었습니다.
         </p>
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 32px 0; word-break:keep-all; overflow-wrap:break-word;">
           아래 사용법을 끝까지 읽어보시고, 궁금한 점은 언제든 편하게 문의해주세요.
@@ -168,7 +168,7 @@ export async function sendLicenseKeyEmail({
             <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">⏰ 이용 기간 안내</p>
             <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
               ${isLifetime
-                ? `<strong>평생 소유권</strong>으로 기간 제한 없이 사용 가능합니다. 되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`
+                ? `<strong>정규직 채용</strong>으로 기간 제한 없이 사용 가능합니다. 되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`
                 : `인증키가 <strong>발급된 시점부터 ${planDuration}</strong> 동안 사용 가능합니다.
               프로그램을 언제 처음 실행하든 관계없이, 이 메일을 받으신 지금부터 타이머가 돌아갑니다.
               되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`}
@@ -178,7 +178,7 @@ export async function sendLicenseKeyEmail({
             <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">인증키 발급 후에는 환불이 어렵습니다</p>
             <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
               ${isLifetime
-                ? `평생 소유권은 고액 디지털 상품으로, 인증키 발급 후 환불 조건이 엄격합니다. <a href="https://blog.pluscoach.co.kr/refund.html" style="color:#03C75A; text-decoration:underline;">환불 규정 페이지</a>를 반드시 확인해주세요.`
+                ? `정규직 채용은 고액 디지털 상품으로, 인증키 발급 후 환불 조건이 엄격합니다. <a href="https://blog.pluscoach.co.kr/refund.html" style="color:#03C75A; text-decoration:underline;">환불 규정 페이지</a>를 반드시 확인해주세요.`
                 : `디지털 상품의 특성상, 인증키가 한 번 발급되면 환불 처리가 불가능합니다.
               이 점 양해 부탁드리며, 혹시 궁금한 점이 있으시다면
               <strong>반드시 발급 전에</strong> 카카오톡 채널로 먼저 문의해주세요.`}
@@ -220,16 +220,16 @@ export async function sendLicenseKeyEmail({
         ${isLifetime ? `
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
           <div class="email-card-inner" style="background:#f0fdf4; border-radius:16px; padding:24px; text-align:center;">
-            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">구매하신 플랜</p>
-            <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">평생 소유권</p>
-            <p style="margin:0 0 4px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">한 번 구매, 평생 사용</p>
+            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">고용 기간</p>
+            <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">정규직 채용</p>
+            <p style="margin:0 0 4px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">한 번 채용, 평생 고용</p>
             <p style="margin:0; font-size:12px; color:#888; word-break:keep-all; overflow-wrap:break-word;">결제가 정상 완료되었습니다</p>
           </div>
         </div>
         ` : isPaid ? `
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
           <div class="email-card-inner" style="background:#f0fdf4; border-radius:16px; padding:24px; text-align:center;">
-            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">구매하신 플랜</p>
+            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">고용 기간</p>
             <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">${planDuration}</p>
             <p style="margin:0; font-size:12px; color:#888; word-break:keep-all; overflow-wrap:break-word;">결제가 정상 완료되었습니다</p>
           </div>
@@ -242,7 +242,7 @@ export async function sendLicenseKeyEmail({
           <!--[if mso]><table role="presentation" width="100%"><tr><td width="50%" valign="top"><![endif]-->
           <div style="display:inline-block; width:48%; vertical-align:top; margin-right:2%;">
             <div class="email-card-inner" style="background:#faf9f6; border-radius:14px; padding:18px 16px; text-align:center;">
-              <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">1개월 이용권</p>
+              <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">1개월 고용</p>
               <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#0A0A0A;">+ 7일</p>
               <p style="margin:0; font-size:12px; color:#888; word-break:keep-all; overflow-wrap:break-word;">추가 사용</p>
             </div>
@@ -251,7 +251,7 @@ export async function sendLicenseKeyEmail({
           <div style="display:inline-block; width:48%; vertical-align:top;">
             <div class="email-card-inner" style="background:linear-gradient(135deg,#E8F5E9,#faf9f6); border:2px solid #03C75A; border-radius:14px; padding:18px 16px; text-align:center; position:relative;">
               <div style="position:absolute; top:-9px; left:50%; transform:translateX(-50%); background:#03C75A; color:#fff; font-size:10px; font-weight:700; padding:2px 10px; border-radius:999px;">추천</div>
-              <p style="margin:0 0 6px 0; font-size:13px; font-weight:600; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">풀 패키지</p>
+              <p style="margin:0 0 6px 0; font-size:13px; font-weight:600; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">2개월 고용</p>
               <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350;">+ 14일</p>
               <p style="margin:0; font-size:12px; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">추가 사용</p>
             </div>
@@ -267,7 +267,7 @@ export async function sendLicenseKeyEmail({
             <a href="https://open.kakao.com/me/pluscoach" style="display:inline-block; font-size:13px; color:#0A0A0A; text-decoration:none; padding:10px 20px; border:1px solid #e5e5e5; border-radius:999px; font-weight:600; word-break:keep-all; overflow-wrap:break-word;">💬 카카오톡 오픈채팅</a>
           </div>
           <p style="font-size:12px; color:#999; margin:0 0 12px 0; word-break:keep-all; overflow-wrap:break-word;">메일이 늦게 도착하거나 문제가 있다면 스팸함을 먼저 확인해주세요</p>
-          <p style="font-size:11px; color:#bbb; font-style:italic; margin:0; word-break:keep-all; overflow-wrap:break-word;">블로그 자동화 솔루션 운영팀 드림</p>
+          <p style="font-size:11px; color:#bbb; font-style:italic; margin:0; word-break:keep-all; overflow-wrap:break-word;">블로그 관리 솔루션 드림</p>
         </div>
 
       </div>
@@ -317,7 +317,7 @@ function escapeHtml(str: string): string {
 export async function sendReminderEmail(params: {
   to: string;
   name: string;
-  planLabel: string;   // '1개월 플랜' 등
+  planLabel: string;   // '1개월 고용' 등
   amount: number;
   bankInfo: {
     bank: string;
@@ -410,7 +410,7 @@ export async function sendReminderEmail(params: {
       body: JSON.stringify({
         from: FROM_HEADER,
         to: params.to,
-        subject: `[블로그 자동화 솔루션] 입금 확인이 아직 안 되었어요 😊`,
+        subject: `[블로그 관리 솔루션] 입금 확인이 아직 안 되었어요 😊`,
         html,
       }),
     });
@@ -603,7 +603,7 @@ export async function sendEmergencyAlertEmail(params: {
 <tr><td style="padding:16px 32px 20px 32px;background:#faf9f6;border-top:1px solid #e5e7eb;">
   <p style="margin:0;font-size:11px;color:#9ca3af;line-height:1.6;word-break:keep-all;">
     이 메일은 자동 발송되는 긴급 알림입니다.<br>
-    블로그 자동화 솔루션 · 제이에스코퍼레이션
+    블로그 관리 솔루션 · 제이에스코퍼레이션
   </p>
 </td></tr>
 
@@ -642,9 +642,9 @@ export async function sendEmergencyAlertEmail(params: {
 function getPlanLabel(plan: string, amount: number): string {
   const labels: Record<string, string> = {
     free_trial: "무료 체험 (24시간)",
-    monthly: `월간 플랜 (${amount.toLocaleString()}원)`,
-    full_package: `풀 패키지 (${amount.toLocaleString()}원)`,
-    lifetime: `평생 소유권 (${amount.toLocaleString()}원)`,
+    monthly: `1개월 고용 (${amount.toLocaleString()}원)`,
+    full_package: `2개월 고용 (${amount.toLocaleString()}원)`,
+    lifetime: `정규직 채용 (${amount.toLocaleString()}원)`,
   };
   return labels[plan] || plan;
 }

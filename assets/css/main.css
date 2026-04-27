@@ -25,34 +25,13 @@ details > summary::-webkit-details-marker { display: none; }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 .float-anim { animation: float 3s ease-in-out infinite; }
 
-/* ===== PAIN SECTION ===== */
-.pain-card { opacity:0; transform:translateY(40px); transition: opacity .7s ease, transform .7s ease; }
-.pain-card.visible { opacity:1; transform:translateY(0); }
-.msg-bubble { opacity:0; transform:translateY(10px); transition: opacity .4s ease, transform .4s ease; }
-.msg-bubble.show { opacity:1; transform:translateY(0); }
-@keyframes readCheck { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
-.read-check { animation: readCheck .3s ease both; }
-.visitor-bar { transition: height .6s ease, background .3s ease; }
-@keyframes cursorBlink2 { 0%,100%{opacity:1} 50%{opacity:0} }
-.write-cursor { animation: cursorBlink2 1s step-end infinite; }
-@keyframes notifShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-3px)} 75%{transform:translateX(3px)} }
-.notif-shake { animation: notifShake .4s ease; }
+/* ===== HERO STORY SCROLL REVEAL ===== */
+.hero-story-fade { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.hero-story-fade.visible { opacity: 1; transform: translateY(0); }
 
-/* ===== BEFORE/AFTER COMPARISON ===== */
-@keyframes manualType { 0%{width:0} 40%{width:75%} 42%{width:75%} 50%{width:30%} 60%{width:60%} 70%{width:85%} 72%{width:85%} 80%{width:40%} 100%{width:90%} }
-.manual-type { animation: manualType 4s ease-in-out infinite; }
-@keyframes manualNod { 0%,100%{transform:translateY(0) rotate(0deg)} 30%{transform:translateY(2px) rotate(-3deg)} 60%{transform:translateY(1px) rotate(2deg)} }
-@keyframes autoScroll { 0%{transform:translateY(0)} 100%{transform:translateY(-50%)} }
-.auto-scroll { animation: autoScroll 8s linear infinite; }
-@keyframes checkPop { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
-
-/* ===== TIMELINE ANIMATIONS ===== */
-@keyframes typing { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
-.anim-typing { animation: typing .4s ease-in-out infinite; }
-@keyframes slump { 0%,100%{transform:rotate(0)} 50%{transform:rotate(8deg) translateY(2px)} }
-.anim-slump { animation: slump 2s ease-in-out infinite; }
-@keyframes sigh { 0%,100%{transform:scale(1)} 50%{transform:scale(0.95)} }
-.anim-sigh { animation: sigh 2.5s ease-in-out infinite; }
+/* ===== HERO LABEL — 느린 등장 + 배경 어둡게 ===== */
+.hero-label-fade { opacity: 0; transform: translateY(20px); transition: opacity 1.2s ease, transform 1.2s ease, background 1.2s ease; }
+.hero-label-fade.visible { opacity: 1; transform: translateY(0); background: rgba(0,0,0,0.45) !important; }
 
 /* ===== CTA TRIAL HOVER ===== */
 .cta-trial:hover { background:#FACC15 !important; border-color:#FACC15 !important; }

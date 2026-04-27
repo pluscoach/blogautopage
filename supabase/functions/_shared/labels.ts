@@ -4,10 +4,10 @@
 
 export function getPlanLabel(plan: string): string {
   const labels: Record<string, string> = {
-    monthly: "1개월 플랜",
-    full_package: "풀 패키지",
+    monthly: "1개월 고용",
+    full_package: "2개월 고용",
     free_trial: "무료 체험",
-    lifetime: "평생 소유권",
+    lifetime: "정규직 채용",
   };
   return labels[plan] || plan;
 }
