@@ -126,7 +126,7 @@ document.querySelectorAll('.hero-label-fade').forEach(el => storyObserver.observ
 
 // ===== HERO COMMENT FADE ANIMATION =====
 const heroComments = [
-    '제주도 동쪽 코스 중에 성산일출봉에서 광치기해변 루트가 정말 인상적이네요! 혹시 식당은 어디로 가셨어요? 😊',
+    '제주도 동쪽 코스 중에 성산일출봉에서 광치기해변 루트가 정말 인상적이네요! 😊',
     '이유식 레시피 정리가 깔끔해서 저장해뒀습니다! 냉동 보관 팁도 공유해주실 수 있을까요? 🙏',
     '거실 조명 바꾸신 것만으로 분위기가 완전 달라졌네요! 조명 제품명 좀 알 수 있을까요? ✨',
 ];
