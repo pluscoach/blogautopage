@@ -222,68 +222,93 @@
                 <p class="hero-story-fade text-4xl md:text-5xl font-black text-naver">1위 이웃 관리</p>
             </div>
 
-            <!-- 작업 단계 (사람이 하면) -->
-            <div class="hero-story-fade mb-6">
-                <p class="text-center text-sm font-bold text-gray-400 mb-6">작업 단계</p>
-                <div class="max-w-md mx-auto space-y-3">
-                    <div class="bg-gray-50 rounded-xl px-5 py-3.5 border border-gray-100 text-center">
-                        <span class="text-naver font-bold">1.</span>
-                        <span class="text-base text-gray-900 ml-2">이웃 찾기</span>
-                    </div>
-                    <div class="bg-gray-50 rounded-xl px-5 py-3.5 border border-gray-100 text-center">
-                        <span class="text-naver font-bold">2.</span>
-                        <span class="text-base text-gray-900 ml-2">주제와 맞는지 확인하기</span>
-                    </div>
-                    <div class="bg-gray-50 rounded-xl px-5 py-3.5 border border-gray-100 text-center">
-                        <span class="text-naver font-bold">3.</span>
-                        <span class="text-base text-gray-900 ml-2">신청서 보내기</span>
-                    </div>
-                    <div class="bg-gray-50 rounded-xl px-5 py-3.5 border border-gray-100 text-center">
-                        <span class="text-naver font-bold">4.</span>
-                        <span class="text-base text-gray-900 ml-2">최신 글에 댓글 달기</span>
-                    </div>
+            <!-- STEP 1~4 카드 -->
+            <div class="hero-story-fade max-w-3xl mx-auto mb-12 bg-green-50 rounded-3xl p-6 md:p-10">
+                <div class="text-center mb-8">
+                    <p class="text-base md:text-lg text-gray-500">손으로 직접 하던 복잡한 과정들, 이제부터 AI에게 맡기세요.</p>
                 </div>
-            </div>
-
-            <div class="hero-story-fade text-center mb-24 md:mb-32">
-                <p class="text-base md:text-lg text-gray-900">일반인 기준</p>
-                <p class="text-base md:text-lg text-gray-900 mt-1">하루 100명 신청 시</p>
-                <p class="text-3xl md:text-4xl font-black text-red-500 mt-2">3~4시간</p>
-            </div>
-
-
-            <!-- 전환 카피 -->
-            <div class="hero-story-fade text-center mb-8">
-                <p class="text-2xl md:text-3xl font-black text-gray-900 mb-1">가장 <span class="text-red-500">귀찮지만,</span> 가장 <span class="text-naver">중요한 일</span></p>
-            </div>
-
-            <div class="hero-story-fade text-center mb-24 md:mb-32">
-                <p class="text-xl md:text-2xl text-gray-900 leading-relaxed">
-                    일 잘하는 AI에게 맡기고<br>
-                    <span class="font-bold">다른 일에 집중하세요</span>
-                </p>
-            </div>
-
-            <!-- 영상 유도 카피 -->
-            <div class="text-center mb-6">
-                <p class="hero-story-fade text-3xl md:text-4xl font-black text-gray-900 mb-2"><span style="background:linear-gradient(transparent 60%, rgba(3,199,90,0.25) 60%)">30초만</span></p>
-                <p class="hero-story-fade text-2xl md:text-3xl font-black text-gray-900">확인해보세요.</p>
-            </div>
-
-            <div class="hero-story-fade text-center mb-8">
-                <p class="text-base md:text-lg font-bold text-naver">아래 영상을 클릭하세요 ▼</p>
-            </div>
-
-            <!-- 소개 영상 (썸네일 클릭 → 인라인 재생) -->
-            <div id="demoVideo" class="hero-story-fade max-w-xl mx-auto mb-12">
-                <div class="relative w-full rounded-2xl overflow-hidden shadow-lg cursor-pointer group" style="padding-bottom:56.25%" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/IENTaELnuw0?autoplay=1\' class=\'absolute inset-0 w-full h-full\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen></iframe>';this.style.cursor='default'">
-                    <img src="https://img.youtube.com/vi/IENTaELnuw0/maxresdefault.jpg" alt="팀장님 핵심 업무 영상" class="absolute inset-0 w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-all"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <div class="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                            <span class="text-white text-2xl md:text-3xl ml-1">▶</span>
+                <div class="grid grid-cols-2 gap-4 md:gap-5">
+                    <!-- STEP 1 -->
+                    <div class="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm">
+                        <p class="text-naver text-xs font-bold mb-2">STEP 1</p>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xl">🔍</span>
+                            <h4 class="text-base md:text-lg font-black text-gray-900">타겟 분석</h4>
                         </div>
-                        <p class="text-white font-black text-2xl md:text-3xl mt-4 drop-shadow-lg">영상으로 보는 핵심 업무</p>
+                        <p class="text-xs text-gray-400 mb-4">진짜 소통이웃만 AI가 자동 선별</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-naver rounded-full"></span>
+                                    <span class="text-xs text-gray-700">뷰티블로거_뿌니</span>
+                                </div>
+                                <span class="text-xs text-naver font-bold">채택 ✓</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                                    <span class="text-xs text-gray-400">광고_제휴8.3K</span>
+                                </div>
+                                <span class="text-xs text-red-400 font-bold">제외 ✗</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm">
+                        <p class="text-naver text-xs font-bold mb-2">STEP 2</p>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xl">✉️</span>
+                            <h4 class="text-base md:text-lg font-black text-gray-900">이웃 신청</h4>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4">수락률 높은 계정에만 선별 발송</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
+                                <span class="text-xs text-gray-700">밤티라미슈_뿌니</span>
+                                <span class="text-xs bg-naver text-white px-2 py-0.5 rounded-full font-bold">발송 완료 ✓</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
+                                <span class="text-xs text-gray-700">제주여행러_허니</span>
+                                <span class="text-xs bg-naver text-white px-2 py-0.5 rounded-full font-bold">발송 완료 ✓</span>
+                            </div>
+                            <p class="text-[11px] text-naver text-right font-medium">외 48명 발송 중..</p>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm">
+                        <p class="text-naver text-xs font-bold mb-2">STEP 3</p>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xl">💬</span>
+                            <h4 class="text-base md:text-lg font-black text-gray-900">정성 댓글</h4>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4">포스팅 읽고 맥락 맞는 댓글</p>
+                        <div class="bg-gray-50 rounded-lg px-3 py-3">
+                            <div class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-naver rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-white text-[8px] font-bold">AI</span></span>
+                                <p class="text-xs text-gray-600 leading-relaxed">와 저도 제주도 동쪽 코스로 갔었는데 성산일출봉 올라가는 길이 진짜 예뻤더라고요! 혹시 어디서 드셨어요?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4 -->
+                    <div class="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm">
+                        <p class="text-naver text-xs font-bold mb-2">STEP 4</p>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xl">🛡️</span>
+                            <h4 class="text-base md:text-lg font-black text-gray-900">이웃 관리</h4>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4">스팸·무반응 자동 정리</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
+                                <span class="text-xs text-gray-700">광고계정</span>
+                                <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded-full font-bold">블랙리스트</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
+                                <span class="text-xs text-gray-700">무반응유저</span>
+                                <span class="text-xs bg-gray-400 text-white px-2 py-0.5 rounded-full font-bold">자동 취소</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -331,22 +356,9 @@
                 </div>
             </div>
 
-            <div class="hero-story-fade text-center mb-8">
-                <p class="text-lg md:text-xl text-gray-900 leading-relaxed">
-                    <span class="font-bold">버튼 한 번</span>이면 알아서 출근하고<br>
-                    100명을 정성스럽게 추가하고<br>
-                    <span class="font-bold">조용히 퇴근합니다.</span>
-                </p>
-            </div>
 
-            <div class="hero-story-fade text-center mb-12">
-                <p class="text-3xl md:text-4xl font-black text-gray-900">
-                    이게 진짜 <span class="text-naver">일 잘하는 AI</span>입니다.
-                </p>
-            </div>
-
-            <!-- 6단계 더보기 -->
-            <details class="mb-24 md:mb-32 group" id="howDetails">
+            <!-- 6단계 더보기 (보류 — 나중에 복원 가능) -->
+            <details class="mb-12 group" id="howDetails" style="display:none">
                 <summary class="cursor-pointer outline-none list-none">
                     <div class="bg-white rounded-2xl p-5 max-w-md mx-auto border-2 border-naver/20 shadow-md hover:shadow-lg transition-all">
                         <div class="flex items-center gap-4">
@@ -384,6 +396,20 @@
                     </div>
                 </div>
             </details>
+
+            <div class="hero-story-fade text-center mb-8">
+                <p class="text-lg md:text-xl text-gray-900 leading-relaxed">
+                    <span class="font-bold">버튼 한 번</span>이면 알아서 출근하고<br>
+                    100명을 정성스럽게 추가하고<br>
+                    <span class="font-bold">조용히 퇴근합니다.</span>
+                </p>
+            </div>
+
+            <div class="hero-story-fade text-center mb-12">
+                <p class="text-3xl md:text-4xl font-black text-gray-900">
+                    이게 진짜 <span class="text-naver">일 잘하는 AI</span>입니다.
+                </p>
+            </div>
 
         </div>
     </section>
@@ -533,7 +559,7 @@
             <div class="py-10 md:py-16">
                 <div class="space-y-16">
                     <!-- 01 + 02 합침 -->
-                    <div class="editor-fade grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 max-w-2xl mx-auto">
+                    <div class="editor-fade grid grid-cols-1 gap-8 max-w-2xl mx-auto">
                         <!-- 01 -->
                         <div class="text-center">
                             <p class="text-naver text-sm font-bold tracking-widest mb-3">01</p>
