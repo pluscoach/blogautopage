@@ -23,8 +23,8 @@ var PLAN_CONFIG = {
         visible: true,
     },
     full: {
-        amount: 129000,
-        label: '2개월 고용 (129,000원)',
+        amount: 119000,
+        label: '2개월 고용 (119,000원)',
         name: '2개월 고용',
         planCode: 'full_package',
         visible: true,
