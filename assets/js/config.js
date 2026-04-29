@@ -16,8 +16,8 @@ var PLAN_CONFIG = {
         visible: false,
     },
     '1month': {
-        amount: 79000,
-        label: '1개월 고용 (79,000원)',
+        amount: 73000,
+        label: '1개월 고용 (73,000원)',
         name: '1개월 고용',
         planCode: 'monthly',
         visible: true,
