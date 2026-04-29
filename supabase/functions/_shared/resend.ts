@@ -35,11 +35,11 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
         </div>
 
         <h1 class="email-title" style="font-size:20px; font-weight:800; line-height:1.35; color:#0A0A0A; margin:0 0 20px 0; text-align:center; word-break:keep-all; overflow-wrap:break-word;">
-          ${order.name}님,<br>팀장급 AI 직원이 배정되었습니다
+          ${order.name}님,<br>블로그 담당 AI 직원이 배정되었습니다
         </h1>
 
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 8px 0; word-break:keep-all; overflow-wrap:break-word;">
-          블로그 관리를 책임질 <strong>팀장급 AI</strong>를 신청해주셔서 감사합니다.
+          블로그 관리를 책임질 <strong>블로그 담당 AI 직원</strong>을 신청해주셔서 감사합니다.
         </p>
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 32px 0; word-break:keep-all; overflow-wrap:break-word;">
           ${order.name}님의 블로그 성장을 위해 최선을 다하겠습니다.
@@ -95,7 +95,7 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
     body: JSON.stringify({
       from: FROM_HEADER,
       to: [order.email as string],
-      subject: "[블로그 관리 솔루션] 팀장급 AI 직원이 배정되었습니다",
+      subject: "[블로그 관리 솔루션] 블로그 담당 AI 직원이 배정되었습니다",
       html,
     }),
   });
@@ -144,11 +144,11 @@ export async function sendLicenseKeyEmail({
         </div>
 
         <h1 class="email-title" style="font-size:20px; font-weight:800; line-height:1.35; color:#0A0A0A; margin:0 0 20px 0; text-align:center; word-break:keep-all; overflow-wrap:break-word;">
-          ${name}님,<br>팀장급 AI가 준비되었습니다 🎉
+          ${name}님,<br>블로그 담당 AI 직원이 준비되었습니다 🎉
         </h1>
 
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 8px 0; word-break:keep-all; overflow-wrap:break-word;">
-          블로그 관리를 책임질 <strong>팀장급 AI</strong>가 준비되었습니다.
+          블로그 관리를 책임질 <strong>블로그 담당 AI 직원</strong>이 준비되었습니다.
         </p>
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 32px 0; word-break:keep-all; overflow-wrap:break-word;">
           아래 사용법을 끝까지 읽어보시고, 궁금한 점은 언제든 편하게 문의해주세요.
