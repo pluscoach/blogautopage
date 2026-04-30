@@ -103,16 +103,19 @@
                     </div>
 
                     <!-- 실제 사용 전후 비교 -->
-                    <div class="hero-story-fade max-w-xl mx-auto mb-12">
+                    <div class="hero-story-fade max-w-xl mx-auto mt-16 mb-12">
+                        <div class="text-center mb-4">
+                            <p class="text-2xl md:text-3xl font-black text-gray-900 mb-1">일주일 후</p>
+                            <p class="text-4xl md:text-6xl font-black text-red-500">35<span class="text-2xl md:text-4xl">배</span> <span class="text-2xl md:text-4xl font-black text-gray-900">증가!</span></p>
+                        </div>
                         <div class="flex items-center justify-center gap-4 md:gap-8 mb-6">
                             <div class="text-center">
-                                <p class="text-sm text-gray-500 mb-1">사용 전 방문자 수</p>
+                                <p class="text-sm text-gray-500 mb-1">사용 전</p>
                                 <p class="text-3xl md:text-5xl font-black text-gray-400">28<span class="text-lg md:text-2xl">명</span></p>
                             </div>
                             <span class="text-3xl md:text-4xl font-black text-naver">→</span>
                             <div class="text-center">
-                                <p class="text-sm text-gray-500 mb-1">1주일 후</p>
-                                <p class="text-3xl md:text-5xl font-black text-red-500">980<span class="text-lg md:text-2xl">명</span></p>
+                                <p class="text-4xl md:text-6xl font-black text-red-500">980<span class="text-xl md:text-3xl">명</span></p>
                             </div>
                         </div>
                         <img src="assets/images2/chart2.png" alt="사용 1주일 후 방문자·이웃 증가 그래프" class="w-full rounded-xl shadow-md border border-gray-200">
@@ -125,8 +128,8 @@
 
                     <!-- CTA -->
                     <div class="hero-story-fade flex flex-col items-center gap-4">
-                        <button onclick="document.getElementById('purchase-form').scrollIntoView({behavior:'smooth'})" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
-                            무료 체험 신청(클릭)
+                        <button onclick="document.getElementById('solution-section').scrollIntoView({behavior:'smooth'})" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
+                            더 알아보기
                         </button>
                         <button onclick="document.getElementById('solution-section').scrollIntoView({behavior:'smooth'})" class="flex items-center gap-2 text-gray-400 hover:text-naver transition-colors text-sm font-medium group">
                             <span class="inline-block group-hover:translate-y-0.5 transition-transform">↓</span>
@@ -357,6 +360,12 @@
                 <p class="text-3xl md:text-4xl font-black text-gray-900">
                     이게 진짜 <br><span class="text-naver">일 잘하는 AI</span>입니다.
                 </p>
+            </div>
+
+            <div class="hero-story-fade flex justify-center mt-12">
+                <button onclick="document.getElementById('purchase-form').scrollIntoView({behavior:'smooth'})" class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-red-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
+                    무료 체험 신청(클릭)
+                </button>
             </div>
 
         </div>
@@ -590,27 +599,34 @@
                         <img src="assets/images/hugi1.jpg" alt="사용자 후기 1" class="w-full h-auto">
                     </div>
                 </div>
+
+                <!-- 후기 보상 안내 -->
+                <div class="editor-fade max-w-xl mx-auto mt-16 text-center space-y-8">
+                    <div>
+                        <p class="text-xl md:text-2xl text-white/60 leading-relaxed">
+                            후기를 남겨주시는 모든 분들께<br>
+                            <span class="text-white font-bold">추가 일수</span>를 드립니다.
+                        </p>
+                    </div>
+
+                    <div class="flex justify-center gap-6">
+                        <div class="text-center">
+                            <p class="text-sm text-gray-500 mb-1">1개월 고용</p>
+                            <p class="text-3xl md:text-4xl font-black text-[#FEE500]">+7<span class="text-lg">일</span></p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-sm text-gray-500 mb-1">2개월 고용</p>
+                            <p class="text-3xl md:text-4xl font-black text-[#FEE500]">+14<span class="text-lg">일</span></p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-500">사진 1장 + 이용 후기를 카카오톡으로 보내주세요.</p>
+                </div>
             </div>
 
             <!-- 블록 7: 15자리 제한 -->
             <div class="py-16 md:py-24 text-center">
 
-                <div class="editor-fade flex flex-col items-center gap-4 mb-12">
-                    <span class="w-1.5 h-1.5 bg-gray-600 rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-gray-600 rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-gray-600 rounded-full"></span>
-                </div>
-
-                <p class="editor-fade text-white mb-6 leading-relaxed">
-                    <span class="text-4xl md:text-5xl lg:text-6xl font-black text-[#FEE500]">15자리</span><span class="text-4xl md:text-5xl lg:text-6xl font-black text-[#FEE500]">만</span><br>
-                    <span class="text-xl md:text-2xl font-bold">운영됩니다.</span>
-                </p>
-
-                <p class="editor-fade text-sm md:text-base text-white leading-relaxed mb-20 md:mb-24">
-                    안전하게 운영하기 위해<br>
-                    <span class="font-bold text-[#FEE500]">매달 15명만 관리</span>합니다.<br>
-                    더 받지 않습니다.
-                </p>
 
                 <!-- 업데이트별 가격 이력 -->
                 <div class="editor-fade max-w-sm mx-auto mb-12">
@@ -806,64 +822,6 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 7: SAFETY ===== -->
-    <section class="py-24 bg-gray-900 px-6 relative overflow-hidden">
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-naver/5 rounded-full filter blur-3xl"></div>
-        </div>
-        <div class="max-w-4xl mx-auto relative z-10">
-            <div class="text-center mb-14">
-                <div class="w-16 h-16 bg-naver/10 border-2 border-naver/30 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                    <span class="text-3xl">🛡️</span>
-                </div>
-                <h2 class="text-3xl md:text-4xl font-black text-white mb-3">"내 블로그는 소중하니까"<br>계정 <span class="text-naver">안전 최우선</span> 설계</h2>
-                <p class="text-gray-400">저희는 철저히 <strong class="text-gray-300">'알고리즘 친화적'</strong>으로 움직입니다.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
-                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">🧑‍💻</span></div>
-                    <h4 class="text-base font-bold text-white mb-2">인간 패턴 정밀 구현</h4>
-                    <p class="text-sm text-gray-400 leading-relaxed">실제 사람이 타이핑하고 스크롤하는 속도를 그대로 시뮬레이션합니다.</p>
-                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
-                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>타이핑 속도</span><span class="text-naver">사람과 동일</span></div>
-                        <div class="flex gap-1"><div class="h-4 w-2 bg-naver/60 rounded-sm"></div><div class="h-6 w-2 bg-naver/80 rounded-sm"></div><div class="h-3 w-2 bg-naver/40 rounded-sm"></div><div class="h-5 w-2 bg-naver/70 rounded-sm"></div><div class="h-2 w-2 bg-naver/30 rounded-sm"></div><div class="h-4 w-2 bg-naver/50 rounded-sm"></div><div class="h-6 w-2 bg-naver/80 rounded-sm"></div><div class="h-3 w-2 bg-naver/40 rounded-sm"></div></div>
-                        <p class="text-[9px] text-gray-600 mt-1.5">랜덤 간격으로 자연스러운 입력</p>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
-                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">🎲</span></div>
-                    <h4 class="text-base font-bold text-white mb-2">변동 확률 딜레이</h4>
-                    <p class="text-sm text-gray-400 leading-relaxed">매번 다른 랜덤 딜레이로 사람이 봐도 자연스러운 패턴을 유지합니다.</p>
-                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
-                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>작업 간 대기</span><span class="text-naver">매번 랜덤</span></div>
-                        <div class="flex items-end gap-2 h-8"><div class="flex-1 bg-naver/30 rounded-t h-[40%]"></div><div class="flex-1 bg-naver/50 rounded-t h-[80%]"></div><div class="flex-1 bg-naver/20 rounded-t h-[25%]"></div><div class="flex-1 bg-naver/60 rounded-t h-[65%]"></div><div class="flex-1 bg-naver/40 rounded-t h-[45%]"></div><div class="flex-1 bg-naver/70 rounded-t h-[90%]"></div><div class="flex-1 bg-naver/25 rounded-t h-[30%]"></div></div>
-                        <p class="text-[9px] text-gray-600 mt-1.5">3초~45초 불규칙 대기</p>
-                    </div>
-                </div>
-                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
-                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">✅</span></div>
-                    <h4 class="text-base font-bold text-white mb-2">클린 타겟팅</h4>
-                    <p class="text-sm text-gray-400 leading-relaxed">활동 유저만 골라 소통하므로 스팸 신고 확률을 최소화했습니다.</p>
-                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
-                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>계정 안전도</span><span class="text-naver font-bold">높음</span></div>
-                        <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden"><div class="h-2.5 bg-naver rounded-full" style="width:95%"></div></div>
-                        <p class="text-[9px] text-gray-600 mt-1.5">안전하게 운영 중</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-gradient-to-b from-yellow-500/10 to-yellow-600/5 border border-yellow-500/30 rounded-2xl p-8 md:p-10 text-center">
-                <div class="text-4xl mb-4">🛡️</div>
-                <h4 class="text-2xl md:text-3xl font-black text-yellow-400 mb-3">안심 환불 정책</h4>
-                <p class="text-base text-gray-300 leading-relaxed mb-6 max-w-lg mx-auto">솔루션 사용으로 인한 불이익 발생 시, 남은 기간에 대해 환불해 드립니다.<br>단, 권장 설정을 초과한 무리한 사용으로 발생한 문제는 환불 대상에서 제외됩니다.<br>자세한 내용은 <a href="refund.html" target="_blank" class="text-yellow-300 underline font-bold">환불규정</a>을 확인해주세요.</p>
-                <div class="flex items-center justify-center gap-8">
-                    <div class="flex flex-col items-center"><span class="text-3xl font-black text-yellow-400">🛡️</span><span class="text-xs text-gray-500 mt-1">안심 보장</span></div>
-                    <div class="w-px h-12 bg-gray-700"></div>
-                    <div class="flex flex-col items-center"><span class="text-3xl font-black text-yellow-400">24h</span><span class="text-xs text-gray-500 mt-1">고객 지원</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ===== SECTION 10: ORDER FORM ===== -->
     <section id="purchase-form" class="py-24 bg-gray-900 text-white px-6">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12">
@@ -924,6 +882,64 @@
         </div>
     </section>
 
+    <!-- ===== SECTION 7: SAFETY ===== -->
+    <section class="py-24 bg-gray-900 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-naver/5 rounded-full filter blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-14">
+                <div class="w-16 h-16 bg-naver/10 border-2 border-naver/30 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                    <span class="text-3xl">🛡️</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-3">"내 블로그는 소중하니까"<br>계정 <span class="text-naver">안전 최우선</span> 설계</h2>
+                <p class="text-gray-400">저희는 철저히 <strong class="text-gray-300">'알고리즘 친화적'</strong>으로 움직입니다.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
+                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">🧑‍💻</span></div>
+                    <h4 class="text-base font-bold text-white mb-2">인간 패턴 정밀 구현</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">실제 사람이 타이핑하고 스크롤하는 속도를 그대로 시뮬레이션합니다.</p>
+                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
+                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>타이핑 속도</span><span class="text-naver">사람과 동일</span></div>
+                        <div class="flex gap-1"><div class="h-4 w-2 bg-naver/60 rounded-sm"></div><div class="h-6 w-2 bg-naver/80 rounded-sm"></div><div class="h-3 w-2 bg-naver/40 rounded-sm"></div><div class="h-5 w-2 bg-naver/70 rounded-sm"></div><div class="h-2 w-2 bg-naver/30 rounded-sm"></div><div class="h-4 w-2 bg-naver/50 rounded-sm"></div><div class="h-6 w-2 bg-naver/80 rounded-sm"></div><div class="h-3 w-2 bg-naver/40 rounded-sm"></div></div>
+                        <p class="text-[9px] text-gray-600 mt-1.5">랜덤 간격으로 자연스러운 입력</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
+                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">🎲</span></div>
+                    <h4 class="text-base font-bold text-white mb-2">변동 확률 딜레이</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">매번 다른 랜덤 딜레이로 사람이 봐도 자연스러운 패턴을 유지합니다.</p>
+                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
+                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>작업 간 대기</span><span class="text-naver">매번 랜덤</span></div>
+                        <div class="flex items-end gap-2 h-8"><div class="flex-1 bg-naver/30 rounded-t h-[40%]"></div><div class="flex-1 bg-naver/50 rounded-t h-[80%]"></div><div class="flex-1 bg-naver/20 rounded-t h-[25%]"></div><div class="flex-1 bg-naver/60 rounded-t h-[65%]"></div><div class="flex-1 bg-naver/40 rounded-t h-[45%]"></div><div class="flex-1 bg-naver/70 rounded-t h-[90%]"></div><div class="flex-1 bg-naver/25 rounded-t h-[30%]"></div></div>
+                        <p class="text-[9px] text-gray-600 mt-1.5">3초~45초 불규칙 대기</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-naver/40 transition-colors">
+                    <div class="w-11 h-11 bg-naver/10 rounded-xl flex items-center justify-center mb-4"><span class="text-xl">✅</span></div>
+                    <h4 class="text-base font-bold text-white mb-2">클린 타겟팅</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">활동 유저만 골라 소통하므로 스팸 신고 확률을 최소화했습니다.</p>
+                    <div class="mt-4 bg-gray-900 rounded-xl p-3 border border-gray-700">
+                        <div class="flex items-center justify-between text-[10px] text-gray-500 mb-2"><span>계정 안전도</span><span class="text-naver font-bold">높음</span></div>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden"><div class="h-2.5 bg-naver rounded-full" style="width:95%"></div></div>
+                        <p class="text-[9px] text-gray-600 mt-1.5">안전하게 운영 중</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gradient-to-b from-yellow-500/10 to-yellow-600/5 border border-yellow-500/30 rounded-2xl p-8 md:p-10 text-center">
+                <div class="text-4xl mb-4">🛡️</div>
+                <h4 class="text-2xl md:text-3xl font-black text-yellow-400 mb-3">안심 환불 정책</h4>
+                <p class="text-base text-gray-300 leading-relaxed mb-6 max-w-lg mx-auto">솔루션 사용으로 인한 불이익 발생 시, 남은 기간에 대해 환불해 드립니다.<br>단, 권장 설정을 초과한 무리한 사용으로 발생한 문제는 환불 대상에서 제외됩니다.<br>자세한 내용은 <a href="refund.html" target="_blank" class="text-yellow-300 underline font-bold">환불규정</a>을 확인해주세요.</p>
+                <div class="flex items-center justify-center gap-8">
+                    <div class="flex flex-col items-center"><span class="text-3xl font-black text-yellow-400">🛡️</span><span class="text-xs text-gray-500 mt-1">안심 보장</span></div>
+                    <div class="w-px h-12 bg-gray-700"></div>
+                    <div class="flex flex-col items-center"><span class="text-3xl font-black text-yellow-400">24h</span><span class="text-xs text-gray-500 mt-1">고객 지원</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== SECTION 11: FAQ ===== -->
     <section class="py-24 bg-[#0A0A0A] px-6">
         <div class="max-w-3xl mx-auto">
@@ -935,8 +951,8 @@
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
-                        <p class="text-naver font-bold mb-2">사람처럼 자연스럽게 작동합니다.</p>
-                        알고리즘이 권장하는 '정성 소통' 로직 그대로 동작합니다. 댓글 패턴 분석으로 매크로처럼 일괄 동작하지 않으며, 시간차·맥락 분석으로 자연스럽게 소통합니다.
+                        <p class="text-naver font-bold mb-2">가장 많이 받는 질문입니다. 저희도 같은 걱정에서 출발했습니다.</p>
+                        빠르게 횟수만 채우는 매크로가 아닙니다. 한 명 한 명 포스팅을 읽고, 맥락에 맞는 댓글을 남기고, 사람처럼 쉬어가며 소통합니다. 그래서 100명을 채우는 데 1~2시간이 걸립니다.<br><br>일부러 느리게 만들었습니다. 블로그를 키우려고 쓰는 건데, 블로그가 죽으면 의미 없으니까요.
                     </div>
                 </details>
                 <details class="group bg-[#1A1A1A] rounded-xl border border-gray-800 open:border-naver open:bg-[#1A1A1A] transition-all overflow-hidden">
@@ -950,17 +966,7 @@
                 </details>
                 <details class="group bg-[#1A1A1A] rounded-xl border border-gray-800 open:border-naver open:bg-[#1A1A1A] transition-all overflow-hidden">
                     <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-white">
-                        Q3. 여러 개의 블로그 계정을 돌려도 되나요?
-                        <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
-                        <p class="text-naver font-bold mb-2">시간대 분리로 여러 계정 운영 가능합니다.</p>
-                        라이선스 1개당 계정 1개를 연동합니다. 여러 계정을 운영하신다면 시간대를 나누어 순차 사용하시면 됩니다. 다계정 동시 운영이 필요하시면 카카오톡 채널로 문의해 주세요.
-                    </div>
-                </details>
-                <details class="group bg-[#1A1A1A] rounded-xl border border-gray-800 open:border-naver open:bg-[#1A1A1A] transition-all overflow-hidden">
-                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-white">
-                        Q4. 맥(Mac) 환경에서도 돌아가나요?
+                        Q3. 맥(Mac) 환경에서도 돌아가나요?
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
@@ -969,12 +975,12 @@
                 </details>
                 <details class="group bg-[#1A1A1A] rounded-xl border border-gray-800 open:border-naver open:bg-[#1A1A1A] transition-all overflow-hidden">
                     <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-white">
-                        Q5. 환불 규정은 어떻게 되나요?
+                        Q4. 환불 규정은 어떻게 되나요?
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
                         <p class="text-naver font-bold mb-2">결제 전 무료 체험으로 먼저 검증하실 수 있습니다.</p>
-                        솔루션 특성상 라이선스 발급 후엔 환불이 제한됩니다. 따라서 결제 전 무료 체험을 강력히 권장드립니다. 카카오톡 채널로 신청 시 1일 사용권을 제공해 드립니다.<br><br>솔루션 자체 결함으로 인한 경우엔 전액 환불해 드립니다.<br><br>자세한 환불 규정은 <a href="refund.html" target="_blank" class="text-naver underline font-semibold">여기</a>를 참고해 주세요.
+                        솔루션 특성상 라이선스 발급 후엔 환불이 제한됩니다. 따라서 결제 전 무료 체험을 강력히 권장드립니다. 위 주문 폼에서 "1일 무료 체험"을 선택하시면 바로 체험하실 수 있습니다.<br><br>솔루션 자체 결함으로 인한 경우엔 전액 환불해 드립니다.<br><br>자세한 환불 규정은 <a href="refund.html" target="_blank" class="text-naver underline font-semibold">여기</a>를 참고해 주세요.
                     </div>
                 </details>
             </div>
@@ -1120,9 +1126,9 @@
     <!-- ===== STICKY CTA ===== -->
     <div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 transform translate-y-full transition-transform duration-300" id="stickyCTA">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
-            <p class="hidden md:block font-medium text-gray-700">월 7만원대로 AI 블로그 직원을 고용하세요.</p>
+            <p class="hidden md:block font-medium text-gray-700">일 잘하는 AI 직원을 무료 체험해보세요.</p>
             <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
-                AI 직원 고용하기
+                무료 체험 신청
             </button>
         </div>
     </div>
@@ -1138,13 +1144,17 @@
                 <h3 class="text-2xl font-black text-gray-900 mb-2">무료 체험 신청 완료!</h3>
                 <p class="text-gray-500 text-sm"><span id="free-trial-email" class="font-bold text-gray-900"></span> 으로<br>인증키를 보내드렸습니다.</p>
             </div>
-            <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-5 mb-5">
-                <p class="font-bold text-gray-900 mb-2">📮 이메일이 안 보이시나요?</p>
-                <ul class="text-sm text-gray-700 space-y-2">
-                    <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold mt-0.5">1.</span><span><strong>스팸 메일함</strong>을 꼭 확인해주세요.</span></li>
-                    <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold mt-0.5">2.</span><span><strong>프로모션 탭</strong>(Gmail)도 확인해주세요.</span></li>
-                    <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold mt-0.5">3.</span><span>그래도 없으면 아래 카카오톡으로 문의해주세요.</span></li>
-                </ul>
+            <div class="bg-red-50 border border-red-200 rounded-xl p-5 mb-5 text-center">
+                <p class="font-black text-red-600 mb-1">🚨 지금부터 24시간 체험이 시작되었습니다!</p>
+                <p class="text-sm text-red-500">이메일의 인증키를 확인하고 바로 시작하세요.</p>
+            </div>
+            <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-5 mb-5 text-center">
+                <p class="font-bold text-gray-900 mb-3">📮 이메일이 안 보이시나요?</p>
+                <div class="text-sm text-gray-700 space-y-1">
+                    <p>1. <strong>스팸 메일함</strong>을 꼭 확인해주세요.</p>
+                    <p>2. <strong>프로모션 탭</strong>(Gmail)도 확인해주세요.</p>
+                    <p>3. 그래도 없으면 아래 카카오톡으로 문의해주세요.</p>
+                </div>
             </div>
             <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold text-black text-lg" style="background:#FEE500;">
                 <span>💬</span> 카카오톡으로 문의하기

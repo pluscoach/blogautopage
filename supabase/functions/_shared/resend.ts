@@ -147,12 +147,18 @@ export async function sendLicenseKeyEmail({
           ${name}님,<br>블로그 담당 AI 직원이 준비되었습니다 🎉
         </h1>
 
+        ${plan === "free_trial" ? `
+        <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 32px 0; word-break:keep-all; overflow-wrap:break-word;">
+          무료 체험에는 <strong>이웃 관리 솔루션만</strong> 포함되어 있으며, <strong>블로그 에디터는 포함되어 있지 않습니다.</strong>
+        </p>
+        ` : `
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 8px 0; word-break:keep-all; overflow-wrap:break-word;">
           블로그 관리를 책임질 <strong>블로그 담당 AI 직원</strong>이 준비되었습니다.
         </p>
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 32px 0; word-break:keep-all; overflow-wrap:break-word;">
           아래 사용법을 끝까지 읽어보시고, 궁금한 점은 언제든 편하게 문의해주세요.
         </p>
+        `}
 
         <div class="email-card-inner" style="background:#faf9f6; border-radius:16px; padding:24px; margin-bottom:24px; text-align:center;">
           <p class="email-section-title" style="margin:0 0 10px 0; font-size:11px; font-weight:600; color:#888; letter-spacing:1px; word-break:keep-all; overflow-wrap:break-word;">YOUR LICENSE KEY</p>
@@ -161,7 +167,15 @@ export async function sendLicenseKeyEmail({
 
         <a class="email-cta-btn" href="${downloadUrl}" style="display:block; background:linear-gradient(90deg,#03C75A,#00D4AA); color:#fff; text-align:center; font-size:16px; font-weight:700; padding:16px; border-radius:14px; text-decoration:none;">프로그램 다운로드 →</a>
 
-        <a class="email-guide-btn" href="https://www.notion.so/phomean/33b1f9e9a5ab8094b653c7b16e9006e5?source=copy_link" style="display:block; background:#0A0A0A; color:#fff; text-align:center; font-size:14px; font-weight:600; padding:14px; border-radius:14px; text-decoration:none; margin-top:10px; margin-bottom:36px;">📖 프로그램 사용 가이드 보기</a>
+        <a class="email-guide-btn" href="https://www.notion.so/phomean/33b1f9e9a5ab8094b653c7b16e9006e5?source=copy_link" style="display:block; background:#FEE500; color:#0A0A0A; text-align:center; font-size:14px; font-weight:600; padding:14px; border-radius:14px; text-decoration:none; margin-top:10px; margin-bottom:36px;">📖 프로그램 사용 가이드 보기</a>
+
+        ${plan === "free_trial" ? `
+        <div style="border-top:1px solid #f0ede5; padding-top:24px; margin-bottom:36px; text-align:center;">
+          <p style="margin:0 0 6px 0; font-size:14px; font-weight:700; color:#0A0A0A;">추가 기간 구매를 희망하시나요?</p>
+          <p style="margin:0 0 16px 0; font-size:12px; color:#888;">블로그 에디터 포함 · 원하는 기간에 맞게 구매 가능</p>
+          <a href="https://blog.pluscoach.co.kr/#purchase-form" style="display:block; background:linear-gradient(90deg,#028a3d,#03C75A); color:#fff; text-align:center; font-size:15px; font-weight:700; padding:14px; border-radius:14px; text-decoration:none;">추가 기간 구매하기 →</a>
+        </div>
+        ` : ""}
 
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
           <div class="email-card-inner" style="background:#fef7f0; border-left:3px solid #f59e0b; border-radius:4px; padding:16px 18px; margin-bottom:12px;">

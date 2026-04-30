@@ -10,8 +10,8 @@
 var PLAN_CONFIG = {
     free: {
         amount: 0,
-        label: '무료 체험 (0원)',
-        name: '무료 체험',
+        label: '1일 무료 체험',
+        name: '1일 무료 체험',
         planCode: 'free_trial',
         visible: true,
     },
