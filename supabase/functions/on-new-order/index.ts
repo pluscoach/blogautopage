@@ -82,15 +82,14 @@ serve(async (req) => {
       );
     }
 
-    // ===== 무료체험: 3중 알림 병렬 발송 =====
+    // ===== 무료체험: 카카오+텔레그램 알림 발송 (주문확인 메일 제외) =====
     const results = await Promise.allSettled([
       sendKakaoNotification(record),
       sendTelegramNotification(record),
-      sendOrderConfirmationEmail(record),
     ]);
 
     // 각 결과 로그
-    const labels = ["kakao", "telegram", "resend"];
+    const labels = ["kakao", "telegram"];
     results.forEach((result, i) => {
       if (result.status === "fulfilled") {
         console.log(`[on-new-order] ${labels[i]}: ✅ 성공`);

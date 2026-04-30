@@ -102,6 +102,22 @@
                         </div>
                     </div>
 
+                    <!-- 실제 사용 전후 비교 -->
+                    <div class="hero-story-fade max-w-xl mx-auto mb-12">
+                        <div class="flex items-center justify-center gap-4 md:gap-8 mb-6">
+                            <div class="text-center">
+                                <p class="text-sm text-gray-500 mb-1">사용 전 방문자 수</p>
+                                <p class="text-3xl md:text-5xl font-black text-gray-400">28<span class="text-lg md:text-2xl">명</span></p>
+                            </div>
+                            <span class="text-3xl md:text-4xl font-black text-naver">→</span>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-500 mb-1">1주일 후</p>
+                                <p class="text-3xl md:text-5xl font-black text-red-500">980<span class="text-lg md:text-2xl">명</span></p>
+                            </div>
+                        </div>
+                        <img src="assets/images2/chart2.png" alt="사용 1주일 후 방문자·이웃 증가 그래프" class="w-full rounded-xl shadow-md border border-gray-200">
+                    </div>
+
                     <!-- 능력 선언 -->
                     <p class="hero-story-fade text-xl md:text-2xl font-bold text-gray-900 mb-8">
                         블로그 관리에 최적화된<br><span class="text-naver">AI 직원을 소개합니다.</span>
@@ -406,7 +422,7 @@
                 <div class="editor-fade space-y-10">
                     <p class="text-2xl md:text-3xl text-white/70 leading-relaxed">
                         이웃 관리 뿐만 아니라<br>
-                        <span class="text-white font-bold">상위 노출 + 글 작성</span><br>
+                        <span class="text-white font-bold">상위 노출 + <span style="color:#FEE500;">글 작성</span></span><br>
                         모든 고민을 해결해줄
                     </p>
 
@@ -546,16 +562,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- 전환: 가격으로 -->
-            <div class="py-16 md:py-24 text-center">
-                <div class="editor-fade max-w-xl mx-auto">
-                    <p class="text-xs md:text-sm mb-6" style="color:#FEE500;">이웃 관리 · 스팸 차단 · 정성 댓글 · 상위 노출 글쓰기 · AI 이미지 생성 · 원클릭 발행</p>
-                    <p class="text-white text-2xl md:text-3xl font-black mb-2">이 모든 걸 합쳐서</p>
-                    <p class="text-naver text-5xl md:text-6xl font-black editor-glow mb-3">월 59,000원~</p>
-                    <p class="text-gray-500 text-base">사람한테 맡기면 월 120만원입니다.</p>
                 </div>
             </div>
 
@@ -724,19 +730,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch mb-10">
                 <!-- 무료 체험 (숨김 — visible:false로 런타임 숨김, 코드 보존) -->
-                <div data-plan-key="free" class="bg-gray-50 rounded-2xl p-7 border border-gray-200 flex flex-col" style="display:none;">
-                    <div class="flex-1">
-                        <h3 class="text-lg font-black text-gray-900 mb-1">무료 체험</h3>
-                        <p class="text-xs text-gray-400 mb-5">1일 · 전 기능 제한 없이</p>
-                        <div class="text-4xl font-black text-gray-900 mb-1">0<span class="text-lg font-medium text-gray-400">원</span></div>
-                        <div class="h-px bg-gray-200 my-5"></div>
-                        <ul class="text-sm text-gray-600 space-y-2 text-left mb-6">
-                            <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 전 기능 제한 없이 체험</li>
-                            <li class="flex items-center gap-2"><span class="text-naver font-bold">✓</span> 100명 무료 체험</li>
-                        </ul>
-                    </div>
-                    <button onclick="scrollToForm('free')" class="w-full py-3.5 rounded-xl font-bold border-2 border-gray-300 text-gray-700 hover:border-naver hover:text-naver transition-colors">무료 체험 신청하기</button>
-                </div>
 
                 <!-- 1개월 고용 -->
                 <div class="bg-white rounded-2xl p-7 border-2 border-yellow-400 flex flex-col">
@@ -967,17 +960,7 @@
                 </details>
                 <details class="group bg-[#1A1A1A] rounded-xl border border-gray-800 open:border-naver open:bg-[#1A1A1A] transition-all overflow-hidden">
                     <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-white">
-                        Q4. 여러 대의 PC에서 쓸 수 있나요?
-                        <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
-                        <p class="text-naver font-bold mb-2">PC 변경 시 채널 문의로 코드 재발급 가능합니다.</p>
-                        인증 코드 1개당 PC 1대를 인증합니다. PC 교체·재설치 등 변경이 필요하시면 카카오톡 채널로 문의 주시면 빠르게 처리해 드립니다.
-                    </div>
-                </details>
-                <details class="group bg-[#1A1A1A] rounded-xl border border-gray-800 open:border-naver open:bg-[#1A1A1A] transition-all overflow-hidden">
-                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-white">
-                        Q5. 맥(Mac) 환경에서도 돌아가나요?
+                        Q4. 맥(Mac) 환경에서도 돌아가나요?
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
@@ -986,7 +969,7 @@
                 </details>
                 <details class="group bg-[#1A1A1A] rounded-xl border border-gray-800 open:border-naver open:bg-[#1A1A1A] transition-all overflow-hidden">
                     <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-white">
-                        Q6. 환불 규정은 어떻게 되나요?
+                        Q5. 환불 규정은 어떻게 되나요?
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
@@ -1140,6 +1123,34 @@
             <p class="hidden md:block font-medium text-gray-700">월 7만원대로 AI 블로그 직원을 고용하세요.</p>
             <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
                 AI 직원 고용하기
+            </button>
+        </div>
+    </div>
+
+    <!-- 무료 체험 완료 모달 -->
+    <div id="free-trial-modal" style="display:none;" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm" onclick="if(event.target===this)this.style.display='none'">
+        <div class="bg-white rounded-2xl max-w-md w-full mx-4 p-8 shadow-2xl relative">
+            <button onclick="this.parentElement.parentElement.style.display='none'" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">&times;</button>
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-naver/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">✅</span>
+                </div>
+                <h3 class="text-2xl font-black text-gray-900 mb-2">무료 체험 신청 완료!</h3>
+                <p class="text-gray-500 text-sm"><span id="free-trial-email" class="font-bold text-gray-900"></span> 으로<br>인증키를 보내드렸습니다.</p>
+            </div>
+            <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-5 mb-5">
+                <p class="font-bold text-gray-900 mb-2">📮 이메일이 안 보이시나요?</p>
+                <ul class="text-sm text-gray-700 space-y-2">
+                    <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold mt-0.5">1.</span><span><strong>스팸 메일함</strong>을 꼭 확인해주세요.</span></li>
+                    <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold mt-0.5">2.</span><span><strong>프로모션 탭</strong>(Gmail)도 확인해주세요.</span></li>
+                    <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold mt-0.5">3.</span><span>그래도 없으면 아래 카카오톡으로 문의해주세요.</span></li>
+                </ul>
+            </div>
+            <a href="https://open.kakao.com/me/pluscoach" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold text-black text-lg" style="background:#FEE500;">
+                <span>💬</span> 카카오톡으로 문의하기
+            </a>
+            <button onclick="this.parentElement.parentElement.style.display='none'" class="w-full py-3 mt-3 rounded-xl font-bold text-gray-500 hover:text-gray-700 transition-colors text-sm">
+                닫기
             </button>
         </div>
     </div>

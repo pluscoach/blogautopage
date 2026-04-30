@@ -83,7 +83,13 @@ async function submitForm(e) {
             if (typeof window.track === 'function') {
                 window.track('form_submit', { plan: 'free_trial', value: 0 });
             }
-            showToast('무료 체험 신청이 완료되었습니다! 곧 이메일로 인증키를 보내드려요. 📮 이메일이 안 보이면 스팸함을 꼭 확인해주세요!', 'success');
+            // 무료 체험 완료 모달 표시
+            var freeModal = document.getElementById('free-trial-modal');
+            if (freeModal) {
+                var emailDisplay = document.getElementById('free-trial-email');
+                if (emailDisplay) emailDisplay.textContent = email;
+                freeModal.style.display = 'flex';
+            }
             document.getElementById('orderForm').reset();
             document.querySelector('input[name="plan"][value="full"]').checked = true;
             updateRadioStyles();
