@@ -7,7 +7,7 @@ export function getPlanLabel(plan: string): string {
     monthly: "1개월 고용",
     full_package: "2개월 고용",
     free_trial: "무료 체험",
-    lifetime: "정규직 채용",
+    lifetime: "평생 채용",
   };
   return labels[plan] || plan;
 }

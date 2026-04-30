@@ -128,9 +128,9 @@ export async function sendLicenseKeyEmail({
   isPaid?: boolean;
 }): Promise<void> {
   const isLifetime = plan === "lifetime";
-  const planDuration = isLifetime ? "정규직 (평생)" : plan === "monthly" ? "1개월 고용" : plan === "full_package" ? "2개월 고용" : "24시간";
+  const planDuration = isLifetime ? "평생 채용" : plan === "monthly" ? "1개월 고용" : plan === "full_package" ? "2개월 고용" : "24시간";
   const emailSubject = isLifetime
-    ? "[블로그 관리 솔루션] 정규직 채용 인증키가 발급되었어요 🎉"
+    ? "[블로그 관리 솔루션] 평생 채용 인증키가 발급되었어요 🎉"
     : isPaid
       ? "[블로그 관리 솔루션] 인증키가 발급되었어요 🎉"
       : "[블로그 관리 솔루션] 인증키가 발급되었어요 🎉";
@@ -182,7 +182,7 @@ export async function sendLicenseKeyEmail({
             <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">⏰ 이용 기간 안내</p>
             <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
               ${isLifetime
-                ? `<strong>정규직 채용</strong>으로 기간 제한 없이 사용 가능합니다. 되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`
+                ? `<strong>평생 채용</strong>으로 기간 제한 없이 사용 가능합니다. 되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`
                 : `인증키가 <strong>발급된 시점부터 ${planDuration}</strong> 동안 사용 가능합니다.
               프로그램을 언제 처음 실행하든 관계없이, 이 메일을 받으신 지금부터 타이머가 돌아갑니다.
               되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`}
@@ -192,7 +192,7 @@ export async function sendLicenseKeyEmail({
             <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">인증키 발급 후에는 환불이 어렵습니다</p>
             <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
               ${isLifetime
-                ? `정규직 채용은 고액 디지털 상품으로, 인증키 발급 후 환불 조건이 엄격합니다. <a href="https://blog.pluscoach.co.kr/refund.html" style="color:#03C75A; text-decoration:underline;">환불 규정 페이지</a>를 반드시 확인해주세요.`
+                ? `평생 채용은 고액 디지털 상품으로, 인증키 발급 후 환불 조건이 엄격합니다. <a href="https://blog.pluscoach.co.kr/refund.html" style="color:#03C75A; text-decoration:underline;">환불 규정 페이지</a>를 반드시 확인해주세요.`
                 : `디지털 상품의 특성상, 인증키가 한 번 발급되면 환불 처리가 불가능합니다.
               이 점 양해 부탁드리며, 혹시 궁금한 점이 있으시다면
               <strong>반드시 발급 전에</strong> 카카오톡 채널로 먼저 문의해주세요.`}
@@ -235,7 +235,7 @@ export async function sendLicenseKeyEmail({
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
           <div class="email-card-inner" style="background:#f0fdf4; border-radius:16px; padding:24px; text-align:center;">
             <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">고용 기간</p>
-            <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">정규직 채용</p>
+            <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">평생 채용</p>
             <p style="margin:0 0 4px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">한 번 채용, 평생 고용</p>
             <p style="margin:0; font-size:12px; color:#888; word-break:keep-all; overflow-wrap:break-word;">결제가 정상 완료되었습니다</p>
           </div>
@@ -658,7 +658,7 @@ function getPlanLabel(plan: string, amount: number): string {
     free_trial: "무료 체험 (24시간)",
     monthly: `1개월 고용 (${amount.toLocaleString()}원)`,
     full_package: `2개월 고용 (${amount.toLocaleString()}원)`,
-    lifetime: `정규직 채용 (${amount.toLocaleString()}원)`,
+    lifetime: `평생 채용 (${amount.toLocaleString()}원)`,
   };
   return labels[plan] || plan;
 }

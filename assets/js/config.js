@@ -31,8 +31,8 @@ var PLAN_CONFIG = {
     },
     lifetime: {
         amount: 740000,
-        label: '정규직 채용 (740,000원)',
-        name: '정규직 채용',
+        label: '평생 채용 (740,000원)',
+        name: '평생 채용',
         planCode: 'lifetime',
         visible: true,
     },
