@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { sendKakaoNotification } from "../_shared/kakao.ts";
-import { sendTelegramNotification, sendDepositNoticeWithButtons } from "../_shared/telegram.ts";
+import { sendTelegramNotification, sendDepositNoticeWithButtons, sendTelegramMessage } from "../_shared/telegram.ts";
 import { sendOrderConfirmationEmail, sendLicenseKeyEmail } from "../_shared/resend.ts";
 import { getPlanLabel } from "../_shared/labels.ts";
 
@@ -82,27 +82,52 @@ serve(async (req) => {
       );
     }
 
-    // ===== 무료체험: 카카오+텔레그램 알림 발송 (주문확인 메일 제외) =====
-    const results = await Promise.allSettled([
-      sendKakaoNotification(record),
-      sendTelegramNotification(record),
-    ]);
-
-    // 각 결과 로그
-    const labels = ["kakao", "telegram"];
-    results.forEach((result, i) => {
-      if (result.status === "fulfilled") {
-        console.log(`[on-new-order] ${labels[i]}: ✅ 성공`);
-      } else {
-        console.error(`[on-new-order] ${labels[i]}: ❌ 실패 —`, result.reason?.message);
-      }
-    });
-
-    // ===== 무료체험 라이선스 발급 =====
+    // ===== 무료체험: 알림 없이 처리 (IP 3회 이상만 텔레그램 경고) =====
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
+
+    // IP 차단 체크
+    if (record.ip) {
+      const { data: blocked } = await supabase
+        .from("blocked_ips")
+        .select("ip")
+        .eq("ip", record.ip)
+        .maybeSingle();
+
+      if (blocked) {
+        console.log(`[on-new-order] 차단된 IP: ${record.ip} — 무료체험 거부`);
+        await supabase.from("orders").update({ status: "IP차단" }).eq("id", record.id);
+        return new Response(
+          JSON.stringify({ ok: true, blocked: true }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
+
+      // 같은 IP로 free_trial 주문 횟수 체크
+      const { count } = await supabase
+        .from("orders")
+        .select("id", { count: "exact", head: true })
+        .eq("ip", record.ip)
+        .eq("plan", "free_trial");
+
+      if (count && count >= 3) {
+        console.log(`[on-new-order] 동일 IP ${record.ip} 무료체험 ${count}회 — 텔레그램 경고`);
+        const TELEGRAM_CHAT_ID = Number(Deno.env.get("TELEGRAM_CHAT_ID"));
+        if (TELEGRAM_CHAT_ID) {
+          await sendTelegramMessage({
+            chatId: TELEGRAM_CHAT_ID,
+            text: `⚠️ 동일 IP 무료체험 ${count}회 감지\n\n🌐 IP: ${record.ip}\n👤 이름: ${record.name}\n📧 이메일: ${record.email}\n🔑 주문코드: ${record.order_code}`,
+            replyMarkup: {
+              inline_keyboard: [[
+                { text: "🚫 이 IP 차단", callback_data: `block_ip:${record.ip}` },
+              ]],
+            },
+          });
+        }
+      }
+    }
 
     // 방어 가드: 필수 필드 누락 체크
     if (!record.email || !record.name || !record.order_code) {

@@ -595,7 +595,7 @@
                         <img src="assets/images/hugi5.jpg" alt="사용자 후기 5" class="w-full h-auto">
                     </div>
                     <div class="rounded-2xl overflow-hidden cursor-pointer" style="background:#828b9c;" onclick="this.classList.toggle('col-span-2');this.classList.toggle('col-span-1');this.classList.toggle('max-w-md');this.classList.toggle('mx-auto')">
-                        <img src="assets/images/hugi6.jpg" alt="사용자 후기 6" class="w-full h-auto">
+                        <img src="assets/images/hugi6.jpg?v=2" alt="사용자 후기 6" class="w-full h-auto">
                     </div>
                     <div class="rounded-2xl overflow-hidden cursor-pointer" style="background:#666d77;" onclick="this.classList.toggle('col-span-2');this.classList.toggle('col-span-1');this.classList.toggle('max-w-md');this.classList.toggle('mx-auto')">
                         <img src="assets/images/hugi4.jpg" alt="사용자 후기 4" class="w-full h-auto">
@@ -1330,38 +1330,7 @@
     })();
     </script>
 
-    <!-- 매달 10명 제한 슬롯 조회 -->
-    <script>
-    (function() {
-        var slotsEl = document.getElementById('limit-slots-remaining');
-        if (!slotsEl) return;
-
-        try {
-            var cfg = window.APP_CONFIG && window.APP_CONFIG.supabase;
-            if (!cfg || !cfg.url || !cfg.anonKey) { slotsEl.textContent = '3'; return; }
-
-            fetch(cfg.url + '/rest/v1/rpc/get_editor_event_slots', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': cfg.anonKey,
-                    'Authorization': 'Bearer ' + cfg.anonKey
-                },
-                body: JSON.stringify({})
-            })
-            .then(function(res) { return res.json(); })
-            .then(function(data) {
-                if (typeof data === 'number' && data >= 0) {
-                    slotsEl.textContent = data;
-                    if (data <= 3) { slotsEl.style.color = '#ef4444'; }
-                } else {
-                    slotsEl.textContent = '3';
-                }
-            })
-            .catch(function() { slotsEl.textContent = '3'; });
-        } catch(e) { slotsEl.textContent = '3'; }
-    })();
-    </script>
+    <!-- 슬롯 하드코딩 3 -->
 
     <!-- FAQ 아래 섹션 editor-fade 옵저버 재등록 -->
     <script>

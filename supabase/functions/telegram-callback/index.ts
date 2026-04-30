@@ -140,6 +140,30 @@ Deno.serve(async (req) => {
         chatId,
         orderCode,
       });
+    } else if (action === "block_ip") {
+      // IP 차단 처리 (orderCode 자리에 IP가 들어옴)
+      const ip = orderCode; // callback_data: "block_ip:123.456.789.0"
+      try {
+        const { error: blockError } = await supabase
+          .from("blocked_ips")
+          .upsert({ ip, reason: "무료체험 반복 신청 — 수동 차단" }, { onConflict: "ip" });
+
+        if (blockError) {
+          console.error(`[telegram-callback] IP 차단 실패:`, blockError.message);
+          await answerCallbackQuery({ callbackQueryId, text: "❌ 차단 실패" });
+        } else {
+          console.log(`[telegram-callback] IP 차단 완료: ${ip}`);
+          await answerCallbackQuery({ callbackQueryId, text: `✅ ${ip} 차단 완료` });
+          await editTelegramMessage({
+            chatId,
+            messageId,
+            text: (callbackQuery.message.text || "") + `\n\n🚫 차단 완료 (${ip})`,
+          });
+        }
+      } catch (err) {
+        console.error(`[telegram-callback] IP 차단 중 예외:`, err);
+        await answerCallbackQuery({ callbackQueryId, text: "❌ 차단 중 오류" });
+      }
     } else {
       console.error(`[telegram-callback] 알 수 없는 action: ${action}`);
       await answerCallbackQuery({ callbackQueryId, text: "❌ 알 수 없는 요청" });
