@@ -407,3 +407,6 @@ verify_jwt = false  # Telegram Bot Webhook에서 호출하기 위해 JWT 검증 
 
 [functions.notify-deposit-confirmed]
 verify_jwt = false  # 프론트에서 anon key로 호출
+
+[functions.recommend-titles]
+verify_jwt = false  # 랜딩페이지에서 직접 호출 (제목 추천 체험)

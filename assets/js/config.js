@@ -64,6 +64,11 @@ window.APP_CONFIG = {
         holder: '오준석(제이에스코퍼레이션)'
     },
 
+    // ===== 제목 추천 체험 =====
+    recommendTitles: {
+        url: 'https://egwmkpplnzypkbedasrs.supabase.co/functions/v1/recommend-titles'
+    },
+
     // ===== 트래킹 ID (Phase 12A) =====
     // 각 값은 사장님이 각 플랫폼에서 발급받은 ID
     // 빈 문자열이면 해당 트래킹 비활성화 (안전 fallback)

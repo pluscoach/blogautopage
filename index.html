@@ -59,320 +59,6 @@
 </head>
 <body class="bg-white text-gray-800 antialiased">
 
-    <!-- ===== SECTION 1: HERO — 스토리텔링형 (직원 고용 프레임) ===== -->
-    <section class="relative bg-gradient-to-br from-gray-50 via-white to-green-50/40 overflow-hidden">
-        <!-- 배경 데코 -->
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-green-100 rounded-full filter blur-3xl opacity-40"></div>
-            <div class="absolute bottom-0 -left-20 w-[300px] h-[300px] bg-green-50 rounded-full filter blur-3xl opacity-50"></div>
-        </div>
-
-        <div class="relative z-10">
-
-            <!-- ▸ PART 3B: 솔루션 헤드라인 -->
-            <div class="py-20 md:py-28 px-6 bg-gradient-to-b from-green-50 to-green-50/30">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="hero-story-fade text-3xl md:text-5xl lg:text-[3.5rem] leading-[1.25] mb-8">
-                        <span class="font-light text-gray-900">사람보다 일 잘하는</span><br>
-                        <span class="font-extrabold text-naver">첫 번째</span> <span class="font-light text-gray-900">AI 직원을</span><br>
-                        <span class="font-extrabold text-red-500">무료</span><span class="font-light text-gray-900">로 체험해보세요.</span>
-                    </h2>
-
-                    <!-- 영상 유도 카피 -->
-                    <div class="text-center mt-12 mb-6">
-                        <p class="hero-story-fade text-2xl md:text-3xl font-black text-gray-900 mb-4">(클릭)</p>
-                        <div class="hero-story-fade flex flex-col items-center gap-0 animate-bounce-slow">
-                            <span class="text-2xl text-naver font-bold leading-none">▼</span>
-                            <span class="text-2xl text-naver/60 font-bold leading-none -mt-2">▼</span>
-                            <span class="text-2xl text-naver/30 font-bold leading-none -mt-2">▼</span>
-                        </div>
-                    </div>
-
-                    <!-- 소개 영상 (썸네일 클릭 → 인라인 재생) -->
-                    <div id="demoVideo" class="hero-story-fade max-w-xl mx-auto mb-12">
-                        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg cursor-pointer group" style="padding-bottom:56.25%" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/IENTaELnuw0?autoplay=1\' class=\'absolute inset-0 w-full h-full\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen></iframe>';this.style.cursor='default'">
-                            <img src="https://img.youtube.com/vi/IENTaELnuw0/maxresdefault.jpg" alt="핵심 업무 영상" class="absolute inset-0 w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-all"></div>
-                            <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                <div class="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                                    <span class="text-white text-2xl md:text-3xl ml-1">▶</span>
-                                </div>
-                                <p class="text-white font-black text-2xl md:text-3xl mt-4 drop-shadow-lg">영상으로 보는 핵심 업무</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 실제 사용 전후 비교 -->
-                    <div class="hero-story-fade max-w-xl mx-auto mt-16 mb-12">
-                        <div class="text-center mb-4">
-                            <p class="text-2xl md:text-3xl font-black text-gray-900 mb-1">일주일 후</p>
-                            <p class="text-4xl md:text-6xl font-black text-red-500">35<span class="text-2xl md:text-4xl">배</span> <span class="text-2xl md:text-4xl font-black text-gray-900">증가!</span></p>
-                        </div>
-                        <div class="flex items-center justify-center gap-4 md:gap-8 mb-6">
-                            <div class="text-center">
-                                <p class="text-sm text-gray-500 mb-1">사용 전</p>
-                                <p class="text-3xl md:text-5xl font-black text-gray-400">28<span class="text-lg md:text-2xl">명</span></p>
-                            </div>
-                            <span class="text-3xl md:text-4xl font-black text-naver">→</span>
-                            <div class="text-center">
-                                <p class="text-4xl md:text-6xl font-black text-red-500">980<span class="text-xl md:text-3xl">명</span></p>
-                            </div>
-                        </div>
-                        <img src="assets/images2/chart2.png" alt="사용 1주일 후 방문자·이웃 증가 그래프" class="w-full rounded-xl shadow-md border border-gray-200">
-                    </div>
-
-                    <!-- 능력 선언 -->
-                    <p class="hero-story-fade text-xl md:text-2xl font-bold text-gray-900 mb-8">
-                        수익형 블로그에 최적화된<br><span class="text-naver">AI 직원을 소개합니다.</span>
-                    </p>
-
-                    <!-- CTA -->
-                    <div class="hero-story-fade flex flex-col items-center gap-4">
-                        <button onclick="document.getElementById('solution-section').scrollIntoView({behavior:'smooth'})" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
-                            더 알아보기
-                        </button>
-                        <button onclick="document.getElementById('solution-section').scrollIntoView({behavior:'smooth'})" class="flex items-center gap-2 text-gray-400 hover:text-naver transition-colors text-sm font-medium group">
-                            <span class="inline-block group-hover:translate-y-0.5 transition-transform">↓</span>
-                            아래에서 자세히 확인하세요
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION 2 PAIN POINTS + 공감 전환 섹션 삭제됨 (Phase 14: 직원 고용 프레임 전환) -->
-
-    <!-- ===== SECTION 3: 직원 업무 소개 ===== -->
-    <section id="solution-section" class="py-24 md:py-32 bg-white px-6">
-        <div class="max-w-3xl mx-auto">
-            <!-- 도입: 이웃 관리가 1위 -->
-            <div class="text-center mb-20">
-                <p class="hero-story-fade text-xl md:text-2xl text-gray-500 mb-4">블로그 운영과 성장 시</p>
-                <h2 class="hero-story-fade text-2xl md:text-3xl font-black text-gray-900 leading-snug mb-6">
-                    가장 많은 시간을 뺏는 작업
-                </h2>
-                <p class="hero-story-fade text-4xl md:text-5xl font-black text-naver">1위 이웃 관리</p>
-            </div>
-
-            <!-- STEP 1~4 카드 -->
-            <div class="hero-story-fade max-w-3xl mx-auto mb-12 bg-green-50 rounded-3xl p-6 md:p-10">
-                <div class="text-center mb-8">
-                    <p class="text-base md:text-lg text-gray-500">손으로 직접 하던 복잡한 과정들,<br>이제부터 AI에게 맡기세요.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                    <!-- STEP 1 -->
-                    <div class="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm">
-                        <p class="text-naver text-xs font-bold mb-2">STEP 1</p>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xl">🔍</span>
-                            <h4 class="text-base md:text-lg font-black text-gray-900">타겟 분석</h4>
-                        </div>
-                        <p class="text-xs text-gray-400 mb-4">진짜 소통이웃만 AI가 자동 선별</p>
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                                <div class="flex items-center gap-2">
-                                    <span class="w-2 h-2 bg-naver rounded-full"></span>
-                                    <span class="text-xs text-gray-700">뷰티블로거_뿌니</span>
-                                </div>
-                                <span class="text-xs text-naver font-bold">채택 ✓</span>
-                            </div>
-                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                                <div class="flex items-center gap-2">
-                                    <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
-                                    <span class="text-xs text-gray-400">광고_제휴8.3K</span>
-                                </div>
-                                <span class="text-xs text-red-400 font-bold">제외 ✗</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- STEP 2 -->
-                    <div class="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm">
-                        <p class="text-naver text-xs font-bold mb-2">STEP 2</p>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xl">✉️</span>
-                            <h4 class="text-base md:text-lg font-black text-gray-900">이웃 신청</h4>
-                        </div>
-                        <p class="text-xs text-gray-400 mb-4">수락률 높은 계정에만 선별 발송</p>
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                                <span class="text-xs text-gray-700">밤티라미슈_뿌니</span>
-                                <span class="text-xs bg-naver text-white px-2 py-0.5 rounded-full font-bold">발송 완료 ✓</span>
-                            </div>
-                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                                <span class="text-xs text-gray-700">제주여행러_허니</span>
-                                <span class="text-xs bg-naver text-white px-2 py-0.5 rounded-full font-bold">발송 완료 ✓</span>
-                            </div>
-                            <p class="text-[11px] text-naver text-right font-medium">외 48명 발송 중..</p>
-                        </div>
-                    </div>
-
-                    <!-- STEP 3 -->
-                    <div class="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm">
-                        <p class="text-naver text-xs font-bold mb-2">STEP 3</p>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xl">💬</span>
-                            <h4 class="text-base md:text-lg font-black text-gray-900">정성 댓글</h4>
-                        </div>
-                        <p class="text-xs text-gray-400 mb-4">포스팅 읽고 맥락 맞는 댓글</p>
-                        <div class="bg-gray-50 rounded-lg px-3 py-3">
-                            <div class="flex items-start gap-2">
-                                <span class="w-5 h-5 bg-naver rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><span class="text-white text-[8px] font-bold">AI</span></span>
-                                <p class="text-xs text-gray-600 leading-relaxed">와 저도 제주도 동쪽 코스로 갔었는데 성산일출봉 올라가는 길이 진짜 예뻤더라고요! 혹시 어디서 드셨어요?</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- STEP 4 -->
-                    <div class="bg-white rounded-2xl p-5 md:p-6 border border-gray-100 shadow-sm">
-                        <p class="text-naver text-xs font-bold mb-2">STEP 4</p>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xl">🛡️</span>
-                            <h4 class="text-base md:text-lg font-black text-gray-900">이웃 관리</h4>
-                        </div>
-                        <p class="text-xs text-gray-400 mb-4">스팸·무반응 자동 정리</p>
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                                <span class="text-xs text-gray-700">광고계정</span>
-                                <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded-full font-bold">블랙리스트</span>
-                            </div>
-                            <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                                <span class="text-xs text-gray-700">무반응유저</span>
-                                <span class="text-xs bg-gray-400 text-white px-2 py-0.5 rounded-full font-bold">자동 취소</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-story-fade flex flex-col items-center gap-4 my-12">
-                <span class="w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
-                <span class="w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
-                <span class="w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
-            </div>
-
-            <!-- AI 데모 카드 (첫 섹션에서 이동) -->
-            <div class="hero-story-fade max-w-lg mx-auto mb-12 float-anim">
-                <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
-                    <!-- 상단 바 -->
-                    <div class="flex items-center gap-2 px-5 py-3 bg-gray-50 border-b border-gray-100">
-                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                        <span class="ml-3 text-xs text-gray-400 font-medium">BlogAutoFriends — AI 소통 중</span>
-                    </div>
-                    <!-- 콘텐츠 -->
-                    <div class="p-6 space-y-5">
-                        <!-- 블로그 포스트 분석 -->
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-sm flex-shrink-0">🤖</div>
-                            <div class="flex-1">
-                                <p class="text-xs text-gray-400 mb-1">AI가 포스팅을 분석하고 있습니다...</p>
-                                <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                                    <p class="text-sm text-gray-600 font-medium">"제주도 3박4일 가족여행 코스 총정리"</p>
-                                    <div class="flex gap-2 mt-2">
-                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">여행</span>
-                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">제주도</span>
-                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">가족여행</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- AI 댓글 작성 -->
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-naver rounded-full flex items-center justify-center text-sm text-white flex-shrink-0 font-bold">AI</div>
-                            <div class="flex-1">
-                                <p class="text-xs text-naver font-semibold mb-1">맞춤 댓글 작성 완료</p>
-                                <div class="bg-green-50 rounded-lg p-3 border border-green-100">
-                                    <p class="text-sm text-gray-700 leading-relaxed" id="typingText"></p>
-                                    <span class="cursor-blink text-naver font-bold" id="typingCursor" style="display:none">|</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 상태 표시 -->
-                        <div class="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3 border border-gray-100">
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-naver rounded-full animate-pulse"></div>
-                                <span class="text-xs text-gray-500 font-medium">소통 진행 중</span>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-xs text-gray-400">오늘 완료</span>
-                                <span class="text-sm font-bold text-gray-800 ml-1" id="heroCounter">0</span>
-                                <span class="text-xs text-gray-400">/ 100명</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- 6단계 더보기 (보류 — 나중에 복원 가능) -->
-            <details class="mb-12 group" id="howDetails" style="display:none">
-                <summary class="cursor-pointer outline-none list-none">
-                    <div class="bg-white rounded-2xl p-5 max-w-md mx-auto border-2 border-naver/20 shadow-md hover:shadow-lg transition-all">
-                        <div class="flex items-center gap-4">
-                            <div class="w-11 h-11 bg-naver rounded-xl flex items-center justify-center flex-shrink-0">
-                                <span class="text-white font-black text-sm">AI</span>
-                            </div>
-                            <div class="flex-1 text-center">
-                                <p class="text-sm font-bold text-gray-900">6단계 AI 관리 시스템</p>
-                                <p class="text-xs text-gray-500 mt-0.5">AI가 어떻게 작동하는지 궁금하신가요?</p>
-                            </div>
-                            <div class="flex-shrink-0">
-                                <span class="group-open:hidden text-xs text-white font-bold bg-naver px-3 py-1.5 rounded-lg">(클릭)</span>
-                                <span class="hidden group-open:inline text-xs text-gray-400 font-bold bg-gray-100 px-3 py-1.5 rounded-lg">접기 ↑</span>
-                            </div>
-                        </div>
-                    </div>
-                </summary>
-                <div class="mt-8 rounded-2xl overflow-hidden" style="background:#0A0A0A">
-                    <div class="max-w-5xl mx-auto py-16 px-4 md:px-8">
-                        <div class="text-center mb-14">
-                            <span class="inline-block text-sm font-semibold text-naver bg-naver/10 border border-naver/20 px-4 py-1.5 rounded-full mb-5">작동 프로세스</span>
-                            <h3 class="text-2xl md:text-3xl font-black text-white">AI의 정밀한 <span class="text-naver">6단계</span> 소통 관리</h3>
-                        </div>
-                        <div class="space-y-6">
-                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden"><div class="flex flex-col md:flex-row"><div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center"><span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 01</span><h4 class="text-2xl font-black text-white mb-3">소통 타겟 정밀 분석</h4><p class="text-gray-400 leading-relaxed"><span class="text-yellow-300">댓글창을 추적해 '진짜 활동 유저'</span>만 찾아냅니다.</p></div><div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center"><div class="w-full max-w-xs bg-[#1A1A1A] rounded-xl border border-gray-800 p-4"><p class="text-xs text-gray-600 mb-3">댓글 3개</p><div class="space-y-2.5"><div class="flex items-start gap-2 px-3 py-2 rounded-lg border-2 border-naver/60"><div class="w-5 h-5 bg-naver rounded-full flex-shrink-0 mt-0.5"></div><div><p class="text-xs text-gray-300 font-medium">맛집블로거_하니</p><p class="text-[11px] text-gray-500">와 이 코스 진짜 좋네요!</p></div><span class="text-[9px] text-naver font-bold ml-auto flex-shrink-0">타겟 ✓</span></div><div class="flex items-start gap-2 px-3 py-2 rounded-lg opacity-40"><div class="w-5 h-5 bg-gray-600 rounded-full flex-shrink-0 mt-0.5"></div><div><p class="text-xs text-gray-500 font-medium">광고계정123</p><p class="text-[11px] text-gray-600">잘 보고 갑니다~^^</p></div><span class="text-[9px] text-gray-600 ml-auto flex-shrink-0">스킵</span></div></div></div></div></div></div>
-                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden"><div class="flex flex-col md:flex-row"><div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center order-2 md:order-1"><div class="w-full max-w-xs space-y-3"><div class="flex items-center justify-between bg-[#1A1A1A] rounded-xl px-4 py-3 border border-gray-800"><div class="flex items-center gap-2"><div class="w-6 h-6 bg-gray-600 rounded-full"></div><div><p class="text-xs text-gray-300">홍보전문_셀러</p><p class="text-[10px] text-gray-600">이웃 5,000명 초과</p></div></div><span class="text-red-500 font-black text-lg">✕</span></div><div class="flex items-center justify-between bg-[#1A1A1A] rounded-xl px-4 py-3 border border-naver/30"><div class="flex items-center gap-2"><div class="w-6 h-6 bg-naver rounded-full"></div><div><p class="text-xs text-gray-300">뷰티블로거_루나</p><p class="text-[10px] text-naver">이웃 842명</p></div></div><span class="text-naver font-bold text-sm">통과 ✓</span></div></div></div><div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center order-1 md:order-2"><span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 02</span><h4 class="text-2xl font-black text-white mb-3">무의미한 리소스 낭비 차단</h4><p class="text-gray-400 leading-relaxed">거절당할 계정은 AI가 미리 식별하여 <span class="text-yellow-300">자동으로 걸러냅니다.</span></p></div></div></div>
-                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden"><div class="flex flex-col md:flex-row"><div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center"><span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 03</span><h4 class="text-2xl font-black text-white mb-3">전략적 서로이웃 신청</h4><p class="text-gray-400 leading-relaxed">수락 확률이 가장 높은 <span class="text-yellow-300">'알짜배기 계정'</span>에만 정밀하게 전송합니다.</p></div><div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center"><div class="w-full max-w-xs bg-[#1A1A1A] rounded-xl border border-gray-800 p-4"><div class="flex items-center gap-2 mb-3"><div class="w-5 h-5 bg-naver rounded flex items-center justify-center text-white text-[7px] font-bold">N</div><span class="text-xs text-gray-400">서로이웃 신청</span></div><div class="bg-[#0D0D0D] rounded-lg border border-gray-700 px-3 py-2.5 mb-2"><p class="text-[10px] text-gray-600">받는 사람</p><p class="text-sm text-gray-300 font-medium">뷰티블로거_루나</p></div><div class="flex justify-end mt-3"><div class="bg-naver text-white text-[10px] font-bold px-3 py-1.5 rounded-lg">발송 완료 ✓</div></div></div></div></div></div>
-                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden"><div class="flex flex-col md:flex-row"><div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center order-2 md:order-1"><div class="w-full max-w-xs bg-[#1A1A1A] rounded-xl border border-gray-800 p-4"><p class="text-sm text-gray-300 font-bold mb-2">제주도 3박4일 가족여행 코스</p><div class="space-y-1.5 mb-3"><div class="h-2 bg-gray-700 rounded w-full"></div><div class="h-2 bg-gray-700 rounded w-4/5"></div><div class="h-2 rounded w-3/5" style="background:linear-gradient(90deg,#03C75A33,#03C75A66)"></div></div><div class="flex gap-1.5"><span class="text-[9px] bg-naver/20 text-naver px-2 py-0.5 rounded font-medium">여행</span><span class="text-[9px] bg-naver/20 text-naver px-2 py-0.5 rounded font-medium">제주도</span></div></div></div><div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center order-1 md:order-2"><span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 04</span><h4 class="text-2xl font-black text-white mb-3">포스팅 맥락 정밀 분석</h4><p class="text-gray-400 leading-relaxed">AI가 <span class="text-yellow-300">최신 포스팅을 실제로 읽고</span> 핵심 주제를 파악합니다.</p></div></div></div>
-                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden"><div class="flex flex-col md:flex-row"><div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center"><span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 05</span><h4 class="text-2xl font-black text-white mb-3">맞춤형 정성 댓글 작성</h4><p class="text-gray-400 leading-relaxed"><span class="text-yellow-300">"내 글을 진짜 읽었네?"</span> 감탄이 나오는 댓글을 남깁니다.</p></div><div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center"><div class="w-full max-w-xs bg-[#1A1A1A] rounded-xl border border-gray-800 p-4"><p class="text-[10px] text-gray-600 mb-2">댓글 작성</p><div class="bg-[#0D0D0D] rounded-lg border border-naver/30 p-3"><div class="flex items-start gap-2"><div class="w-5 h-5 bg-naver rounded-full flex items-center justify-center text-white text-[7px] font-bold flex-shrink-0 mt-0.5">AI</div><p class="text-xs text-gray-300 leading-relaxed">와 저도 제주도 동쪽 코스로 갔었는데 성산일출봉 올라가는 길이 진짜 예쁘더라고요!</p></div></div><div class="flex justify-end mt-2"><span class="text-[9px] bg-naver text-white px-2.5 py-1 rounded font-bold">등록</span></div></div></div></div></div>
-                            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden"><div class="flex flex-col md:flex-row"><div class="md:w-1/2 p-6 md:p-8 bg-[#0D0D0D] flex items-center justify-center order-2 md:order-1"><div class="w-full max-w-xs"><div class="bg-[#1A1A1A] rounded-xl border border-gray-800 p-4 mb-3"><div class="flex justify-between text-xs mb-2"><span class="text-gray-400">오늘 소통 현황</span><span class="text-naver font-bold">100 / 100</span></div><div class="w-full bg-gray-800 rounded-full h-3 overflow-hidden"><div class="h-3 bg-naver rounded-full w-full"></div></div></div><div class="bg-naver/10 border border-naver/30 rounded-xl px-4 py-3 text-center"><p class="text-naver font-bold text-sm">✓ 작업 완료 — 자동 종료</p><p class="text-[10px] text-gray-500 mt-1">내일 다시 자동으로 시작합니다</p></div></div></div><div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center order-1 md:order-2"><span class="text-naver text-sm font-bold tracking-widest mb-3">STEP 06</span><h4 class="text-2xl font-black text-white mb-3">안전 한도 달성 시 자동 종료</h4><p class="text-gray-400 leading-relaxed">하루 100명 한도 달성 시 <span class="text-yellow-300">안전하게 퇴근합니다.</span></p></div></div></div>
-                        </div>
-                        <div class="mt-12 text-center bg-[#111] border border-gray-800 rounded-xl px-6 py-5">
-                            <p class="text-base text-gray-500">저희 솔루션은 결코 빠르지 않습니다. <strong class="text-naver">실제 사람이 소통하는 '호흡'과 '속도'를 그대로 구현했기에 가장 안전하고 강력합니다.</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </details>
-
-            <div class="hero-story-fade text-center mb-8">
-                <p class="text-lg md:text-xl text-gray-900 leading-relaxed">
-                    <span class="font-bold">버튼 한 번</span>이면 알아서 출근하고<br>
-                    100명을 정성스럽게 추가하고<br>
-                    <span class="font-bold">조용히 퇴근합니다.</span>
-                </p>
-            </div>
-
-            <div class="hero-story-fade text-center">
-                <p class="text-3xl md:text-4xl font-black text-gray-900">
-                    이게 진짜 <br><span class="text-naver">일 잘하는 AI</span>입니다.
-                </p>
-            </div>
-
-            <div class="hero-story-fade flex justify-center mt-12">
-                <button onclick="document.getElementById('purchase-form').scrollIntoView({behavior:'smooth'})" class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-red-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
-                    무료 체험 신청(클릭)
-                </button>
-            </div>
-
-        </div>
-    </section>
-
-    <div class="h-[400px] md:h-[500px]" style="background: linear-gradient(to bottom, white 0%, #f5f5f5 15%, #e0e0e0 30%, #b0b0b0 45%, #707070 60%, #404040 75%, #1a1a1a 90%, #0A0A0A 100%)"></div>
-
     <!-- ===== SECTION: AI 블로그 에디터 — 다크 설득 구간 ===== -->
     <style>
         .editor-dark { background: #0A0A0A; }
@@ -431,8 +117,13 @@
                 <div class="editor-fade space-y-10">
                     <p class="text-2xl md:text-3xl text-white/70 leading-relaxed">
                         이웃 관리 뿐만 아니라<br>
-                        <span class="text-white font-bold">상위 노출 + <span style="color:#FEE500;">글 작성</span></span><br>
-                        모든 고민을 해결해줄
+                        <span class="text-white font-bold">상위 노출 + <span style="color:#FEE500;">글 작성</span></span>
+                    </p>
+                    <div class="h-10 md:h-14"></div>
+                    <p class="text-2xl md:text-3xl text-white/70 leading-relaxed">
+                        모든 고민을 해결해줄<br>
+                        <span class="text-white font-bold">두 가지 솔루션</span>을<br>
+                        소개합니다.
                     </p>
 
 
@@ -443,7 +134,6 @@
                     </div>
 
                     <div class="space-y-4">
-                        <p class="text-3xl md:text-4xl font-black text-white">두 번째 직원을 소개합니다.</p>
                         <h2 class="text-4xl md:text-6xl font-black" style="letter-spacing:-0.02em;">
                             <span style="color:#FEE500;" class="editor-glow">AI 블로그 에디터.</span>
                         </h2>
@@ -461,8 +151,13 @@
                 </div>
             </div>
 
-            <!-- 블록 5: 에디터 UI 미리보기 -->
+            <!-- 블록 5: 제목 추천 체험 -->
             <div class="py-10 md:py-16">
+                <div class="editor-fade text-center mb-8">
+                    <p class="text-naver text-sm font-bold tracking-widest mb-3">무료 체험</p>
+                    <h3 class="text-white font-black text-xl md:text-2xl mb-2">지금 바로 체험해보세요</h3>
+                    <p class="text-gray-400 text-sm">카테고리를 선택하면 AI가 인기 블로그 제목 5개를 추천해줍니다. <span class="text-[#FEE500] font-bold">2회 무료</span></p>
+                </div>
                 <div class="editor-fade max-w-2xl mx-auto bg-[#1e293b] border border-slate-600 rounded-2xl overflow-hidden shadow-2xl shadow-naver/5">
                     <!-- 상단 바 -->
                     <div class="flex items-center gap-2 px-5 py-3 bg-[#0f172a] border-b border-slate-600">
@@ -470,43 +165,58 @@
                         <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
                         <span class="w-3 h-3 rounded-full bg-green-500"></span>
                         <span class="text-gray-500 text-xs ml-3 font-mono">PLUSCOACH_EDITOR_V2</span>
+                        <span class="ml-auto text-xs text-gray-500">남은 횟수: <span id="tr-remaining" class="text-[#FEE500] font-bold">2</span>회</span>
                     </div>
                     <!-- 본문 -->
                     <div class="p-6 md:p-8">
-                        <div class="flex items-center gap-3 mb-5">
-                            <span class="text-xs font-bold text-black px-2.5 py-1 rounded" style="background:#FEE500;">키워드</span>
-                            <span class="text-white text-sm font-medium">갤럭시 S25 울트라 카메라 비교</span>
+                        <!-- 1. 메인 카테고리 -->
+                        <div class="mb-4">
+                            <label class="text-xs text-gray-400 mb-1.5 block">1. 메인 카테고리 선택</label>
+                            <select id="tr-main-cat" class="w-full bg-[#0f172a] border border-slate-600 text-white text-sm rounded-lg px-4 py-3 focus:border-naver focus:outline-none">
+                                <option value="">카테고리 선택</option>
+                            </select>
                         </div>
-                        <div class="space-y-3 mb-5">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs text-gray-500 w-16">SEO 모드</span>
-                                <span class="text-xs font-bold px-2 py-0.5 rounded" style="color:#FEE500;background:rgba(254,229,0,0.1);">C-Rank + D.I.A.</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs text-gray-500 w-16">휴머나이즈</span>
-                                <span class="text-xs text-green-400 font-bold">ON</span>
-                                <span class="text-xs text-gray-600">— AI 탐지 우회 활성</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs text-gray-500 w-16">AI 이미지</span>
-                                <span class="text-xs text-green-400 font-bold">ON</span>
-                                <span class="text-xs text-gray-600">— 자동 생성 + 상품 합성</span>
+                        <!-- 2. 서브 카테고리 -->
+                        <div class="mb-4">
+                            <label class="text-xs text-gray-400 mb-1.5 block">2. 서브 카테고리 선택</label>
+                            <select id="tr-sub-cat" class="w-full bg-[#0f172a] border border-slate-600 text-white text-sm rounded-lg px-4 py-3 focus:border-naver focus:outline-none" disabled>
+                                <option value="">메인 카테고리 선택 후 선택</option>
+                            </select>
+                        </div>
+                        <!-- 3. 주제 입력 -->
+                        <div class="mb-5">
+                            <label class="text-xs text-gray-400 mb-1.5 block">3. 구체적인 주제 입력 (선택사항)</label>
+                            <input id="tr-topic" type="text" placeholder="예: 직장인 점심 도시락 레시피" class="w-full bg-[#0f172a] border border-slate-600 text-white text-sm rounded-lg px-4 py-3 focus:border-naver focus:outline-none placeholder:text-gray-600">
+                        </div>
+                        <!-- 모드 선택 -->
+                        <div class="mb-5">
+                            <label class="text-xs text-gray-400 mb-2 block">AI 글쓰기 모드</label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                                <button type="button" class="tr-mode-btn active text-xs text-left px-3 py-2.5 rounded-lg border border-naver bg-naver/10 text-white font-bold" data-mode="default">네이버 검색 최적화</button>
+                                <button type="button" class="tr-mode-btn tr-locked text-xs text-left px-3 py-2.5 rounded-lg border border-slate-700 text-gray-600" data-mode="rcon">최신 트렌드</button>
+                                <button type="button" class="tr-mode-btn tr-locked text-xs text-left px-3 py-2.5 rounded-lg border border-slate-700 text-gray-600" data-mode="ai-briefing">AI 요약</button>
+                                <button type="button" class="tr-mode-btn tr-locked text-xs text-left px-3 py-2.5 rounded-lg border border-slate-700 text-gray-600" data-mode="insight-edge">틈새 차별화</button>
+                                <button type="button" class="tr-mode-btn tr-locked text-xs text-left px-3 py-2.5 rounded-lg border border-slate-700 text-gray-600" data-mode="home-plate">감성 스토리텔링</button>
                             </div>
                         </div>
-                        <div class="h-px bg-slate-600 mb-5"></div>
-                        <div class="bg-[#0f172a] rounded-lg p-4 mb-4">
-                            <p class="text-gray-400 text-xs mb-2 font-mono">// 생성된 글 미리보기</p>
-                            <p class="text-white text-sm leading-relaxed">갤럭시 S25 울트라 카메라, 솔직히 기대 안 했거든요. 전작이랑 뭐가 다르겠어 싶었는데, 야간 모드로 찍어보니까 진짜 <span style="color:#FEE500;">아이폰 16 프로</span>랑 확실히 차이 나더라고요...</p>
+                        <!-- 실행 버튼 -->
+                        <button id="tr-submit" onclick="handleTitleRecommend()" class="w-full py-3.5 rounded-xl font-bold text-black text-base transition-all hover:brightness-90 disabled:opacity-50 disabled:cursor-not-allowed" style="background:#FEE500;">
+                            제목 추천받기
+                        </button>
+                        <!-- 로딩 -->
+                        <div id="tr-loading" class="hidden mt-6 text-center">
+                            <div class="inline-block w-6 h-6 border-2 border-[#FEE500] border-t-transparent rounded-full animate-spin"></div>
+                            <p class="text-gray-400 text-sm mt-2">AI가 최적의 제목을 분석 중...</p>
                         </div>
-                        <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-                            <div class="flex items-center gap-3">
-                                <span class="text-xs text-gray-500">SEO 점수</span>
-                                <span class="font-black text-sm" style="color:#FEE500;">94%</span>
-                                <span class="text-xs text-gray-600">|</span>
-                                <span class="text-xs text-gray-500">AI 탐지율</span>
-                                <span class="text-green-400 font-black text-sm">2%</span>
-                            </div>
-                            <span class="text-xs font-bold text-black px-3 py-1.5 rounded-lg whitespace-nowrap" style="background:#FEE500;">블로그 발행 →</span>
+                        <!-- 결과 영역 -->
+                        <div id="tr-results" class="hidden mt-6">
+                            <div class="h-px bg-slate-600 mb-4"></div>
+                            <p class="text-xs text-gray-400 mb-3 font-mono">// AI 추천 제목</p>
+                            <div id="tr-results-list" class="space-y-2"></div>
+                        </div>
+                        <!-- 에러 -->
+                        <div id="tr-error" class="hidden mt-4 bg-red-500/10 border border-red-500/30 rounded-lg p-3">
+                            <p id="tr-error-msg" class="text-red-400 text-sm text-center"></p>
                         </div>
                     </div>
                 </div>
@@ -523,8 +233,8 @@
                             <div class="mb-3">
                                 <img src="assets/images/1.png" alt="" class="mx-auto rounded-lg w-full">
                             </div>
-                            <h4 class="text-white font-black text-base md:text-xl mb-2">이제 <span class="text-yellow-400">키워드</span>만 넣으세요.</h4>
-                            <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-4">검색 알고리즘 5가지 모드를 자동 분석,<br><span class="text-white font-bold">키워드에 맞는 최적의 글 구조</span>를 잡아줍니다.</p>
+                            <h4 class="text-white font-black text-base md:text-xl mb-2">3시간 걸리던 글, <span class="text-yellow-400">3분</span>이면 끝.</h4>
+                            <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-4">키워드 하나만 입력하세요.<br><span class="text-white font-bold">상위 노출 글의 구조를 AI가 알아서</span> 잡아줍니다.</p>
                             <div class="rounded-2xl overflow-hidden border border-gray-800 bg-[#111]">
                                 <img src="assets/images/editor-01.gif" alt="키워드 입력 후 글 구조 자동 생성" class="w-full" loading="lazy" onerror="this.parentElement.style.display='none'">
                             </div>
@@ -683,19 +393,6 @@
                 </div>
 
 
-                <div class="editor-fade text-center">
-                    <p class="text-lg md:text-xl text-white font-bold mb-2" id="vacancy-date"></p>
-                    <p class="text-base text-white mb-3">현재 공석</p>
-                    <div class="flex items-baseline justify-center gap-2">
-                        <span id="limit-slots-remaining" class="text-6xl md:text-7xl font-black text-[#FEE500] leading-none">3</span><!-- 기본값 3 -->
-                        <span class="text-white text-xl font-bold">/ 15자리</span>
-                    </div>
-
-                    <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="inline-block mt-10 px-12 py-4 rounded-xl font-bold bg-[#FEE500] text-black text-center hover:brightness-90 transition-all text-lg">
-                        지금 고용하기
-                    </button>
-                    <p class="text-gray-600 text-xs mt-4">자리가 다 차면 공석이 날 때까지 기다리셔야 합니다.</p>
-                </div>
             </div>
 
         </div>
@@ -743,6 +440,95 @@
         }
     })();
     </script>
+
+    <!-- ===== SECTION 1: HERO — 스토리텔링형 (직원 고용 프레임) ===== -->
+    <section class="relative bg-gradient-to-br from-gray-50 via-white to-green-50/40 overflow-hidden">
+        <!-- 배경 데코 -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-green-100 rounded-full filter blur-3xl opacity-40"></div>
+            <div class="absolute bottom-0 -left-20 w-[300px] h-[300px] bg-green-50 rounded-full filter blur-3xl opacity-50"></div>
+        </div>
+
+        <div class="relative z-10">
+
+            <!-- ▸ PART 3B: 솔루션 헤드라인 -->
+            <div class="py-20 md:py-28 px-6 bg-gradient-to-b from-green-50 to-green-50/30">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="hero-story-fade text-3xl md:text-5xl lg:text-[3.5rem] leading-[1.25] mb-8">
+                        <span class="font-light text-gray-900">사람보다 일 잘하는</span><br>
+                        <span class="font-extrabold text-naver">두 번째</span> <span class="font-light text-gray-900">AI 직원을</span><br>
+                        <span class="font-extrabold text-red-500">무료</span><span class="font-light text-gray-900">로 체험해보세요.</span>
+                    </h2>
+
+                    <!-- 영상 유도 카피 -->
+                    <div class="text-center mt-12 mb-6">
+                        <p class="hero-story-fade text-2xl md:text-3xl font-black text-gray-900 mb-4">(클릭)</p>
+                        <div class="hero-story-fade flex flex-col items-center gap-0 animate-bounce-slow">
+                            <span class="text-2xl text-naver font-bold leading-none">▼</span>
+                            <span class="text-2xl text-naver/60 font-bold leading-none -mt-2">▼</span>
+                            <span class="text-2xl text-naver/30 font-bold leading-none -mt-2">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- 소개 영상 (썸네일 클릭 → 인라인 재생) -->
+                    <div id="demoVideo" class="hero-story-fade max-w-xl mx-auto mb-12">
+                        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg cursor-pointer group" style="padding-bottom:56.25%" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/IENTaELnuw0?autoplay=1\' class=\'absolute inset-0 w-full h-full\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen></iframe>';this.style.cursor='default'">
+                            <img src="https://img.youtube.com/vi/IENTaELnuw0/maxresdefault.jpg" alt="핵심 업무 영상" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-all"></div>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <div class="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                                    <span class="text-white text-2xl md:text-3xl ml-1">▶</span>
+                                </div>
+                                <p class="text-white font-black text-2xl md:text-3xl mt-4 drop-shadow-lg">영상으로 보는 핵심 업무</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 실제 사용 전후 비교 -->
+                    <div class="hero-story-fade max-w-xl mx-auto mt-16 mb-12">
+                        <div class="text-center mb-4">
+                            <p class="text-2xl md:text-3xl font-black text-gray-900 mb-1">일주일 후</p>
+                            <p class="text-4xl md:text-6xl font-black text-red-500">35<span class="text-2xl md:text-4xl">배</span> <span class="text-2xl md:text-4xl font-black text-gray-900">증가!</span></p>
+                        </div>
+                        <div class="flex items-center justify-center gap-4 md:gap-8 mb-6">
+                            <div class="text-center">
+                                <p class="text-sm text-gray-500 mb-1">사용 전</p>
+                                <p class="text-3xl md:text-5xl font-black text-gray-400">28<span class="text-lg md:text-2xl">명</span></p>
+                            </div>
+                            <span class="text-3xl md:text-4xl font-black text-naver">→</span>
+                            <div class="text-center">
+                                <p class="text-4xl md:text-6xl font-black text-red-500">980<span class="text-xl md:text-3xl">명</span></p>
+                            </div>
+                        </div>
+                        <img src="assets/images2/chart2.png" alt="사용 1주일 후 방문자·이웃 증가 그래프" class="w-full rounded-xl shadow-md border border-gray-200">
+                    </div>
+
+                    <!-- 능력 선언 -->
+                    <p class="hero-story-fade text-xl md:text-2xl font-bold text-gray-900 mb-8">
+                        수익형 블로그에 최적화된<br><span class="text-naver">AI 직원을 소개합니다.</span>
+                    </p>
+
+                    <!-- CTA -->
+                    <div class="hero-story-fade flex flex-col items-center gap-4">
+                        <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
+                            신청하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2 PAIN POINTS + 공감 전환 섹션 삭제됨 (Phase 14: 직원 고용 프레임 전환) -->
+
+    <!-- ===== SECTION 3: 직원 업무 소개 ===== -->
+    <section id="solution-section" class="py-8 md:py-12 bg-white px-6">
+        <div class="max-w-3xl mx-auto">
+
+
+        </div>
+    </section>
 
     <!-- ===== SECTION 9: PRICING ===== -->
     <section id="pricing" class="py-24 bg-white px-6">
@@ -1315,6 +1101,208 @@
     <script src="assets/js/payment.js"></script>
     <script src="assets/js/bank-transfer.js"></script>
     <script src="assets/js/form.js"></script>
+
+    <!-- 제목 추천 체험 로직 -->
+    <script>
+    (function() {
+        var CATEGORIES = {"레시피/맛집/식품":["요리","레시피","맛집","식품 리뷰","AI 푸드/레시피 추천","카페/디저트","전통시장/로컬푸드","다이어트 식단","간편식/밀키트","베이킹/디저트"],"여행/숙박":["국내여행","해외여행","세계여행","숙소","AI 여행 코스 계획","캠핑/차박","제주도 여행","일본 여행","동남아 여행","유럽 여행","여행 준비물 체크리스트"],"IT 기기 리뷰":["스마트폰/태블릿","PC/노트북","가전제품","카메라/음향기기","주변기기/액세서리","웨어러블 기기","게이밍 기어","스마트홈 기기","드론/액션캠"],"IT/인터넷":["소프트웨어/팁","최신 IT 트렌드","인터넷 꿀팁","앱/어플리케이션 추천","보안/해킹","웹디자인/개발","클라우드 서비스","SNS 활용법","블로그 운영 팁"],"AI/인공지능":["ChatGPT/LLM 활용법","AI 이미지/영상 생성","AI 업무 생산성 도구","최신 AI 뉴스/트렌드","AI 툴/서비스 리뷰","프롬프트 엔지니어링","AI 코딩/개발","AI 비즈니스 모델","AI 윤리/미래"],"패션/의류/뷰티":["패션 코디","뷰티 제품 리뷰","패션 트렌드","AI 퍼스널 컬러/스타일링","스킨케어/메이크업","헤어스타일","향수 리뷰","명품/브랜드 소식","데일리룩/OOTD"],"건강/웰빙/운동":["운동/헬스","다이어트/식단","건강 정보","AI 헬스케어/식단 관리","요가/필라테스","멘탈 헬스/명상","영양제 리뷰","홈트레이닝","등산/러닝"],"재테크/금융/경제":["주식/투자","부동산","경제/정책","사회","정치","AI 투자/자산관리","가상화폐/NFT","절세/세무","보험/연금","부업/N잡","창업/스타트업"],"육아/출산/교육":["육아 일상","교육/입시 정보","학문","육아용품 리뷰","AI 교육/육아 도우미","임신/출산 정보","어린이집/유치원","초등 교육","영어 교육","놀이 학습"],"취업/자기계발":["취업 준비","자기계발","도서 리뷰","AI 자소서/면접 코칭","공인 자격증","어학 공부","직장 생활 팁","시간 관리","온라인 강의 추천"],"일상/생활/취미":["일상 이야기","생각","결혼","좋은글","이미지","사진","생활 꿀팁","취미","반려동물","AI 활용 취미/생활","인테리어/DIY","원예/식물","자동차/드라이브","캠핑/아웃도어"],"엔터테인먼트/문화":["문학","미술","디자인","스타","연예인","만화","애니","방송","드라마/영화 리뷰","음악/K-POP","공연/전시","AI 콘텐츠 제작/합성","웹툰/애니메이션","게임 리뷰/공략","스포츠 뉴스","유튜브/크리에이터"],"수익형 블로그/유튜브":["블로그 수익화","유튜브 성장 전략","애드센스/광고 수익","제휴 마케팅","전자책/강의 판매","퍼스널 브랜딩","AI 활용 콘텐츠 제작","숏폼(쇼츠/릴스) 공략","뉴스레터/커뮤니티 운영"]};
+
+        var mainSelect = document.getElementById('tr-main-cat');
+        var subSelect = document.getElementById('tr-sub-cat');
+        var selectedMode = 'default';
+
+        // 메인 카테고리 채우기
+        if (mainSelect) {
+            Object.keys(CATEGORIES).forEach(function(cat) {
+                var opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                mainSelect.appendChild(opt);
+            });
+
+            mainSelect.addEventListener('change', function() {
+                subSelect.innerHTML = '<option value="">서브 카테고리 선택</option>';
+                var subs = CATEGORIES[this.value];
+                if (subs) {
+                    subSelect.disabled = false;
+                    subs.forEach(function(sub) {
+                        var opt = document.createElement('option');
+                        opt.value = sub;
+                        opt.textContent = sub;
+                        subSelect.appendChild(opt);
+                    });
+                } else {
+                    subSelect.disabled = true;
+                }
+            });
+        }
+
+        // 모드 버튼
+        document.querySelectorAll('.tr-mode-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // 잠긴 모드 클릭 시 토스트
+                if (this.classList.contains('tr-locked')) {
+                    showModeToast();
+                    return;
+                }
+                document.querySelectorAll('.tr-mode-btn:not(.tr-locked)').forEach(function(b) {
+                    b.classList.remove('active');
+                    b.style.borderColor = '';
+                    b.style.background = '';
+                    b.classList.add('text-gray-400');
+                    b.classList.remove('text-white');
+                });
+                this.classList.add('active', 'text-white');
+                this.classList.remove('text-gray-400');
+                this.style.borderColor = '#03C75A';
+                this.style.background = 'rgba(3,199,90,0.1)';
+                selectedMode = this.dataset.mode;
+            });
+        });
+
+        // 토스트 표시
+        function showModeToast(msg) {
+            var existing = document.getElementById('tr-toast');
+            if (existing) existing.remove();
+            var toast = document.createElement('div');
+            toast.id = 'tr-toast';
+            toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;border:1px solid #FEE500;color:white;padding:12px 24px;border-radius:12px;font-size:14px;z-index:9999;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.5);max-width:90vw;';
+            toast.innerHTML = '🔒 ' + (msg || '이 모드는 <span style="color:#FEE500;font-weight:bold;">정식 버전</span>에서 사용할 수 있습니다.');
+            document.body.appendChild(toast);
+            setTimeout(function() { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.3s'; }, 2500);
+            setTimeout(function() { toast.remove(); }, 2800);
+        }
+
+        // 제목 추천 실행
+        window.handleTitleRecommend = async function() {
+            var category = mainSelect.value;
+            var subCategory = subSelect.value;
+            var topic = document.getElementById('tr-topic').value.trim();
+            var submitBtn = document.getElementById('tr-submit');
+            var loading = document.getElementById('tr-loading');
+            var results = document.getElementById('tr-results');
+            var resultsList = document.getElementById('tr-results-list');
+            var errorDiv = document.getElementById('tr-error');
+            var errorMsg = document.getElementById('tr-error-msg');
+
+            if (!category || !subCategory) {
+                errorDiv.classList.remove('hidden');
+                errorMsg.textContent = '카테고리와 서브 카테고리를 선택해주세요.';
+                return;
+            }
+
+            // localStorage 사전 체크
+            var localCount = parseInt(localStorage.getItem('trCount') || '0', 10);
+            if (localCount >= 2) {
+                errorDiv.classList.remove('hidden');
+                errorMsg.textContent = '무료 체험 횟수(2회)를 모두 사용했습니다. 정식 버전에서 무제한으로 이용하세요!';
+                return;
+            }
+
+            errorDiv.classList.add('hidden');
+            results.classList.add('hidden');
+            loading.classList.remove('hidden');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'AI 분석 중...';
+
+            try {
+                var url = window.APP_CONFIG.recommendTitles.url;
+                var res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        category: category,
+                        subCategory: subCategory,
+                        mode: selectedMode,
+                        userTopic: topic
+                    })
+                });
+
+                var data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.error || '요청 실패');
+                }
+
+                // localStorage 카운트 증가
+                localStorage.setItem('trCount', String(localCount + 1));
+                var remaining = data.remaining != null ? data.remaining : (1 - localCount);
+                document.getElementById('tr-remaining').textContent = Math.max(0, remaining);
+
+                // 결과 표시 (5개만)
+                resultsList.innerHTML = '';
+                if (data.titles && data.titles.length > 0) {
+                    var showCount = Math.min(5, data.titles.length);
+                    for (var i = 0; i < showCount; i++) {
+                        var item = data.titles[i];
+                        var div = document.createElement('div');
+                        div.className = 'bg-[#0f172a] rounded-lg p-3 hover:bg-[#1a2744] transition-colors cursor-default';
+                        div.innerHTML = '<div class="flex items-start gap-2">' +
+                            '<span class="text-[#FEE500] font-bold text-xs mt-0.5 shrink-0">' + (i + 1) + '</span>' +
+                            '<div>' +
+                            '<p class="text-white text-sm font-medium leading-relaxed">' + item.title + '</p>' +
+                            '<p class="text-gray-500 text-xs mt-1"><span class="text-naver">' + item.mainKeyword + '</span> · ' + item.subKeywords + '</p>' +
+                            '</div></div>';
+                        resultsList.appendChild(div);
+                    }
+                    // 키워드 최적화 글쓰기 버튼
+                    var writeBtn = document.createElement('button');
+                    writeBtn.className = 'w-full mt-4 py-3 rounded-xl font-bold text-black text-sm transition-all hover:brightness-90';
+                    writeBtn.style.background = '#FEE500';
+                    writeBtn.textContent = '키워드 최적화 글쓰기';
+                    writeBtn.onclick = function() { showModeToast('정식 버전에서 상위 노출을 최적화해보세요.'); };
+                    resultsList.appendChild(writeBtn);
+                    results.classList.remove('hidden');
+                }
+
+                // 남은 횟수 0이면 CTA 추가
+                if (remaining <= 0) {
+                    var cta = document.createElement('div');
+                    cta.className = 'mt-4 text-center p-4 border border-[#FEE500]/30 rounded-xl bg-[#FEE500]/5';
+                    cta.innerHTML = '<p class="text-white text-sm font-bold mb-2">무료 체험이 끝났습니다!</p>' +
+                        '<p class="text-gray-400 text-xs mb-3">정식 버전에서는 제목 추천 + 글 작성까지 무제한으로 사용할 수 있습니다.</p>' +
+                        '<button onclick="document.getElementById(\'pricing\').scrollIntoView({behavior:\'smooth\'})" class="px-6 py-2 rounded-lg font-bold text-black text-sm" style="background:#FEE500;">지금 고용하기</button>';
+                    resultsList.appendChild(cta);
+                }
+            } catch (err) {
+                var msg = err.message || '오류가 발생했습니다.';
+                if (msg.includes('무료 체험 횟수') || msg.includes('차단')) {
+                    // 차단 모달 표시
+                    showBlockedModal(msg);
+                } else {
+                    errorDiv.classList.remove('hidden');
+                    errorMsg.textContent = msg;
+                }
+            } finally {
+                loading.classList.add('hidden');
+                submitBtn.disabled = false;
+                submitBtn.textContent = '제목 추천받기';
+            }
+        };
+
+        // 차단 모달
+        function showBlockedModal(msg) {
+            var existing = document.getElementById('tr-blocked-modal');
+            if (existing) existing.remove();
+            var modal = document.createElement('div');
+            modal.id = 'tr-blocked-modal';
+            modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:10000;padding:16px;';
+            modal.innerHTML = '<div style="background:#1e293b;border:1px solid #FEE500;border-radius:16px;padding:32px;max-width:400px;width:100%;text-align:center;">' +
+                '<p style="font-size:40px;margin-bottom:12px;">🔒</p>' +
+                '<p style="color:white;font-size:18px;font-weight:800;margin-bottom:8px;">무료 체험이 종료되었습니다</p>' +
+                '<p style="color:#94a3b8;font-size:14px;margin-bottom:24px;">' + msg + '</p>' +
+                '<button onclick="document.getElementById(\'pricing\').scrollIntoView({behavior:\'smooth\'});document.getElementById(\'tr-blocked-modal\').remove();" style="background:#FEE500;color:black;font-weight:700;padding:12px 32px;border-radius:12px;font-size:15px;border:none;cursor:pointer;width:100%;margin-bottom:8px;">정식 버전 확인하기</button>' +
+                '<button onclick="document.getElementById(\'tr-blocked-modal\').remove();" style="background:transparent;color:#64748b;font-size:13px;border:none;cursor:pointer;padding:8px;">닫기</button>' +
+                '</div>';
+            document.body.appendChild(modal);
+        }
+
+        // 페이지 로드 시 남은 횟수 표시
+        var initCount = parseInt(localStorage.getItem('trCount') || '0', 10);
+        var remainEl = document.getElementById('tr-remaining');
+        if (remainEl) remainEl.textContent = Math.max(0, 2 - initCount);
+    })();
+    </script>
 
     <!-- 공석 날짜 실시간 표시 -->
     <script>
