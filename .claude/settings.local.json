@@ -4,7 +4,11 @@
       "Bash(npx http-server:*)",
       "Bash(start:*)",
       "Bash(python -c ':*)",
-      "WebFetch(domain:blog.pluscoach.co.kr)"
+      "WebFetch(domain:blog.pluscoach.co.kr)",
+      "WebSearch",
+      "WebFetch(domain:supabase.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:gist.github.com)"
     ]
   }
 }
