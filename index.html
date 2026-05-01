@@ -95,6 +95,11 @@
             50% { text-shadow: 0 0 25px rgba(3,199,90,0.6), 0 0 50px rgba(3,199,90,0.3); }
         }
         .editor-glow-pulse { animation: glowPulse 2.5s ease-in-out infinite; }
+        @keyframes ctaPulseYellow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(254, 229, 0, 0); }
+            50% { box-shadow: 0 0 22px 4px rgba(254, 229, 0, 0.45); }
+        }
+        .tr-cta-pulse { animation: ctaPulseYellow 2.4s ease-in-out infinite; }
         .editor-stagger { opacity: 0; transform: translateY(25px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .editor-stagger.visible { opacity: 1; transform: translateY(0); }
     </style>
@@ -154,8 +159,8 @@
             <!-- 블록 5: 제목 추천 체험 -->
             <div class="py-10 md:py-16">
                 <div class="editor-fade text-center mb-8">
-                    <p class="text-naver text-sm font-bold tracking-widest mb-3">무료 체험</p>
-                    <h3 class="text-white font-black text-xl md:text-2xl mb-2">지금 바로 체험해보세요</h3>
+                    <p class="text-naver text-base md:text-xl font-black tracking-widest mb-4">무료 체험</p>
+                    <h3 class="text-white font-black text-3xl md:text-5xl mb-3 leading-tight" style="letter-spacing:-0.02em;"><span style="color:#FEE500;">조회수 터지는</span> 제목 5개로<br>클릭률 UP!</h3>
                     <p class="text-gray-400 text-sm">카테고리를 선택하면 AI가 인기 블로그 제목 5개를 추천해줍니다.</p>
                 </div>
                 <div class="editor-fade max-w-2xl mx-auto bg-[#1e293b] border border-slate-600 rounded-2xl overflow-hidden shadow-2xl shadow-naver/5">
@@ -171,9 +176,9 @@
                     <div class="p-6 md:p-8">
                         <!-- 1. 메인 카테고리 -->
                         <div class="mb-4">
-                            <label class="text-xs text-gray-400 mb-1.5 block">1. 메인 카테고리 선택</label>
-                            <select id="tr-main-cat" class="w-full bg-[#0f172a] border border-slate-600 text-white text-sm rounded-lg px-4 py-3 focus:border-naver focus:outline-none">
-                                <option value="">카테고리 선택</option>
+                            <label class="text-xs text-[#FEE500] font-bold mb-1.5 block">1️⃣ 여기서 시작 → 메인 카테고리</label>
+                            <select id="tr-main-cat" class="tr-cta-pulse w-full bg-[#0f172a] border-2 border-[#FEE500] text-white text-sm rounded-lg px-4 py-3 focus:border-[#FEE500] focus:outline-none">
+                                <option value="">👇 클릭해서 카테고리 고르기</option>
                             </select>
                         </div>
                         <!-- 2. 서브 카테고리 -->
@@ -201,7 +206,7 @@
                         </div>
                         <!-- 실행 버튼 -->
                         <button id="tr-submit" onclick="handleTitleRecommend()" class="w-full py-3.5 rounded-xl font-bold text-black text-base transition-all hover:brightness-90 disabled:opacity-50 disabled:cursor-not-allowed" style="background:#FEE500;">
-                            제목 추천받기
+                            무료로 제목 5개 받기 →
                         </button>
                         <!-- 로딩 -->
                         <div id="tr-loading" class="hidden mt-6 text-center">
@@ -454,10 +459,11 @@
             <!-- ▸ PART 3B: 솔루션 헤드라인 -->
             <div class="py-20 md:py-28 px-6 bg-gradient-to-b from-green-50 to-green-50/30">
                 <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="hero-story-fade text-3xl md:text-5xl lg:text-[3.5rem] leading-[1.25] mb-8">
-                        <span class="font-light text-gray-900">사람보다 일 잘하는</span><br>
-                        <span class="font-extrabold text-naver">두 번째</span> <span class="font-light text-gray-900">AI 직원을</span><br>
-                        <span class="font-extrabold text-red-500">무료</span><span class="font-light text-gray-900">로 체험해보세요.</span>
+                    <h2 class="hero-story-fade leading-[1.25] mb-8">
+                        <span class="block text-xl md:text-3xl font-light text-gray-900">평소 2~3시간 걸렸던</span>
+                        <span class="block text-3xl md:text-5xl lg:text-[3.5rem] font-extrabold text-naver">이웃 관리</span>
+                        <span class="block text-3xl md:text-5xl lg:text-[3.5rem] mt-4 md:mt-6"><span class="font-extrabold text-gray-900">두 번째 AI 직원</span><span class="font-light text-gray-900">이</span></span>
+                        <span class="block text-xl md:text-3xl font-light text-gray-900">대신해드릴게요.</span>
                     </h2>
 
                     <!-- 영상 유도 카피 -->
@@ -504,14 +510,15 @@
                     </div>
 
                     <!-- 능력 선언 -->
-                    <p class="hero-story-fade text-xl md:text-2xl font-bold text-gray-900 mb-8">
-                        수익형 블로그에 최적화된<br><span class="text-naver">AI 직원을 소개합니다.</span>
+                    <p class="hero-story-fade text-xl md:text-2xl font-bold text-gray-900 mb-8 leading-relaxed">
+                        <span class="text-naver">이웃 관리 솔루션</span><br>
+                        무료 체험 해보세요
                     </p>
 
                     <!-- CTA -->
                     <div class="hero-story-fade flex flex-col items-center gap-4">
-                        <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="bg-naver hover:bg-naverHover text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-green-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
-                            신청하기
+                        <button onclick="scrollToForm('free')" class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-10 rounded-xl shadow-lg shadow-red-200/50 transition-all transform hover:-translate-y-1 hover:shadow-xl text-lg">
+                            무료 체험 →
                         </button>
                     </div>
                 </div>
@@ -523,7 +530,7 @@
     <!-- SECTION 2 PAIN POINTS + 공감 전환 섹션 삭제됨 (Phase 14: 직원 고용 프레임 전환) -->
 
     <!-- ===== SECTION 3: 직원 업무 소개 ===== -->
-    <section id="solution-section" class="py-8 md:py-12 bg-white px-6">
+    <section id="solution-section" class="py-0 bg-white px-6">
         <div class="max-w-3xl mx-auto">
 
 
@@ -531,7 +538,7 @@
     </section>
 
     <!-- ===== SECTION 9: PRICING ===== -->
-    <section id="pricing" class="py-24 bg-white px-6">
+    <section id="pricing" class="pt-12 pb-24 bg-white px-6">
         <div class="max-w-5xl mx-auto text-center">
             <div class="mb-14">
                 <span class="inline-block text-sm font-semibold text-naver bg-naver/10 border border-naver/20 px-4 py-1.5 rounded-full mb-5">가격 안내</span>
@@ -1121,6 +1128,7 @@
             });
 
             mainSelect.addEventListener('change', function() {
+                if (this.value) this.classList.remove('tr-cta-pulse');
                 subSelect.innerHTML = '<option value="">서브 카테고리 선택</option>';
                 var subs = CATEGORIES[this.value];
                 if (subs) {
@@ -1276,7 +1284,7 @@
             } finally {
                 loading.classList.add('hidden');
                 submitBtn.disabled = false;
-                submitBtn.textContent = '제목 추천받기';
+                submitBtn.textContent = '무료로 제목 5개 받기 →';
             }
         };
 
