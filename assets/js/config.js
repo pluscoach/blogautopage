@@ -10,21 +10,21 @@
 var PLAN_CONFIG = {
     free: {
         amount: 0,
-        label: '1일 무료 체험',
-        name: '1일 무료 체험',
+        label: '5일 무료 체험',
+        name: '5일 무료 체험',
         planCode: 'free_trial',
         visible: true,
     },
     '1month': {
-        amount: 59000,
-        label: '1개월 고용 (59,000원)',
+        amount: 79000,
+        label: '1개월 고용 (79,000원)',
         name: '1개월 고용',
         planCode: 'monthly',
         visible: true,
     },
     full: {
-        amount: 99000,
-        label: '2개월 고용 (99,000원)',
+        amount: 129000,
+        label: '2개월 고용 (129,000원)',
         name: '2개월 고용',
         planCode: 'full_package',
         visible: true,
