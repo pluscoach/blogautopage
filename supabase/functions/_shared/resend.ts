@@ -59,7 +59,7 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
             잠시 후 같은 이메일로 <strong>인증키와 다운로드 안내</strong>가 도착합니다. 보통 1~2분 안에 받아보실 수 있어요.
           </p>
           <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">
-            곧 도착할 인증키 메일에 <strong>24시간 카운트다운</strong> 안내가 포함되어 있으니 꼭 확인해주세요!
+            곧 도착할 인증키 메일에 <strong>5일 체험 기간</strong> 안내가 포함되어 있으니 꼭 확인해주세요!
           </p>
         </div>
 
@@ -128,7 +128,7 @@ export async function sendLicenseKeyEmail({
   isPaid?: boolean;
 }): Promise<void> {
   const isLifetime = plan === "lifetime";
-  const planDuration = isLifetime ? "평생 이용" : plan === "monthly" ? "1개월 이용" : plan === "full_package" ? "2개월 이용" : "24시간";
+  const planDuration = isLifetime ? "평생 이용" : plan === "monthly" ? "1개월 이용" : plan === "full_package" ? "2개월 이용" : "5일";
   const emailSubject = isLifetime
     ? "[블로그 관리 솔루션] 평생 이용 인증키가 발급되었어요 🎉"
     : isPaid
@@ -250,7 +250,7 @@ export async function sendLicenseKeyEmail({
         </div>
         ` : `
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
-          <p style="margin:0 0 6px 0; font-size:18px; font-weight:800; color:#0A0A0A; text-align:center; word-break:keep-all; overflow-wrap:break-word;">💎 24시간 안에 정식판을 구매하시면</p>
+          <p style="margin:0 0 6px 0; font-size:18px; font-weight:800; color:#0A0A0A; text-align:center; word-break:keep-all; overflow-wrap:break-word;">💎 5일 안에 정식판을 구매하시면</p>
           <p class="email-body" style="margin:0 0 20px 0; font-size:13px; line-height:1.65; color:#666; text-align:center; word-break:keep-all; overflow-wrap:break-word;">체험 기간을 <strong style="color:#03C75A;">추가로</strong> 드립니다</p>
 
           <!--[if mso]><table role="presentation" width="100%"><tr><td width="50%" valign="top"><![endif]-->
@@ -655,7 +655,7 @@ export async function sendEmergencyAlertEmail(params: {
 
 function getPlanLabel(plan: string, amount: number): string {
   const labels: Record<string, string> = {
-    free_trial: "무료 체험 (24시간)",
+    free_trial: "무료 체험 (5일)",
     monthly: `1개월 이용 (${amount.toLocaleString()}원)`,
     full_package: `2개월 이용 (${amount.toLocaleString()}원)`,
     lifetime: `평생 이용 (${amount.toLocaleString()}원)`,
