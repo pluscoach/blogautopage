@@ -438,12 +438,16 @@ async function handleApproveFree(params: {
       });
     }
 
-    // 텔레그램 메시지 업데이트
-    const planLabel = getPlanLabel(order.plan);
+    // 텔레그램 메시지 업데이트 + 재발송 버튼
     await editTelegramMessage({
       chatId,
       messageId,
       text: `${originalText}\n\n✅ 무료체험 승인 완료\n🔑 인증키: ${licenseKey}\n📧 이메일 발송됨`,
+      replyMarkup: {
+        inline_keyboard: [[
+          { text: "📧 인증키 재발송", callback_data: `resend_same:${orderCode}` },
+        ]],
+      },
     });
 
     await answerCallbackQuery({ callbackQueryId, text: `✅ 무료체험 승인 완료 — ${licenseKey}` });
