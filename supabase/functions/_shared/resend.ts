@@ -35,11 +35,11 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
         </div>
 
         <h1 class="email-title" style="font-size:20px; font-weight:800; line-height:1.35; color:#0A0A0A; margin:0 0 20px 0; text-align:center; word-break:keep-all; overflow-wrap:break-word;">
-          ${order.name}님,<br>블로그 담당 AI 직원이 배정되었습니다
+          ${order.name}님,<br>이용 신청이 접수되었습니다
         </h1>
 
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 8px 0; word-break:keep-all; overflow-wrap:break-word;">
-          블로그 관리를 책임질 <strong>블로그 담당 AI 직원</strong>을 신청해주셔서 감사합니다.
+          블로그 관리 솔루션을 신청해주셔서 감사합니다.
         </p>
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 32px 0; word-break:keep-all; overflow-wrap:break-word;">
           ${order.name}님의 블로그 성장을 위해 최선을 다하겠습니다.
@@ -48,7 +48,7 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
         <div class="email-card-inner" style="background:#faf9f6; border-radius:16px; padding:24px; margin-bottom:20px;">
           <p class="email-section-title" style="margin:0 0 14px 0; font-size:11px; font-weight:600; color:#888; letter-spacing:1px; word-break:keep-all; overflow-wrap:break-word;">ORDER INFO</p>
           <table style="width:100%; font-size:13px; color:#555;">
-            <tr><td style="padding:4px 0; word-break:keep-all; overflow-wrap:break-word;">고용 기간</td><td style="text-align:right; font-weight:600; word-break:keep-all; overflow-wrap:break-word;">${planLabel}</td></tr>
+            <tr><td style="padding:4px 0; word-break:keep-all; overflow-wrap:break-word;">이용 기간</td><td style="text-align:right; font-weight:600; word-break:keep-all; overflow-wrap:break-word;">${planLabel}</td></tr>
             <tr><td style="padding:4px 0; word-break:keep-all; overflow-wrap:break-word;">주문 코드</td><td style="text-align:right; font-weight:600; word-break:keep-all; overflow-wrap:break-word;">${order.order_code}</td></tr>
           </table>
         </div>
@@ -95,7 +95,7 @@ export async function sendOrderConfirmationEmail(order: Record<string, unknown>)
     body: JSON.stringify({
       from: FROM_HEADER,
       to: [order.email as string],
-      subject: "[블로그 관리 솔루션] 블로그 담당 AI 직원이 배정되었습니다",
+      subject: "[블로그 관리 솔루션] 이용 신청이 접수되었습니다",
       html,
     }),
   });
@@ -128,9 +128,9 @@ export async function sendLicenseKeyEmail({
   isPaid?: boolean;
 }): Promise<void> {
   const isLifetime = plan === "lifetime";
-  const planDuration = isLifetime ? "평생 채용" : plan === "monthly" ? "1개월 고용" : plan === "full_package" ? "2개월 고용" : "24시간";
+  const planDuration = isLifetime ? "평생 이용" : plan === "monthly" ? "1개월 이용" : plan === "full_package" ? "2개월 이용" : "24시간";
   const emailSubject = isLifetime
-    ? "[블로그 관리 솔루션] 평생 채용 인증키가 발급되었어요 🎉"
+    ? "[블로그 관리 솔루션] 평생 이용 인증키가 발급되었어요 🎉"
     : isPaid
       ? "[블로그 관리 솔루션] 인증키가 발급되었어요 🎉"
       : "[블로그 관리 솔루션] 인증키가 발급되었어요 🎉";
@@ -144,7 +144,7 @@ export async function sendLicenseKeyEmail({
         </div>
 
         <h1 class="email-title" style="font-size:20px; font-weight:800; line-height:1.35; color:#0A0A0A; margin:0 0 20px 0; text-align:center; word-break:keep-all; overflow-wrap:break-word;">
-          ${name}님,<br>블로그 담당 AI 직원이 준비되었습니다 🎉
+          ${name}님,<br>인증키가 준비되었습니다 🎉
         </h1>
 
         ${plan === "free_trial" ? `
@@ -153,7 +153,7 @@ export async function sendLicenseKeyEmail({
         </p>
         ` : `
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 8px 0; word-break:keep-all; overflow-wrap:break-word;">
-          블로그 관리를 책임질 <strong>블로그 담당 AI 직원</strong>이 준비되었습니다.
+          블로그 관리 솔루션이 준비되었습니다.
         </p>
         <p class="email-body" style="font-size:13px; line-height:1.65; color:#555; margin:0 0 32px 0; word-break:keep-all; overflow-wrap:break-word;">
           아래 사용법을 끝까지 읽어보시고, 궁금한 점은 언제든 편하게 문의해주세요.
@@ -182,7 +182,7 @@ export async function sendLicenseKeyEmail({
             <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">⏰ 이용 기간 안내</p>
             <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
               ${isLifetime
-                ? `<strong>평생 채용</strong>으로 기간 제한 없이 사용 가능합니다. 되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`
+                ? `<strong>평생 이용</strong>으로 기간 제한 없이 사용 가능합니다. 되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`
                 : `인증키가 <strong>발급된 시점부터 ${planDuration}</strong> 동안 사용 가능합니다.
               프로그램을 언제 처음 실행하든 관계없이, 이 메일을 받으신 지금부터 타이머가 돌아갑니다.
               되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`}
@@ -192,7 +192,7 @@ export async function sendLicenseKeyEmail({
             <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">인증키 발급 후에는 환불이 어렵습니다</p>
             <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
               ${isLifetime
-                ? `평생 채용은 고액 디지털 상품으로, 인증키 발급 후 환불 조건이 엄격합니다. <a href="https://blog.pluscoach.co.kr/refund.html" style="color:#03C75A; text-decoration:underline;">환불 규정 페이지</a>를 반드시 확인해주세요.`
+                ? `평생 이용은 고액 디지털 상품으로, 인증키 발급 후 환불 조건이 엄격합니다. <a href="https://blog.pluscoach.co.kr/refund.html" style="color:#03C75A; text-decoration:underline;">환불 규정 페이지</a>를 반드시 확인해주세요.`
                 : `디지털 상품의 특성상, 인증키가 한 번 발급되면 환불 처리가 불가능합니다.
               이 점 양해 부탁드리며, 혹시 궁금한 점이 있으시다면
               <strong>반드시 발급 전에</strong> 카카오톡 채널로 먼저 문의해주세요.`}
@@ -234,16 +234,16 @@ export async function sendLicenseKeyEmail({
         ${isLifetime ? `
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
           <div class="email-card-inner" style="background:#f0fdf4; border-radius:16px; padding:24px; text-align:center;">
-            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">고용 기간</p>
-            <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">평생 채용</p>
-            <p style="margin:0 0 4px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">한 번 채용, 평생 고용</p>
+            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">이용 기간</p>
+            <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">평생 이용</p>
+            <p style="margin:0 0 4px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">한 번 구매, 평생 이용</p>
             <p style="margin:0; font-size:12px; color:#888; word-break:keep-all; overflow-wrap:break-word;">결제가 정상 완료되었습니다</p>
           </div>
         </div>
         ` : isPaid ? `
         <div style="border-top:1px solid #f0ede5; padding-top:28px; margin-bottom:36px;">
           <div class="email-card-inner" style="background:#f0fdf4; border-radius:16px; padding:24px; text-align:center;">
-            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">고용 기간</p>
+            <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">이용 기간</p>
             <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">${planDuration}</p>
             <p style="margin:0; font-size:12px; color:#888; word-break:keep-all; overflow-wrap:break-word;">결제가 정상 완료되었습니다</p>
           </div>
@@ -256,7 +256,7 @@ export async function sendLicenseKeyEmail({
           <!--[if mso]><table role="presentation" width="100%"><tr><td width="50%" valign="top"><![endif]-->
           <div style="display:inline-block; width:48%; vertical-align:top; margin-right:2%;">
             <div class="email-card-inner" style="background:#faf9f6; border-radius:14px; padding:18px 16px; text-align:center;">
-              <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">1개월 고용</p>
+              <p style="margin:0 0 6px 0; font-size:13px; color:#555; word-break:keep-all; overflow-wrap:break-word;">1개월 이용</p>
               <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#0A0A0A;">+ 7일</p>
               <p style="margin:0; font-size:12px; color:#888; word-break:keep-all; overflow-wrap:break-word;">추가 사용</p>
             </div>
@@ -265,7 +265,7 @@ export async function sendLicenseKeyEmail({
           <div style="display:inline-block; width:48%; vertical-align:top;">
             <div class="email-card-inner" style="background:linear-gradient(135deg,#E8F5E9,#faf9f6); border:2px solid #03C75A; border-radius:14px; padding:18px 16px; text-align:center; position:relative;">
               <div style="position:absolute; top:-9px; left:50%; transform:translateX(-50%); background:#03C75A; color:#fff; font-size:10px; font-weight:700; padding:2px 10px; border-radius:999px;">추천</div>
-              <p style="margin:0 0 6px 0; font-size:13px; font-weight:600; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">2개월 고용</p>
+              <p style="margin:0 0 6px 0; font-size:13px; font-weight:600; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">2개월 이용</p>
               <p style="margin:0 0 4px 0; font-size:20px; font-weight:800; color:#02b350;">+ 14일</p>
               <p style="margin:0; font-size:12px; color:#02b350; word-break:keep-all; overflow-wrap:break-word;">추가 사용</p>
             </div>
@@ -331,7 +331,7 @@ function escapeHtml(str: string): string {
 export async function sendReminderEmail(params: {
   to: string;
   name: string;
-  planLabel: string;   // '1개월 고용' 등
+  planLabel: string;   // '1개월 이용' 등
   amount: number;
   bankInfo: {
     bank: string;
@@ -656,9 +656,9 @@ export async function sendEmergencyAlertEmail(params: {
 function getPlanLabel(plan: string, amount: number): string {
   const labels: Record<string, string> = {
     free_trial: "무료 체험 (24시간)",
-    monthly: `1개월 고용 (${amount.toLocaleString()}원)`,
-    full_package: `2개월 고용 (${amount.toLocaleString()}원)`,
-    lifetime: `평생 채용 (${amount.toLocaleString()}원)`,
+    monthly: `1개월 이용 (${amount.toLocaleString()}원)`,
+    full_package: `2개월 이용 (${amount.toLocaleString()}원)`,
+    lifetime: `평생 이용 (${amount.toLocaleString()}원)`,
   };
   return labels[plan] || plan;
 }

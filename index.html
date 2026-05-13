@@ -208,7 +208,7 @@
             <div style="margin-bottom:48px;">
                 <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
                     <span style="background:#15A754; color:#fff; font-size:15px; font-weight:800; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</span>
-                    <h3 style="font-size:clamp(1.2rem,3.5vw,1.6rem); font-weight:800; color:#14150F; margin:0;">수락률 높은 서이추를 보냅니다</h3>
+                    <h3 style="font-size:clamp(1.2rem,3.5vw,1.6rem); font-weight:800; color:#14150F; margin:0;">수락률 높은 이웃만 선별해서 보냅니다</h3>
                 </div>
                 <p style="font-size:14px; color:#6E6E63; margin:0 0 16px; padding-left:50px;">뻔한 복사 붙여넣기 멘트가 아닌 정성 메시지</p>
                 <div style="background:#fff; border-radius:12px; padding:20px 24px; margin-left:50px; border:1px solid #E2DECE;">
@@ -216,7 +216,7 @@
                         <span style="width:22px; height:22px; border-radius:50%; background:#15A754; display:flex; align-items:center; justify-content:center;">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                         </span>
-                        <span style="font-size:14px; font-weight:700; color:#15A754;">서로이웃 신청 완료</span>
+                        <span style="font-size:14px; font-weight:700; color:#15A754;">이웃 신청 완료</span>
                     </div>
                     <p style="font-size:14px; color:#4A4B43; line-height:1.65; margin:0; padding-left:30px;">
                         "글 몇 개 읽어봤는데 <span style="background:#E5F2EA; padding:1px 4px; border-radius:3px; font-weight:700; color:#15A754;">생각하는 방향이 비슷</span>하시더라구요. 저도 같은 분야에서 블로그 하고 있어서 공감되는 내용이 많았어요. 자주 소통할 수 있을 것 같아 신청드립니다 :)"
@@ -427,7 +427,7 @@
                         <div class="h-px bg-gray-200 my-5"></div>
                         <ul class="text-sm text-gray-600 space-y-3 text-center mb-6">
                             <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 잠재 고객 최대 <strong>3,000명</strong> 확보</li>
-                            <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 글쓰기 솔루션 포함</li>
+                            <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 글쓰기 솔루션 3개월 체험권</li>
                             <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 가이드 영상 + 매뉴얼</li>
                         </ul>
                     </div>
@@ -444,7 +444,7 @@
                         <div class="h-px bg-naver/20 my-5"></div>
                         <ul class="text-sm text-gray-600 space-y-3 text-center mb-6">
                             <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 잠재 고객 최대 <strong class="text-naver">5,000명</strong> 확보</li>
-                            <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 글쓰기 솔루션 포함</li>
+                            <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 글쓰기 솔루션 3개월 체험권</li>
                             <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 가이드 영상 + 매뉴얼</li>
                             <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 블로그 정착 + 수익화 기반</li>
                         </ul>
@@ -505,65 +505,548 @@
     <section style="background:#0A0A0A; overflow:hidden;" id="editor-section">
         <div style="max-width:680px; margin:0 auto; padding:64px 24px;">
 
-            <!-- 상단 뱃지 -->
-            <div style="text-align:center; margin-bottom:32px;">
-                <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(21,167,84,0.15); border:1px solid rgba(21,167,84,0.3); padding:6px 14px; border-radius:20px; font-size:12px; color:#15A754; font-weight:700;">
-                    <span style="width:6px; height:6px; border-radius:50%; background:#15A754; display:block;"></span>
-                    LIVE &nbsp; 첫 구매 고객 전원 혜택
-                </span>
+            <!-- 노란색 화살표 -->
+            <div class="editor-fade editor-arrow flex flex-col items-center mb-16 mt-4">
+                <span style="color:#FEE500;" class="text-2xl leading-none block">▼</span>
+                <span style="color:#FEE500;" class="text-2xl leading-none block">▼</span>
+                <span style="color:#FEE500;" class="text-2xl leading-none block">▼</span>
             </div>
 
-            <!-- 헤드라인 -->
-            <h2 style="text-align:center; font-size:clamp(2rem,5.5vw,3rem); font-weight:800; color:#fff; line-height:1.25; letter-spacing:-0.03em; margin:0 0 16px;">
-                방문자 <span style="color:#FEE500;">41배</span> 만든<br>글쓰기 솔루션<br><span style="color:#15A754;">1년 이용권</span>을 드립니다.
-            </h2>
-            <p style="text-align:center; font-size:14px; color:#555; margin:0 0 48px;">
-                매달 결제 NO &middot; 추가 비용 NO &middot; <span style="color:#fff; font-weight:700;">365일</span> 풀 액세스.
-            </p>
+            <!-- 브릿지: 글쓰기 문제 인식 -->
+            <div class="py-8 md:py-12 text-center">
+                <p class="editor-fade text-white text-2xl md:text-4xl font-bold mb-2 leading-relaxed">
+                    블로그 성장,
+                </p>
+                <p class="editor-fade text-white text-2xl md:text-4xl font-bold mb-12 leading-relaxed">
+                    <span class="font-black">이웃</span>만으로는 부족합니다.
+                </p>
+                <p class="editor-fade text-white text-2xl md:text-4xl font-bold leading-relaxed">
+                    지수를 높이려면<br><span class="font-black" style="color:#FEE500;">높은 퀄리티의 글</span>이 필요합니다.
+                </p>
+                <p class="editor-fade mt-6" style="color:#fff; font-size:1.5rem; line-height:2; letter-spacing:0.3em;">.<br>.<br>.</p>
+            </div>
 
-            <!-- 메인 카드 -->
-            <div style="background:#111; border:1px solid #1E1E1E; border-radius:20px; overflow:hidden; margin-bottom:20px;">
-                <div style="display:flex; flex-wrap:wrap;">
-                    <!-- 왼쪽 -->
-                    <div style="flex:1; min-width:260px; padding:28px 24px; border-right:1px solid #1E1E1E;">
-                        <span style="display:inline-block; font-size:10px; font-weight:700; color:#15A754; border:1px solid #15A754; padding:3px 8px; border-radius:4px; margin-bottom:16px; letter-spacing:0.05em;">ONE-TIME OFFER</span>
-                        <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0 0 4px;">블로그 솔루션</h3>
-                        <p style="font-size:28px; font-weight:800; color:#15A754; margin:0 0 20px;">1년 무료권</p>
-                        <ul style="list-style:none; padding:0; margin:0; font-size:13px; color:#fff; line-height:2.2;">
-                            <li><span style="color:#15A754; margin-right:6px;">&#9679;</span> 키워드만 입력하면 글 자동 완성</li>
-                            <li><span style="color:#15A754; margin-right:6px;">&#9679;</span> AI 탐지 우회 (탐지율 2%)</li>
-                            <li><span style="color:#15A754; margin-right:6px;">&#9679;</span> SEO 상위 노출 최적화</li>
-                            <li><span style="color:#15A754; margin-right:6px;">&#9679;</span> AI 이미지 자동 생성 + 삽입</li>
-                        </ul>
+            <!-- 현실 직면 -->
+            <div class="py-4 md:py-6 text-center">
+                <p class="editor-fade text-white text-2xl md:text-4xl font-bold mb-2 leading-relaxed">
+                    하지만 매일 글을 쓰는 건
+                </p>
+                <p class="editor-fade text-white text-2xl md:text-4xl font-bold leading-relaxed">
+                    <span style="color:#E53E3E;" class="font-black">현실적으로 어렵습니다.</span>
+                </p>
+                <p class="editor-dot editor-fade mt-6">.<br>.</p>
+            </div>
+
+            <!-- 키워드 입력 UI (블로그 에디터 — 블로그.html 원본 스타일) -->
+            <style>
+                .hh-app {
+                    max-width:720px; margin:0 auto 40px; background:#0C0D11;
+                    border:1px solid #2A2D38; border-radius:14px; overflow:hidden; text-align:left;
+                    box-shadow: 0 40px 90px -30px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,210,63,0.05), 0 30px 120px -50px rgba(255,210,63,0.35);
+                }
+                .hh-titlebar {
+                    display:flex; align-items:center; gap:14px;
+                    padding:11px 16px; background:#04050A; border-bottom:1px solid #1C1E26;
+                }
+                .hh-traffic { display:flex; gap:6px; }
+                .hh-traffic span { width:11px; height:11px; border-radius:50%; }
+                .hh-traffic span:nth-child(1) { background:#FF5F57; }
+                .hh-traffic span:nth-child(2) { background:#FEBC2E; }
+                .hh-traffic span:nth-child(3) { background:#28C840; }
+                .hh-app-title { flex:1; text-align:center; font-size:13px; color:#A0A4AE; font-weight:600; }
+                .hh-bar-spacer { width:50px; }
+                .hh-body { padding:36px 40px 32px; }
+                @media (max-width:640px) { .hh-body { padding:24px 20px 24px; } }
+                /* STEPS */
+                .hh-steps { display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:36px; }
+                .hh-step { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#5A5E68; }
+                .hh-step.done { color:#A0A4AE; }
+                .hh-step.active { color:#FFD23F; }
+                .hh-step-ico {
+                    width:26px; height:26px; border-radius:50%; display:grid; place-items:center;
+                    background:#1A1D29; border:1.5px solid #2A2D38;
+                }
+                .hh-step.done .hh-step-ico { background:#2DD17F; border-color:#2DD17F; color:#08080A; }
+                .hh-step.active .hh-step-ico { background:rgba(255,210,63,0.1); border-color:#FFD23F; }
+                .hh-step-pulse {
+                    width:10px; height:10px; border-radius:50%; background:#FFD23F;
+                    box-shadow:0 0 0 4px rgba(255,210,63,0.2);
+                    animation:hhPulse 1.6s ease-in-out infinite;
+                }
+                @keyframes hhPulse { 0%,100% { box-shadow:0 0 0 4px rgba(255,210,63,0.2); } 50% { box-shadow:0 0 0 8px rgba(255,210,63,0); } }
+                .hh-step-num { font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; color:#5A5E68; }
+                .hh-step-line { width:56px; height:1.5px; background:#2A2D38; margin:0 14px; }
+                .hh-step-line.done { background:#2DD17F; opacity:0.5; }
+                @media (max-width:640px) { .hh-step-line { width:28px; margin:0 8px; } }
+                /* INPUT */
+                .hh-input {
+                    display:flex; align-items:center; gap:12px;
+                    background:#1A1D29; border:1px solid #2A2D38; border-left:3px solid #FFD23F;
+                    border-radius:10px; padding:16px 20px; margin-bottom:18px;
+                }
+                .hh-input-k {
+                    font-family:'IBM Plex Mono',monospace; font-size:11px; color:#FFD23F; font-weight:700;
+                    letter-spacing:0.08em; background:rgba(255,210,63,0.12); padding:4px 9px; border-radius:4px;
+                }
+                .hh-input-v { font-size:18px; font-weight:700; color:#F2F3F5; letter-spacing:-0.01em; }
+                @media (max-width:640px) { .hh-input-v { font-size:15px; } }
+                /* OUTPUT */
+                .hh-output {
+                    background:#1A1D29; border:1px solid #2A2D38; border-radius:10px;
+                    padding:18px 20px 20px; margin-bottom:22px;
+                }
+                .hh-output-tag {
+                    font-size:10px; color:#F2F3F5;
+                    letter-spacing:0.08em; margin-bottom:8px;
+                }
+                .hh-output-title {
+                    font-size:20px; font-weight:800; color:#F2F3F5;
+                    letter-spacing:-0.02em; line-height:1.45;
+                }
+                @media (max-width:640px) { .hh-output-title { font-size:16px; } }
+                .hh-output-title mark {
+                    background:rgba(255,210,63,0.15); color:#FFD23F;
+                    padding:1px 6px; border-radius:4px; font-weight:800;
+                }
+                .hh-cursor {
+                    display:inline-block; width:2px; height:18px; background:#FFD23F;
+                    margin-left:3px; vertical-align:text-bottom; animation:hhBlink 0.9s steps(1) infinite;
+                }
+                @keyframes hhBlink { 50% { opacity:0; } }
+                /* PROGRESS */
+                .hh-hp-track {
+                    height:6px; background:#1A1D29; border:1px solid #2A2D38;
+                    border-radius:999px; overflow:hidden;
+                }
+                .hh-hp-fill {
+                    height:100%; width:68%; background:linear-gradient(90deg, #E5B920, #FFD23F);
+                    border-radius:999px; box-shadow:0 0 12px rgba(255,210,63,0.35);
+                }
+                .hh-hp-info { display:flex; justify-content:space-between; align-items:baseline; margin-top:10px; }
+                .hh-hp-pct {
+                    font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; color:#FFD23F;
+                }
+                .hh-hp-meta { font-size:12px; color:#5A5E68; font-family:'IBM Plex Mono',monospace; }
+                /* ARTICLE */
+                .hh-article { margin-top:24px; padding-top:22px; border-top:1px dashed #2A2D38; }
+                .hh-ar-tag {
+                    font-size:11px; color:#2DD17F;
+                    font-weight:700; letter-spacing:0.06em; margin-bottom:14px;
+                }
+                .hh-ar-p { margin:0 0 12px; font-size:14.5px; line-height:1.85; color:#F2F3F5; }
+                .hh-ar-actions { display:flex; gap:10px; margin-top:18px; }
+                .hh-ar-btn {
+                    display:inline-flex; align-items:center; gap:7px;
+                    font-weight:800; font-size:13px; padding:11px 18px; border-radius:8px; cursor:pointer;
+                }
+                .hh-ar-btn.primary {
+                    background:#FFD23F; color:#08080A; border:none;
+                    box-shadow:0 0 0 1px #E5B920, 0 10px 24px -8px rgba(255,210,63,0.35);
+                }
+                .hh-ar-btn.ghost { background:transparent; color:#A0A4AE; border:1px solid #2A2D38; }
+            </style>
+            <div class="editor-fade hh-app" id="hh-demo">
+                <div class="hh-titlebar">
+                    <div class="hh-traffic"><span></span><span></span><span></span></div>
+                    <div class="hh-app-title">AI 블로그 에디터</div>
+                    <div class="hh-bar-spacer"></div>
+                </div>
+                <div class="hh-body">
+                    <!-- 3-step progress -->
+                    <div class="hh-steps">
+                        <div class="hh-step done" id="hh-s1">
+                            <span class="hh-step-ico">
+                                <svg width="11" height="11" viewBox="0 0 14 14"><path d="M3 7.5 L6 10.5 L11 4.5" stroke="#08080A" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            키워드 입력
+                        </div>
+                        <div class="hh-step-line done" id="hh-l1"></div>
+                        <div class="hh-step" id="hh-s2">
+                            <span class="hh-step-ico" id="hh-s2-ico"><span class="hh-step-pulse" id="hh-s2-pulse"></span></span>
+                            <span id="hh-s2-txt">글 생성 중</span>
+                        </div>
+                        <div class="hh-step-line" id="hh-l2"></div>
+                        <div class="hh-step" id="hh-s3">
+                            <span class="hh-step-ico" id="hh-s3-ico"><span class="hh-step-num">3</span></span>
+                            발행
+                        </div>
                     </div>
-                    <!-- 오른쪽 -->
-                    <div style="flex:1; min-width:240px; padding:28px 24px; text-align:center;">
-                        <p style="font-size:15px; color:#fff; font-weight:700; margin:0 0 4px;">첫 구매 고객 전원</p>
-                        <div style="display:flex; align-items:baseline; justify-content:center; gap:6px; margin-bottom:8px;">
-                            <span style="font-size:clamp(2.5rem,6vw,3.5rem); font-weight:800; color:#FEE500; line-height:1;">무료</span>
-                            <span style="font-size:14px; color:#555;">/ 1년</span>
+                    <!-- 키워드 입력 -->
+                    <div class="hh-input">
+                        <span class="hh-input-k">키워드</span>
+                        <span class="hh-input-v">제주도 흑돼지 맛집</span>
+                    </div>
+                    <!-- 자동 생성된 제목 -->
+                    <div class="hh-output">
+                        <div class="hh-output-tag">자동 생성된 제목</div>
+                        <div class="hh-output-title" id="hh-title-area">
+                            제주도 흑돼지 맛집, <mark>현지인이 진짜 가는 곳 7</mark><span class="hh-cursor" id="hh-cursor"></span>
+                        </div>
+                    </div>
+                    <!-- 프로그레스 바 (Phase 1) -->
+                    <div id="hh-progress-area">
+                        <div class="hh-hp-track"><div class="hh-hp-fill" id="hh-fill" style="width:0%;"></div></div>
+                        <div class="hh-hp-info">
+                            <span class="hh-hp-pct" id="hh-pct">0%</span>
+                            <span class="hh-hp-meta" id="hh-meta">본문 작성 중 · 약 1분 후 완료</span>
+                        </div>
+                    </div>
+                    <!-- 완료 상태 (Phase 2 — 숨김) -->
+                    <div id="hh-done-area" style="display:none; opacity:0; transform:translateY(10px); transition:opacity 0.5s, transform 0.5s;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                            <span style="color:#2DD17F; font-size:13px; font-weight:700;">✓ 완료</span>
+                            <span style="font-size:12px; color:#F2F3F5;">총 3,880자 · SEO 최적화 완료</span>
+                        </div>
+                    </div>
+                    <!-- 본문 미리보기 (Phase 3 — 숨김) -->
+                    <div class="hh-article" id="hh-article-area" style="display:none; opacity:0; transform:translateY(15px); transition:opacity 0.6s, transform 0.6s;">
+                        <div class="hh-ar-tag">ᐳ 본문 도록</div>
+                        <p class="hh-ar-p">제주도 출장으로 분기마다 다니온 지 3년째인데, 처음에는 저도 후기 많은 가게부터 갔었거든요.</p>
+                        <p class="hh-ar-p">근데 두 번 가본 곳 중에 다시 가고 싶은 데는 손에 꼽더라구요. 현지 분들이 평일 저녁에 줄 서는 집이 따로 있다는 걸 알게 된 뒤로는, 진짜 흑돼지는 관광지 밖에 있다고 확신하게 됐어요.</p>
+                        <p class="hh-ar-p">이번 글에서는 제가 두 번 이상 재방문한 곳, 그리고 현지 친구가 추천해준 코반 추려서 7곳 정리했습니다.</p>
+                        <div class="hh-ar-actions">
+                            <button class="hh-ar-btn primary">자동 발행 →</button>
+                            <button class="hh-ar-btn ghost">다시 쓰기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 에디터 데모 애니메이션 -->
+            <script>
+            (function(){
+                var started = false;
+                var obs = new IntersectionObserver(function(entries){
+                    if(entries[0].isIntersecting && !started){
+                        started = true;
+                        runDemo();
+                    }
+                }, {threshold:0.3});
+                var el = document.getElementById('hh-demo');
+                if(el) obs.observe(el);
+
+                function runDemo(){
+                    var fill = document.getElementById('hh-fill');
+                    var pct = document.getElementById('hh-pct');
+                    var meta = document.getElementById('hh-meta');
+                    var s2 = document.getElementById('hh-s2');
+                    var s2ico = document.getElementById('hh-s2-ico');
+                    var s2pulse = document.getElementById('hh-s2-pulse');
+                    var s2txt = document.getElementById('hh-s2-txt');
+                    var l2 = document.getElementById('hh-l2');
+                    var s3 = document.getElementById('hh-s3');
+                    var s3ico = document.getElementById('hh-s3-ico');
+                    var cursor = document.getElementById('hh-cursor');
+                    var progressArea = document.getElementById('hh-progress-area');
+                    var doneArea = document.getElementById('hh-done-area');
+                    var articleArea = document.getElementById('hh-article-area');
+
+                    // Phase 1: 글 생성 중 — 프로그레스 바 채우기
+                    s2.className = 'hh-step active';
+                    var progress = 0;
+                    var interval = setInterval(function(){
+                        progress += 2;
+                        if(progress > 100) progress = 100;
+                        fill.style.width = progress + '%';
+                        pct.textContent = progress + '%';
+                        if(progress < 40) meta.textContent = '본문 작성 중 · 약 1분 후 완료';
+                        else if(progress < 70) meta.textContent = '본문 작성 중 · 약 30초 후 완료';
+                        else if(progress < 100) meta.textContent = '본문 작성 중 · 거의 완료';
+                        if(progress >= 100){
+                            clearInterval(interval);
+                            meta.textContent = '완료';
+                            pct.style.color = '#2DD17F';
+                            // Phase 2: 글 생성 완료
+                            setTimeout(function(){ phase2(); }, 400);
+                        }
+                    }, 60);
+
+                    function phase2(){
+                        // Step 2 → done
+                        s2.className = 'hh-step done';
+                        s2ico.innerHTML = '<svg width="11" height="11" viewBox="0 0 14 14"><path d="M3 7.5 L6 10.5 L11 4.5" stroke="#08080A" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                        s2txt.textContent = '글 생성 완료';
+                        l2.className = 'hh-step-line done';
+                        // Step 3 → active
+                        s3.className = 'hh-step active';
+                        s3ico.innerHTML = '<span class="hh-step-pulse"></span>';
+                        // 커서 제거
+                        if(cursor) cursor.style.display = 'none';
+                        // 프로그레스 바 → 완료 상태로 교체
+                        progressArea.style.transition = 'opacity 0.4s';
+                        progressArea.style.opacity = '0';
+                        setTimeout(function(){
+                            progressArea.style.display = 'none';
+                            doneArea.style.display = 'block';
+                            requestAnimationFrame(function(){
+                                doneArea.style.opacity = '1';
+                                doneArea.style.transform = 'translateY(0)';
+                            });
+                        }, 400);
+                        // Phase 3: 본문 등장
+                        setTimeout(function(){
+                            articleArea.style.display = 'block';
+                            requestAnimationFrame(function(){
+                                articleArea.style.opacity = '1';
+                                articleArea.style.transform = 'translateY(0)';
+                            });
+                        }, 900);
+                    }
+                }
+            })();
+            </script>
+
+            <!-- 업종 태그 -->
+            <div class="editor-fade" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:8px;">
+                <span style="font-size:12px; color:#FEE500; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:20px; font-weight:600;">맛집·카페</span>
+                <span style="font-size:12px; color:#FEE500; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:20px; font-weight:600;">뷰티·성형</span>
+                <span style="font-size:12px; color:#FEE500; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:20px; font-weight:600;">인테리어</span>
+            </div>
+            <div class="editor-fade" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:32px;">
+                <span style="font-size:12px; color:#FEE500; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:20px; font-weight:600;">제품 리뷰</span>
+                <span style="font-size:12px; color:#FEE500; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:20px; font-weight:600;">육아·교육</span>
+                <span style="font-size:12px; color:#FEE500; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:20px; font-weight:600;">건강·운동</span>
+                <span style="font-size:12px; color:#FEE500; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:20px; font-weight:600;">여행·숙소</span>
+                <span style="font-size:12px; color:#FEE500; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 14px; border-radius:20px; font-weight:600;">재테크·보험</span>
+            </div>
+
+            <!-- 해결책 제시 -->
+            <div class="py-4 md:py-6 text-center">
+                <p class="editor-fade text-white text-2xl md:text-4xl font-bold mb-2 leading-relaxed">
+                    <span class="font-black">AI 블로그 에디터는</span>
+                </p>
+                <p class="editor-fade text-white text-2xl md:text-4xl font-bold mb-2 leading-relaxed">
+                    <span class="font-black" style="color:#FEE500;">키워드 하나</span>만 입력하면
+                </p>
+                <p class="editor-fade text-white text-2xl md:text-4xl font-bold leading-relaxed">
+                    <span class="font-black">상위 노출 글이 자동으로 완성됩니다.</span>
+                </p>
+                <p class="editor-dot editor-fade mt-6">.<br>.</p>
+            </div>
+
+            <!-- AI 판독기 UI -->
+            <div class="editor-fade" style="max-width:480px; margin:0 auto 20px;">
+                <!-- 헤더 -->
+                <div style="text-align:center; margin-bottom:20px;">
+                    <h3 style="font-size:clamp(1.8rem,5vw,2.5rem); font-weight:900; color:#fff; margin:0 0 8px; letter-spacing:-0.02em;">저품질 걱정 <span style="color:#E53E3E;">NO!</span></h3>
+                    <p style="font-size:14px; color:rgba(255,255,255,0.4);">어떤 AI 판독기도 뚫을 수 없는 자연스러움</p>
+                </div>
+                <!-- 날짜 뱃지 -->
+                <div style="text-align:center; margin-bottom:16px;">
+                    <span style="display:inline-block; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); padding:6px 16px; border-radius:20px; font-size:12px; color:rgba(255,255,255,0.5); font-weight:600;">실제 테스트 결과 — 2026.03.24</span>
+                </div>
+                <!-- 판독기 카드 -->
+                <div style="background:#F5F5F0; border-radius:16px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+                    <!-- 브라우저 바 -->
+                    <div style="background:#E8E8E3; padding:10px 14px; display:flex; align-items:center; gap:6px;">
+                        <span style="width:10px; height:10px; border-radius:50%; background:#FF5F57;"></span>
+                        <span style="width:10px; height:10px; border-radius:50%; background:#FEBC2E;"></span>
+                        <span style="width:10px; height:10px; border-radius:50%; background:#28C840;"></span>
+                    </div>
+                    <!-- 판독기 본문 -->
+                    <div style="padding:20px;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
+                            <span style="font-size:13px; color:#333; font-weight:600;">판독기</span>
+                            <span style="font-size:11px; color:#999;">v</span>
+                        </div>
+                        <!-- 텍스트 블록 -->
+                        <div style="background:#fff; border:1px solid #E0E0D8; border-radius:8px; padding:12px 14px; margin-bottom:12px; font-size:11px; color:#555; line-height:1.7;">
+                            <p style="margin:0 0 4px; font-size:10px; color:#999;">[2026-03-24 16:15:45] [판독 결과]</p>
+                            <p style="margin:0;">제주도 출장으로 분기마다 다녀온 지 3년째인데, 처음에는 저도 후기 많은 가게부터 갔었거든요. 근데 두 번 가본 곳 중에 다시 가고 싶은 데는 손에 꼽더라구요. 현지 분들이 평일 저녁에 줄 서는 집이 따로 있다는 걸 알게 된 뒤로는, 진짜 흑돼지는 관광지 밖에 있다고 확신하게 됐어요.</p>
+                        </div>
+                        <div style="background:#fff; border:1px solid #E0E0D8; border-radius:8px; padding:12px 14px; margin-bottom:16px; font-size:11px; color:#555; line-height:1.7;">
+                            <p style="margin:0 0 4px; font-size:10px; color:#15A754; font-weight:600;">[2026-03-24 15:53:23] [AI 생성 글 판독]</p>
+                            <p style="margin:0;">이번 글에서는 제가 두 번 이상 재방문한 곳, 그리고 현지 친구가 추천해준 곳만 추려서 7곳 정리했습니다. 맛은 물론이고 가성비, 분위기, 주차까지 고려해서 골랐으니 제주도 흑돼지 맛집 고민 중이신 분들께 도움이 되셨으면 좋겠습니다.</p>
+                        </div>
+                        <!-- 도넛 차트 -->
+                        <div style="text-align:center; padding:8px 0;">
+                            <p style="font-size:13px; font-weight:700; color:#333; margin:0 0 12px;">최종 분석</p>
+                            <div style="position:relative; width:120px; height:120px; margin:0 auto;">
+                                <svg viewBox="0 0 120 120" style="width:120px; height:120px; transform:rotate(-90deg);">
+                                    <circle cx="60" cy="60" r="48" fill="none" stroke="#E8E8E3" stroke-width="16"/>
+                                    <circle cx="60" cy="60" r="48" fill="none" stroke="#15A754" stroke-width="16" stroke-dasharray="301.6" stroke-dashoffset="0"/>
+                                </svg>
+                                <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                                    <span style="font-size:14px; font-weight:800; color:#333;">Human</span>
+                                    <span style="font-size:12px; font-weight:700; color:#15A754;">98%</span>
+                                    <span style="font-size:10px; color:#999;">AI 2%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 솔루션 소개 -->
+            <div class="py-8 md:py-12 text-center">
+                <h2 class="editor-fade text-2xl md:text-4xl font-black text-white leading-tight mb-3" style="letter-spacing:-0.02em;">
+                    AI 탐지기<br><span style="color:#FEE500;">98% 통과</span>
+                </h2>
+                <!-- 초록 화살표 -->
+                <div class="editor-fade editor-arrow flex flex-col items-center my-20">
+                    <span class="text-naver text-2xl leading-none block">▼</span>
+                    <span class="text-naver text-2xl leading-none block">▼</span>
+                    <span class="text-naver text-2xl leading-none block">▼</span>
+                </div>
+                <p class="editor-fade mt-0" style="font-size:clamp(2rem,5.5vw,3rem); font-weight:900; color:#fff; line-height:1.3; letter-spacing:-0.03em;">
+                    첫 구매 고객에게<br><span style="color:#15A754;">3개월 체험권</span>으로 드립니다.
+                </p>
+            </div>
+
+            <!-- 체험권 쿠폰 카드 (체험.html 스타일) -->
+            <style>
+                .cp-card {
+                    position:relative; max-width:680px; margin:0 auto 32px;
+                    background: linear-gradient(135deg, rgba(45,209,127,0.06) 0%, rgba(45,209,127,0) 50%), #0F1B17;
+                    border:1.5px solid rgba(45,209,127,0.35); border-radius:22px;
+                    padding:36px 32px 32px; text-align:left;
+                    box-shadow: 0 40px 90px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(45,209,127,0.08), 0 30px 100px -40px rgba(45,209,127,0.35);
+                }
+                .cp-stamp {
+                    position:absolute; top:-22px; right:26px;
+                    width:100px; height:100px; border-radius:50%;
+                    background:#E04937; border:2.5px dashed #FFEDE8;
+                    outline:4px solid #0A0A0A; transform:rotate(-12deg);
+                    box-shadow:0 12px 32px -8px rgba(255,107,92,0.4); z-index:2;
+                    display:flex; align-items:center; justify-content:center;
+                }
+                .cp-stamp-inner {
+                    display:flex; flex-direction:column; align-items:center; justify-content:center;
+                    color:#FFEDE8; line-height:1; text-align:center;
+                }
+                .cp-stamp-inner .cs-top { font-size:9px; font-weight:800; letter-spacing:0.12em; opacity:0.85; }
+                .cp-stamp-inner .cs-big { font-size:28px; font-weight:900; margin:4px 0; letter-spacing:-0.04em; }
+                .cp-stamp-inner .cs-bot { font-size:9px; font-weight:700; letter-spacing:0.06em; }
+                .cp-grid { display:grid; grid-template-columns:1.05fr 30px 1fr; }
+                @media (max-width:640px) { .cp-grid { grid-template-columns:1fr; gap:24px; } .cp-perf { display:none !important; } .cp-card { padding:28px 24px 28px; } .cp-stamp { top:-18px; right:16px; width:80px; height:80px; } .cp-stamp-inner .cs-big { font-size:22px; } }
+                .cp-tag {
+                    display:inline-block; background:rgba(45,209,127,0.15); color:#2DD17F;
+                    font-size:11px; font-weight:800; padding:5px 10px; border-radius:4px;
+                    letter-spacing:0.1em; margin-bottom:18px; border:1px solid rgba(45,209,127,0.3);
+                }
+                .cp-title { font-size:22px; color:#F0F7F2; font-weight:700; line-height:1.3; letter-spacing:-0.02em; margin-bottom:24px; }
+                .cp-title strong { font-size:38px; font-weight:900; color:#2DD17F; }
+                .cp-incl { display:flex; flex-direction:column; gap:11px; }
+                .cp-incl-item { display:flex; align-items:center; gap:10px; font-size:15px; color:#F0F7F2; font-weight:500; }
+                .cp-ck { color:#2DD17F; flex-shrink:0; font-weight:700; }
+                /* 천공선 */
+                .cp-perf { display:flex; align-items:stretch; justify-content:center; position:relative; }
+                .cp-perf::before, .cp-perf::after { content:''; position:absolute; width:26px; height:26px; border-radius:50%; background:#0A0A0A; left:50%; transform:translateX(-50%); z-index:2; }
+                .cp-perf::before { top:-50px; }
+                .cp-perf::after { bottom:-46px; }
+                .cp-perf-inner { display:flex; flex-direction:column; justify-content:space-around; height:100%; padding:8px 0; gap:8px; }
+                .cp-hole { width:4px; height:4px; border-radius:50%; background:#2D3F36; }
+                /* 오른쪽 */
+                .cp-right { display:flex; flex-direction:column; gap:18px; padding-left:12px; }
+                @media (max-width:640px) { .cp-right { padding-left:0; } }
+                .cp-pr-was { font-size:13px; color:#5A6E64; margin-bottom:4px; }
+                .cp-pr-was s { color:#9CB0A6; text-decoration-color:#E04937; text-decoration-thickness:2px; }
+                .cp-pr-now { display:flex; align-items:baseline; gap:8px; margin-bottom:8px; }
+                .cp-pr-num { font-size:clamp(3rem,8vw,4.25rem); font-weight:900; color:#2DD17F; letter-spacing:-0.045em; text-shadow:0 0 32px rgba(45,209,127,0.35); line-height:1; }
+                .cp-pr-unit { font-size:16px; color:#9CB0A6; font-weight:600; }
+                .cp-pr-note {
+                    display:inline-block; background:rgba(255,107,92,0.15); color:#FF6B5C;
+                    font-size:13px; font-weight:800; padding:7px 14px; border-radius:6px;
+                    border:1px solid rgba(255,107,92,0.4);
+                }
+                /* 카운트다운 */
+                .cp-ct-lbl {
+                    display:inline-flex; align-items:center; gap:6px;
+                    font-size:11px; color:#fff; font-weight:700; letter-spacing:0.1em; margin-bottom:10px;
+                }
+                .cp-ct-warn { width:6px; height:6px; background:#fff; transform:rotate(45deg); animation:cpPulse 1.2s ease-in-out infinite; }
+                @keyframes cpPulse { 50% { opacity:0.3; } }
+                .cp-ct-clock { display:flex; align-items:center; gap:4px; }
+                .cp-ct-cell {
+                    background:#04090A; border:1px solid #2D3F36; border-radius:8px;
+                    padding:9px 8px; text-align:center; flex:1; position:relative;
+                }
+                .cp-ct-cell::before { content:''; position:absolute; left:0; right:0; top:50%; height:1px; background:#1F2D26; opacity:0.6; }
+                .cp-ct-cell b { display:block; position:relative; font-size:22px; font-weight:700; color:#F0F7F2; line-height:1; letter-spacing:-0.02em; }
+                .cp-ct-cell span { display:block; position:relative; font-size:8.5px; color:#5A6E64; margin-top:4px; letter-spacing:0.1em; font-weight:600; }
+                .cp-ct-cell.sec b { color:#FF6B5C; }
+                .cp-ct-sep { color:#5A6E64; font-size:16px; font-weight:700; }
+                .cp-ct-sep.blink { animation:cpBlink 1s steps(1) infinite; color:#FF6B5C; }
+                @keyframes cpBlink { 50% { opacity:0.2; } }
+                /* 자리 표시 */
+                .cp-st-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+                .cp-st-k { font-size:11px; color:#5A6E64; letter-spacing:0.06em; }
+                .cp-st-frac { font-size:13px; color:#9CB0A6; }
+                .cp-st-frac b { font-size:18px; color:#FF6B5C; font-weight:800; }
+                .cp-st-pips { display:grid; grid-template-columns:repeat(10,1fr); gap:4px; margin-bottom:8px; }
+                .cp-pip { height:10px; border-radius:3px; background:#1A2E26; border:1px solid #2D3F36; }
+                .cp-pip.taken { background:#E04937; border-color:#FF6B5C; box-shadow:0 0 6px rgba(255,107,92,0.4); }
+                .cp-st-foot { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:#FF6B5C; font-weight:600; }
+            </style>
+
+            <div class="cp-card">
+                <!-- 스탬프 -->
+                <div class="cp-stamp">
+                    <div class="cp-stamp-inner">
+                        <span class="cs-top">LIMITED</span>
+                        <span class="cs-big">10명</span>
+                        <span class="cs-bot">이번 달 한정</span>
+                    </div>
+                </div>
+
+                <div class="cp-grid">
+                    <!-- 왼쪽: 혜택 -->
+                    <div>
+                        <span class="cp-tag">FIRST PURCHASE BENEFIT</span>
+                        <div class="cp-title">글쓰기 솔루션<br><strong>3개월 체험권</strong></div>
+                        <div class="cp-incl">
+                            <div class="cp-incl-item"><span class="cp-ck">✓</span> 매일 글 써야 하는 스트레스 끝</div>
+                            <div class="cp-incl-item"><span class="cp-ck">✓</span> 저품질 걱정 없는 자연스러운 글</div>
+                            <div class="cp-incl-item"><span class="cp-ck">✓</span> 검색 상위 노출 최적화 자동 적용</div>
+                            <div class="cp-incl-item"><span class="cp-ck">✓</span> 이미지까지 완성 — 복사만 하면 끝</div>
+                        </div>
+                    </div>
+
+                    <!-- 천공선 -->
+                    <div class="cp-perf">
+                        <div class="cp-perf-inner">
+                            <span class="cp-hole"></span><span class="cp-hole"></span><span class="cp-hole"></span>
+                            <span class="cp-hole"></span><span class="cp-hole"></span><span class="cp-hole"></span>
+                            <span class="cp-hole"></span><span class="cp-hole"></span><span class="cp-hole"></span>
+                            <span class="cp-hole"></span><span class="cp-hole"></span><span class="cp-hole"></span>
+                        </div>
+                    </div>
+
+                    <!-- 오른쪽: 긴박감 -->
+                    <div class="cp-right">
+                        <!-- 가격 -->
+                        <div>
+                            <p class="cp-pr-was">정가 <s>87,000원</s></p>
+                            <div class="cp-pr-now">
+                                <span class="cp-pr-num">0원</span>
+                                <span class="cp-pr-unit">/ 3개월</span>
+                            </div>
+                            <span class="cp-pr-note">첫 구매 시에만 제공 — 재신청 불가</span>
                         </div>
 
-                        <p style="font-size:12px; color:#555; margin:0 0 10px;" id="offer-month-label"></p>
-                        <div style="display:flex; gap:8px; margin-bottom:16px;">
-                            <div style="background:#1A1A1A; border:1px solid #333; border-radius:10px; padding:12px 0; flex:1; text-align:center;">
-                                <p style="font-size:26px; font-weight:800; color:#fff; margin:0;" id="cd-days">00</p>
-                                <p style="font-size:10px; color:#666; margin:2px 0 0;">DAYS</p>
+                        <!-- 카운트다운 -->
+                        <div>
+                            <div class="cp-ct-lbl">
+                                <span class="cp-ct-warn"></span> 혜택 종료까지
                             </div>
-                            <div style="color:#444; display:flex; align-items:center; font-size:20px; font-weight:700;">:</div>
-                            <div style="background:#1A1A1A; border:1px solid #333; border-radius:10px; padding:12px 0; flex:1; text-align:center;">
-                                <p style="font-size:26px; font-weight:800; color:#fff; margin:0;" id="cd-hrs">00</p>
-                                <p style="font-size:10px; color:#666; margin:2px 0 0;">HRS</p>
-                            </div>
-                            <div style="color:#444; display:flex; align-items:center; font-size:20px; font-weight:700;">:</div>
-                            <div style="background:#1A1A1A; border:1px solid #333; border-radius:10px; padding:12px 0; flex:1; text-align:center;">
-                                <p style="font-size:26px; font-weight:800; color:#fff; margin:0;" id="cd-min">00</p>
-                                <p style="font-size:10px; color:#666; margin:2px 0 0;">MIN</p>
+                            <div class="cp-ct-clock">
+                                <div class="cp-ct-cell"><b id="cd-days">00</b><span>DAYS</span></div>
+                                <span class="cp-ct-sep blink">:</span>
+                                <div class="cp-ct-cell"><b id="cd-hrs">00</b><span>HRS</span></div>
+                                <span class="cp-ct-sep blink">:</span>
+                                <div class="cp-ct-cell"><b id="cd-min">00</b><span>MIN</span></div>
+                                <span class="cp-ct-sep blink">:</span>
+                                <div class="cp-ct-cell sec"><b id="cd-sec">00</b><span>SEC</span></div>
                             </div>
                         </div>
-                        <div style="display:flex; align-items:center; justify-content:space-between;">
-                            <span style="font-size:12px; color:#666;">이번 달 한정</span>
-                            <span style="font-size:14px; font-weight:700; color:#E53E3E;">4 <span style="color:#666; font-weight:400;">/ 10명 남음</span></span>
+
+                        <!-- 남은 자리 -->
+                        <div style="text-align:center;">
+                            <p style="font-size:12px; color:#fff; margin:0 0 6px;">이번 달 남은 자리</p>
+                            <p style="margin:0 0 12px;">
+                                <span style="font-size:clamp(2.5rem,6vw,3.5rem); font-weight:900; color:#FF6B5C; letter-spacing:-0.03em;">4</span>
+                                <span style="font-size:18px; color:#5A6E64; font-weight:600;"> / 10명</span>
+                            </p>
+                            <div class="cp-st-foot">⚠️ 마감 후 동일 혜택 재제공 없음</div>
                         </div>
                     </div>
                 </div>
@@ -573,10 +1056,10 @@
             <!-- CTA -->
             <div style="text-align:center; margin-bottom:16px;">
                 <button onclick="scrollToForm('free')" style="background:#15A754; color:#fff; font-weight:700; font-size:16px; padding:18px 48px; border-radius:14px; border:none; cursor:pointer; box-shadow:0 0 30px rgba(21,167,84,0.3);">
-                    1년권 받고 시작하기 &rarr;
+                    구매 후 체험권 받기 &darr;
                 </button>
             </div>
-            <p style="text-align:center; font-size:12px; color:#444;">카드 등록 X &middot; 1분 결제 &middot; 미사용 시 100% 환불</p>
+            <p style="text-align:center; font-size:12px; color:#fff;">카드 등록 X &middot; 불만족시 강제 없음</p>
 
 
         </div>
@@ -596,15 +1079,18 @@
             var d = Math.floor(diff/86400000);
             var h = Math.floor((diff%86400000)/3600000);
             var m = Math.floor((diff%3600000)/60000);
+            var s = Math.floor((diff%60000)/1000);
             var de = document.getElementById('cd-days');
             var he = document.getElementById('cd-hrs');
             var me = document.getElementById('cd-min');
+            var se = document.getElementById('cd-sec');
             if(de) de.textContent = d < 10 ? '0'+d : d;
             if(he) he.textContent = h < 10 ? '0'+h : h;
             if(me) me.textContent = m < 10 ? '0'+m : m;
+            if(se) se.textContent = s < 10 ? '0'+s : s;
         }
         updateCD();
-        setInterval(updateCD, 60000);
+        setInterval(updateCD, 1000);
     })();
     </script>
 
@@ -666,9 +1152,9 @@
     <section id="purchase-form" class="py-24 text-white px-6" style="background:#0A0A0A;">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12">
             <div class="flex-1">
-                <h2 class="text-3xl font-bold mb-6">AI 직원 <span class="text-naver">고용 신청</span><br><span class="text-yellow-400 font-extrabold">1분</span><span class="text-white font-normal">이면 끝!</span></h2>
+                <h2 class="text-3xl font-bold mb-6">솔루션 <span class="text-naver">이용 신청</span><br><span class="text-yellow-400 font-extrabold">1분</span><span class="text-white font-normal">이면 끝!</span></h2>
                 <div class="space-y-6 text-gray-300">
-                    <p class="flex gap-3"><span class="text-naver font-bold">①</span> 고용 기간 선택: 원하는 기간을 선택합니다.</p>
+                    <p class="flex gap-3"><span class="text-naver font-bold">①</span> 이용 기간 선택: 원하는 기간을 선택합니다.</p>
                     <p class="flex gap-3"><span class="text-naver font-bold">②</span> 정보 입력: 이름과 이메일을 정확히 기입합니다.</p>
                     <p class="flex gap-3"><span class="text-naver font-bold">③</span> 결제 완료: 플랜에 맞는 결제를 진행합니다.</p>
                     <p class="flex gap-3"><span class="text-naver font-bold">④</span> 즉시 발송: 이메일로 솔루션 설치 가이드 + 라이선스 코드가 자동 발송됩니다!</p>
@@ -693,7 +1179,7 @@
                         <p class="mt-2 text-xs text-gray-500">입금 확인 시 사용합니다. 입금자명이 다를 경우 연락드릴 수 있어요.</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-3">고용 기간 선택</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-3">이용 기간 선택</label>
                         <div class="space-y-3" id="planRadios">
                             <label data-plan-key="free" class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                                 <input type="radio" name="plan" value="free" class="w-4 h-4 text-naver focus:ring-naver">
@@ -714,7 +1200,7 @@
                         </div>
                     </div>
                     <button type="submit" id="submitBtn" class="w-full bg-naver text-white font-bold py-4 rounded-xl hover:bg-naverHover transition-colors shadow-lg text-lg">
-                        직원 고용하기
+                        이용 신청하기
                     </button>
                     <p class="text-gray-400 text-xs mt-3 text-center">Windows 환경에서 작동합니다</p>
                 </form>
@@ -855,7 +1341,7 @@
     <!-- ===== STICKY CTA ===== -->
     <div class="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 transform translate-y-full transition-transform duration-300" id="stickyCTA">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
-            <p class="hidden md:block font-medium text-gray-700">일 잘하는 AI 직원을 무료 체험해보세요.</p>
+            <p class="hidden md:block font-medium text-gray-700">블로그 관리 솔루션을 무료 체험해보세요.</p>
             <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="w-full md:w-auto bg-naver hover:bg-naverHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
                 무료 체험 신청
             </button>
@@ -1198,7 +1684,7 @@
                     cta.className = 'mt-4 text-center p-4 border border-[#FEE500]/30 rounded-xl bg-[#FEE500]/5';
                     cta.innerHTML = '<p class="text-white text-sm font-bold mb-2">무료 체험이 끝났습니다!</p>' +
                         '<p class="text-gray-400 text-xs mb-3">정식 버전에서는 제목 추천 + 글 작성까지 무제한으로 사용할 수 있습니다.</p>' +
-                        '<button onclick="document.getElementById(\'pricing\').scrollIntoView({behavior:\'smooth\'})" class="px-6 py-2 rounded-lg font-bold text-black text-sm" style="background:#FEE500;">지금 고용하기</button>';
+                        '<button onclick="document.getElementById(\'pricing\').scrollIntoView({behavior:\'smooth\'})" class="px-6 py-2 rounded-lg font-bold text-black text-sm" style="background:#FEE500;">지금 신청하기</button>';
                     resultsList.appendChild(cta);
                 }
             } catch (err) {
