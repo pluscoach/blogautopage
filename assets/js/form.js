@@ -74,16 +74,16 @@ async function submitForm(e) {
             p_amount: amount,
             p_ip: ip,
             p_user_agent: navigator.userAgent,
-            p_phone: phone || ''   // 🆕 추가 (빈 문자열 fallback)
+            p_phone: phone || ''
         });
 
         if (error) throw error;
 
         if (planKey === 'free') {
+            // 무료 체험: DB 기록 + 텔레그램 알림은 완료됨, 카카오톡 안내 모달만 표시 (이메일 자동 발송 안 함)
             if (typeof window.track === 'function') {
                 window.track('form_submit', { plan: 'free_trial', value: 0 });
             }
-            // 무료 체험 완료 모달 표시
             var freeModal = document.getElementById('free-trial-modal');
             if (freeModal) {
                 var emailDisplay = document.getElementById('free-trial-email');
@@ -98,10 +98,6 @@ async function submitForm(e) {
             var mappedPlan = planKey === '1month' ? 'monthly' : planKey === 'lifetime' ? 'lifetime' : 'full_package';
 
             if (paymentMode === 'bank_transfer') {
-                // 🆕 무통장 경로: 무통장 모달 표시
-                // orders INSERT는 이미 완료됨 (create_order RPC 성공).
-                // Trigger → on-new-order → sendDepositNoticeWithButtons (사장님 텔레그램)
-                // 여기선 사용자에게 모달로 계좌 정보 안내만.
                 if (typeof window.showBankTransferModal === 'function') {
                     window.showBankTransferModal({
                         orderCode: data.order_code,
@@ -116,7 +112,6 @@ async function submitForm(e) {
                     showToast('처리 중 오류가 발생했어요. 새로고침 후 다시 시도해주세요.', 'error');
                 }
             } else {
-                // 페이앱 경로 (기존 로직 100% 보존 — PG 복귀 시 자동 활성화)
                 if (typeof window.requestPayappPayment === 'function') {
                     window.requestPayappPayment({
                         orderCode: data.order_code,

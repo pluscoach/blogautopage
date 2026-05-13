@@ -140,6 +140,15 @@ Deno.serve(async (req) => {
         chatId,
         orderCode,
       });
+    } else if (action === "approve_free") {
+      await handleApproveFree({
+        supabase,
+        orderCode,
+        callbackQueryId,
+        chatId,
+        messageId,
+        originalText: callbackQuery.message.text || "",
+      });
     } else if (action === "block_ip") {
       // IP 차단 처리 (orderCode 자리에 IP가 들어옴)
       const ip = orderCode; // callback_data: "block_ip:123.456.789.0"
@@ -367,6 +376,81 @@ async function handleApprove(params: {
       errorMessage: err instanceof Error ? err.message : String(err),
     });
     */
+  }
+}
+
+/**
+ * 무료체험 승인: 라이선스 발급 + 인증키 이메일 (DOWNLOAD_URL_FREE, isPaid=false)
+ */
+async function handleApproveFree(params: {
+  supabase: ReturnType<typeof createClient>;
+  orderCode: string;
+  callbackQueryId: string;
+  chatId: number;
+  messageId: number;
+  originalText: string;
+}) {
+  const { supabase, orderCode, callbackQueryId, chatId, messageId, originalText } = params;
+  const DOWNLOAD_URL_FREE = Deno.env.get("DOWNLOAD_URL_FREE") || "";
+
+  try {
+    const { data: order, error: fetchError } = await supabase
+      .from("orders")
+      .select("id, name, email, plan, status, license_key, order_code")
+      .eq("order_code", orderCode)
+      .maybeSingle();
+
+    if (fetchError || !order) {
+      await answerCallbackQuery({ callbackQueryId, text: "❌ 주문 없음" });
+      return;
+    }
+
+    if (order.license_key) {
+      await answerCallbackQuery({ callbackQueryId, text: `ℹ️ 이미 발급됨 (${order.license_key})` });
+      return;
+    }
+
+    // 라이선스 발급
+    const { data: licenseKey, error: licenseError } = await supabase.rpc("create_license", {
+      p_buyer_name: order.name,
+      p_plan: order.plan,
+      p_order_code: order.order_code,
+    });
+
+    if (licenseError || !licenseKey) {
+      await supabase.from("orders").update({ status: "발급실패" }).eq("id", order.id);
+      await answerCallbackQuery({ callbackQueryId, text: "❌ 라이선스 발급 실패" });
+      return;
+    }
+
+    // orders UPDATE
+    await supabase.from("orders").update({ license_key: licenseKey, status: "발송완료" }).eq("id", order.id);
+
+    // 인증키 이메일 발송
+    if (DOWNLOAD_URL_FREE) {
+      await sendLicenseKeyEmail({
+        to: order.email,
+        name: order.name,
+        plan: order.plan,
+        licenseKey,
+        downloadUrl: DOWNLOAD_URL_FREE,
+        isPaid: false,
+      });
+    }
+
+    // 텔레그램 메시지 업데이트
+    const planLabel = getPlanLabel(order.plan);
+    await editTelegramMessage({
+      chatId,
+      messageId,
+      text: `${originalText}\n\n✅ 무료체험 승인 완료\n🔑 인증키: ${licenseKey}\n📧 이메일 발송됨`,
+    });
+
+    await answerCallbackQuery({ callbackQueryId, text: `✅ 무료체험 승인 완료 — ${licenseKey}` });
+    console.log(`[telegram-callback/approve_free] 완료: ${orderCode} → ${licenseKey}`);
+  } catch (err) {
+    console.error(`[telegram-callback/approve_free] 예외: ${orderCode}`, err);
+    await answerCallbackQuery({ callbackQueryId, text: "❌ 처리 중 오류" });
   }
 }
 

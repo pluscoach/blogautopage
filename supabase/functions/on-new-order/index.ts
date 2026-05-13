@@ -139,65 +139,24 @@ serve(async (req) => {
       );
     }
 
-    // 1. create_license RPC 호출
-    const { data: licenseKey, error: licenseError } = await supabase.rpc("create_license", {
-      p_buyer_name: record.name,
-      p_plan: record.plan,
-      p_order_code: record.order_code,
-    });
+    // 무료체험: 자동 발급 안 함 — 텔레그램 승인 버튼만 발송, 사장님 승인 후 발급
+    await supabase.from("orders").update({ status: "무료체험대기" }).eq("id", record.id);
 
-    if (licenseError || !licenseKey) {
-      console.error("[on-new-order] 라이선스 발급 실패:", licenseError?.message);
-      await supabase.from("orders").update({ status: "발급실패" }).eq("id", record.id);
-      return new Response(
-        JSON.stringify({ success: false, error: "license creation failed" }),
-        { status: 200, headers: { "Content-Type": "application/json" } },
-      );
-    }
-
-    console.log("[on-new-order] 라이선스 발급 성공:", licenseKey);
-
-    // 2. orders 테이블 UPDATE (license_key + status)
-    const { error: updateError } = await supabase
-      .from("orders")
-      .update({ license_key: licenseKey, status: "발송완료" })
-      .eq("id", record.id);
-
-    if (updateError) {
-      console.error("[on-new-order] orders UPDATE 실패:", updateError.message);
-      try {
-        await sendTelegramNotification({
-          name: `⚠️ 긴급: orders UPDATE 실패 (id=${record.id})`,
-          email: record.email,
-          plan: "free_trial",
-          order_code: record.order_code,
-          amount: 0,
-          status: `발급된 키: ${licenseKey} / DB 반영 실패 → 수동 확인 필요`,
-        });
-      } catch (e) {
-        console.error("[on-new-order] 긴급 텔레그램 알림도 실패:", e);
-      }
-    }
-
-    // 3. 인증키 이메일 발송
-    const downloadUrl = Deno.env.get("DOWNLOAD_URL_FREE");
-    if (!downloadUrl) {
-      console.error("[on-new-order] DOWNLOAD_URL_FREE 환경변수 미설정");
-      await supabase.from("orders").update({ status: "이메일실패" }).eq("id", record.id);
-    } else {
-      try {
-        await sendLicenseKeyEmail({
-          to: record.email,
-          name: record.name,
-          plan: record.plan,
-          licenseKey,
-          downloadUrl,
-          isPaid: false,
-        });
-        console.log("[on-new-order] 인증키 이메일 발송 완료");
-      } catch (emailError) {
-        console.error("[on-new-order] 인증키 이메일 발송 실패:", emailError);
-        await supabase.from("orders").update({ status: "이메일실패" }).eq("id", record.id);
+    const TELEGRAM_CHAT_ID = Number(Deno.env.get("TELEGRAM_CHAT_ID"));
+    if (TELEGRAM_CHAT_ID) {
+      const planLabel = getPlanLabel(record.plan);
+      const msgResult = await sendTelegramMessage({
+        chatId: TELEGRAM_CHAT_ID,
+        text: `🆓 무료체험 신청\n\n👤 이름: ${record.name}\n📧 이메일: ${record.email}\n📋 플랜: ${planLabel}\n🔑 주문코드: ${record.order_code}\n🌐 IP: ${record.ip || "없음"}`,
+        replyMarkup: {
+          inline_keyboard: [[
+            { text: "✅ 무료체험 승인 (인증키 발급)", callback_data: `approve_free:${record.order_code}` },
+          ]],
+        },
+      });
+      // message_id 저장 (나중에 버튼 업데이트용)
+      if (msgResult?.message_id) {
+        await supabase.from("orders").update({ telegram_msg_id: msgResult.message_id }).eq("id", record.id);
       }
     }
 
