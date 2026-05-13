@@ -188,6 +188,18 @@ export async function sendLicenseKeyEmail({
               되도록 <strong>바로 다운로드해서 사용</strong>하시길 권장드려요.`}
             </p>
           </div>
+          ${plan !== "free_trial" ? `
+          <div class="email-card-inner" style="background:#f0fdf4; border-left:3px solid #03C75A; border-radius:4px; padding:16px 18px; margin-bottom:12px;">
+            <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">🎁 AI 블로그 에디터 3개월 체험권 안내</p>
+            <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
+              이웃 관리 솔루션과 함께 <strong>AI 블로그 에디터 3개월 체험권</strong>이 포함되어 있습니다.<br><br>
+              • 체험 기간: 구매일로부터 3개월<br>
+              • 체험 종료 후: 이웃 관리 솔루션은 구매하신 이용 기간 동안 계속 사용 가능합니다.<br>
+              • 에디터를 계속 사용하시려면 별도 연장이 필요합니다.<br><br>
+              설치 파일에 이웃 관리 + 에디터가 모두 포함되어 있으니, 다운로드 후 바로 사용하시면 됩니다.
+            </p>
+          </div>
+          ` : ""}
           <div class="email-card-inner" style="background:#fef7f0; border-left:3px solid #f59e0b; border-radius:4px; padding:16px 18px;">
             <p class="email-section-title" style="margin:0 0 8px 0; font-size:14px; font-weight:700; color:#0A0A0A; word-break:keep-all; overflow-wrap:break-word;">인증키 발급 후에는 환불이 어렵습니다</p>
             <p class="email-body" style="margin:0; font-size:13px; line-height:1.65; color:#666; word-break:keep-all; overflow-wrap:break-word;">
