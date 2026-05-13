@@ -1,0 +1,64 @@
+{
+    "id": 7,
+    "project_id": 5,
+    "name": "(\udcec\ub2d4\udcec\uc819)\u73e5\ub349\ube1e \u8adb\ubdbd\uc500\u6e72\udcb0 \udcec\uc7fe",
+    "text": "[\udcec\uad97\udcec\uc520\udced\ub4c3 \uf9e6\u226a\ucfc2 \udcec\uc081\udcec\uc819] URL: https://blog.pluscoach.co.kr/",
+    "description": null,
+    "created_at": "2026-05-11T08:32:20.131152",
+    "capture_type": "site_capture",
+    "source_url": "https://blog.pluscoach.co.kr/",
+    "capture_dir": "D:\\Github-D drive\\persona-research\\tmp\\capture_blog_pluscoach",
+    "selected_slices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+    ],
+    "capture_options": {
+        "click_more": false,
+        "hide_recommendations": false
+    },
+    "intents_yaml": "intents:\n  - id: 1\n    title: \"\udcec\uc440\udceb\uc84a \udcec\uc520\udcec\uc350\udcec\uc520 \udcec\ube18\udceb\ub576 \uf9de\uafa9\ucb68 \udceb\uada1 \udcec\uae3d\udced\ubb79\u6028\udcbc \udcec\ub0fc\udced\ub13b\udced\ube2f\udceb\ub497 \udcec\uc520\udcec\uc350\udcec\uc4e3 \u8adb\uc493\ub3ac\udced\ube33\udceb\ub58e\udceb\ub497 \uf9e1\u2464\ud00e\udced\uc195\"\n  - id: 2\n    title: \"\u8adb\u2478\u0426\udcec\uc604 \udcec\ub2d4\u8e42\ub300\ub58e \uf9e3\ub300\uca9f\udcec\ub586\u5a9b\uafa7\ub0b5 \u63f4\u0449\u2113 \udcec\uc7fe\udced\uc19a\udcec\uc520 \u4ee5\ubb12\uc282\udced\ube2f\udceb\ub58e\udceb\ub497 \u8e42\uba84\ucb4f\"\n  - id: 3\n    title: \"AI \u91c9\ubdbe\uc908\u6d39\udcb8 \udcec\ubfc9\udceb\ubd52\udced\uaf63\u745c\udcbc \udcec\uc604\udcec\uc07a\udcec\ubfbd\udcec\uc604 \u5a9b\udc80\u5bc3\udc8c \udced\uc189\u8e42\ub2ff\udcb8\udc80 / \udcec\uc524\udced\ubd46\u7337\u2465\ubf35\udcec\uaf4c \uf9e3\ub304\ubfd5\udceb\ub592 \udcec\uc35d\u6028\udca0 / \u91c9\ubdbe\uc908\u5ac4\udcb0 \udcec\ub2d4\udcec\uc521\u6e72\udc80\udcec\ubfc9 \udced\uc1a2\udcec\uc29c \u5a9b\udc80\udceb\ub4ab\"\n  - id: 4\n    title: \"\uf9cd\u317c\uc52a 1~3\udcec\ub586\u5a9b\udc84 \udceb\ub042\u5a9b\udc80\udceb\ub58e\u5a9b\udc80 0\u907a\uafa9\uc45d\u6fe1\udc9c \udcec\uc604\udceb\ub8de\udced\uc195\udceb\ub9ba\udceb\ub497 \udcec\ub586\u5a9b\udc84 \udcec\uc805\udcec\ube5f\"\n  - id: 5\n    title: \"\u81fe\ub300\uc9ba \uf9e3\ub304\ubfd5\udcec\uc45d\u6fe1\udc9c \u5bc3\uacd7\uc823 \uf9cd\ub349\uac19 \udced\ube50\udcec\ub0fc\"",
+    "capture_meta": {
+        "url": "https://blog.pluscoach.co.kr/",
+        "title": "\u91c9\ubdbe\uc908\u6d39\udcb8 \u613f\udc80\u7531\u044a\ubfc9 \uf9cd\u317c\uc52a 3\udcec\ub586\u5a9b\udc84 \udcec\ubc90\u6028\udca0 \u6028\uafa9\ub58a\u5a9b\udc80\udcec\uc282?",
+        "captured_at": "2026-05-11T08:38:56.971341+00:00",
+        "viewport_pc": [
+            1920,
+            1080
+        ],
+        "viewport_mobile": [
+            375,
+            812
+        ],
+        "fullpage_pc_dimensions": [
+            1920,
+            16782
+        ],
+        "fullpage_mobile_dimensions": [
+            375,
+            16310
+        ],
+        "slice_count_pc": 16,
+        "text_full_chars": 3426,
+        "text_main_chars": 0,
+        "more_button_clicked": true,
+        "more_button_selector": "div[class*=\"story\"] button",
+        "recommendations_hidden": false,
+        "elapsed_seconds": 42.2
+    },
+    "capture_status": "validation_pending",
+    "analysis_mode": "simulation"
+}

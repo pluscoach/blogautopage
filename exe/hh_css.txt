@@ -1,0 +1,164 @@
+
+      .hh-grain {
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(circle at 50% 30%, rgba(255,210,63,0.06), transparent 50%);
+        pointer-events: none;
+      }
+
+
+      /* APP */
+      .hh-app {
+        max-width: 720px;
+        margin: 0 auto 64px;
+        background: var(--bg-2);
+        border: 1px solid var(--line-2);
+        border-radius: 14px;
+        overflow: hidden;
+        text-align: left;
+        box-shadow:
+          0 40px 90px -30px rgba(0,0,0,0.8),
+          0 0 0 1px rgba(255,210,63,0.05),
+          0 30px 120px -50px var(--acc-glow);
+      }
+
+
+      .hh-titlebar {
+        display: flex; align-items: center; gap: 14px;
+        padding: 11px 16px;
+        background: #04050A;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hh-traffic { display: flex; gap: 6px; }
+
+      .hh-traffic span {
+        width: 11px; height: 11px; border-radius: 50%;
+      }
+
+      .hh-traffic span:nth-child(1) { background: #FF5F57; }
+
+      .hh-traffic span:nth-child(2) { background: #FEBC2E; }
+
+      .hh-traffic span:nth-child(3) { background: #28C840; }
+
+      .hh-app-title {
+        flex: 1; text-align: center;
+        font-size: 13px; color: var(--ink-2);
+        font-weight: 600;
+      }
+
+      .hh-bar-spacer { width: 50px; }
+
+
+      .hh-body {
+        padding: 36px 40px 32px;
+      }
+
+
+      /* STEPS */
+      .hh-steps {
+        display: flex; align-items: center; justify-content: center;
+        gap: 0; margin-bottom: 36px;
+      }
+
+      @keyframes hh-pulse {
+        0%, 100% { box-shadow: 0 0 0 4px rgba(255,210,63,0.2); }
+
+
+      /* INPUT */
+      .hh-input {
+        display: flex; align-items: center; gap: 12px;
+        background: var(--bg-4);
+        border: 1px solid var(--line-2);
+        border-left: 3px solid var(--acc);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-bottom: 18px;
+      }
+
+      .hh-input-k {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px; color: var(--acc);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        background: rgba(255,210,63,0.12);
+        padding: 4px 9px; border-radius: 4px;
+      }
+
+      .hh-input-v {
+        font-size: 18px; font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+
+
+      /* OUTPUT */
+      .hh-output {
+        background: var(--bg-4);
+        border: 1px solid var(--line-2);
+        border-radius: 10px;
+        padding: 18px 20px 20px;
+        margin-bottom: 22px;
+      }
+
+      .hh-output-tag {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10px; color: var(--ink-3);
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+      }
+
+      .hh-output-title {
+        font-size: 20px; font-weight: 800; color: var(--ink);
+        letter-spacing: -0.02em;
+        line-height: 1.45;
+      }
+
+      .hh-output-title mark {
+        background: rgba(255,210,63,0.15);
+        color: var(--acc);
+        padding: 1px 6px; border-radius: 4px;
+        font-weight: 800;
+      }
+
+      .hh-cursor {
+        display: inline-block;
+        width: 2px; height: 18px;
+        background: var(--acc);
+        margin-left: 3px;
+        vertical-align: text-bottom;
+        animation: hh-blink 0.9s steps(1) infinite;
+      }
+
+      @keyframes hh-blink { 50% { opacity: 0; }
+
+
+      /* PROGRESS */
+      .hh-progress { }
+
+
+      /* ARTICLE */
+      .hh-article {
+        margin-top: 24px;
+        padding-top: 22px;
+        border-top: 1px dashed var(--line-2);
+      }
+
+
+      /* COPY */
+      .hh-h2 {
+        margin: 0;
+        font-size: 44px; line-height: 1.32;
+        font-weight: 900; letter-spacing: -0.03em;
+        color: var(--ink);
+      }
+
+      .hh-glow {
+        color: var(--acc);
+        text-shadow: 0 0 28px var(--acc-glow);
+      }
+@keyframes hh-pulse {
+        0%, 100% { box-shadow: 0 0 0 4px rgba(255,210,63,0.2); }
+        50% { box-shadow: 0 0 0 8px rgba(255,210,63,0); }
+@keyframes hh-blink { 50% { opacity: 0; } }
