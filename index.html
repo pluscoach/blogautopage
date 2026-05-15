@@ -65,12 +65,75 @@
 
             <!-- 헤드라인 -->
             <p style="text-align:center; font-size:13px; font-weight:700; color:#6E6E63; letter-spacing:0.15em; margin:0 0 12px;">HOW IT WORKS</p>
-            <h1 style="text-align:center; font-size:clamp(2rem,5.5vw,3.25rem); font-weight:800; line-height:1.18; letter-spacing:-0.03em; color:#14150F; margin:0 0 40px;">
-                PC만 켜두면<br>자동으로, <span style="color:#15A754;">하루 100명.</span>
+            <h1 style="text-align:center; font-size:clamp(2.5rem,7vw,4rem); font-weight:800; line-height:1.18; letter-spacing:-0.03em; color:#14150F; margin:0 0 48px;">
+                PC만 켜두면<br>자동으로,<br><span style="color:#15A754;">하루 이웃 100명.</span>
             </h1>
+            <!-- AI 소통 UI 데모 (애니메이션 포함) -->
+            <div class="float-anim" style="max-width:480px; margin:0 auto 48px;">
+                <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+                    <!-- 상단 바 -->
+                    <div class="flex items-center gap-2 px-5 py-3 bg-gray-50 border-b border-gray-100">
+                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        <span class="ml-3 text-xs text-gray-400 font-medium">BlogAutoFriends — AI 소통 중</span>
+                    </div>
+                    <!-- 콘텐츠 -->
+                    <div class="p-6 space-y-5">
+                        <!-- 블로그 포스트 분석 -->
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-sm flex-shrink-0">🤖</div>
+                            <div class="flex-1">
+                                <p class="text-xs text-gray-400 mb-1">AI가 포스팅을 분석하고 있습니다...</p>
+                                <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                                    <p class="text-sm text-gray-600 font-medium">"제주도 3박4일 가족여행 코스 총정리"</p>
+                                    <div class="flex gap-2 mt-2">
+                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">여행</span>
+                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">제주도</span>
+                                        <span class="text-[11px] bg-green-50 text-naver px-2 py-0.5 rounded font-medium">가족여행</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- AI 댓글 작성 -->
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-naver rounded-full flex items-center justify-center text-sm text-white flex-shrink-0 font-bold">AI</div>
+                            <div class="flex-1">
+                                <p class="text-xs text-naver font-semibold mb-1">맞춤 댓글 작성 완료</p>
+                                <div class="bg-green-50 rounded-lg p-3 border border-green-100">
+                                    <p class="text-sm text-gray-700 leading-relaxed" id="typingText"></p>
+                                    <span class="cursor-blink text-naver font-bold" id="typingCursor">|</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 상태 표시 -->
+                        <div class="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3 border border-gray-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-naver rounded-full animate-pulse"></div>
+                                <span class="text-xs text-gray-500 font-medium">소통 진행 중</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-gray-400">오늘 완료</span>
+                                <span class="text-sm font-bold text-gray-800 ml-1" id="heroCounter">0</span>
+                                <span class="text-xs text-gray-400">/ 100명</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA 영역 -->
+            <p style="text-align:center; font-size:clamp(1.1rem,3vw,1.35rem); color:#14150F; font-weight:600; line-height:1.8; margin:0 0 20px;">
+                이웃 관리부터 글쓰기까지<br>번거로운 작업을 모두 해결해보세요.
+            </p>
+            <div style="text-align:center; margin-bottom:48px;">
+                <button onclick="document.getElementById('solution-section').scrollIntoView({behavior:'smooth'})" style="background:#14150F; color:#fff; font-weight:800; font-size:clamp(1.1rem,3vw,1.3rem); padding:20px 52px; border-radius:40px; border:none; cursor:pointer; box-shadow:0 14px 28px -12px rgba(20,21,15,0.4); letter-spacing:0.02em;">
+                    🎁 5일 무료 체험 시작하기
+                </button>
+            </div>
 
             <!-- 빨간 화살표 -->
-            <div class="animate-bounce-slow" style="text-align:center; margin-bottom:32px; line-height:1.2;">
+            <div class="animate-bounce-slow" style="text-align:center; margin-bottom:56px; line-height:1.2;">
                 <span style="color:#E53E3E; font-size:20px;">&#9660;</span><br>
                 <span style="color:#E53E3E; opacity:0.5; font-size:20px;">&#9660;</span><br>
                 <span style="color:#E53E3E; opacity:0.25; font-size:20px;">&#9660;</span>
@@ -78,7 +141,7 @@
 
             <!-- 결과 증거 -->
             <div style="text-align:center; margin-bottom:16px;">
-                <p style="font-size:clamp(1.2rem,3vw,1.5rem); font-weight:800; color:#14150F; margin:0 0 4px;">2주 후</p>
+                <p style="font-size:clamp(1.2rem,3vw,1.5rem); font-weight:800; color:#14150F; margin:0 0 12px;">2주 후</p>
                 <p style="margin:0 0 24px;">
                     <span style="font-size:clamp(2.5rem,6vw,3.5rem); font-weight:800; color:#E53E3E;">41배</span>
                     <span style="font-size:clamp(1.5rem,3vw,2rem); font-weight:800; color:#14150F;"> 증가!</span>
@@ -97,11 +160,7 @@
                 <img src="assets/images2/chart3.png" alt="방문자 증가 그래프" style="width:100%; border-radius:12px;">
             </div>
 
-            <!-- CTA -->
-            <div style="text-align:center;">
-                <button onclick="document.getElementById('solution-section').scrollIntoView({behavior:'smooth'})" style="background:#15A754; color:#fff; font-weight:700; font-size:16px; padding:16px 40px; border-radius:40px; border:none; cursor:pointer; box-shadow:0 14px 28px -12px rgba(21,167,84,0.5);">
-                    5일 무료 체험 &#8212; 직접 확인해보기 &#8595;
-                </button>
+            <div style="text-align:center; display:none;">
             </div>
         </div>
     </section>
@@ -1183,7 +1242,7 @@
                     <button type="submit" id="submitBtn" class="w-full bg-naver text-white font-bold py-4 rounded-xl hover:bg-naverHover transition-colors shadow-lg text-lg">
                         이용 신청하기
                     </button>
-                    <p class="text-gray-400 text-xs mt-3 text-center">Windows 환경에서 작동합니다</p>
+                    <p style="color:#E53E3E; font-size:13px; font-weight:700; margin-top:12px; text-align:center;">⚠️ Windows PC 전용 프로그램입니다 (Mac 미지원)</p>
                 </form>
             </div>
         </div>
@@ -1206,11 +1265,11 @@
                         <!-- 안전 운영 -->
                         <div style="margin-top:24px; padding:20px; background:rgba(21,167,84,0.08); border:1px solid rgba(21,167,84,0.2); border-radius:10px; text-align:center;">
                             <p style="font-size:16px; font-weight:800; color:#15A754; margin:0 0 12px;">🛡️ 안전하게 운영되고 있습니다</p>
-                            <div style="font-size:15px; color:#fff; line-height:2;">
+                            <div style="font-size:15px; color:#14150F; line-height:2;">
                                 <p style="margin:0;">· 출시 이후 계정 제재 사례 <strong>0건</strong></p>
                                 <p style="margin:0;">· 문제 발생 시 남은 기간 <strong>전액 환불</strong></p>
                             </div>
-                            <p style="font-size:15px; color:#fff; margin:12px 0 0;">자세한 내용은 <a href="refund.html" target="_blank" style="color:#15A754; font-weight:700; text-decoration:underline;">환불규정</a>을 확인해주세요.</p>
+                            <p style="font-size:15px; color:#14150F; margin:12px 0 0;">자세한 내용은 <a href="refund.html" target="_blank" style="color:#15A754; font-weight:700; text-decoration:underline;">환불규정</a>을 확인해주세요.</p>
                         </div>
                     </div>
                 </details>
@@ -1220,12 +1279,21 @@
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-200 pt-4">
-                        PC 켜두기만 하면 됩니다. 최초 설정은 가이드 영상 보면서 5분이면 끝나고, 이후부터는 클릭 한 번이면 자동으로 실행됩니다.<br><br>하루 1~2시간 동안 알아서 100명과 소통합니다. 실행 중에 다른 작업을 하셔도 되고, 외출하셔도 됩니다. 완료되면 자동으로 종료됩니다.<br><br><strong class="text-naver">📌 API 비용 안내</strong><br>본 솔루션은 AI 기능에 Gemini API를 사용합니다. API 비용은 솔루션 가격에 포함되어 있지 않으며, 사용량에 따라 별도로 발생합니다. 이웃 관리 기준 하루 100명 소통 시 약 30~50원 수준이며, 글쓰기 에디터는 글 1편당 약 50~60원 수준입니다. 이미지 생성 사용에 따라 달라질 수 있습니다. 가이드 영상에서 API 키 발급 방법과 비용 관리법을 안내해드리고 있습니다.
+                        PC 켜두기만 하면 됩니다. 최초 설정은 가이드 영상 보면서 5분이면 끝나고, 이후부터는 클릭 한 번이면 자동으로 실행됩니다.<br><br>하루 1~2시간 동안 알아서 100명과 소통합니다. 실행 중에 다른 작업을 하셔도 되고, 외출하셔도 됩니다. 완료되면 자동으로 종료됩니다.
                     </div>
                 </details>
                 <details class="group rounded-xl border border-gray-200 open:border-naver bg-[#f9f9f5] shadow-sm transition-all overflow-hidden">
                     <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-gray-900">
-                        Q3. 맥(Mac) 환경에서도 돌아가나요?
+                        Q3. API 비용이 별도로 드나요?
+                        <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-200 pt-4">
+                        네, AI 기능에 Gemini API를 사용하며, API 비용은 솔루션 가격에 포함되어 있지 않습니다. 사용량에 따라 별도로 발생합니다.<br><br>이웃 관리 기준 하루 100명 소통 시 약 30~50원 수준이며, 글쓰기 에디터는 글 1편당 약 50~60원 수준입니다. 이미지 생성 사용에 따라 달라질 수 있습니다.<br><br>가이드 영상에서 API 키 발급 방법과 비용 관리법을 안내해드리고 있습니다.
+                    </div>
+                </details>
+                <details class="group rounded-xl border border-gray-200 open:border-naver bg-[#f9f9f5] shadow-sm transition-all overflow-hidden">
+                    <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-gray-900">
+                        Q4. 맥(Mac) 환경에서도 돌아가나요?
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-200 pt-4">
@@ -1234,7 +1302,7 @@
                 </details>
                 <details class="group rounded-xl border border-gray-200 open:border-naver bg-[#f9f9f5] shadow-sm transition-all overflow-hidden">
                     <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-gray-900">
-                        Q4. 실제로 효과가 있나요?
+                        Q5. 실제로 효과가 있나요?
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-200 pt-4">
@@ -1243,7 +1311,7 @@
                 </details>
                 <details class="group rounded-xl border border-gray-200 open:border-naver bg-[#f9f9f5] shadow-sm transition-all overflow-hidden">
                     <summary class="cursor-pointer p-6 font-bold text-lg flex justify-between items-center outline-none text-gray-900">
-                        Q5. 환불은 어떻게 되나요?
+                        Q6. 환불은 어떻게 되나요?
                         <span class="text-gray-500 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="px-6 pb-6 text-gray-700 leading-relaxed border-t border-gray-200 pt-4">
@@ -1383,6 +1451,7 @@
                         <p class="bank-hint-text">버튼을 누르면 입금 확인 요청이 전송됩니다.</p>
                         <p class="bank-hint-text">확인 후 이메일로 인증키를 발송해드려요.</p>
                         <p class="bank-hint-hours">🕐 영업시간: 오전 10:00 ~ 오후 8:00</p>
+                        <p style="color:#E53E3E; font-size:13px; font-weight:700; margin-top:8px;">⚠️ Windows PC 전용 프로그램입니다 (Mac 미지원)</p>
                     </div>
                 </div>
             </div>
