@@ -420,7 +420,7 @@
     <section id="pricing" class="pt-12 pb-24 bg-white px-6">
         <div class="max-w-5xl mx-auto text-center">
             <div class="mb-14">
-                <p class="text-2xl md:text-3xl font-black text-gray-900">직접 써보고 결정하세요.</p>
+                <p class="text-2xl md:text-3xl font-black" style="color:#14150F;"><span style="background:linear-gradient(135deg, #15A754, #4CD080); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">직접 써보고</span> 결정하세요.</p>
                 <p class="text-base text-gray-500 mt-3">결제 정보 없이, 무료로 체험할 수 있습니다.</p>
             </div>
 
@@ -438,12 +438,13 @@
                             <li class="flex items-center justify-center gap-2"><span class="text-gray-400 font-bold">✓</span> 결제 정보 필요 없음</li>
                         </ul>
                     </div>
-                    <button onclick="scrollToForm('free')" class="w-full py-3.5 rounded-xl font-bold bg-white text-gray-800 border-2 border-gray-300 hover:bg-gray-50 transition-colors">무료 체험 신청</button>
+                    <button onclick="scrollToForm('free')" class="w-full py-3.5 rounded-xl font-bold text-gray-900 transition-colors" style="background:#FEE500; border:2px solid #FEE500;">5일 무료 체험</button>
                 </div>
 
                 <!-- 1개월: 블로그 활성화 -->
-                <div class="bg-white rounded-2xl p-7 border border-gray-200 flex flex-col">
-                    <div class="flex-1">
+                <div class="rounded-2xl p-7 border-2 border-naver/40 flex flex-col relative" style="background:#F0FDF4;">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-800 text-white px-4 py-1 rounded-full text-xs font-bold shadow-md">가장 인기</div>
+                    <div class="flex-1 mt-2">
                         <h3 class="text-lg font-black text-gray-800 mb-1">블로그 활성화</h3>
                         <p class="text-xs text-gray-500 font-medium mb-2">매일 100명의 잠재 고객</p>
                         <div class="text-4xl font-black text-gray-800 mb-1">79,000<span class="text-lg font-medium text-gray-400">원</span><span class="text-sm font-medium text-gray-400 ml-1">/ 1개월</span></div>
@@ -454,11 +455,11 @@
                             <li class="flex items-center justify-center gap-2"><span class="text-naver font-bold">✓</span> 가이드 영상 + 매뉴얼</li>
                         </ul>
                     </div>
-                    <button onclick="scrollToForm('1month')" class="w-full py-3.5 rounded-xl font-bold bg-gray-800 text-white hover:bg-gray-900 transition-colors">1개월 시작하기</button>
+                    <button onclick="scrollToForm('1month')" class="w-full py-3.5 rounded-xl font-bold text-white transition-colors" style="background:linear-gradient(135deg, #15A754, #4CD080);">1개월 시작하기</button>
                 </div>
 
                 <!-- 2개월: 수익화 기반 완성 (추천) -->
-                <div class="rounded-2xl p-7 border-2 border-naver shadow-xl flex flex-col relative" style="background:linear-gradient(180deg, #f0fdf4 0%, #fff 100%);">
+                <div class="rounded-2xl p-7 border-2 border-naver shadow-xl flex flex-col relative" style="background:#FAFFF5;">
                     <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-naver text-white px-5 py-1.5 rounded-full text-sm font-bold shadow-md">추천</div>
                     <div class="flex-1 mt-2">
                         <h3 class="text-lg font-black text-gray-900 mb-1">수익화 기반 완성</h3>
@@ -473,7 +474,7 @@
                         </ul>
                     </div>
                     <p class="text-xs text-gray-900 font-bold text-center mb-3">1개월보다 월 14,500원 절약</p>
-                    <button onclick="scrollToForm('full')" class="w-full py-4 rounded-xl font-bold bg-naver text-white hover:bg-naverHover transition-colors shadow-lg shadow-green-200/50">2개월 시작하기</button>
+                    <button onclick="scrollToForm('full')" class="w-full py-4 rounded-xl font-bold text-white transition-colors shadow-lg shadow-green-200/50" style="background:linear-gradient(135deg, #15A754, #4CD080);">2개월 시작하기</button>
                 </div>
 
             </div>
@@ -889,7 +890,7 @@
                     <div id="hh-done-area" style="display:none; opacity:0; transform:translateY(10px); transition:opacity 0.5s, transform 0.5s;">
                         <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
                             <span style="color:#2DD17F; font-size:13px; font-weight:700;">✓ 완료</span>
-                            <span style="font-size:12px; color:#F2F3F5;">총 3,880자 · SEO 최적화 완료</span>
+                            <span style="font-size:12px; color:#14150F;">총 3,880자 · SEO 최적화 완료</span>
                         </div>
                     </div>
                     <!-- 본문 미리보기 (Phase 3 — 숨김) -->
@@ -1058,6 +1059,13 @@
                     </div>
                 </div>
 
+                <!-- 세로 구분 점 -->
+                <div style="text-align:center; margin-bottom:40px; display:flex; flex-direction:column; align-items:center; gap:8px;">
+                    <span style="display:block; width:8px; height:8px; border-radius:50%; background:#15A754; opacity:0.2;"></span>
+                    <span style="display:block; width:8px; height:8px; border-radius:50%; background:#15A754; opacity:0.5;"></span>
+                    <span style="display:block; width:8px; height:8px; border-radius:50%; background:#15A754; opacity:1;"></span>
+                </div>
+
                 <!-- AI 탐지기 100% 통과 -->
                 <div class="text-center" style="margin-bottom:32px;">
                     <h2 class="editor-fade text-2xl md:text-4xl font-black leading-tight mb-2" style="color:#14150F; letter-spacing:-0.02em;">
@@ -1200,7 +1208,7 @@
     <!-- ===== SECTION 10: ORDER FORM ===== -->
     <section id="purchase-form" class="py-24 px-6" style="background:#fff; color:#14150F;">
         <div class="max-w-lg mx-auto">
-            <h2 class="text-center" style="font-size:clamp(2.2rem,6vw,3.2rem); font-weight:900; color:#14150F; letter-spacing:-0.03em; margin:0 0 8px; line-height:1.3;">5일 무료 체험으로<br><span style="color:#15A754;">지금 시작하세요.</span></h2>
+            <h2 class="text-center" style="font-size:clamp(2.2rem,6vw,3.2rem); font-weight:900; letter-spacing:-0.03em; margin:0 0 8px; line-height:1.3;"><span style="background:linear-gradient(135deg, #15A754, #4CD080); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">5일 무료 체험</span>으로<br><span style="color:#14150F; font-weight:700;">지금 시작하세요.</span></h2>
             <p class="text-center mb-10" style="font-size:15px; color:#6E6E63; font-weight:600;">카드 등록 없이 · 부담 없이 · 1분이면 끝</p>
             <div class="bg-white text-gray-900 p-8 rounded-2xl shadow-2xl">
                 <form id="orderForm" onsubmit="submitForm(event)" class="space-y-6">
