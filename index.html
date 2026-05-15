@@ -127,13 +127,13 @@
                 이웃 관리부터 글쓰기까지<br>번거로운 작업을 모두 해결해보세요.
             </p>
             <div style="text-align:center; margin-bottom:48px;">
-                <button onclick="document.getElementById('solution-section').scrollIntoView({behavior:'smooth'})" style="background:#14150F; color:#fff; font-weight:800; font-size:clamp(1.1rem,3vw,1.3rem); padding:20px 52px; border-radius:40px; border:none; cursor:pointer; box-shadow:0 14px 28px -12px rgba(20,21,15,0.4); letter-spacing:0.02em;">
-                    🎁 5일 무료 체험 시작하기
+                <button onclick="document.getElementById('result-section').scrollIntoView({behavior:'smooth'})" style="background:linear-gradient(135deg, #15A754, #4CD080); color:#fff; font-weight:800; font-size:clamp(1.1rem,3vw,1.3rem); padding:20px 52px; border-radius:40px; border:none; cursor:pointer; box-shadow:0 14px 28px -12px rgba(21,167,84,0.4); letter-spacing:0.02em;">
+                    내 블로그에 적용하기
                 </button>
             </div>
 
             <!-- 빨간 화살표 -->
-            <div class="animate-bounce-slow" style="text-align:center; margin-bottom:56px; line-height:1.2;">
+            <div id="result-section" class="animate-bounce-slow" style="text-align:center; margin-bottom:56px; line-height:1.2;">
                 <span style="color:#E53E3E; font-size:20px;">&#9660;</span><br>
                 <span style="color:#E53E3E; opacity:0.5; font-size:20px;">&#9660;</span><br>
                 <span style="color:#E53E3E; opacity:0.25; font-size:20px;">&#9660;</span>
@@ -283,8 +283,8 @@
                         </div>
                         <!-- 하단: 합계 -->
                         <div style="text-align:center; padding:16px 14px;">
-                            <span style="font-size:24px; font-weight:900; color:#14150F;">31<span style="font-size:14px; font-weight:400; color:#6E6E63;">명</span></span>
-                            <span style="font-size:15px; font-weight:700; color:#14150F; margin-left:8px;">오늘 차단된 스팸 계정</span>
+                            <span style="font-size:15px; font-weight:700; color:#14150F;">오늘 차단된 스팸 계정</span>
+                            <span style="font-size:24px; font-weight:900; color:#14150F; margin-left:8px;">31<span style="font-size:14px; font-weight:400; color:#6E6E63;">명</span></span>
                         </div>
                     </div>
                 </div>
@@ -341,41 +341,41 @@
                 <div class="hugi-grid" style="align-items:start;">
                     <div style="position:relative;" class="hugi-item" onclick="hugiOpen(this)">
                         <span style="position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.55); color:#fff; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; z-index:2; letter-spacing:0.04em;">사용 후</span>
-                        <img src="assets/hugi/10.png" alt="사용 후 반응 수치 후기" style="border:1px solid #E2DECE; border-radius:12px;">
+                        <img src="assets/hugi/10.png?v=20260515" alt="사용 후 반응 수치 후기" style="border:1px solid #E2DECE; border-radius:12px;">
                     </div>
                     <div style="position:relative;" class="hugi-item" onclick="hugiOpen(this)">
                         <span style="position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.55); color:#fff; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; z-index:2; letter-spacing:0.04em;">사용 전 → 후</span>
-                        <img src="assets/hugi/11.png" alt="사용 전 사용 후 비교 후기" style="border:1px solid #E2DECE; border-radius:12px;">
+                        <img src="assets/hugi/11.png?v=20260515" alt="사용 전 사용 후 비교 후기" style="border:1px solid #E2DECE; border-radius:12px;">
                     </div>
                 </div>
             </div>
 
             <!-- 1번 (풀와이드) -->
             <div class="hugi-item" style="margin-bottom:12px; border:1px solid #E2DECE;" onclick="hugiOpen(this)">
-                <img src="assets/hugi/1.png" alt="1년 사용 후 지인 추천 후기">
+                <img src="assets/hugi/1.png?v=20260515" alt="1년 사용 후 지인 추천 후기">
             </div>
 
             <!-- 7번 + 6번 -->
             <div class="hugi-grid" style="margin-bottom:12px;" id="hugi-row2">
                 <div class="hugi-item" style="background:#bacee0;" id="hugi7-wrap" onclick="hugiOpen(this)">
-                    <img src="assets/hugi/8.png" alt="사용자 후기 대화">
+                    <img src="assets/hugi/8.png?v=20260515" alt="사용자 후기 대화">
                 </div>
                 <div class="hugi-item" style="border:1px solid #E2DECE;" id="hugi6-wrap" onclick="hugiOpen(this)">
-                    <img src="assets/hugi/6.png" alt="실제 사용자 후기 대화">
+                    <img src="assets/hugi/6.png?v=20260515" alt="실제 사용자 후기 대화">
                 </div>
             </div>
 
             <!-- 5번 + (3번, 9번) -->
             <div class="hugi-grid" style="align-items:start; margin-bottom:12px;">
                 <div class="hugi-item" style="border:1px solid #E2DECE;" onclick="hugiOpen(this)">
-                    <img src="assets/hugi/5.png" alt="실제 사용자 후기 대화">
+                    <img src="assets/hugi/5.png?v=20260515" alt="실제 사용자 후기 대화">
                 </div>
                 <div style="display:flex; flex-direction:column; gap:12px;">
                     <div class="hugi-item" style="background:#bacee0;" onclick="hugiOpen(this)">
-                        <img src="assets/hugi/3.png" alt="추가 구매 문의 후기">
+                        <img src="assets/hugi/3.png?v=20260515" alt="추가 구매 문의 후기">
                     </div>
                     <div class="hugi-item" style="background:#bacee0;" onclick="hugiOpen(this)">
-                        <img src="assets/hugi/9.png" alt="사용자 후기 대화">
+                        <img src="assets/hugi/9.png?v=20260515" alt="사용자 후기 대화">
                     </div>
                 </div>
             </div>
