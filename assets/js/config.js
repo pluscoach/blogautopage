@@ -29,12 +29,19 @@ var PLAN_CONFIG = {
         planCode: 'full_package',
         visible: true,
     },
+    yearly: {
+        amount: 740000,
+        label: '1년 이용권 (740,000원)',
+        name: '1년 이용권',
+        planCode: 'yearly',
+        visible: true,
+    },
     lifetime: {
         amount: 740000,
         label: '평생 이용 (740,000원)',
         name: '평생 이용',
         planCode: 'lifetime',
-        visible: true,
+        visible: false,  // 메뉴에서 숨김 (추후 재노출 예정)
     },
 };
 window.PLAN_CONFIG = PLAN_CONFIG;

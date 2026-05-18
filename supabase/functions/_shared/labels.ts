@@ -7,6 +7,7 @@ export function getPlanLabel(plan: string): string {
     monthly: "1개월 이용",
     full_package: "2개월 이용",
     free_trial: "무료 체험",
+    yearly: "1년 이용권",
     lifetime: "평생 이용",
   };
   return labels[plan] || plan;
